@@ -1,35 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>Hello World</title>
-    <url>/2020/09/12/hello-world/</url>
-    <content><![CDATA[<p>Welcome to <a class="link" href="https://hexo.io/">Hexo<i class="fas fa-external-link-alt"></i></a>! This is your very first post. Check <a class="link" href="https://hexo.io/docs/">documentation<i class="fas fa-external-link-alt"></i></a> for more info. If you get any problems when using Hexo, you can find the answer in <a class="link" href="https://hexo.io/docs/troubleshooting.html">troubleshooting<i class="fas fa-external-link-alt"></i></a> or you can ask me on <a class="link" href="https://github.com/hexojs/hexo/issues">GitHub<i class="fas fa-external-link-alt"></i></a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a class="link" href="https://hexo.io/docs/writing.html">Writing<i class="fas fa-external-link-alt"></i></a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a class="link" href="https://hexo.io/docs/server.html">Server<i class="fas fa-external-link-alt"></i></a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a class="link" href="https://hexo.io/docs/generating.html">Generating<i class="fas fa-external-link-alt"></i></a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<h3 id="Math"><a href="#Math" class="headerlink" title="Math"></a>Math</h3><hr>
-<p><mjx-container class="MathJax" jax="SVG" display="true"><svg style="vertical-align: -1.602ex" xmlns="http://www.w3.org/2000/svg" width="25.832ex" height="5.018ex" role="img" focusable="false" viewBox="0 -1509.9 11417.6 2217.9"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><path data-c="1D456" d="M184 600Q184 624 203 642T247 661Q265 661 277 649T290 619Q290 596 270 577T226 557Q211 557 198 567T184 600ZM21 287Q21 295 30 318T54 369T98 420T158 442Q197 442 223 419T250 357Q250 340 236 301T196 196T154 83Q149 61 149 51Q149 26 166 26Q175 26 185 29T208 43T235 78T260 137Q263 149 265 151T282 153Q302 153 302 143Q302 135 293 112T268 61T223 11T161 -11Q129 -11 102 10T74 74Q74 91 79 106T122 220Q160 321 166 341T173 380Q173 404 156 404H154Q124 404 99 371T61 287Q60 286 59 284T58 281T56 279T53 278T49 278T41 278H27Q21 284 21 287Z"></path></g><g data-mml-node="mi" transform="translate(345,0)"><path data-c="210F" d="M182 599Q182 611 174 615T133 619Q118 619 114 621T109 630Q109 636 114 656T122 681Q125 685 202 688Q272 695 286 695Q304 695 304 684Q304 682 295 644T282 597Q282 592 360 592H399Q430 592 445 587T460 563Q460 552 451 541L442 535H266L251 468Q247 453 243 436T236 409T233 399Q233 395 244 404Q295 441 357 441Q405 441 445 417T485 333Q485 284 449 178T412 58T426 44Q447 44 466 68Q485 87 500 130L509 152H531H543Q562 152 562 144Q562 128 546 93T494 23T415 -13Q385 -13 359 3T322 44Q318 52 318 77Q318 99 352 196T386 337Q386 386 346 386Q318 386 286 370Q267 361 245 338T211 292Q207 287 193 235T162 113T138 21Q128 7 122 4Q105 -12 83 -12Q66 -12 54 -2T42 26L166 530Q166 534 161 534T129 535Q127 535 122 535T112 534Q74 534 74 562Q74 570 77 576T84 585T96 589T109 591T124 592T138 592L182 595V599Z"></path></g><g data-mml-node="mfrac" transform="translate(907,0)"><g data-mml-node="mi" transform="translate(400.5,676)"><path data-c="1D715" d="M202 508Q179 508 169 520T158 547Q158 557 164 577T185 624T230 675T301 710L333 715H345Q378 715 384 714Q447 703 489 661T549 568T566 457Q566 362 519 240T402 53Q321 -22 223 -22Q123 -22 73 56Q42 102 42 148V159Q42 276 129 370T322 465Q383 465 414 434T455 367L458 378Q478 461 478 515Q478 603 437 639T344 676Q266 676 223 612Q264 606 264 572Q264 547 246 528T202 508ZM430 306Q430 372 401 400T333 428Q270 428 222 382Q197 354 183 323T150 221Q132 149 132 116Q132 21 232 21Q244 21 250 22Q327 35 374 112Q389 137 409 196T430 306Z"></path></g><g data-mml-node="mrow" transform="translate(220,-686)"><g data-mml-node="mi"><path data-c="1D715" d="M202 508Q179 508 169 520T158 547Q158 557 164 577T185 624T230 675T301 710L333 715H345Q378 715 384 714Q447 703 489 661T549 568T566 457Q566 362 519 240T402 53Q321 -22 223 -22Q123 -22 73 56Q42 102 42 148V159Q42 276 129 370T322 465Q383 465 414 434T455 367L458 378Q478 461 478 515Q478 603 437 639T344 676Q266 676 223 612Q264 606 264 572Q264 547 246 528T202 508ZM430 306Q430 372 401 400T333 428Q270 428 222 382Q197 354 183 323T150 221Q132 149 132 116Q132 21 232 21Q244 21 250 22Q327 35 374 112Q389 137 409 196T430 306Z"></path></g><g data-mml-node="mi" transform="translate(566,0)"><path data-c="1D461" d="M26 385Q19 392 19 395Q19 399 22 411T27 425Q29 430 36 430T87 431H140L159 511Q162 522 166 540T173 566T179 586T187 603T197 615T211 624T229 626Q247 625 254 615T261 596Q261 589 252 549T232 470L222 433Q222 431 272 431H323Q330 424 330 420Q330 398 317 385H210L174 240Q135 80 135 68Q135 26 162 26Q197 26 230 60T283 144Q285 150 288 151T303 153H307Q322 153 322 145Q322 142 319 133Q314 117 301 95T267 48T216 6T155 -11Q125 -11 98 4T59 56Q57 64 57 83V101L92 241Q127 382 128 383Q128 385 77 385H26Z"></path></g></g><rect width="1127" height="60" x="120" y="220"></rect></g><g data-mml-node="mi" transform="translate(2274,0)"><path data-c="1D713" d="M161 441Q202 441 226 417T250 358Q250 338 218 252T187 127Q190 85 214 61Q235 43 257 37Q275 29 288 29H289L371 360Q455 691 456 692Q459 694 472 694Q492 694 492 687Q492 678 411 356Q329 28 329 27T335 26Q421 26 498 114T576 278Q576 302 568 319T550 343T532 361T524 384Q524 405 541 424T583 443Q602 443 618 425T634 366Q634 337 623 288T605 220Q573 125 492 57T329 -11H319L296 -104Q272 -198 272 -199Q270 -205 252 -205H239Q233 -199 233 -197Q233 -192 256 -102T279 -9Q272 -8 265 -8Q106 14 106 139Q106 174 139 264T173 379Q173 380 173 381Q173 390 173 393T169 400T158 404H154Q131 404 112 385T82 344T65 302T57 280Q55 278 41 278H27Q21 284 21 287Q21 299 34 333T82 404T161 441Z"></path></g><g data-mml-node="mo" transform="translate(3202.8,0)"><path data-c="3D" d="M56 347Q56 360 70 367H707Q722 359 722 347Q722 336 708 328L390 327H72Q56 332 56 347ZM56 153Q56 168 72 173H708Q722 163 722 153Q722 140 707 133H70Q56 140 56 153Z"></path></g><g data-mml-node="mo" transform="translate(4258.6,0)"><path data-c="2212" d="M84 237T84 250T98 270H679Q694 262 694 250T679 230H98Q84 237 84 250Z"></path></g><g data-mml-node="mfrac" transform="translate(5036.6,0)"><g data-mml-node="msup" transform="translate(384.2,676)"><g data-mml-node="mi"><path data-c="210F" d="M182 599Q182 611 174 615T133 619Q118 619 114 621T109 630Q109 636 114 656T122 681Q125 685 202 688Q272 695 286 695Q304 695 304 684Q304 682 295 644T282 597Q282 592 360 592H399Q430 592 445 587T460 563Q460 552 451 541L442 535H266L251 468Q247 453 243 436T236 409T233 399Q233 395 244 404Q295 441 357 441Q405 441 445 417T485 333Q485 284 449 178T412 58T426 44Q447 44 466 68Q485 87 500 130L509 152H531H543Q562 152 562 144Q562 128 546 93T494 23T415 -13Q385 -13 359 3T322 44Q318 52 318 77Q318 99 352 196T386 337Q386 386 346 386Q318 386 286 370Q267 361 245 338T211 292Q207 287 193 235T162 113T138 21Q128 7 122 4Q105 -12 83 -12Q66 -12 54 -2T42 26L166 530Q166 534 161 534T129 535Q127 535 122 535T112 534Q74 534 74 562Q74 570 77 576T84 585T96 589T109 591T124 592T138 592L182 595V599Z"></path></g><g data-mml-node="mn" transform="translate(646.1,363) scale(0.707)"><path data-c="32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z"></path></g></g><g data-mml-node="mrow" transform="translate(220,-686)"><g data-mml-node="mn"><path data-c="32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z"></path></g><g data-mml-node="mi" transform="translate(500,0)"><path data-c="1D45A" d="M21 287Q22 293 24 303T36 341T56 388T88 425T132 442T175 435T205 417T221 395T229 376L231 369Q231 367 232 367L243 378Q303 442 384 442Q401 442 415 440T441 433T460 423T475 411T485 398T493 385T497 373T500 364T502 357L510 367Q573 442 659 442Q713 442 746 415T780 336Q780 285 742 178T704 50Q705 36 709 31T724 26Q752 26 776 56T815 138Q818 149 821 151T837 153Q857 153 857 145Q857 144 853 130Q845 101 831 73T785 17T716 -10Q669 -10 648 17T627 73Q627 92 663 193T700 345Q700 404 656 404H651Q565 404 506 303L499 291L466 157Q433 26 428 16Q415 -11 385 -11Q372 -11 364 -4T353 8T350 18Q350 29 384 161L420 307Q423 322 423 345Q423 404 379 404H374Q288 404 229 303L222 291L189 157Q156 26 151 16Q138 -11 108 -11Q95 -11 87 -5T76 7T74 17Q74 30 112 181Q151 335 151 342Q154 357 154 369Q154 405 129 405Q107 405 92 377T69 316T57 280Q55 278 41 278H27Q21 284 21 287Z"></path></g></g><rect width="1578" height="60" x="120" y="220"></rect></g><g data-mml-node="msup" transform="translate(6854.6,0)"><g data-mml-node="mi"><path data-c="2207" d="M46 676Q46 679 51 683H781Q786 679 786 676Q786 674 617 326T444 -26Q439 -33 416 -33T388 -26Q385 -22 216 326T46 676ZM697 596Q697 597 445 597T193 596Q195 591 319 336T445 80L697 596Z"></path></g><g data-mml-node="mn" transform="translate(866,413) scale(0.707)"><path data-c="32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z"></path></g></g><g data-mml-node="mi" transform="translate(8124.1,0)"><path data-c="1D713" d="M161 441Q202 441 226 417T250 358Q250 338 218 252T187 127Q190 85 214 61Q235 43 257 37Q275 29 288 29H289L371 360Q455 691 456 692Q459 694 472 694Q492 694 492 687Q492 678 411 356Q329 28 329 27T335 26Q421 26 498 114T576 278Q576 302 568 319T550 343T532 361T524 384Q524 405 541 424T583 443Q602 443 618 425T634 366Q634 337 623 288T605 220Q573 125 492 57T329 -11H319L296 -104Q272 -198 272 -199Q270 -205 252 -205H239Q233 -199 233 -197Q233 -192 256 -102T279 -9Q272 -8 265 -8Q106 14 106 139Q106 174 139 264T173 379Q173 380 173 381Q173 390 173 393T169 400T158 404H154Q131 404 112 385T82 344T65 302T57 280Q55 278 41 278H27Q21 284 21 287Q21 299 34 333T82 404T161 441Z"></path></g><g data-mml-node="mo" transform="translate(8997.3,0)"><path data-c="2B" d="M56 237T56 250T70 270H369V420L370 570Q380 583 389 583Q402 583 409 568V270H707Q722 262 722 250T707 230H409V-68Q401 -82 391 -82H389H387Q375 -82 369 -68V230H70Q56 237 56 250Z"></path></g><g data-mml-node="mi" transform="translate(9997.6,0)"><path data-c="1D449" d="M52 648Q52 670 65 683H76Q118 680 181 680Q299 680 320 683H330Q336 677 336 674T334 656Q329 641 325 637H304Q282 635 274 635Q245 630 242 620Q242 618 271 369T301 118L374 235Q447 352 520 471T595 594Q599 601 599 609Q599 633 555 637Q537 637 537 648Q537 649 539 661Q542 675 545 679T558 683Q560 683 570 683T604 682T668 681Q737 681 755 683H762Q769 676 769 672Q769 655 760 640Q757 637 743 637Q730 636 719 635T698 630T682 623T670 615T660 608T652 599T645 592L452 282Q272 -9 266 -16Q263 -18 259 -21L241 -22H234Q216 -22 216 -15Q213 -9 177 305Q139 623 138 626Q133 637 76 637H59Q52 642 52 648Z"></path></g><g data-mml-node="mi" transform="translate(10766.6,0)"><path data-c="1D713" d="M161 441Q202 441 226 417T250 358Q250 338 218 252T187 127Q190 85 214 61Q235 43 257 37Q275 29 288 29H289L371 360Q455 691 456 692Q459 694 472 694Q492 694 492 687Q492 678 411 356Q329 28 329 27T335 26Q421 26 498 114T576 278Q576 302 568 319T550 343T532 361T524 384Q524 405 541 424T583 443Q602 443 618 425T634 366Q634 337 623 288T605 220Q573 125 492 57T329 -11H319L296 -104Q272 -198 272 -199Q270 -205 252 -205H239Q233 -199 233 -197Q233 -192 256 -102T279 -9Q272 -8 265 -8Q106 14 106 139Q106 174 139 264T173 379Q173 380 173 381Q173 390 173 393T169 400T158 404H154Q131 404 112 385T82 344T65 302T57 280Q55 278 41 278H27Q21 284 21 287Q21 299 34 333T82 404T161 441Z"></path></g></g></g></svg></mjx-container></p>
-<p>More info: <a class="link" href="https://hexo.io/docs/one-command-deployment.html">Deployment<i class="fas fa-external-link-alt"></i></a></p>
-]]></content>
-      <categories>
-        <category>math</category>
-      </categories>
-      <tags>
-        <tag>math</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Pybind和cmake联合使用</title>
     <url>/2021/11/01/pybind-cmake/</url>
-    <content><![CDATA[<h1 id="关于pybind11与cmake的使用"><a href="#关于pybind11与cmake的使用" class="headerlink" title="关于pybind11与cmake的使用"></a>关于pybind11与cmake的使用</h1><h1 id="github传送门"><a href="#github传送门" class="headerlink" title="github传送门"></a><a class="link"   href="https://github.com/newsun-boki/pybind11-tutorial" >github传送门<i class="fas fa-external-link-alt"></i></a></h1><p>因为pybind11官方教程我并没有找到与cmake的联合使用，导致我不会写CMakeLists。然后其实也不是很难，发个帖子记录一下.<br>帮助你在python中使用cmake中的函数,理论上你只需要点进上面的链接就好。下面是README。</p>
+    <content><![CDATA[<h1 id="pybind11与cmake的联合使用"><a href="#pybind11与cmake的联合使用" class="headerlink" title="pybind11与cmake的联合使用"></a>pybind11与cmake的联合使用</h1><h1 id="github传送门"><a href="#github传送门" class="headerlink" title="github传送门"></a><a class="link"   href="https://github.com/newsun-boki/pybind11-tutorial" >github传送门<i class="fas fa-external-link-alt"></i></a></h1><p>因为pybind11官方教程我并没有找到与cmake的联合使用，导致我不会写CMakeLists。然后其实也不是很难，发个帖子记录一下.<br>帮助你在python中使用cmake中的函数,理论上你只需要点进上面的链接就好。下面是README。</p>
 <h2 id="step1"><a href="#step1" class="headerlink" title="step1"></a>step1</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">pip install pytest</span><br></pre></td></tr></table></figure>
 
 <h2 id="step2"><a href="#step2" class="headerlink" title="step2"></a>step2</h2><p>你必须要把pybind11和CMakeLists.txt放到一个文件下。pybind11是在github下载的官方仓库</p>
@@ -52,8 +26,185 @@
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> example</span><br><span class="line">example.add(<span class="number">3</span>, <span class="number">4</span>)</span><br><span class="line">[out]: <span class="number">7</span></span><br></pre></td></tr></table></figure>
 
 ]]></content>
+      <categories>
+        <category>code</category>
+      </categories>
       <tags>
-        <tag>code</tag>
+        <tag>c++ python</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>python支持向量机SVM (sklearn)</title>
+    <url>/2021/11/01/python%E6%94%AF%E6%8C%81%E5%90%91%E9%87%8F%E6%9C%BASVM%20(sklearn)/</url>
+    <content><![CDATA[<h1 id="python支持向量机SVM-sklearn"><a href="#python支持向量机SVM-sklearn" class="headerlink" title="python支持向量机SVM (sklearn)"></a>python支持向量机SVM (sklearn)</h1><h2 id="原理概述"><a href="#原理概述" class="headerlink" title="原理概述"></a>原理概述</h2><p>说实话以前用支持向量机都是直接套进去的，不过现在看了看菜菜提供数学原理发现其实挺有意思(<del>是超有意思！！</del>)。此处就不详述了，这原理到处都是。反正这文SVM和决策树一样，**有支持向量分类(SVC)和支持向量回归(SVR)**。</p>
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><p>下面是一个SVC的案例</p>
+<h3 id="导入库"><a href="#导入库" class="headerlink" title="导入库"></a>导入库</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.datasets <span class="keyword">import</span> make_blobs</span><br><span class="line"><span class="keyword">from</span> sklearn.svm <span class="keyword">import</span> SVC</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br></pre></td></tr></table></figure>
+<h3 id="生成数据集"><a href="#生成数据集" class="headerlink" title="生成数据集"></a>生成数据集</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">X,y = make_blobs(n_samples=<span class="number">50</span>, centers=<span class="number">2</span>, random_state=<span class="number">0</span>,cluster_std=<span class="number">0.6</span>)</span><br><span class="line"></span><br><span class="line">plt.scatter(X[:,<span class="number">0</span>],X[:,<span class="number">1</span>],c=y,s=<span class="number">50</span>,cmap=<span class="string">&quot;rainbow&quot;</span>)</span><br><span class="line">plt.xticks([])</span><br><span class="line">plt.yticks([])</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://img-blog.csdnimg.cn/20210202165752700.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L25ld3N1bnNvbg==,size_16,color_FFFFFF,t_70#pic_center"
+                      alt="在这里插入图片描述"
+                ></p>
+<h3 id="核心代码"><a href="#核心代码" class="headerlink" title="核心代码"></a>核心代码</h3><p>模型本身并不难，就是要画出相应的图</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">clf = SVC(kernel = <span class="string">&quot;linear&quot;</span>).fit(X,y)</span><br><span class="line"><span class="built_in">print</span>(clf.predict(X))</span><br></pre></td></tr></table></figure>
+<p>上述例子预测又对X自己预测了一变。按照核心代码依旧延续sklearn的风格，十分简单。</p>
+<ul>
+<li>实例化</li>
+<li>fit()</li>
+<li>predict(）。</li>
+</ul>
+<p>可视化可能优点麻烦,需要用到下面这个函数。这个函数只需输入<code>clf</code>即可。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">plot_svc_decision_function</span>(<span class="params">model,ax=<span class="literal">None</span></span>):</span></span><br><span class="line">    <span class="keyword">if</span> ax <span class="keyword">is</span> <span class="literal">None</span>:</span><br><span class="line">        ax = plt.gca()</span><br><span class="line">    xlim = ax.get_xlim()</span><br><span class="line">    ylim = ax.get_ylim()</span><br><span class="line">    x = np.linspace(xlim[<span class="number">0</span>],xlim[<span class="number">1</span>],<span class="number">30</span>)</span><br><span class="line">    y = np.linspace(ylim[<span class="number">0</span>],ylim[<span class="number">1</span>],<span class="number">30</span>)</span><br><span class="line">    Y,X = np.meshgrid(y,x)</span><br><span class="line">    xy = np.vstack([X.ravel(), Y.ravel()]).T</span><br><span class="line">    <span class="comment">#decision_function这个函数可以返回给定的x,y点到决策边界（也就是点到SVM所得到划分线的距离）</span></span><br><span class="line">    P = model.decision_function(xy).reshape(X.shape)</span><br><span class="line">    ax.contour(X, Y, P,colors=<span class="string">&quot;k&quot;</span>,levels=[-<span class="number">1</span>,<span class="number">0</span>,<span class="number">1</span>],alpha=<span class="number">0.5</span>,linestyles=[<span class="string">&quot;--&quot;</span>,<span class="string">&quot;-&quot;</span>,<span class="string">&quot;--&quot;</span>])</span><br><span class="line">    ax.set_xlim(xlim)</span><br><span class="line">    ax.set_ylim(ylim)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>函数大概思路就是首先生成一个<strong>网格</strong>，然后<strong>计算网格中各个点到决策边界的距离</strong>，最后绘制<strong>等高线</strong>(算出的距离相等的一条线)。</p>
+</blockquote>
+<p>则可以写作</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">clf = SVC(kernel = <span class="string">&quot;linear&quot;</span>).fit(X,y)</span><br><span class="line">plt.scatter(X[:,<span class="number">0</span>],X[:,<span class="number">1</span>],c=y,s=<span class="number">50</span>,cmap=<span class="string">&quot;rainbow&quot;</span>)</span><br><span class="line">plot_svc_decision_function(clf)</span><br></pre></td></tr></table></figure>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://img-blog.csdnimg.cn/20210202165825224.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L25ld3N1bnNvbg==,size_16,color_FFFFFF,t_70#pic_center"
+                      alt="在这里插入图片描述"
+                ></p>
+<p>其中<strong>灰色实线</strong>就是<strong>决策边界</strong>，<strong>虚线之间的距离</strong>就是<strong>边际</strong>。而SVM就是要找到<strong>边际最大的一条决策边界</strong>，而上面那<strong>三个穿虚线而过的点</strong>就是<strong>支持向量</strong>（最下面那个红色不算），<strong>也就是离决策边界最近的3个点</strong>。</p>
+<h3 id="线性不可分的情况"><a href="#线性不可分的情况" class="headerlink" title="线性不可分的情况"></a>线性不可分的情况</h3><p>这就是整个SVM我觉得最关键也最有意思的地方。从上面的图我们能够知道SVM实际上是找到一个<strong>超平面</strong>将各点分开。如果能找到自然就是<strong>线性可分</strong>的，<strong>那如果找不到呢？</strong></p>
+<blockquote>
+<p><strong>超平面</strong>就是比<strong>当前空间维度低一个维度的分界</strong>，对于<strong>二维平面来说是一条线</strong>，对于<strong>三维空间是一个面</strong>。</p>
+</blockquote>
+<p>对于这么一个案例</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.datasets <span class="keyword">import</span> make_circles</span><br><span class="line">X,y = make_circles(<span class="number">100</span>, factor=<span class="number">0.1</span>, noise=<span class="number">.1</span>)</span><br><span class="line">X.shape</span><br><span class="line">y.shape</span><br><span class="line">plt.scatter(X[:,<span class="number">0</span>],X[:,<span class="number">1</span>],c=y,s=<span class="number">50</span>,cmap=<span class="string">&quot;rainbow&quot;</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://img-blog.csdnimg.cn/20210202165853324.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L25ld3N1bnNvbg==,size_16,color_FFFFFF,t_70#pic_center"
+                      alt="在这里插入图片描述"
+                ></p>
+<p>我们可以看出，<strong>不可能存在一条直线</strong>，能将红色和蓝色分开，所以它是<strong>线性不可分的</strong>，怎么办呢？答案是<strong>升维！！！</strong></p>
+<p>对于原来每一个点，我们使用一个<strong>映射函数</strong>，使得从原来的<strong>二维点</strong>变为原来的<strong>三维点</strong>。对于原来一个点<strong>有(x0,y0)</strong>,<br><strong>从(x0,y0)变为(x1,y1,z1)</strong>,其中<strong>z1有</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">x1 = x0; y1 = y0; z1 = e^&#123;-(x^2+y^2)&#125; </span><br></pre></td></tr></table></figure>
+<p>先别想这个函数是怎么来的，让我们先看看映射后的结果怎么样<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://img-blog.csdnimg.cn/20210202170007694.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L25ld3N1bnNvbg==,size_16,color_FFFFFF,t_70#pic_center"
+                      alt="在这里插入图片描述"
+                ></p>
+<p>这个结果非常的amazing啊，红色的点浮起来了，现在只需要用一个<strong>平面</strong>就能把红色和蓝色隔开,也就是说，<strong>升维之后线性可分了！</strong>(<del>当时就把我看湿了</del></p>
+<p>下面是上面这个案例的完整代码</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.svm <span class="keyword">import</span> SVC</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">from</span> sklearn.datasets <span class="keyword">import</span> make_circles</span><br><span class="line">X,y = make_circles(<span class="number">100</span>, factor=<span class="number">0.1</span>, noise=<span class="number">.1</span>)</span><br><span class="line">plt.scatter(X[:,<span class="number">0</span>],X[:,<span class="number">1</span>],c=y,s=<span class="number">50</span>,cmap=<span class="string">&quot;rainbow&quot;</span>)</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">plot_svc_decision_function</span>(<span class="params">model,ax=<span class="literal">None</span></span>):</span></span><br><span class="line">    <span class="keyword">if</span> ax <span class="keyword">is</span> <span class="literal">None</span>:</span><br><span class="line">        ax = plt.gca()</span><br><span class="line">    xlim = ax.get_xlim()</span><br><span class="line">    ylim = ax.get_ylim()</span><br><span class="line">    x = np.linspace(xlim[<span class="number">0</span>],xlim[<span class="number">1</span>],<span class="number">30</span>)</span><br><span class="line">    y = np.linspace(ylim[<span class="number">0</span>],ylim[<span class="number">1</span>],<span class="number">30</span>)</span><br><span class="line">    Y,X = np.meshgrid(y,x)</span><br><span class="line">    xy = np.vstack([X.ravel(), Y.ravel()]).T</span><br><span class="line">    P = model.decision_function(xy).reshape(X.shape)</span><br><span class="line">    ax.contour(X, Y, P,colors=<span class="string">&quot;k&quot;</span>,levels=[-<span class="number">1</span>,<span class="number">0</span>,<span class="number">1</span>],alpha=<span class="number">0.5</span>,linestyles=[<span class="string">&quot;--&quot;</span>,<span class="string">&quot;-&quot;</span>,<span class="string">&quot;--&quot;</span>])</span><br><span class="line">    ax.set_xlim(xlim)</span><br><span class="line">    ax.set_ylim(ylim)</span><br><span class="line">clf = SVC(kernel = <span class="string">&quot;linear&quot;</span>).fit(X,y)</span><br><span class="line">plt.scatter(X[:,<span class="number">0</span>],X[:,<span class="number">1</span>],c=y,s=<span class="number">50</span>,cmap=<span class="string">&quot;rainbow&quot;</span>)</span><br><span class="line">plot_svc_decision_function(clf)</span><br><span class="line">r = np.exp(-(X**<span class="number">2</span>).<span class="built_in">sum</span>(<span class="number">1</span>))</span><br><span class="line">rlim = np.linspace(<span class="built_in">min</span>(r),<span class="built_in">max</span>(r),<span class="number">30</span>)</span><br><span class="line"><span class="keyword">from</span> mpl_toolkits <span class="keyword">import</span> mplot3d</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">plot_3D</span>(<span class="params">elev=<span class="number">30</span>,azim=<span class="number">30</span>,X=X,y=y</span>):</span></span><br><span class="line">    ax = plt.subplot(projection=<span class="string">&quot;3d&quot;</span>)</span><br><span class="line">    ax.scatter3D(X[:,<span class="number">0</span>],X[:,<span class="number">1</span>],r,c=y,s=<span class="number">50</span>,cmap=<span class="string">&#x27;rainbow&#x27;</span>)</span><br><span class="line">    ax.view_init(elev=elev,azim=azim)</span><br><span class="line">    ax.set_xlabel(<span class="string">&quot;x&quot;</span>)</span><br><span class="line">    ax.set_ylabel(<span class="string">&quot;y&quot;</span>)</span><br><span class="line">    ax.set_zlabel(<span class="string">&quot;r&quot;</span>)</span><br><span class="line">    plt.show()</span><br><span class="line"><span class="comment">#下面这个如果你用的是jupyter就可以互动了</span></span><br><span class="line"><span class="comment">#from ipywidgets import interact,fixed</span></span><br><span class="line"><span class="comment">#interact(plot_3D,elev=[0,30],azip=(-180,180),X=fixed(X),y=fixed(y))</span></span><br><span class="line"><span class="comment">#plt.show()</span></span><br></pre></td></tr></table></figure>
+<h3 id="核函数"><a href="#核函数" class="headerlink" title="核函数"></a>核函数</h3><p>所以说上面这个映射函数到底是怎么来的呢，什么是核函数，又和<strong>核函数</strong>又什么关系呢？<br>首先SVM最终的决策函数是<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://img-blog.csdnimg.cn/20210202165911151.png#pic_center"
+                      alt="在这里插入图片描述"
+                ></p>
+<ul>
+<li>f(x_test)是最终的分类，定义为{-1,1}</li>
+<li>其中sign是符号函数，大于0取1，小于0取-1。</li>
+<li>y是标签，二分类有两个标签，取{-1,1}</li>
+<li>x_i是支持向量</li>
+<li>x_test是测试向量</li>
+<li>b是一个常数</li>
+</ul>
+<p>很显然我们要计算<strong>x_i与x_test</strong>之间的<strong>内积</strong>,当我们<strong>升维</strong>之后，我们要算的的<strong>内积是映射(升维)后的内积</strong>。<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://img-blog.csdnimg.cn/20210202165928310.png#pic_center"
+                      alt="在这里插入图片描述"
+                ></p>
+<p>那么我们定义核函数：<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://img-blog.csdnimg.cn/20210202165943334.png#pic_center"
+                      alt="在这里插入图片描述"
+                ></p>
+<p>现在我们就<strong>只需要直接把两个向量带入核函数，而不用先映射成高维再算内积</strong>。这其实省去了很多麻烦，因为计算映射其实挺复杂的。<br>注意，正是因为再<strong>SVM中我们只用到了高维函数的内积，所以只需要计算核函数即可</strong>，有了核函数，我们便能再<strong>低维计算高维的内积</strong>,(<del>这是一次低维生物对高维发起的伟大挑战</del>)显然我们有，只要<strong>映射函数不同，核函数就不同</strong>。<br>下面是sklearn中的几个核函数，个人建议用”rbf”，至于每一个核函数对应的映射函数，自己百度吧。<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://img-blog.csdnimg.cn/20210202170029147.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L25ld3N1bnNvbg==,size_16,color_FFFFFF,t_70#pic_center"
+                      alt="在这里插入图片描述"
+                ></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://img-blog.csdnimg.cn/20210202170111226.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L25ld3N1bnNvbg==,size_16,color_FFFFFF,t_70#pic_center"
+                      alt="在这里插入图片描述"
+                ></p>
+<p>并且有</p>
+<ul>
+<li><strong>线性核，尤其是多项式核函数在高次项时计算非常缓慢</strong></li>
+<li><strong>rbf和多项式核函数都不擅长处理量纲不统一的数据集</strong><br>所以需要针对其进行标准化<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.preprocessing <span class="keyword">import</span> StandardScaler</span><br><span class="line">X = StandardScaler().fit_transform(X)</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="重要参数C-软间隔和硬间隔"><a href="#重要参数C-软间隔和硬间隔" class="headerlink" title="重要参数C(软间隔和硬间隔)"></a>重要参数C(软间隔和硬间隔)</h3><p><strong>c:</strong></p>
+<blockquote>
+<p>浮点数，默认1，必须大于等于0，可不填<br>松弛系数的惩罚项系数。如果<strong>C值设定比较大</strong>，那<strong>SVC可能会选择边际较小</strong>的，能够更好地分类所有训练点的决策边界，不过模型的训练时间也会更长。如果<strong>C的设定值较小</strong>，那<strong>SVC会尽量最大化边界</strong>，决策功能会更简单，但代价是训练的准确度。换句话说，C在SVM中的影响就像正则化参数对逻辑回归的影响.</p>
+</blockquote>
+<h3 id="混淆矩阵"><a href="#混淆矩阵" class="headerlink" title="混淆矩阵"></a>混淆矩阵</h3><p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://img-blog.csdnimg.cn/20210202170125919.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L25ld3N1bnNvbg==,size_16,color_FFFFFF,t_70#pic_center"
+                      alt="在这里插入图片描述"
+                ></p>
+<p>1是少数类，0是多数类</p>
+<ul>
+<li><strong>准确率</strong>：Accuracy，所有预测正确的样本除以总样本,(11+00)/(11+10+01+00)</li>
+<li><strong>精确率</strong>：Precision，预测的少数类中，真正的少数类的占比。11/(11+01)</li>
+<li><strong>召回率</strong> ：Recall，又被称为敏感度(sensitivity)，真正率，查全率，表示所有真实为1的样本中，被我们预测正确的样本所占的比例,11/(11+10).</li>
+<li><strong>假负率</strong>：False Negative Rate,1-Recall。没召回的占少数类的占比。10/（11+10）</li>
+<li><strong>特异度</strong>：Specificity,表示所有真实为0的样本中，被正确预测为0的样本所占的比例，00/（01+00）</li>
+<li><strong>假正率</strong>：False Positive Rate，1 - specificity就是一个模型将多数类判断错误的能力，01/(01+00)</li>
+<li><strong>ROC曲线</strong>，横轴为假正率(FPR)，纵轴为召回率(Recall)，当曲线越往左上角偏说明效果越好，。</li>
+<li><strong>AUC面积</strong>，它代表了ROC曲线下方的面积，这个面积越大，代表ROC曲线越接近左上角，模型就越好。<h3 id="小案例"><a href="#小案例" class="headerlink" title="小案例"></a>小案例</h3></li>
+<li>首先生成数据集并带入模型训练<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.svm <span class="keyword">import</span> SVC</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">from</span> sklearn.datasets <span class="keyword">import</span> make_blobs</span><br><span class="line">class_1 = <span class="number">500</span> <span class="comment">#类别1有500个样本</span></span><br><span class="line">class_2 = <span class="number">50</span> <span class="comment">#类别2只有50个</span></span><br><span class="line">centers = [[<span class="number">0.0</span>, <span class="number">0.0</span>], [<span class="number">2.0</span>, <span class="number">2.0</span>]] <span class="comment">#设定两个类别的中心</span></span><br><span class="line">clusters_std = [<span class="number">1.5</span>, <span class="number">0.5</span>] <span class="comment">#设定两个类别的方差，通常来说，样本量比较大的类别会更加松散</span></span><br><span class="line">X, y = make_blobs(n_samples=[class_1, class_2],centers=centers,cluster_std=clusters_std,random_state=<span class="number">0</span>, shuffle=<span class="literal">False</span>)</span><br><span class="line">plt.scatter(X[:, <span class="number">0</span>], X[:, <span class="number">1</span>], c=y, cmap=<span class="string">&quot;rainbow&quot;</span>,s=<span class="number">10</span>)</span><br><span class="line">clf_proba = SVC(kernel=<span class="string">&quot;linear&quot;</span>,C=<span class="number">1.0</span>,probability=<span class="literal">True</span>).fit(X,y)</span><br></pre></td></tr></table></figure>
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://img-blog.csdnimg.cn/20210202170141184.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L25ld3N1bnNvbg==,size_16,color_FFFFFF,t_70#pic_center"
+                      alt="在这里插入图片描述"
+                ></li>
+</ul>
+<ul>
+<li>其次把个点所预测得到的概率放入DataFrame里<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">prob = clf_proba.predict_proba(X)</span><br><span class="line"><span class="comment">#将样本和概率放到一个DataFrame中</span></span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line">prob = pd.DataFrame(prob)</span><br><span class="line">prob.columns = [<span class="string">&quot;0&quot;</span>,<span class="string">&quot;1&quot;</span>]</span><br></pre></td></tr></table></figure></li>
+<li>找出最佳阈值并画出ROC曲线并得到相应的FPR和Recall，以及AUC</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.metrics <span class="keyword">import</span> roc_curve</span><br><span class="line">FPR, recall, thresholds = roc_curve(y,prob.loc[:,<span class="string">&quot;1&quot;</span>], pos_label=<span class="number">1</span>)</span><br><span class="line"><span class="comment">#此时的threshold就不是一个概率值，而是距离值中的阈值了，所以它可以大于1，也可以为负</span></span><br><span class="line"><span class="comment">#找到最佳阈值</span></span><br><span class="line">maxindex = (recall - FPR).tolist().index(<span class="built_in">max</span>(recall - FPR))</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;thresholds:&#x27;</span>)</span><br><span class="line"><span class="built_in">print</span>(thresholds[maxindex])</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;recall:&#x27;</span>)</span><br><span class="line"><span class="built_in">print</span>(recall[maxindex])</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;FPR:&#x27;</span>)</span><br><span class="line"><span class="built_in">print</span>(FPR[maxindex])</span><br><span class="line"><span class="keyword">from</span> sklearn.metrics <span class="keyword">import</span> roc_auc_score <span class="keyword">as</span> AUC</span><br><span class="line">area = AUC(y,clf_proba.decision_function(X))</span><br><span class="line"></span><br><span class="line">plt.scatter(FPR[maxindex],recall[maxindex],c=<span class="string">&quot;black&quot;</span>,s=<span class="number">30</span>)</span><br><span class="line"><span class="comment">#把上述代码放入这段代码中：</span></span><br><span class="line">plt.figure()</span><br><span class="line">plt.plot(FPR, recall, color=<span class="string">&#x27;red&#x27;</span>,label=<span class="string">&#x27;ROC curve (area = %0.2f)&#x27;</span> % area)</span><br><span class="line">plt.plot([<span class="number">0</span>, <span class="number">1</span>], [<span class="number">0</span>, <span class="number">1</span>], color=<span class="string">&#x27;black&#x27;</span>, linestyle=<span class="string">&#x27;--&#x27;</span>)</span><br><span class="line">plt.scatter(FPR[maxindex],recall[maxindex],c=<span class="string">&quot;black&quot;</span>,s=<span class="number">30</span>)</span><br><span class="line">plt.xlim([-<span class="number">0.05</span>, <span class="number">1.05</span>])</span><br><span class="line">plt.ylim([-<span class="number">0.05</span>, <span class="number">1.05</span>])</span><br><span class="line">plt.xlabel(<span class="string">&#x27;False Positive Rate&#x27;</span>)</span><br><span class="line">plt.ylabel(<span class="string">&#x27;Recall&#x27;</span>)</span><br><span class="line">plt.title(<span class="string">&#x27;Receiver operating characteristic example&#x27;</span>)</span><br><span class="line">plt.legend(loc=<span class="string">&quot;lower right&quot;</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://img-blog.csdnimg.cn/20210202170241370.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L25ld3N1bnNvbg==,size_16,color_FFFFFF,t_70#pic_center"
+                      alt="在这里插入图片描述"
+                ></p>
+<ul>
+<li>最后进行预测，得出结果<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(prob.shape[<span class="number">0</span>]):</span><br><span class="line">    <span class="keyword">if</span> prob.loc[i,<span class="string">&quot;1&quot;</span>] &gt; thresholds[maxindex]:</span><br><span class="line">        prob.loc[i,<span class="string">&quot;pred&quot;</span>] = <span class="number">1</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        prob.loc[i,<span class="string">&quot;pred&quot;</span>] = <span class="number">0</span></span><br><span class="line">prob[<span class="string">&quot;y_true&quot;</span>] = y</span><br><span class="line">prob = prob.sort_values(by=<span class="string">&quot;1&quot;</span>,ascending=<span class="literal">False</span>)</span><br><span class="line">prob</span><br></pre></td></tr></table></figure></li>
+</ul>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://img-blog.csdnimg.cn/2021020217041740.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L25ld3N1bnNvbg==,size_16,color_FFFFFF,t_70#pic_center"
+                      alt="在这里插入图片描述"
+                ></p>
+<ul>
+<li>得到混淆矩阵来评估<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.metrics <span class="keyword">import</span> confusion_matrix <span class="keyword">as</span> CM, precision_score <span class="keyword">as</span> P, recall_score <span class="keyword">as</span> R</span><br><span class="line">cm = CM(prob.loc[:,<span class="string">&quot;y_true&quot;</span>],prob.loc[:,<span class="string">&quot;pred&quot;</span>],labels=[<span class="number">1</span>,<span class="number">0</span>])</span><br><span class="line">cm</span><br></pre></td></tr></table></figure>
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://img-blog.csdnimg.cn/20210202170442247.png#pic_center"
+                      alt="在这里插入图片描述"
+                ></li>
+</ul>
+<p><strong>PS:这个案例用的是核函数是线性核，但又试了一遍还是‘rbf’比较好</strong>,<br><strong>并且其实不一定需要最佳阈值，要结合实际来看。</strong><br>例如，三星手机发生爆炸，三星想要召回率能达到100%，即宁可把没有问题的手机召回，也不能放过任何一个有问题的手机，阈值也要相应调整。</p>
+<h3 id="多分类"><a href="#多分类" class="headerlink" title="多分类"></a>多分类</h3><p>多分类其实也很简单，应该是sklearn的多分类很简单，数学原理十分可怕。区别就是输入的Y多了几个分类而已。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">clf = SVC(decision_function_shape=<span class="string">&#x27;ovo&#x27;</span>) clf.fit(X, Y)</span><br></pre></td></tr></table></figure>
+<p>上面用的是ovo(one vs one)，也就是每一个类两两组合来构建,也可以选择’ovr’速度更快，效果不怎么样。</p>
+<h3 id="补充"><a href="#补充" class="headerlink" title="补充"></a>补充</h3><h4 id="参数class-weight"><a href="#参数class-weight" class="headerlink" title="参数class_weight"></a>参数class_weight</h4><p>如果你想追求最高的召回率，宁可错杀不可放过，那么<code>class_weight = &quot;balanced&quot;</code></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">clf = SVC(kernel = kernel ,gamma=<span class="string">&quot;auto&quot;</span>,degree = <span class="number">1</span>,cache_size = <span class="number">5000</span>,class_weight = <span class="string">&quot;balanced&quot;</span>).fit(Xtrain, Ytrain)</span><br></pre></td></tr></table></figure>
+<p>如果还想再高，那么<code>class_weight = &#123;1:10&#125;</code></p>
+]]></content>
+      <categories>
+        <category>code</category>
+      </categories>
+      <tags>
+        <tag>python svm</tag>
       </tags>
   </entry>
 </search>
