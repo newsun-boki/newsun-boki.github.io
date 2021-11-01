@@ -583,7 +583,7 @@
       </tags>
   </entry>
   <entry>
-    <title>python-dt</title>
+    <title>sklearn决策树</title>
     <url>/2021/11/02/python-dt/</url>
     <content><![CDATA[<h1 id="sklearn决策树"><a href="#sklearn决策树" class="headerlink" title="sklearn决策树"></a>sklearn决策树</h1><h3 id="参数表示"><a href="#参数表示" class="headerlink" title="参数表示"></a>参数表示</h3><p>决策树中有<strong>参数</strong>如下：</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line">DecisionTreeClassifier(criterion=<span class="string">&quot;gini&quot;</span></span><br><span class="line">           			, splitter=<span class="string">&quot;best&quot;</span></span><br><span class="line">                    , max_depth=<span class="literal">None</span></span><br><span class="line">                    , min_samples_split=<span class="number">2</span></span><br><span class="line">                    , min_samples_leaf=<span class="number">1</span></span><br><span class="line">                    , min_weight_fraction_leaf=<span class="number">0.</span></span><br><span class="line">                    , max_features=<span class="literal">None</span></span><br><span class="line">                    , random_state=<span class="literal">None</span></span><br><span class="line">                    , max_leaf_nodes=<span class="literal">None</span></span><br><span class="line">                    , min_impurity_decrease=<span class="number">0.</span></span><br><span class="line">                    , min_impurity_split=<span class="literal">None</span></span><br><span class="line">                    , class_weight=<span class="literal">None</span>,</span><br><span class="line">                    presort=<span class="literal">False</span>)</span><br></pre></td></tr></table></figure>
