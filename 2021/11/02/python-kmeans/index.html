@@ -9,7 +9,7 @@
     
     <title>
         
-            Pybind和cmake联合使用 |
+            sklearn聚类算法Kmeans |
         
         newsun-boki
     </title>
@@ -143,7 +143,7 @@
     <div class="article-content-container">
 
         <div class="article-title">
-            <span class="title-hover-animation">Pybind和cmake联合使用</span>
+            <span class="title-hover-animation">sklearn聚类算法Kmeans</span>
         </div>
 
         
@@ -161,7 +161,7 @@
                     <div class="meta-info">
                         <div class="article-meta-info">
     <span class="article-date article-meta-item">
-        <i class="fas fa-edit"></i>&nbsp;2021-11-01 21:09:35
+        <i class="fas fa-edit"></i>&nbsp;2021-11-02 00:55:12
     </span>
     
         <span class="article-categories article-meta-item">
@@ -185,7 +185,11 @@
                     </li>
                 
                     <li>
-                        | <a href="/tags/c/">c++</a>&nbsp;
+                        | <a href="/tags/sklearn/">sklearn</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/kmeans/">kmeans</a>&nbsp;
                     </li>
                 
             </ul>
@@ -195,12 +199,12 @@
     
     
         <span class="article-wordcount article-meta-item">
-            <i class="fas fa-file-word"></i>&nbsp;<span>333 Words</span>
+            <i class="fas fa-file-word"></i>&nbsp;<span>500 Words</span>
         </span>
     
     
         <span class="article-min2read article-meta-item">
-            <i class="fas fa-clock"></i>&nbsp;<span>1 Mins</span>
+            <i class="fas fa-clock"></i>&nbsp;<span>2 Mins</span>
         </span>
     
     
@@ -216,28 +220,49 @@
         
 
         <div class="article-content markdown-body">
-            <h1 id="pybind11与cmake的联合使用"><a href="#pybind11与cmake的联合使用" class="headerlink" title="pybind11与cmake的联合使用"></a>pybind11与cmake的联合使用</h1><h1 id="github传送门"><a href="#github传送门" class="headerlink" title="github传送门"></a><a class="link"   target="_blank" rel="noopener" href="https://github.com/newsun-boki/pybind11-tutorial" >github传送门<i class="fas fa-external-link-alt"></i></a></h1><p>因为pybind11官方教程我并没有找到与cmake的联合使用，导致我不会写CMakeLists。然后其实也不是很难，发个帖子记录一下.<br>帮助你在python中使用cmake中的函数,理论上你只需要点进上面的链接就好。下面是README。</p>
-<h2 id="step1"><a href="#step1" class="headerlink" title="step1"></a>step1</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install pytest</span><br></pre></td></tr></table></figure>
+            <h1 id="sklearn聚类算法Kmeans"><a href="#sklearn聚类算法Kmeans" class="headerlink" title="sklearn聚类算法Kmeans"></a>sklearn聚类算法Kmeans</h1><h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>聚类算法是一种<strong>无监督学习算法</strong>，也就是说它不需要<strong>标签</strong>,只需要大量的特征就可以把数据集聚类，然后聚类在自己给他贴标签。 这里Kmeans的具体原理不作详述。</p>
+<h2 id="案例"><a href="#案例" class="headerlink" title="案例"></a>案例</h2><h3 id="数据生成"><a href="#数据生成" class="headerlink" title="数据生成"></a>数据生成</h3><p>通过sklearn自带的<code>make_blobs</code>函数可以生成聚类所需的数据集，注意，所生成的数据集是几个<strong>分簇</strong>。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.datasets <span class="keyword">import</span> make_blobs</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line">X, y = make_blobs(n_samples=<span class="number">500</span>,n_features=<span class="number">2</span>,centers=<span class="number">4</span>,random_state=<span class="number">1</span>)</span><br><span class="line">fig, ax1 = plt.subplots(<span class="number">1</span>)</span><br><span class="line">ax1.scatter(X[:, <span class="number">0</span>], X[:, <span class="number">1</span>],marker=<span class="string">&#x27;o&#x27;</span>,s=<span class="number">8</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://img-blog.csdnimg.cn/20210201163842174.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L25ld3N1bnNvbg==,size_16,color_FFFFFF,t_70#pic_center"
+                      alt="在这里插入图片描述"
+                ></p>
+<p>上面是聚类前的图像，其中<code>X</code>是一个二维数组，每行有一个点的横坐标和纵坐标，<code>y</code>是已经给好的分类，是一个一维的数组，代表不同数据所在的簇。，下图是实际按不同簇分开的数据<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://img-blog.csdnimg.cn/20210201163856733.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L25ld3N1bnNvbg==,size_16,color_FFFFFF,t_70#pic_center"
+                      alt="在这里插入图片描述"
+                ></p>
+<h3 id="聚类"><a href="#聚类" class="headerlink" title="聚类"></a>聚类</h3><p>聚类依然是通过</p>
+<ul>
+<li>类的实例化</li>
+<li>fit()函数</li>
+<li>可以直接同<code>.labels_</code>或<code>.fit_predict</code>得到分类结果<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.cluster <span class="keyword">import</span> KMeans</span><br><span class="line">cluster = KMeans(n_clusters = <span class="number">3</span>, random_state = <span class="number">0</span>)</span><br><span class="line">cluster = cluster.fit(X)</span><br><span class="line">y_pred = cluster.labels_</span><br><span class="line"><span class="comment">#y_pred = cluster.fit_predict(X)</span></span><br></pre></td></tr></table></figure>
+所得到的y_pred是一个一维矩阵，包含了每一个点对应的类分类，分别为0,1,2</li>
+</ul>
+<h4 id="类的质心"><a href="#类的质心" class="headerlink" title="类的质心"></a>类的质心</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">centroid = cluster.cluster_centers_</span><br></pre></td></tr></table></figure>
+<p><code>centroid == [[-7.09306648, -8.10994454], [-1.54234022,  4.43517599], [-8.0862351 , -3.5179868 ]]</code>代表所分三类的质心。可以说这个点的特征最能代表这一个分类</p>
+<h4 id="聚类的评估"><a href="#聚类的评估" class="headerlink" title="聚类的评估"></a>聚类的评估</h4><p>Inertia指每个样本点到其中心点的距离之和</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">inertia = cluster.inertia_</span><br></pre></td></tr></table></figure>
+<p>但似乎对于某些细长的类来说表现显然不太好，所以用<strong>轮廓系数</strong>来评估。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.metrics <span class="keyword">import</span> silhouette_score</span><br><span class="line">silhouette_score(X,y_pred)</span><br></pre></td></tr></table></figure>
 
-<h2 id="step2"><a href="#step2" class="headerlink" title="step2"></a>step2</h2><p>你必须要把pybind11和CMakeLists.txt放到一个文件下。pybind11是在github下载的官方仓库</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/pybind/pybind11.git</span><br></pre></td></tr></table></figure>
 
-<p>这里我已经下好了，你需要做的是在pybind11下</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">mkdir build</span><br><span class="line"><span class="built_in">cd</span> build</span><br><span class="line">cmake ..</span><br><span class="line">cmake --build . --config Release --target check</span><br></pre></td></tr></table></figure>
-
-<h2 id="step3"><a href="#step3" class="headerlink" title="step3"></a>step3</h2><p>使用这个简单的官方代码example.cpp</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;pybind11/pybind11.h&gt;</span></span></span><br><span class="line"><span class="keyword">namespace</span> py = pybind11;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> i, <span class="keyword">int</span> j)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> i + j;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">PYBIND11_MODULE</span>(example, m) &#123;</span><br><span class="line">    m.<span class="built_in">doc</span>() = <span class="string">&quot;pybind11 example plugin&quot;</span>; <span class="comment">// optional module docstring</span></span><br><span class="line"></span><br><span class="line">    m.<span class="built_in">def</span>(<span class="string">&quot;add&quot;</span>, &amp;add, <span class="string">&quot;A function which adds two numbers&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>CMakeLists也很简单</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">cmake_minimum_required(VERSION 2.8.12)</span><br><span class="line">project(example)   </span><br><span class="line"></span><br><span class="line">add_subdirectory(pybind11)</span><br><span class="line">pybind11_add_module(example example.cpp)</span><br></pre></td></tr></table></figure>
-<p>上面有些关于pybind11的东西，所以<strong>必须要把CMakeLists和pybind11放在同一路径</strong>下。</p>
-<h2 id="step4"><a href="#step4" class="headerlink" title="step4"></a>step4</h2><p>cmake编译这个东西。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">mkdir build</span><br><span class="line"><span class="built_in">cd</span> build</span><br><span class="line">cmake ..</span><br><span class="line">make</span><br></pre></td></tr></table></figure>
-
-<p>会生成一个很长的.so文件，这个文件就是能够在python中调用c++的关键。<br>当你使用python调用c++函数时，请确保.so文件与python文件在同一目录下。</p>
-<h2 id="Test"><a href="#Test" class="headerlink" title="Test"></a>Test</h2><p>可以直接在终端测试。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> example</span><br><span class="line">example.add(<span class="number">3</span>, <span class="number">4</span>)</span><br><span class="line">[out]: <span class="number">7</span></span><br></pre></td></tr></table></figure>
-
+<h4 id="可视化"><a href="#可视化" class="headerlink" title="可视化"></a>可视化</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">color = [<span class="string">&quot;red&quot;</span>,<span class="string">&quot;pink&quot;</span>,<span class="string">&quot;orange&quot;</span>,<span class="string">&quot;gray&quot;</span>]</span><br><span class="line">fig, ax1 = plt.subplots(<span class="number">1</span>)</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">3</span>):</span><br><span class="line">    ax1.scatter(X[y_pred==i, <span class="number">0</span>], X[y_pred==i, <span class="number">1</span>]</span><br><span class="line">     ,marker=<span class="string">&#x27;o&#x27;</span></span><br><span class="line">     ,s=<span class="number">8</span></span><br><span class="line">     ,c=color[i]</span><br><span class="line">     )</span><br><span class="line">ax1.scatter(centroid[:,<span class="number">0</span>],centroid[:,<span class="number">1</span>]</span><br><span class="line">     ,marker=<span class="string">&quot;x&quot;</span></span><br><span class="line">     ,s=<span class="number">15</span></span><br><span class="line">     ,c=<span class="string">&quot;black&quot;</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p>那几个黑叉叉就是质心<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://img-blog.csdnimg.cn/20210201163926542.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L25ld3N1bnNvbg==,size_16,color_FFFFFF,t_70#pic_center"
+                      alt="在这里插入图片描述"
+                ></p>
+<h4 id="分成4类会怎么样"><a href="#分成4类会怎么样" class="headerlink" title="分成4类会怎么样"></a>分成4类会怎么样</h4><p><strong>会更合理</strong><br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://img-blog.csdnimg.cn/20210201163940755.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L25ld3N1bnNvbg==,size_16,color_FFFFFF,t_70#pic_center"
+                      alt="在这里插入图片描述"
+                ></p>
 
         </div>
 
@@ -245,11 +270,11 @@
             <div class="post-copyright-info">
                 <div class="article-copyright-info-container">
     <ul>
-        <li>Post title：Pybind和cmake联合使用</li>
+        <li>Post title：sklearn聚类算法Kmeans</li>
         <li>Post author：newsun-boki</li>
-        <li>Create time：2021-11-01 21:09:35</li>
+        <li>Create time：2021-11-02 00:55:12</li>
         <li>
-            Post link：https://github.com/newsun-boki2021/11/01/pybind-cmake/
+            Post link：https://github.com/newsun-boki2021/11/02/python-kmeans/
         </li>
         <li>
             Copyright Notice：All articles in this blog are licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> unless stating additionally.
@@ -266,18 +291,33 @@
                     <div class="article-prev">
                         <a class="prev"
                            rel="prev"
-                           href="/2021/11/01/python%E6%94%AF%E6%8C%81%E5%90%91%E9%87%8F%E6%9C%BASVM%20(sklearn)/"
+                           href="/2021/11/02/python-pca/"
                         >
                             <span class="left arrow-icon flex-center">
                               <i class="fas fa-chevron-left"></i>
                             </span>
                             <span class="title flex-center">
-                                <span class="post-nav-title-item">python支持向量机SVM (sklearn)</span>
+                                <span class="post-nav-title-item">sklearn主成分分析PCA</span>
                                 <span class="post-nav-item">Prev posts</span>
                             </span>
                         </a>
                     </div>
                 
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/2021/11/01/python%E6%94%AF%E6%8C%81%E5%90%91%E9%87%8F%E6%9C%BASVM%20(sklearn)/"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">python支持向量机SVM (sklearn)</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
                 
             </div>
         
@@ -452,7 +492,7 @@
         <aside class="page-aside">
             <div class="post-toc-wrap">
     <div class="post-toc">
-        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#pybind11%E4%B8%8Ecmake%E7%9A%84%E8%81%94%E5%90%88%E4%BD%BF%E7%94%A8"><span class="nav-number">1.</span> <span class="nav-text">pybind11与cmake的联合使用</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#github%E4%BC%A0%E9%80%81%E9%97%A8"><span class="nav-number">2.</span> <span class="nav-text">github传送门</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#step1"><span class="nav-number">2.1.</span> <span class="nav-text">step1</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#step2"><span class="nav-number">2.2.</span> <span class="nav-text">step2</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#step3"><span class="nav-number">2.3.</span> <span class="nav-text">step3</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#step4"><span class="nav-number">2.4.</span> <span class="nav-text">step4</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Test"><span class="nav-number">2.5.</span> <span class="nav-text">Test</span></a></li></ol></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#sklearn%E8%81%9A%E7%B1%BB%E7%AE%97%E6%B3%95Kmeans"><span class="nav-number">1.</span> <span class="nav-text">sklearn聚类算法Kmeans</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A6%82%E8%BF%B0"><span class="nav-number">1.1.</span> <span class="nav-text">概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A1%88%E4%BE%8B"><span class="nav-number">1.2.</span> <span class="nav-text">案例</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E7%94%9F%E6%88%90"><span class="nav-number">1.2.1.</span> <span class="nav-text">数据生成</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%81%9A%E7%B1%BB"><span class="nav-number">1.2.2.</span> <span class="nav-text">聚类</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%B1%BB%E7%9A%84%E8%B4%A8%E5%BF%83"><span class="nav-number">1.2.2.1.</span> <span class="nav-text">类的质心</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%81%9A%E7%B1%BB%E7%9A%84%E8%AF%84%E4%BC%B0"><span class="nav-number">1.2.2.2.</span> <span class="nav-text">聚类的评估</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8F%AF%E8%A7%86%E5%8C%96"><span class="nav-number">1.2.2.3.</span> <span class="nav-text">可视化</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%86%E6%88%904%E7%B1%BB%E4%BC%9A%E6%80%8E%E4%B9%88%E6%A0%B7"><span class="nav-number">1.2.2.4.</span> <span class="nav-text">分成4类会怎么样</span></a></li></ol></li></ol></li></ol></li></ol>
     </div>
 </div>
         </aside>

@@ -9,7 +9,7 @@
     
     <title>
         
-            Pybind和cmake联合使用 |
+            seaborn入门(1)展示seaborn的各种绘图效果 |
         
         newsun-boki
     </title>
@@ -143,7 +143,7 @@
     <div class="article-content-container">
 
         <div class="article-title">
-            <span class="title-hover-animation">Pybind和cmake联合使用</span>
+            <span class="title-hover-animation">seaborn入门(1)展示seaborn的各种绘图效果</span>
         </div>
 
         
@@ -161,7 +161,7 @@
                     <div class="meta-info">
                         <div class="article-meta-info">
     <span class="article-date article-meta-item">
-        <i class="fas fa-edit"></i>&nbsp;2021-11-01 21:09:35
+        <i class="fas fa-edit"></i>&nbsp;2021-11-02 01:13:33
     </span>
     
         <span class="article-categories article-meta-item">
@@ -185,7 +185,7 @@
                     </li>
                 
                     <li>
-                        | <a href="/tags/c/">c++</a>&nbsp;
+                        | <a href="/tags/seaborn/">seaborn</a>&nbsp;
                     </li>
                 
             </ul>
@@ -195,7 +195,7 @@
     
     
         <span class="article-wordcount article-meta-item">
-            <i class="fas fa-file-word"></i>&nbsp;<span>333 Words</span>
+            <i class="fas fa-file-word"></i>&nbsp;<span>369 Words</span>
         </span>
     
     
@@ -216,28 +216,65 @@
         
 
         <div class="article-content markdown-body">
-            <h1 id="pybind11与cmake的联合使用"><a href="#pybind11与cmake的联合使用" class="headerlink" title="pybind11与cmake的联合使用"></a>pybind11与cmake的联合使用</h1><h1 id="github传送门"><a href="#github传送门" class="headerlink" title="github传送门"></a><a class="link"   target="_blank" rel="noopener" href="https://github.com/newsun-boki/pybind11-tutorial" >github传送门<i class="fas fa-external-link-alt"></i></a></h1><p>因为pybind11官方教程我并没有找到与cmake的联合使用，导致我不会写CMakeLists。然后其实也不是很难，发个帖子记录一下.<br>帮助你在python中使用cmake中的函数,理论上你只需要点进上面的链接就好。下面是README。</p>
-<h2 id="step1"><a href="#step1" class="headerlink" title="step1"></a>step1</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install pytest</span><br></pre></td></tr></table></figure>
+            <h1 id="seaborn入门-1-展示seaborn的各种绘图效果"><a href="#seaborn入门-1-展示seaborn的各种绘图效果" class="headerlink" title="seaborn入门(1)展示seaborn的各种绘图效果"></a>seaborn入门(1)展示seaborn的各种绘图效果</h1><h2 id="导入包"><a href="#导入包" class="headerlink" title="导入包"></a>导入包</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">import</span> seaborn <span class="keyword">as</span> sns</span><br></pre></td></tr></table></figure>
 
-<h2 id="step2"><a href="#step2" class="headerlink" title="step2"></a>step2</h2><p>你必须要把pybind11和CMakeLists.txt放到一个文件下。pybind11是在github下载的官方仓库</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/pybind/pybind11.git</span><br></pre></td></tr></table></figure>
+<h2 id="载入数据集"><a href="#载入数据集" class="headerlink" title="载入数据集"></a>载入数据集</h2><p>以下代码可以查看seaborn自带的数据集</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(sns.get_dataset_names())</span><br></pre></td></tr></table></figure>
+<p>这里使用<strong>车祸信息</strong>作为原始数据集,按理来说下面代码就可以实现导入</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">crash_df = sns.load_dataset(<span class="string">&quot;car_crashes&quot;</span>)</span><br></pre></td></tr></table></figure>
+<p>但实际上，由于不可描述的某种抗力，导致在下载数据集的时候有可能下载不出来(<del>如果你加载出来了当我没说</del>)，所以<strong>需要到github上提前下载数据集</strong>(<a class="link"   target="_blank" rel="noopener" href="https://github.com/mwaskom/seaborn-data" >https://github.com/mwaskom/seaborn-data<i class="fas fa-external-link-alt"></i></a>)<u>(建议先导入码云之后再下载)</u>，下载之后将数据集放入与文件相同的目录下，然后使用以下代码：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">crash_df = sns.load_dataset(name=<span class="string">&quot;car_crashes&quot;</span>,cache=<span class="literal">True</span>,data_home=<span class="string">&quot;./seaborn-data&quot;</span>)</span><br></pre></td></tr></table></figure>
+<p>现在可以查看表的内容了</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(crash_df.head())</span><br></pre></td></tr></table></figure>
 
-<p>这里我已经下好了，你需要做的是在pybind11下</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">mkdir build</span><br><span class="line"><span class="built_in">cd</span> build</span><br><span class="line">cmake ..</span><br><span class="line">cmake --build . --config Release --target check</span><br></pre></td></tr></table></figure>
+<h2 id="画图"><a href="#画图" class="headerlink" title="画图"></a>画图</h2><p>首先，选择你的风格,分别是”white”, “dark”, “whitegrid”, “darkgrid”, “ticks”</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sns.set_style(<span class="string">&#x27;white&#x27;</span>)</span><br></pre></td></tr></table></figure>
 
-<h2 id="step3"><a href="#step3" class="headerlink" title="step3"></a>step3</h2><p>使用这个简单的官方代码example.cpp</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;pybind11/pybind11.h&gt;</span></span></span><br><span class="line"><span class="keyword">namespace</span> py = pybind11;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> i, <span class="keyword">int</span> j)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> i + j;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">PYBIND11_MODULE</span>(example, m) &#123;</span><br><span class="line">    m.<span class="built_in">doc</span>() = <span class="string">&quot;pybind11 example plugin&quot;</span>; <span class="comment">// optional module docstring</span></span><br><span class="line"></span><br><span class="line">    m.<span class="built_in">def</span>(<span class="string">&quot;add&quot;</span>, &amp;add, <span class="string">&quot;A function which adds two numbers&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>CMakeLists也很简单</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">cmake_minimum_required(VERSION 2.8.12)</span><br><span class="line">project(example)   </span><br><span class="line"></span><br><span class="line">add_subdirectory(pybind11)</span><br><span class="line">pybind11_add_module(example example.cpp)</span><br></pre></td></tr></table></figure>
-<p>上面有些关于pybind11的东西，所以<strong>必须要把CMakeLists和pybind11放在同一路径</strong>下。</p>
-<h2 id="step4"><a href="#step4" class="headerlink" title="step4"></a>step4</h2><p>cmake编译这个东西。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">mkdir build</span><br><span class="line"><span class="built_in">cd</span> build</span><br><span class="line">cmake ..</span><br><span class="line">make</span><br></pre></td></tr></table></figure>
+<h3 id="简单展示几种绘图方式"><a href="#简单展示几种绘图方式" class="headerlink" title="简单展示几种绘图方式"></a>简单展示几种绘图方式</h3><h4 id="displot"><a href="#displot" class="headerlink" title="displot()"></a>displot()</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sns.displot(crash_df[<span class="string">&#x27;not_distracted&#x27;</span>],kde = <span class="literal">True</span>)</span><br></pre></td></tr></table></figure>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://img-blog.csdnimg.cn/20210129195444571.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L25ld3N1bnNvbg==,size_16,color_FFFFFF,t_70#pic_center"
+                      alt="在这里插入图片描述"
+                ></p>
+<h4 id="kdeplot"><a href="#kdeplot" class="headerlink" title="kdeplot()"></a>kdeplot()</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sns.kdeplot(crash_df[<span class="string">&#x27;speeding&#x27;</span>],crash_df[<span class="string">&#x27;alcohol&#x27;</span>], data = crash_df, shade = </span><br><span class="line"><span class="literal">True</span> ,cbar=<span class="literal">True</span>)</span><br></pre></td></tr></table></figure>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://img-blog.csdnimg.cn/20210129195527693.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L25ld3N1bnNvbg==,size_16,color_FFFFFF,t_70#pic_center"
+                      alt="在这里插入图片描述"
+                ></p>
+<h4 id="jointplot"><a href="#jointplot" class="headerlink" title="jointplot()"></a>jointplot()</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sns.jointplot(x = <span class="string">&#x27;speeding&#x27;</span>, y = <span class="string">&#x27;alcohol&#x27;</span>, data = crash_df,kind = <span class="string">&#x27;kde&#x27;</span>)</span><br></pre></td></tr></table></figure>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://img-blog.csdnimg.cn/20210129195543526.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L25ld3N1bnNvbg==,size_16,color_FFFFFF,t_70#pic_center"
+                      alt="在这里插入图片描述"
+                ></p>
+<h4 id="pairplot"><a href="#pairplot" class="headerlink" title="pairplot()"></a>pairplot()</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sns.pairplot(crash_df)</span><br></pre></td></tr></table></figure>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://img-blog.csdnimg.cn/20210129195640960.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L25ld3N1bnNvbg==,size_16,color_FFFFFF,t_70#pic_center"
+                      alt="在这里插入图片描述"
+                ></p>
+<p>或者可以使用<strong>hue</strong>分类<u>（这里重新导入了一个数据集）</u></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">tips_df = sns.load_dataset(name=<span class="string">&#x27;tips&#x27;</span>,cache=<span class="literal">True</span>,data_home=<span class="string">&quot;./seaborndata&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(tips_df.head())</span><br><span class="line">sns.pairplot(tips_df, hue = <span class="string">&#x27;sex&#x27;</span>,)</span><br></pre></td></tr></table></figure>
 
-<p>会生成一个很长的.so文件，这个文件就是能够在python中调用c++的关键。<br>当你使用python调用c++函数时，请确保.so文件与python文件在同一目录下。</p>
-<h2 id="Test"><a href="#Test" class="headerlink" title="Test"></a>Test</h2><p>可以直接在终端测试。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> example</span><br><span class="line">example.add(<span class="number">3</span>, <span class="number">4</span>)</span><br><span class="line">[out]: <span class="number">7</span></span><br></pre></td></tr></table></figure>
-
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://img-blog.csdnimg.cn/20210129195651651.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L25ld3N1bnNvbg==,size_16,color_FFFFFF,t_70#pic_center"
+                      alt="在这里插入图片描述"
+                ></p>
+<h4 id="rugplot"><a href="#rugplot" class="headerlink" title="rugplot()"></a>rugplot()</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#这里用的是上面刚刚载入的数据集</span></span><br><span class="line">sns.rugplot(tips_df[<span class="string">&#x27;tip&#x27;</span>])</span><br></pre></td></tr></table></figure>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://img-blog.csdnimg.cn/20210129195702475.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L25ld3N1bnNvbg==,size_16,color_FFFFFF,t_70#pic_center"
+                      alt="在这里插入图片描述"
+                ></p>
 
         </div>
 
@@ -245,11 +282,11 @@
             <div class="post-copyright-info">
                 <div class="article-copyright-info-container">
     <ul>
-        <li>Post title：Pybind和cmake联合使用</li>
+        <li>Post title：seaborn入门(1)展示seaborn的各种绘图效果</li>
         <li>Post author：newsun-boki</li>
-        <li>Create time：2021-11-01 21:09:35</li>
+        <li>Create time：2021-11-02 01:13:33</li>
         <li>
-            Post link：https://github.com/newsun-boki2021/11/01/pybind-cmake/
+            Post link：https://github.com/newsun-boki2021/11/02/seaborn1/
         </li>
         <li>
             Copyright Notice：All articles in this blog are licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> unless stating additionally.
@@ -266,18 +303,33 @@
                     <div class="article-prev">
                         <a class="prev"
                            rel="prev"
-                           href="/2021/11/01/python%E6%94%AF%E6%8C%81%E5%90%91%E9%87%8F%E6%9C%BASVM%20(sklearn)/"
+                           href="/2021/11/02/seaborn2/"
                         >
                             <span class="left arrow-icon flex-center">
                               <i class="fas fa-chevron-left"></i>
                             </span>
                             <span class="title flex-center">
-                                <span class="post-nav-title-item">python支持向量机SVM (sklearn)</span>
+                                <span class="post-nav-title-item">seaborn入门(2)继续展示seaborn的各种绘图效果</span>
                                 <span class="post-nav-item">Prev posts</span>
                             </span>
                         </a>
                     </div>
                 
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/2021/11/02/python-rdf/"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">sklearn随机森林</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
                 
             </div>
         
@@ -452,7 +504,7 @@
         <aside class="page-aside">
             <div class="post-toc-wrap">
     <div class="post-toc">
-        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#pybind11%E4%B8%8Ecmake%E7%9A%84%E8%81%94%E5%90%88%E4%BD%BF%E7%94%A8"><span class="nav-number">1.</span> <span class="nav-text">pybind11与cmake的联合使用</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#github%E4%BC%A0%E9%80%81%E9%97%A8"><span class="nav-number">2.</span> <span class="nav-text">github传送门</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#step1"><span class="nav-number">2.1.</span> <span class="nav-text">step1</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#step2"><span class="nav-number">2.2.</span> <span class="nav-text">step2</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#step3"><span class="nav-number">2.3.</span> <span class="nav-text">step3</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#step4"><span class="nav-number">2.4.</span> <span class="nav-text">step4</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Test"><span class="nav-number">2.5.</span> <span class="nav-text">Test</span></a></li></ol></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#seaborn%E5%85%A5%E9%97%A8-1-%E5%B1%95%E7%A4%BAseaborn%E7%9A%84%E5%90%84%E7%A7%8D%E7%BB%98%E5%9B%BE%E6%95%88%E6%9E%9C"><span class="nav-number">1.</span> <span class="nav-text">seaborn入门(1)展示seaborn的各种绘图效果</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AF%BC%E5%85%A5%E5%8C%85"><span class="nav-number">1.1.</span> <span class="nav-text">导入包</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BD%BD%E5%85%A5%E6%95%B0%E6%8D%AE%E9%9B%86"><span class="nav-number">1.2.</span> <span class="nav-text">载入数据集</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%94%BB%E5%9B%BE"><span class="nav-number">1.3.</span> <span class="nav-text">画图</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AE%80%E5%8D%95%E5%B1%95%E7%A4%BA%E5%87%A0%E7%A7%8D%E7%BB%98%E5%9B%BE%E6%96%B9%E5%BC%8F"><span class="nav-number">1.3.1.</span> <span class="nav-text">简单展示几种绘图方式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#displot"><span class="nav-number">1.3.1.1.</span> <span class="nav-text">displot()</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#kdeplot"><span class="nav-number">1.3.1.2.</span> <span class="nav-text">kdeplot()</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#jointplot"><span class="nav-number">1.3.1.3.</span> <span class="nav-text">jointplot()</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#pairplot"><span class="nav-number">1.3.1.4.</span> <span class="nav-text">pairplot()</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#rugplot"><span class="nav-number">1.3.1.5.</span> <span class="nav-text">rugplot()</span></a></li></ol></li></ol></li></ol></li></ol>
     </div>
 </div>
         </aside>

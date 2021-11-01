@@ -155,7 +155,7 @@
                     <div class="author">
                         <span class="name">newsun-boki</span>
                         
-                            <span class="author-label">Lv1</span>
+                            <span class="author-label">Lv2</span>
                         
                     </div>
                     <div class="meta-info">
@@ -181,7 +181,15 @@
             <ul>
                 
                     <li>
-                        <a href="/tags/python-svm/">python svm</a>&nbsp;
+                        <a href="/tags/python/">python</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/sklearn/">sklearn</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/svm/">svm</a>&nbsp;
                     </li>
                 
             </ul>
@@ -212,7 +220,7 @@
         
 
         <div class="article-content markdown-body">
-            <h1 id="python支持向量机SVM-sklearn"><a href="#python支持向量机SVM-sklearn" class="headerlink" title="python支持向量机SVM (sklearn)"></a>python支持向量机SVM (sklearn)</h1><h2 id="原理概述"><a href="#原理概述" class="headerlink" title="原理概述"></a>原理概述</h2><p>说实话以前用支持向量机都是直接套进去的，不过现在看了看菜菜提供数学原理发现其实挺有意思(<del>是超有意思！！</del>)。此处就不详述了，这原理到处都是。反正这文SVM和决策树一样，**有支持向量分类(SVC)和支持向量回归(SVR)**。</p>
+            <h1 id="sklearn支持向量机SVM"><a href="#sklearn支持向量机SVM" class="headerlink" title="sklearn支持向量机SVM"></a>sklearn支持向量机SVM</h1><h2 id="原理概述"><a href="#原理概述" class="headerlink" title="原理概述"></a>原理概述</h2><p>说实话以前用支持向量机都是直接套进去的，不过现在看了看菜菜提供数学原理发现其实挺有意思(<del>是超有意思！！</del>)。此处就不详述了，这原理到处都是。反正这SVM和决策树一样,<strong>有支持向量分类(SVC)和支持向量回归(SVR)</strong>.</p>
 <h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><p>下面是一个SVC的案例</p>
 <h3 id="导入库"><a href="#导入库" class="headerlink" title="导入库"></a>导入库</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.datasets <span class="keyword">import</span> make_blobs</span><br><span class="line"><span class="keyword">from</span> sklearn.svm <span class="keyword">import</span> SVC</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br></pre></td></tr></table></figure>
 <h3 id="生成数据集"><a href="#生成数据集" class="headerlink" title="生成数据集"></a>生成数据集</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">X,y = make_blobs(n_samples=<span class="number">50</span>, centers=<span class="number">2</span>, random_state=<span class="number">0</span>,cluster_std=<span class="number">0.6</span>)</span><br><span class="line"></span><br><span class="line">plt.scatter(X[:,<span class="number">0</span>],X[:,<span class="number">1</span>],c=y,s=<span class="number">50</span>,cmap=<span class="string">&quot;rainbow&quot;</span>)</span><br><span class="line">plt.xticks([])</span><br><span class="line">plt.yticks([])</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
@@ -399,6 +407,21 @@
 
         
             <div class="article-nav">
+                
+                    <div class="article-prev">
+                        <a class="prev"
+                           rel="prev"
+                           href="/2021/11/02/python-kmeans/"
+                        >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">sklearn聚类算法Kmeans</span>
+                                <span class="post-nav-item">Prev posts</span>
+                            </span>
+                        </a>
+                    </div>
                 
                 
                     <div class="article-next">
@@ -589,7 +612,7 @@
         <aside class="page-aside">
             <div class="post-toc-wrap">
     <div class="post-toc">
-        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#python%E6%94%AF%E6%8C%81%E5%90%91%E9%87%8F%E6%9C%BASVM-sklearn"><span class="nav-number">1.</span> <span class="nav-text">python支持向量机SVM (sklearn)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8E%9F%E7%90%86%E6%A6%82%E8%BF%B0"><span class="nav-number">1.1.</span> <span class="nav-text">原理概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81"><span class="nav-number">1.2.</span> <span class="nav-text">代码</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AF%BC%E5%85%A5%E5%BA%93"><span class="nav-number">1.2.1.</span> <span class="nav-text">导入库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%94%9F%E6%88%90%E6%95%B0%E6%8D%AE%E9%9B%86"><span class="nav-number">1.2.2.</span> <span class="nav-text">生成数据集</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A0%B8%E5%BF%83%E4%BB%A3%E7%A0%81"><span class="nav-number">1.2.3.</span> <span class="nav-text">核心代码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BA%BF%E6%80%A7%E4%B8%8D%E5%8F%AF%E5%88%86%E7%9A%84%E6%83%85%E5%86%B5"><span class="nav-number">1.2.4.</span> <span class="nav-text">线性不可分的情况</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A0%B8%E5%87%BD%E6%95%B0"><span class="nav-number">1.2.5.</span> <span class="nav-text">核函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%87%8D%E8%A6%81%E5%8F%82%E6%95%B0C-%E8%BD%AF%E9%97%B4%E9%9A%94%E5%92%8C%E7%A1%AC%E9%97%B4%E9%9A%94"><span class="nav-number">1.2.6.</span> <span class="nav-text">重要参数C(软间隔和硬间隔)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B7%B7%E6%B7%86%E7%9F%A9%E9%98%B5"><span class="nav-number">1.2.7.</span> <span class="nav-text">混淆矩阵</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B0%8F%E6%A1%88%E4%BE%8B"><span class="nav-number">1.2.8.</span> <span class="nav-text">小案例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%9A%E5%88%86%E7%B1%BB"><span class="nav-number">1.2.9.</span> <span class="nav-text">多分类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A1%A5%E5%85%85"><span class="nav-number">1.2.10.</span> <span class="nav-text">补充</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8F%82%E6%95%B0class-weight"><span class="nav-number">1.2.10.1.</span> <span class="nav-text">参数class_weight</span></a></li></ol></li></ol></li></ol></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#sklearn%E6%94%AF%E6%8C%81%E5%90%91%E9%87%8F%E6%9C%BASVM"><span class="nav-number">1.</span> <span class="nav-text">sklearn支持向量机SVM</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8E%9F%E7%90%86%E6%A6%82%E8%BF%B0"><span class="nav-number">1.1.</span> <span class="nav-text">原理概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81"><span class="nav-number">1.2.</span> <span class="nav-text">代码</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AF%BC%E5%85%A5%E5%BA%93"><span class="nav-number">1.2.1.</span> <span class="nav-text">导入库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%94%9F%E6%88%90%E6%95%B0%E6%8D%AE%E9%9B%86"><span class="nav-number">1.2.2.</span> <span class="nav-text">生成数据集</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A0%B8%E5%BF%83%E4%BB%A3%E7%A0%81"><span class="nav-number">1.2.3.</span> <span class="nav-text">核心代码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BA%BF%E6%80%A7%E4%B8%8D%E5%8F%AF%E5%88%86%E7%9A%84%E6%83%85%E5%86%B5"><span class="nav-number">1.2.4.</span> <span class="nav-text">线性不可分的情况</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A0%B8%E5%87%BD%E6%95%B0"><span class="nav-number">1.2.5.</span> <span class="nav-text">核函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%87%8D%E8%A6%81%E5%8F%82%E6%95%B0C-%E8%BD%AF%E9%97%B4%E9%9A%94%E5%92%8C%E7%A1%AC%E9%97%B4%E9%9A%94"><span class="nav-number">1.2.6.</span> <span class="nav-text">重要参数C(软间隔和硬间隔)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B7%B7%E6%B7%86%E7%9F%A9%E9%98%B5"><span class="nav-number">1.2.7.</span> <span class="nav-text">混淆矩阵</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B0%8F%E6%A1%88%E4%BE%8B"><span class="nav-number">1.2.8.</span> <span class="nav-text">小案例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%9A%E5%88%86%E7%B1%BB"><span class="nav-number">1.2.9.</span> <span class="nav-text">多分类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A1%A5%E5%85%85"><span class="nav-number">1.2.10.</span> <span class="nav-text">补充</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8F%82%E6%95%B0class-weight"><span class="nav-number">1.2.10.1.</span> <span class="nav-text">参数class_weight</span></a></li></ol></li></ol></li></ol></li></ol>
     </div>
 </div>
         </aside>
