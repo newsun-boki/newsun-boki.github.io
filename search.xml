@@ -831,7 +831,7 @@
       </tags>
   </entry>
   <entry>
-    <title>mlbasic</title>
+    <title>从神经网络到深度学习</title>
     <url>/2021/11/02/mlbasic/</url>
     <content><![CDATA[<h1 id="从神经网络到深度学习"><a href="#从神经网络到深度学习" class="headerlink" title="从神经网络到深度学习"></a>从神经网络到深度学习</h1><hr>
 <h2 id="引入"><a href="#引入" class="headerlink" title="引入"></a>引入</h2><p>在之前我们已经介绍过了一些优化问题，然而并不是所有优化问题从输入到目标函数之间都有明确的公式。不如说，在生活中大部分时候我们都很难建立一个很准确的数学模型，同时也无法得知需要优化什么参数，特别是对于图片分类来说。例如，给你一张图片，让你分辨是猫还是狗。对于输入来说，我们有一张图片rgb三通道的所有值，而需要输出0或1分别代表猫和狗。为了解决这个问题，我们引入神经网络等相关一系列概念。<br><img  
@@ -864,6 +864,115 @@
       </categories>
       <tags>
         <tag>machine leaning</tag>
+        <tag>rm</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>rosserial</title>
+    <url>/2021/11/02/rosserial/</url>
+    <content><![CDATA[<h1 id="rosserial进行串口通信"><a href="#rosserial进行串口通信" class="headerlink" title="rosserial进行串口通信"></a>rosserial进行串口通信</h1><h2 id="串口通信"><a href="#串口通信" class="headerlink" title="串口通信"></a>串口通信</h2><h3 id="基础介绍"><a href="#基础介绍" class="headerlink" title="基础介绍"></a>基础介绍</h3><ul>
+<li>用于两个模块之间传输数据，是我们最常用的数据通信方式之一。包括单片机之间的通信，单片机与工控机之间的通信，单片机与外设模块之间的通信等等。</li>
+</ul>
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.jsdelivr.net/gh/newsun-boki/img-folder@main/20211102/Screenshot-from-2021-11-02-02-11-20.iyynbl97fo8.png"
+                      style="zoom:80%;" 
+                >
+
+<ul>
+<li>由于 CPU 与接口之间按并行方式传输，接口与外设之间按串行方式传输，因此，在串行接口中，必须要有 “ 接收移位寄存器 “ （串→并）和 “ 发送移位寄存器 “ （并→串）.</li>
+</ul>
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.jsdelivr.net/gh/newsun-boki/img-folder@main/20211102/Screenshot-from-2021-11-02-02-16-55.67nf1dm75zk0.png"
+                      style="zoom: 67%;" 
+                >
+
+<ul>
+<li>串口通讯是以高低电平为传输媒介，一位一位的传输，这一点是后面需要时刻牢记的。</li>
+</ul>
+<h3 id="具体发送的过程"><a href="#具体发送的过程" class="headerlink" title="具体发送的过程"></a>具体发送的过程</h3><p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.jsdelivr.net/gh/newsun-boki/img-folder@main/20211102/Screenshot-from-2021-11-02-02-21-41.3wv7h75f5fg0.png"
+                     
+                ></p>
+<ul>
+<li><p>波特率：传输速度的参数。指的是信号被调制以后在单位时间内的变化，即单位时间内载波参数变化的次数。如每秒钟传送240个字符，而每个字符格式包含10位（1个起始位，1个停止位，8个数据位），这时的波特率为240Bd，比特率为10位*240个/秒=2400bps。</p>
+</li>
+<li><p>数据位：这是衡量通信中实际数据位的参数。当计算机发送一个信息包的数据位数，标准值是6、7和8位。比如，当我想发送一个uint8的整数，它就刚好能够完整发送。</p>
+</li>
+<li><p>我们只需要记住的是，串口一次只能发送8位二进制数，所以要发送和接受的数据是以8位二进制数的数组存储的，如下：</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">uint8_t</span> buffer[<span class="number">12</span>]</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="产生的问题"><a href="#产生的问题" class="headerlink" title="产生的问题"></a>产生的问题</h3><p>那既然我们一次只能发8位数字，那对于float这种32位的数字要怎么发呢？</p>
+<p>答案是把它拆开为4个8位数字发出去。</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">float</span> x = <span class="number">3.5</span></span><br><span class="line"><span class="keyword">unsigned</span> <span class="keyword">int</span> f1 = (*((<span class="keyword">unsigned</span> <span class="keyword">int</span> *)&amp;(x)));</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">4</span>; ++i)&#123;                <span class="comment">//4个字节的float x转换为buffer中的4位</span></span><br><span class="line">        <span class="keyword">uint8_t</span> tmp = (f1 &gt;&gt; (<span class="number">8</span> * i)) &amp; <span class="number">0xff</span>;</span><br><span class="line">        buffer[i] = tmp;                    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>看上去拆开的方法显然没有我们想的那么简单。</li>
+<li>我们知道<code>float</code>的数据存储类型是比较复杂的，有尾数幂数等等巴拉巴拉。当我们把其拆分的时候会遇到许多问题，为了更好的运算，我们将其转换为无符号32位整数,即<code>unsigned int</code>。</li>
+<li>仔细看上面的代码<code> unsigned int f1 = (*((unsigned int *)&amp;(x)))</code>，你可能会感觉很疑惑这行代码，但你细看或许就明白了。</li>
+<li>实际上是把x的指针类型强行从<code>float</code>变成<code>unsigned int</code>。这样的好处是其在内存中的值不会变,那个二进制数还是那些，而我们直接使用类型转换实际上会改变其在内存中的值。</li>
+</ul>
+<p>同样再收到消息的时候我们也需要相同的操作</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">unsigned</span> <span class="keyword">int</span> hor = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">3</span>; i &gt;= <span class="number">0</span> ; i--)&#123;            <span class="comment">//vertical pitch</span></span><br><span class="line">    hor += buffer[i];</span><br><span class="line">    <span class="keyword">if</span>(i) hor &lt;&lt;= <span class="number">8</span>;</span><br><span class="line">&#125;</span><br><span class="line">yaw = (*((<span class="keyword">float</span>*)&amp;hor));</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="Ubuntu中串口通讯"><a href="#Ubuntu中串口通讯" class="headerlink" title="Ubuntu中串口通讯"></a>Ubuntu中串口通讯</h3><p>Ubuntu下的串口助手cutecom可以快速帮你查看是否有串口信号传入你的ubuntu。(虽然我之前并没有用过，使用方法也可以请教电控组成员或自行谷歌，如果不大行就算了吧)</p>
+<ul>
+<li><p>安装cutecom并打开</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo apt-get install cutecom</span><br><span class="line">sudo cutecom</span><br></pre></td></tr></table></figure></li>
+<li><p>查看连接你电脑的串口信息</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ls -l /dev | grep ttyU* <span class="comment">#/dev路径下通常包含了所连外设，故要查看串口需要在这里进行查看，而grep是正则化，只查看名字是ttyU开头的文件</span></span><br></pre></td></tr></table></figure>
+
+<p>或者</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">dmesg | grep ttyS* <span class="comment">#网上看到的，不知道行不行</span></span><br></pre></td></tr></table></figure>
+
+<p>你可以通过拔插串口看哪一个设备改变从而确定设备名称。</p>
+</li>
+</ul>
+<h4 id="Ros中的串口通讯"><a href="#Ros中的串口通讯" class="headerlink" title="Ros中的串口通讯"></a>Ros中的串口通讯</h4><p>Ros使用rosserial包作为串口通信的方式</p>
+<ol>
+<li>首先下载rosserial</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo apt-get install ros-melodic-serial</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>进入安装位置确认是否安装成功</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">roscd serial</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>若是成功则能够进入位置</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">/opt/ros/melodic/share/serial</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li><p>然后创造工作空间,参照<a class="link"   href="https://blog.csdn.net/liuxiaodong400/article/details/88072502" >这个博客<i class="fas fa-external-link-alt"></i></a></p>
+</li>
+<li><p>创造功能包并编写以下代码</p>
+</li>
+</ol>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">//serial_port.cpp</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;ros/ros.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;serial/serial.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span>** argv)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    ros::<span class="built_in">init</span>(argc, argv, <span class="string">&quot;serial_port&quot;</span>);</span><br><span class="line">    <span class="comment">//创建句柄（虽然后面没用到这个句柄，但如果不创建，运行时进程会出错）</span></span><br><span class="line">    ros::NodeHandle n;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//创建一个serial类</span></span><br><span class="line">    serial::Serial sp;</span><br><span class="line">    <span class="comment">//创建timeout</span></span><br><span class="line">    serial::Timeout to = serial::Timeout::<span class="built_in">simpleTimeout</span>(<span class="number">100</span>);</span><br><span class="line">    <span class="comment">//设置要打开的串口名称</span></span><br><span class="line">    sp.<span class="built_in">setPort</span>(<span class="string">&quot;/dev/ttyUSB0&quot;</span>);</span><br><span class="line">    <span class="comment">//设置串口通信的波特率</span></span><br><span class="line">    sp.<span class="built_in">setBaudrate</span>(<span class="number">115200</span>);</span><br><span class="line">    <span class="comment">//串口设置timeout</span></span><br><span class="line">    sp.<span class="built_in">setTimeout</span>(to);</span><br><span class="line"> </span><br><span class="line">    <span class="keyword">try</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">//打开串口</span></span><br><span class="line">        sp.<span class="built_in">open</span>();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in"><span class="keyword">catch</span></span>(serial::IOException&amp; e)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">ROS_ERROR_STREAM</span>(<span class="string">&quot;Unable to open port.&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//判断串口是否打开成功</span></span><br><span class="line">    <span class="keyword">if</span>(sp.<span class="built_in">isOpen</span>())</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">ROS_INFO_STREAM</span>(<span class="string">&quot;/dev/ttyUSB0 is opened.&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function">ros::Rate <span class="title">loop_rate</span><span class="params">(<span class="number">500</span>)</span></span>;</span><br><span class="line">    <span class="keyword">while</span>(ros::<span class="built_in">ok</span>())</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">//获取缓冲区内的字节数</span></span><br><span class="line">        <span class="keyword">size_t</span> n = sp.<span class="built_in">available</span>();</span><br><span class="line">        <span class="keyword">if</span>(n!=<span class="number">0</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">uint8_t</span> buffer[<span class="number">1024</span>];</span><br><span class="line">            <span class="comment">//读出数据</span></span><br><span class="line">            n = sp.<span class="built_in">read</span>(buffer, n);</span><br><span class="line">            </span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;n; i++)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="comment">//16进制的方式打印到屏幕</span></span><br><span class="line">                std::cout &lt;&lt; std::hex &lt;&lt; (buffer[i] &amp; <span class="number">0xff</span>) &lt;&lt; <span class="string">&quot; &quot;</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            std::cout &lt;&lt; std::endl;</span><br><span class="line">            <span class="comment">//把数据发送回去</span></span><br><span class="line">            sp.<span class="built_in">write</span>(buffer, n);</span><br><span class="line">        &#125;</span><br><span class="line">        loop_rate.<span class="built_in">sleep</span>();</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//关闭串口</span></span><br><span class="line">    sp.<span class="built_in">close</span>();</span><br><span class="line"> </span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>CmakeLists如下:</li>
+</ul>
+<figure class="highlight cmake"><table><tr><td class="code"><pre><span class="line"><span class="keyword">cmake_minimum_required</span>(VERSION <span class="number">2.8</span>.<span class="number">3</span>)</span><br><span class="line"><span class="keyword">project</span>(serial_com)</span><br><span class="line"></span><br><span class="line"><span class="comment">## Compile as C++11, supported in ROS Kinetic and newer</span></span><br><span class="line"><span class="keyword">set</span>(CMAKE_CXX_STANDARD <span class="number">14</span>)</span><br><span class="line"><span class="keyword">set</span>(CMAKE_CXX_STANDARD_REQUIRED <span class="keyword">ON</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">find_package</span>(catkin REQUIRED)</span><br><span class="line"><span class="keyword">include_directories</span>(</span><br><span class="line">  <span class="keyword">include</span> <span class="variable">$&#123;catkin_INCLUDE_DIRS&#125;</span> <span class="variable">$&#123;OpenCV_INCLUDE_DIRS&#125;</span> </span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">find_package</span>(catkin REQUIRED COMPONENTS</span><br><span class="line">  OpenCV REQUIRED</span><br><span class="line">  roscpp</span><br><span class="line">  rospy</span><br><span class="line">  std_msgs</span><br><span class="line">  serial</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">## Declare a C++ library</span></span><br><span class="line"><span class="comment"># add_library($&#123;PROJECT_NAME&#125;</span></span><br><span class="line"><span class="comment">#   src/$&#123;PROJECT_NAME&#125;/serial_com.cpp</span></span><br><span class="line"><span class="comment"># )</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">add_executable</span>(stm_com</span><br><span class="line">  serial_port.cpp</span><br><span class="line">)</span><br><span class="line"><span class="keyword">add_dependencies</span>(stm_com <span class="variable">$&#123;$&#123;PROJECT_NAME&#125;</span>_EXPORTED_TARGETS&#125; <span class="variable">$&#123;catkin_EXPORTED_TARGETS&#125;</span>)</span><br><span class="line"><span class="keyword">target_link_libraries</span>(stm_com</span><br><span class="line">  <span class="variable">$&#123;catkin_LIBRARIES&#125;</span></span><br><span class="line">  <span class="variable">$&#123;OpenCV_LIBRARIES&#125;</span></span><br><span class="line">)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>rosrun运行一下这个节点看是否能打开，打不开的话可能是权限问题</li>
+</ol>
+]]></content>
+      <categories>
+        <category>rm</category>
+      </categories>
+      <tags>
+        <tag>rm</tag>
+        <tag>ros</tag>
       </tags>
   </entry>
 </search>
