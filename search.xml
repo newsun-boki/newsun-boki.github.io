@@ -35,182 +35,6 @@
       </tags>
   </entry>
   <entry>
-    <title>python支持向量机SVM (sklearn)</title>
-    <url>/2021/11/01/python%E6%94%AF%E6%8C%81%E5%90%91%E9%87%8F%E6%9C%BASVM%20(sklearn)/</url>
-    <content><![CDATA[<h1 id="sklearn支持向量机SVM"><a href="#sklearn支持向量机SVM" class="headerlink" title="sklearn支持向量机SVM"></a>sklearn支持向量机SVM</h1><h2 id="原理概述"><a href="#原理概述" class="headerlink" title="原理概述"></a>原理概述</h2><p>说实话以前用支持向量机都是直接套进去的，不过现在看了看菜菜提供数学原理发现其实挺有意思(<del>是超有意思！！</del>)。此处就不详述了，这原理到处都是。反正这SVM和决策树一样,<strong>有支持向量分类(SVC)和支持向量回归(SVR)</strong>.</p>
-<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><p>下面是一个SVC的案例</p>
-<h3 id="导入库"><a href="#导入库" class="headerlink" title="导入库"></a>导入库</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.datasets <span class="keyword">import</span> make_blobs</span><br><span class="line"><span class="keyword">from</span> sklearn.svm <span class="keyword">import</span> SVC</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br></pre></td></tr></table></figure>
-<h3 id="生成数据集"><a href="#生成数据集" class="headerlink" title="生成数据集"></a>生成数据集</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">X,y = make_blobs(n_samples=<span class="number">50</span>, centers=<span class="number">2</span>, random_state=<span class="number">0</span>,cluster_std=<span class="number">0.6</span>)</span><br><span class="line"></span><br><span class="line">plt.scatter(X[:,<span class="number">0</span>],X[:,<span class="number">1</span>],c=y,s=<span class="number">50</span>,cmap=<span class="string">&quot;rainbow&quot;</span>)</span><br><span class="line">plt.xticks([])</span><br><span class="line">plt.yticks([])</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://img-blog.csdnimg.cn/20210202165752700.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L25ld3N1bnNvbg==,size_16,color_FFFFFF,t_70#pic_center"
-                      alt="在这里插入图片描述"
-                ></p>
-<h3 id="核心代码"><a href="#核心代码" class="headerlink" title="核心代码"></a>核心代码</h3><p>模型本身并不难，就是要画出相应的图</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">clf = SVC(kernel = <span class="string">&quot;linear&quot;</span>).fit(X,y)</span><br><span class="line"><span class="built_in">print</span>(clf.predict(X))</span><br></pre></td></tr></table></figure>
-<p>上述例子预测又对X自己预测了一变。按照核心代码依旧延续sklearn的风格，十分简单。</p>
-<ul>
-<li>实例化</li>
-<li>fit()</li>
-<li>predict(）。</li>
-</ul>
-<p>可视化可能优点麻烦,需要用到下面这个函数。这个函数只需输入<code>clf</code>即可。</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">plot_svc_decision_function</span>(<span class="params">model,ax=<span class="literal">None</span></span>):</span></span><br><span class="line">    <span class="keyword">if</span> ax <span class="keyword">is</span> <span class="literal">None</span>:</span><br><span class="line">        ax = plt.gca()</span><br><span class="line">    xlim = ax.get_xlim()</span><br><span class="line">    ylim = ax.get_ylim()</span><br><span class="line">    x = np.linspace(xlim[<span class="number">0</span>],xlim[<span class="number">1</span>],<span class="number">30</span>)</span><br><span class="line">    y = np.linspace(ylim[<span class="number">0</span>],ylim[<span class="number">1</span>],<span class="number">30</span>)</span><br><span class="line">    Y,X = np.meshgrid(y,x)</span><br><span class="line">    xy = np.vstack([X.ravel(), Y.ravel()]).T</span><br><span class="line">    <span class="comment">#decision_function这个函数可以返回给定的x,y点到决策边界（也就是点到SVM所得到划分线的距离）</span></span><br><span class="line">    P = model.decision_function(xy).reshape(X.shape)</span><br><span class="line">    ax.contour(X, Y, P,colors=<span class="string">&quot;k&quot;</span>,levels=[-<span class="number">1</span>,<span class="number">0</span>,<span class="number">1</span>],alpha=<span class="number">0.5</span>,linestyles=[<span class="string">&quot;--&quot;</span>,<span class="string">&quot;-&quot;</span>,<span class="string">&quot;--&quot;</span>])</span><br><span class="line">    ax.set_xlim(xlim)</span><br><span class="line">    ax.set_ylim(ylim)</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>函数大概思路就是首先生成一个<strong>网格</strong>，然后<strong>计算网格中各个点到决策边界的距离</strong>，最后绘制<strong>等高线</strong>(算出的距离相等的一条线)。</p>
-</blockquote>
-<p>则可以写作</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">clf = SVC(kernel = <span class="string">&quot;linear&quot;</span>).fit(X,y)</span><br><span class="line">plt.scatter(X[:,<span class="number">0</span>],X[:,<span class="number">1</span>],c=y,s=<span class="number">50</span>,cmap=<span class="string">&quot;rainbow&quot;</span>)</span><br><span class="line">plot_svc_decision_function(clf)</span><br></pre></td></tr></table></figure>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://img-blog.csdnimg.cn/20210202165825224.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L25ld3N1bnNvbg==,size_16,color_FFFFFF,t_70#pic_center"
-                      alt="在这里插入图片描述"
-                ></p>
-<p>其中<strong>灰色实线</strong>就是<strong>决策边界</strong>，<strong>虚线之间的距离</strong>就是<strong>边际</strong>。而SVM就是要找到<strong>边际最大的一条决策边界</strong>，而上面那<strong>三个穿虚线而过的点</strong>就是<strong>支持向量</strong>（最下面那个红色不算），<strong>也就是离决策边界最近的3个点</strong>。</p>
-<h3 id="线性不可分的情况"><a href="#线性不可分的情况" class="headerlink" title="线性不可分的情况"></a>线性不可分的情况</h3><p>这就是整个SVM我觉得最关键也最有意思的地方。从上面的图我们能够知道SVM实际上是找到一个<strong>超平面</strong>将各点分开。如果能找到自然就是<strong>线性可分</strong>的，<strong>那如果找不到呢？</strong></p>
-<blockquote>
-<p><strong>超平面</strong>就是比<strong>当前空间维度低一个维度的分界</strong>，对于<strong>二维平面来说是一条线</strong>，对于<strong>三维空间是一个面</strong>。</p>
-</blockquote>
-<p>对于这么一个案例</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.datasets <span class="keyword">import</span> make_circles</span><br><span class="line">X,y = make_circles(<span class="number">100</span>, factor=<span class="number">0.1</span>, noise=<span class="number">.1</span>)</span><br><span class="line">X.shape</span><br><span class="line">y.shape</span><br><span class="line">plt.scatter(X[:,<span class="number">0</span>],X[:,<span class="number">1</span>],c=y,s=<span class="number">50</span>,cmap=<span class="string">&quot;rainbow&quot;</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://img-blog.csdnimg.cn/20210202165853324.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L25ld3N1bnNvbg==,size_16,color_FFFFFF,t_70#pic_center"
-                      alt="在这里插入图片描述"
-                ></p>
-<p>我们可以看出，<strong>不可能存在一条直线</strong>，能将红色和蓝色分开，所以它是<strong>线性不可分的</strong>，怎么办呢？答案是<strong>升维！！！</strong></p>
-<p>对于原来每一个点，我们使用一个<strong>映射函数</strong>，使得从原来的<strong>二维点</strong>变为原来的<strong>三维点</strong>。对于原来一个点<strong>有(x0,y0)</strong>,<br><strong>从(x0,y0)变为(x1,y1,z1)</strong>,其中<strong>z1有</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">x1 = x0; y1 = y0; z1 = e^&#123;-(x^2+y^2)&#125; </span><br></pre></td></tr></table></figure>
-<p>先别想这个函数是怎么来的，让我们先看看映射后的结果怎么样<br><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://img-blog.csdnimg.cn/20210202170007694.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L25ld3N1bnNvbg==,size_16,color_FFFFFF,t_70#pic_center"
-                      alt="在这里插入图片描述"
-                ></p>
-<p>这个结果非常的amazing啊，红色的点浮起来了，现在只需要用一个<strong>平面</strong>就能把红色和蓝色隔开,也就是说，<strong>升维之后线性可分了！</strong>(<del>当时就把我看湿了</del></p>
-<p>下面是上面这个案例的完整代码</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.svm <span class="keyword">import</span> SVC</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">from</span> sklearn.datasets <span class="keyword">import</span> make_circles</span><br><span class="line">X,y = make_circles(<span class="number">100</span>, factor=<span class="number">0.1</span>, noise=<span class="number">.1</span>)</span><br><span class="line">plt.scatter(X[:,<span class="number">0</span>],X[:,<span class="number">1</span>],c=y,s=<span class="number">50</span>,cmap=<span class="string">&quot;rainbow&quot;</span>)</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">plot_svc_decision_function</span>(<span class="params">model,ax=<span class="literal">None</span></span>):</span></span><br><span class="line">    <span class="keyword">if</span> ax <span class="keyword">is</span> <span class="literal">None</span>:</span><br><span class="line">        ax = plt.gca()</span><br><span class="line">    xlim = ax.get_xlim()</span><br><span class="line">    ylim = ax.get_ylim()</span><br><span class="line">    x = np.linspace(xlim[<span class="number">0</span>],xlim[<span class="number">1</span>],<span class="number">30</span>)</span><br><span class="line">    y = np.linspace(ylim[<span class="number">0</span>],ylim[<span class="number">1</span>],<span class="number">30</span>)</span><br><span class="line">    Y,X = np.meshgrid(y,x)</span><br><span class="line">    xy = np.vstack([X.ravel(), Y.ravel()]).T</span><br><span class="line">    P = model.decision_function(xy).reshape(X.shape)</span><br><span class="line">    ax.contour(X, Y, P,colors=<span class="string">&quot;k&quot;</span>,levels=[-<span class="number">1</span>,<span class="number">0</span>,<span class="number">1</span>],alpha=<span class="number">0.5</span>,linestyles=[<span class="string">&quot;--&quot;</span>,<span class="string">&quot;-&quot;</span>,<span class="string">&quot;--&quot;</span>])</span><br><span class="line">    ax.set_xlim(xlim)</span><br><span class="line">    ax.set_ylim(ylim)</span><br><span class="line">clf = SVC(kernel = <span class="string">&quot;linear&quot;</span>).fit(X,y)</span><br><span class="line">plt.scatter(X[:,<span class="number">0</span>],X[:,<span class="number">1</span>],c=y,s=<span class="number">50</span>,cmap=<span class="string">&quot;rainbow&quot;</span>)</span><br><span class="line">plot_svc_decision_function(clf)</span><br><span class="line">r = np.exp(-(X**<span class="number">2</span>).<span class="built_in">sum</span>(<span class="number">1</span>))</span><br><span class="line">rlim = np.linspace(<span class="built_in">min</span>(r),<span class="built_in">max</span>(r),<span class="number">30</span>)</span><br><span class="line"><span class="keyword">from</span> mpl_toolkits <span class="keyword">import</span> mplot3d</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">plot_3D</span>(<span class="params">elev=<span class="number">30</span>,azim=<span class="number">30</span>,X=X,y=y</span>):</span></span><br><span class="line">    ax = plt.subplot(projection=<span class="string">&quot;3d&quot;</span>)</span><br><span class="line">    ax.scatter3D(X[:,<span class="number">0</span>],X[:,<span class="number">1</span>],r,c=y,s=<span class="number">50</span>,cmap=<span class="string">&#x27;rainbow&#x27;</span>)</span><br><span class="line">    ax.view_init(elev=elev,azim=azim)</span><br><span class="line">    ax.set_xlabel(<span class="string">&quot;x&quot;</span>)</span><br><span class="line">    ax.set_ylabel(<span class="string">&quot;y&quot;</span>)</span><br><span class="line">    ax.set_zlabel(<span class="string">&quot;r&quot;</span>)</span><br><span class="line">    plt.show()</span><br><span class="line"><span class="comment">#下面这个如果你用的是jupyter就可以互动了</span></span><br><span class="line"><span class="comment">#from ipywidgets import interact,fixed</span></span><br><span class="line"><span class="comment">#interact(plot_3D,elev=[0,30],azip=(-180,180),X=fixed(X),y=fixed(y))</span></span><br><span class="line"><span class="comment">#plt.show()</span></span><br></pre></td></tr></table></figure>
-<h3 id="核函数"><a href="#核函数" class="headerlink" title="核函数"></a>核函数</h3><p>所以说上面这个映射函数到底是怎么来的呢，什么是核函数，又和<strong>核函数</strong>又什么关系呢？<br>首先SVM最终的决策函数是<br><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://img-blog.csdnimg.cn/20210202165911151.png#pic_center"
-                      alt="在这里插入图片描述"
-                ></p>
-<ul>
-<li>f(x_test)是最终的分类，定义为{-1,1}</li>
-<li>其中sign是符号函数，大于0取1，小于0取-1。</li>
-<li>y是标签，二分类有两个标签，取{-1,1}</li>
-<li>x_i是支持向量</li>
-<li>x_test是测试向量</li>
-<li>b是一个常数</li>
-</ul>
-<p>很显然我们要计算<strong>x_i与x_test</strong>之间的<strong>内积</strong>,当我们<strong>升维</strong>之后，我们要算的的<strong>内积是映射(升维)后的内积</strong>。<br><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://img-blog.csdnimg.cn/20210202165928310.png#pic_center"
-                      alt="在这里插入图片描述"
-                ></p>
-<p>那么我们定义核函数：<br><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://img-blog.csdnimg.cn/20210202165943334.png#pic_center"
-                      alt="在这里插入图片描述"
-                ></p>
-<p>现在我们就<strong>只需要直接把两个向量带入核函数，而不用先映射成高维再算内积</strong>。这其实省去了很多麻烦，因为计算映射其实挺复杂的。<br>注意，正是因为再<strong>SVM中我们只用到了高维函数的内积，所以只需要计算核函数即可</strong>，有了核函数，我们便能再<strong>低维计算高维的内积</strong>,(<del>这是一次低维生物对高维发起的伟大挑战</del>)显然我们有，只要<strong>映射函数不同，核函数就不同</strong>。<br>下面是sklearn中的几个核函数，个人建议用”rbf”，至于每一个核函数对应的映射函数，自己百度吧。<br><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://img-blog.csdnimg.cn/20210202170029147.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L25ld3N1bnNvbg==,size_16,color_FFFFFF,t_70#pic_center"
-                      alt="在这里插入图片描述"
-                ></p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://img-blog.csdnimg.cn/20210202170111226.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L25ld3N1bnNvbg==,size_16,color_FFFFFF,t_70#pic_center"
-                      alt="在这里插入图片描述"
-                ></p>
-<p>并且有</p>
-<ul>
-<li><strong>线性核，尤其是多项式核函数在高次项时计算非常缓慢</strong></li>
-<li><strong>rbf和多项式核函数都不擅长处理量纲不统一的数据集</strong><br>所以需要针对其进行标准化<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.preprocessing <span class="keyword">import</span> StandardScaler</span><br><span class="line">X = StandardScaler().fit_transform(X)</span><br></pre></td></tr></table></figure></li>
-</ul>
-<h3 id="重要参数C-软间隔和硬间隔"><a href="#重要参数C-软间隔和硬间隔" class="headerlink" title="重要参数C(软间隔和硬间隔)"></a>重要参数C(软间隔和硬间隔)</h3><p><strong>c:</strong></p>
-<blockquote>
-<p>浮点数，默认1，必须大于等于0，可不填<br>松弛系数的惩罚项系数。如果<strong>C值设定比较大</strong>，那<strong>SVC可能会选择边际较小</strong>的，能够更好地分类所有训练点的决策边界，不过模型的训练时间也会更长。如果<strong>C的设定值较小</strong>，那<strong>SVC会尽量最大化边界</strong>，决策功能会更简单，但代价是训练的准确度。换句话说，C在SVM中的影响就像正则化参数对逻辑回归的影响.</p>
-</blockquote>
-<h3 id="混淆矩阵"><a href="#混淆矩阵" class="headerlink" title="混淆矩阵"></a>混淆矩阵</h3><p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://img-blog.csdnimg.cn/20210202170125919.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L25ld3N1bnNvbg==,size_16,color_FFFFFF,t_70#pic_center"
-                      alt="在这里插入图片描述"
-                ></p>
-<p>1是少数类，0是多数类</p>
-<ul>
-<li><strong>准确率</strong>：Accuracy，所有预测正确的样本除以总样本,(11+00)/(11+10+01+00)</li>
-<li><strong>精确率</strong>：Precision，预测的少数类中，真正的少数类的占比。11/(11+01)</li>
-<li><strong>召回率</strong> ：Recall，又被称为敏感度(sensitivity)，真正率，查全率，表示所有真实为1的样本中，被我们预测正确的样本所占的比例,11/(11+10).</li>
-<li><strong>假负率</strong>：False Negative Rate,1-Recall。没召回的占少数类的占比。10/（11+10）</li>
-<li><strong>特异度</strong>：Specificity,表示所有真实为0的样本中，被正确预测为0的样本所占的比例，00/（01+00）</li>
-<li><strong>假正率</strong>：False Positive Rate，1 - specificity就是一个模型将多数类判断错误的能力，01/(01+00)</li>
-<li><strong>ROC曲线</strong>，横轴为假正率(FPR)，纵轴为召回率(Recall)，当曲线越往左上角偏说明效果越好，。</li>
-<li><strong>AUC面积</strong>，它代表了ROC曲线下方的面积，这个面积越大，代表ROC曲线越接近左上角，模型就越好。<h3 id="小案例"><a href="#小案例" class="headerlink" title="小案例"></a>小案例</h3></li>
-<li>首先生成数据集并带入模型训练<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.svm <span class="keyword">import</span> SVC</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">from</span> sklearn.datasets <span class="keyword">import</span> make_blobs</span><br><span class="line">class_1 = <span class="number">500</span> <span class="comment">#类别1有500个样本</span></span><br><span class="line">class_2 = <span class="number">50</span> <span class="comment">#类别2只有50个</span></span><br><span class="line">centers = [[<span class="number">0.0</span>, <span class="number">0.0</span>], [<span class="number">2.0</span>, <span class="number">2.0</span>]] <span class="comment">#设定两个类别的中心</span></span><br><span class="line">clusters_std = [<span class="number">1.5</span>, <span class="number">0.5</span>] <span class="comment">#设定两个类别的方差，通常来说，样本量比较大的类别会更加松散</span></span><br><span class="line">X, y = make_blobs(n_samples=[class_1, class_2],centers=centers,cluster_std=clusters_std,random_state=<span class="number">0</span>, shuffle=<span class="literal">False</span>)</span><br><span class="line">plt.scatter(X[:, <span class="number">0</span>], X[:, <span class="number">1</span>], c=y, cmap=<span class="string">&quot;rainbow&quot;</span>,s=<span class="number">10</span>)</span><br><span class="line">clf_proba = SVC(kernel=<span class="string">&quot;linear&quot;</span>,C=<span class="number">1.0</span>,probability=<span class="literal">True</span>).fit(X,y)</span><br></pre></td></tr></table></figure>
-<img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://img-blog.csdnimg.cn/20210202170141184.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L25ld3N1bnNvbg==,size_16,color_FFFFFF,t_70#pic_center"
-                      alt="在这里插入图片描述"
-                ></li>
-</ul>
-<ul>
-<li>其次把个点所预测得到的概率放入DataFrame里<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">prob = clf_proba.predict_proba(X)</span><br><span class="line"><span class="comment">#将样本和概率放到一个DataFrame中</span></span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line">prob = pd.DataFrame(prob)</span><br><span class="line">prob.columns = [<span class="string">&quot;0&quot;</span>,<span class="string">&quot;1&quot;</span>]</span><br></pre></td></tr></table></figure></li>
-<li>找出最佳阈值并画出ROC曲线并得到相应的FPR和Recall，以及AUC</li>
-</ul>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.metrics <span class="keyword">import</span> roc_curve</span><br><span class="line">FPR, recall, thresholds = roc_curve(y,prob.loc[:,<span class="string">&quot;1&quot;</span>], pos_label=<span class="number">1</span>)</span><br><span class="line"><span class="comment">#此时的threshold就不是一个概率值，而是距离值中的阈值了，所以它可以大于1，也可以为负</span></span><br><span class="line"><span class="comment">#找到最佳阈值</span></span><br><span class="line">maxindex = (recall - FPR).tolist().index(<span class="built_in">max</span>(recall - FPR))</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;thresholds:&#x27;</span>)</span><br><span class="line"><span class="built_in">print</span>(thresholds[maxindex])</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;recall:&#x27;</span>)</span><br><span class="line"><span class="built_in">print</span>(recall[maxindex])</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;FPR:&#x27;</span>)</span><br><span class="line"><span class="built_in">print</span>(FPR[maxindex])</span><br><span class="line"><span class="keyword">from</span> sklearn.metrics <span class="keyword">import</span> roc_auc_score <span class="keyword">as</span> AUC</span><br><span class="line">area = AUC(y,clf_proba.decision_function(X))</span><br><span class="line"></span><br><span class="line">plt.scatter(FPR[maxindex],recall[maxindex],c=<span class="string">&quot;black&quot;</span>,s=<span class="number">30</span>)</span><br><span class="line"><span class="comment">#把上述代码放入这段代码中：</span></span><br><span class="line">plt.figure()</span><br><span class="line">plt.plot(FPR, recall, color=<span class="string">&#x27;red&#x27;</span>,label=<span class="string">&#x27;ROC curve (area = %0.2f)&#x27;</span> % area)</span><br><span class="line">plt.plot([<span class="number">0</span>, <span class="number">1</span>], [<span class="number">0</span>, <span class="number">1</span>], color=<span class="string">&#x27;black&#x27;</span>, linestyle=<span class="string">&#x27;--&#x27;</span>)</span><br><span class="line">plt.scatter(FPR[maxindex],recall[maxindex],c=<span class="string">&quot;black&quot;</span>,s=<span class="number">30</span>)</span><br><span class="line">plt.xlim([-<span class="number">0.05</span>, <span class="number">1.05</span>])</span><br><span class="line">plt.ylim([-<span class="number">0.05</span>, <span class="number">1.05</span>])</span><br><span class="line">plt.xlabel(<span class="string">&#x27;False Positive Rate&#x27;</span>)</span><br><span class="line">plt.ylabel(<span class="string">&#x27;Recall&#x27;</span>)</span><br><span class="line">plt.title(<span class="string">&#x27;Receiver operating characteristic example&#x27;</span>)</span><br><span class="line">plt.legend(loc=<span class="string">&quot;lower right&quot;</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://img-blog.csdnimg.cn/20210202170241370.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L25ld3N1bnNvbg==,size_16,color_FFFFFF,t_70#pic_center"
-                      alt="在这里插入图片描述"
-                ></p>
-<ul>
-<li>最后进行预测，得出结果<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(prob.shape[<span class="number">0</span>]):</span><br><span class="line">    <span class="keyword">if</span> prob.loc[i,<span class="string">&quot;1&quot;</span>] &gt; thresholds[maxindex]:</span><br><span class="line">        prob.loc[i,<span class="string">&quot;pred&quot;</span>] = <span class="number">1</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        prob.loc[i,<span class="string">&quot;pred&quot;</span>] = <span class="number">0</span></span><br><span class="line">prob[<span class="string">&quot;y_true&quot;</span>] = y</span><br><span class="line">prob = prob.sort_values(by=<span class="string">&quot;1&quot;</span>,ascending=<span class="literal">False</span>)</span><br><span class="line">prob</span><br></pre></td></tr></table></figure></li>
-</ul>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://img-blog.csdnimg.cn/2021020217041740.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L25ld3N1bnNvbg==,size_16,color_FFFFFF,t_70#pic_center"
-                      alt="在这里插入图片描述"
-                ></p>
-<ul>
-<li>得到混淆矩阵来评估<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.metrics <span class="keyword">import</span> confusion_matrix <span class="keyword">as</span> CM, precision_score <span class="keyword">as</span> P, recall_score <span class="keyword">as</span> R</span><br><span class="line">cm = CM(prob.loc[:,<span class="string">&quot;y_true&quot;</span>],prob.loc[:,<span class="string">&quot;pred&quot;</span>],labels=[<span class="number">1</span>,<span class="number">0</span>])</span><br><span class="line">cm</span><br></pre></td></tr></table></figure>
-<img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://img-blog.csdnimg.cn/20210202170442247.png#pic_center"
-                      alt="在这里插入图片描述"
-                ></li>
-</ul>
-<p><strong>PS:这个案例用的是核函数是线性核，但又试了一遍还是‘rbf’比较好</strong>,<br><strong>并且其实不一定需要最佳阈值，要结合实际来看。</strong><br>例如，三星手机发生爆炸，三星想要召回率能达到100%，即宁可把没有问题的手机召回，也不能放过任何一个有问题的手机，阈值也要相应调整。</p>
-<h3 id="多分类"><a href="#多分类" class="headerlink" title="多分类"></a>多分类</h3><p>多分类其实也很简单，应该是sklearn的多分类很简单，数学原理十分可怕。区别就是输入的Y多了几个分类而已。</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">clf = SVC(decision_function_shape=<span class="string">&#x27;ovo&#x27;</span>) clf.fit(X, Y)</span><br></pre></td></tr></table></figure>
-<p>上面用的是ovo(one vs one)，也就是每一个类两两组合来构建,也可以选择’ovr’速度更快，效果不怎么样。</p>
-<h3 id="补充"><a href="#补充" class="headerlink" title="补充"></a>补充</h3><h4 id="参数class-weight"><a href="#参数class-weight" class="headerlink" title="参数class_weight"></a>参数class_weight</h4><p>如果你想追求最高的召回率，宁可错杀不可放过，那么<code>class_weight = &quot;balanced&quot;</code></p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">clf = SVC(kernel = kernel ,gamma=<span class="string">&quot;auto&quot;</span>,degree = <span class="number">1</span>,cache_size = <span class="number">5000</span>,class_weight = <span class="string">&quot;balanced&quot;</span>).fit(Xtrain, Ytrain)</span><br></pre></td></tr></table></figure>
-<p>如果还想再高，那么<code>class_weight = &#123;1:10&#125;</code></p>
-]]></content>
-      <categories>
-        <category>code</category>
-      </categories>
-      <tags>
-        <tag>python</tag>
-        <tag>sklearn</tag>
-        <tag>svm</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>sklearn主成分分析PCA</title>
     <url>/2021/11/02/python-pca/</url>
     <content><![CDATA[<h1 id="sklearn主成分分析PCA"><a href="#sklearn主成分分析PCA" class="headerlink" title="sklearn主成分分析PCA"></a>sklearn主成分分析PCA</h1><h2 id="数学原理"><a href="#数学原理" class="headerlink" title="数学原理"></a>数学原理</h2><p>给数学基础不是很好的看<br>PCA主要用于<strong>降维</strong>，比如一个人有<strong>身高，年龄，样貌，性别，智力，耐力，速度，成绩</strong>等等很多<strong>特征</strong>，<strong>每种特征便是一个维度</strong>。假如你觉得描述一个人的特征太多，你想要用<strong>一两个或几个特征</strong>就个以描述一个人，并且<strong>这几个特征包含之前提到所有特征所包含的信息</strong>，将这么原来的众多特征转化为几个特征的过程就是<strong>降维</strong>。而降维后得到的特征包含的<strong>信息量的多少也叫做贡献率</strong>，信息量越多越能够反应本质。</p>
@@ -756,6 +580,254 @@
       <tags>
         <tag>python</tag>
         <tag>seaborn</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>python-dt</title>
+    <url>/2021/11/02/python-dt/</url>
+    <content><![CDATA[<h1 id="sklearn决策树"><a href="#sklearn决策树" class="headerlink" title="sklearn决策树"></a>sklearn决策树</h1><h3 id="参数表示"><a href="#参数表示" class="headerlink" title="参数表示"></a>参数表示</h3><p>决策树中有<strong>参数</strong>如下：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">DecisionTreeClassifier(criterion=<span class="string">&quot;gini&quot;</span></span><br><span class="line">           			, splitter=<span class="string">&quot;best&quot;</span></span><br><span class="line">                    , max_depth=<span class="literal">None</span></span><br><span class="line">                    , min_samples_split=<span class="number">2</span></span><br><span class="line">                    , min_samples_leaf=<span class="number">1</span></span><br><span class="line">                    , min_weight_fraction_leaf=<span class="number">0.</span></span><br><span class="line">                    , max_features=<span class="literal">None</span></span><br><span class="line">                    , random_state=<span class="literal">None</span></span><br><span class="line">                    , max_leaf_nodes=<span class="literal">None</span></span><br><span class="line">                    , min_impurity_decrease=<span class="number">0.</span></span><br><span class="line">                    , min_impurity_split=<span class="literal">None</span></span><br><span class="line">                    , class_weight=<span class="literal">None</span>,</span><br><span class="line">                    presort=<span class="literal">False</span>)</span><br></pre></td></tr></table></figure>
+<p>以下几个参数较为重要</p>
+<blockquote>
+<ul>
+<li><strong>criterion</strong> : string, optional (default=”gini”)<br><u>用以设置用信息熵还是基尼系数计算。</u><br>(1).criterion=’gini’,分裂节点时评价准则是Gini指数。<br>(2).criterion=’entropy’,分裂节点时的评价指标是信息增益(模型欠拟合时使用)。</li>
+<li><strong>max_depth</strong> : int or None, optional (default=None)。<br><u>指定树的最大深度</u>。 如果为None，表示树的深度不限。直到所有的叶子节点都是纯净的，即叶子节点 中所有的样本点都属于同一个类别。或者每个叶子节点包含的样本数小于min_samples_split。</li>
+<li><strong>splitter</strong> : string, optional (default=”best”)。<br><u> 指定分裂节点时的策略。 </u><br>(1).splitter=’best’,表示选择最优的分裂策略。<br>(2).splitter=’random’,表示选择最好的随机切分策略。</li>
+<li><strong>min_samples_leaf</strong> : int, float, optional (default=1)<br><u> 限定每个节点分枝后子节点至少有多少个数据，否则就不分枝</u>。<br>(1).如果为整数，则min_samples_split就是最少样本数。<br>(2).如果为浮点数(0到1之间)，则每个叶子节点最少样本数为ceil(min_samples_leaf * n_samples)</li>
+</ul>
+</blockquote>
+<h3 id="数据预处理"><a href="#数据预处理" class="headerlink" title="数据预处理"></a>数据预处理</h3><p>在编写代码时，对数据的预处理主要包括对数据的<strong>导入</strong>，<strong>补全</strong>与<strong>删减</strong>，<strong>x与y的选取</strong>，将<strong>字典变量转化为虚拟变量</strong>等</p>
+<ol>
+<li><strong>导入数据</strong><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">from</span> sklearn.tree <span class="keyword">import</span> DecisionTreeClassifier </span><br><span class="line"><span class="keyword">from</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">from</span> sklearn.model_selection <span class="keyword">import</span> GridsearchCV</span><br><span class="line">data = pd.read_csv(<span class="string">&quot;your_ducument&quot;</span>)</span><br><span class="line"><span class="comment">#查看数据信息</span></span><br><span class="line">data.info()</span><br><span class="line"><span class="comment">#显示表的前10行</span></span><br><span class="line">data.head(<span class="number">10</span>)</span><br></pre></td></tr></table></figure></li>
+<li><strong>删除特征</strong><br>对于一些不需要的特征，例如<u>明显与因变量关系不大的特征</u>或是<u>缺失值实在太多难以填补的特征</u>可以适当性的直接拿掉。</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">data.drop([<span class="string">&quot;被拿掉的特征名1，被拿掉特征名2&quot;</span>], inplace = <span class="literal">True</span>, axis = <span class="number">1</span>)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>这里<code>inplace = True</code>指的是将替换原有的data,即等价于<code>data = data.drop([&quot;被拿掉的特诊名1，被拿掉特诊名2&quot;],axis = 1)</code>。<br>关于<code>axis = 1</code>,只的是对<strong>列</strong>操作，即对<strong>每一行</strong>操作.</p>
+</blockquote>
+<ol start="3">
+<li><strong>填充缺失值</strong><br>假设我们有一特征为年龄(age)<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment">#使用平均值来填补缺失值</span></span><br><span class="line">data[<span class="string">&quot;age&quot;</span>] = data[<span class="string">&quot;age&quot;</span>].fillna(data[<span class="string">&quot;age&quot;</span>].mean())</span><br></pre></td></tr></table></figure>
+当某特征仅缺失较少的值时，把缺失的那个数据所在行删掉即可<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment">#默认有axis = 0,即对整行进行操作</span></span><br><span class="line">data = data.dropna()</span><br></pre></td></tr></table></figure></li>
+<li><strong>类型转换</strong><br>假设我们有一特征<u>楼层(floor)</u>：有first，second，third 三个string值，将其转化为0，1，2。<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment">#可以得到[&quot;first&quot;,&quot;second&quot;,third]</span></span><br><span class="line">labels = data[<span class="string">&quot;floor&quot;</span>].unique().tolist()</span><br><span class="line"><span class="comment">#index可以返回元素x在列表中的位置</span></span><br><span class="line">data[<span class="string">&quot;floor&quot;</span>] = data[<span class="string">&quot;floor&quot;</span>].apply( <span class="keyword">lambda</span> x : labels.index(x))</span><br></pre></td></tr></table></figure>
+<blockquote>
+<ul>
+<li>关于apply()的具体用法<a class="link"   href="https://blog.csdn.net/anshuai_aw1/article/details/82347016" >见此<i class="fas fa-external-link-alt"></i></a></li>
+</ul>
+</blockquote>
+</li>
+<li><strong>语法补充</strong><br>上述我们一直在使用的<strong>data</strong>是pandas特有的<strong>DataFrame</strong>类型，关于取出其中的某一列特征进行操作可以使用<code>data[&quot;age&quot;]</code>，但最好使用<code>data.loc[:,&quot;age&quot;]</code>或是<code>data.iloc[:,3]</code>。</li>
+</ol>
+<h3 id="分离特征-x-与标签-y"><a href="#分离特征-x-与标签-y" class="headerlink" title="分离特征(x)与标签(y)"></a>分离特征(x)与标签(y)</h3><p>假设我们要取出的标签是<u>楼层(floor)</u></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">x = data.iloc[:, data.colums !=<span class="string">&quot;floor&quot;</span>]</span><br><span class="line">y = data.iloc[:, data.colums == <span class="string">&quot;floor&quot;</span>]</span><br></pre></td></tr></table></figure>
+<h3 id="划分训练集与测试集"><a href="#划分训练集与测试集" class="headerlink" title="划分训练集与测试集"></a>划分训练集与测试集</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment">#选取30%为测试集，70%为训练集</span></span><br><span class="line"><span class="keyword">from</span> sklearn.model_selection <span class="keyword">import</span> train_test_split</span><br><span class="line">Xtrain, Xtext, Ytrain, Ytest = train_test_split(x, y, test_size = <span class="number">0.3</span>)</span><br></pre></td></tr></table></figure>
+<p>此函数随机选取训练集与测试集，会将索引打乱，为了以防万一对后续造成额外影响，有必要纠正索引.</p>
+<blockquote>
+<ul>
+<li>所谓”索引“，是pandas在导入时DataFrame对每一行数据按顺序产生的索引,当输入<code>Xtrain.index</code>时会返回被打乱的索引列表。</li>
+</ul>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment">#恢复索引</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> [Xtrain, Xtext, Ytrain, Ytest] ： </span><br><span class="line">    i.index = <span class="built_in">range</span>(i.shape[<span class="number">0</span>])</span><br></pre></td></tr></table></figure>
+
+<h3 id="建立模型"><a href="#建立模型" class="headerlink" title="建立模型"></a>建立模型</h3><h4 id="基础代码"><a href="#基础代码" class="headerlink" title="基础代码"></a>基础代码</h4><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">clf = DecisionTreeClassifier(random_state = <span class="number">25</span>)<span class="comment">#random_state为随机数种子</span></span><br><span class="line">clf = clf.fit(Xtrain, Ytrain)</span><br><span class="line">score = clf.score(Xtest, Ytest)<span class="comment">#R方</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h4 id="交叉验证"><a href="#交叉验证" class="headerlink" title="交叉验证"></a>交叉验证</h4><ul>
+<li><strong>交叉验证</strong> : 指不断随机改变训练集与测试集<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment">#10次交叉验证均值</span></span><br><span class="line">cross_score = cross_val_score(clf, x, y, cv = <span class="number">10</span>).mean()</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h4 id="调参"><a href="#调参" class="headerlink" title="调参"></a>调参</h4><ul>
+<li><strong>基础方法</strong><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">tr = []<span class="comment">#训练集拟合程度</span></span><br><span class="line">te = []<span class="comment">#测试集拟合程度</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">10</span>) : </span><br><span class="line"><span class="comment">#调整max_depth，即剪枝</span></span><br><span class="line">    clf = DecisionTreeClassifier(random_state = <span class="number">25</span>, max_depth = i + <span class="number">1</span>)<span class="comment">#random_state为随机数种子</span></span><br><span class="line">    clf = clf.fit(Xtrain, Ytrain)</span><br><span class="line">    score_tr = clf.score(Xtest, Ytest)</span><br><span class="line">    score_te = cross_val_score(clf, x, y, cv = <span class="number">10</span>).mean()</span><br><span class="line">    tr.append(score_tr)</span><br><span class="line">    te.append(score_te)</span><br><span class="line">plt.plot(<span class="built_in">range</span>(<span class="number">1</span>,<span class="number">11</span>), tr, color = <span class="string">&quot;red&quot;</span>, label = <span class="string">&quot;train&quot;</span>)</span><br><span class="line">plt.plot(<span class="built_in">range</span>(<span class="number">1</span>,<span class="number">11</span>), te, color = <span class="string">&quot;blue&quot;</span>,label = <span class="string">&quot;test&quot;</span>)</span><br><span class="line">plt.xticks(<span class="built_in">range</span>(<span class="number">1</span>,<span class="number">11</span>))</span><br><span class="line">plt.yticks(<span class="built_in">range</span>(<span class="number">1</span>,<span class="number">11</span>))</span><br><span class="line">plt.legend()</span><br><span class="line">ply.show()</span><br></pre></td></tr></table></figure></li>
+<li><strong>网格搜索</strong><br>事实上就是暴力枚举，速度特别慢<br><del>(而且算了半天说不定还没一开始简简单单的好)</del><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">parameters = &#123;<span class="string">&quot;criterion&quot;</span>:(<span class="string">&quot;gini&quot;</span>,<span class="string">&quot;entropy&quot;</span>), </span><br><span class="line">                        <span class="string">&quot;spliter&quot;</span>:(<span class="string">&quot;best&quot;</span>,<span class="string">&quot;random&quot;</span>),</span><br><span class="line">                        <span class="string">&quot;max_depth&quot;</span>: [*<span class="built_in">range</span>(<span class="number">1</span>,<span class="number">10</span>)],</span><br><span class="line">                        <span class="string">&quot;min_samples_leaf&quot;</span> = [*<span class="built_in">range</span>(<span class="number">1</span>,<span class="number">50</span>,<span class="number">5</span>)],</span><br><span class="line">                        <span class="string">&quot;min_impurity_decrease&quot;</span> = np.linspace(<span class="number">0</span>,<span class="number">0.5</span>,<span class="number">50</span>) &#125;</span><br><span class="line">clf = DecisionTreeClassifier(random = <span class="number">25</span>)</span><br><span class="line">GS = GridSearchCV(clf, parameters, cv = <span class="number">10</span>)</span><br><span class="line">GS = GS.fit(Xtrain, Ytrain)</span><br><span class="line">GS.best_params_<span class="comment">#最佳参数组合</span></span><br><span class="line">GS.best_score_<span class="comment">#最佳结果r方</span></span><br></pre></td></tr></table></figure>
+<h3 id="可视化"><a href="#可视化" class="headerlink" title="可视化"></a>可视化</h3>生成可视化图,在这里仅仅只能输出一个dot文件。<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">dot_data = export_graphviz(tree,out_file= <span class="string">&quot;result.dot&quot;</span>,class_names[<span class="string">&#x27;serious&#x27;</span>,<span class="string">&#x27;easy&#x27;</span>],feature_names=cancer.feature_names,impurity=<span class="literal">False</span>,filled=<span class="literal">True</span>)</span><br></pre></td></tr></table></figure>
+将.dot文件转为jpg文件，展示可视化图(不知道为啥不可用，要用cmd来转换 <code>dot result.dot -T jpg -o result.jpg)</code><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">(graph,)= pydot.graph_from_dot_file(<span class="string">&#x27;result.dot&#x27;</span>)</span><br><span class="line">graph.write_png(<span class="string">&#x27;tree.png&#x27;</span>)</span><br></pre></td></tr></table></figure>
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://img-blog.csdnimg.cn/20210125183759997.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L25ld3N1bnNvbg==,size_16,color_FFFFFF,t_70#pic_center"
+                      alt="在这里插入图片描述"
+                ></li>
+</ul>
+]]></content>
+      <categories>
+        <category>code</category>
+      </categories>
+      <tags>
+        <tag>python</tag>
+        <tag>sklean</tag>
+        <tag>决策树</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>python支持向量机SVM (sklearn)</title>
+    <url>/2021/11/01/python-svm/</url>
+    <content><![CDATA[<h1 id="sklearn支持向量机SVM"><a href="#sklearn支持向量机SVM" class="headerlink" title="sklearn支持向量机SVM"></a>sklearn支持向量机SVM</h1><h2 id="原理概述"><a href="#原理概述" class="headerlink" title="原理概述"></a>原理概述</h2><p>说实话以前用支持向量机都是直接套进去的，不过现在看了看菜菜提供数学原理发现其实挺有意思(<del>是超有意思！！</del>)。此处就不详述了，这原理到处都是。反正这SVM和决策树一样,<strong>有支持向量分类(SVC)和支持向量回归(SVR)</strong>.</p>
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><p>下面是一个SVC的案例</p>
+<h3 id="导入库"><a href="#导入库" class="headerlink" title="导入库"></a>导入库</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.datasets <span class="keyword">import</span> make_blobs</span><br><span class="line"><span class="keyword">from</span> sklearn.svm <span class="keyword">import</span> SVC</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br></pre></td></tr></table></figure>
+<h3 id="生成数据集"><a href="#生成数据集" class="headerlink" title="生成数据集"></a>生成数据集</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">X,y = make_blobs(n_samples=<span class="number">50</span>, centers=<span class="number">2</span>, random_state=<span class="number">0</span>,cluster_std=<span class="number">0.6</span>)</span><br><span class="line"></span><br><span class="line">plt.scatter(X[:,<span class="number">0</span>],X[:,<span class="number">1</span>],c=y,s=<span class="number">50</span>,cmap=<span class="string">&quot;rainbow&quot;</span>)</span><br><span class="line">plt.xticks([])</span><br><span class="line">plt.yticks([])</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://img-blog.csdnimg.cn/20210202165752700.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L25ld3N1bnNvbg==,size_16,color_FFFFFF,t_70#pic_center"
+                      alt="在这里插入图片描述"
+                ></p>
+<h3 id="核心代码"><a href="#核心代码" class="headerlink" title="核心代码"></a>核心代码</h3><p>模型本身并不难，就是要画出相应的图</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">clf = SVC(kernel = <span class="string">&quot;linear&quot;</span>).fit(X,y)</span><br><span class="line"><span class="built_in">print</span>(clf.predict(X))</span><br></pre></td></tr></table></figure>
+<p>上述例子预测又对X自己预测了一变。按照核心代码依旧延续sklearn的风格，十分简单。</p>
+<ul>
+<li>实例化</li>
+<li>fit()</li>
+<li>predict(）。</li>
+</ul>
+<p>可视化可能优点麻烦,需要用到下面这个函数。这个函数只需输入<code>clf</code>即可。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">plot_svc_decision_function</span>(<span class="params">model,ax=<span class="literal">None</span></span>):</span></span><br><span class="line">    <span class="keyword">if</span> ax <span class="keyword">is</span> <span class="literal">None</span>:</span><br><span class="line">        ax = plt.gca()</span><br><span class="line">    xlim = ax.get_xlim()</span><br><span class="line">    ylim = ax.get_ylim()</span><br><span class="line">    x = np.linspace(xlim[<span class="number">0</span>],xlim[<span class="number">1</span>],<span class="number">30</span>)</span><br><span class="line">    y = np.linspace(ylim[<span class="number">0</span>],ylim[<span class="number">1</span>],<span class="number">30</span>)</span><br><span class="line">    Y,X = np.meshgrid(y,x)</span><br><span class="line">    xy = np.vstack([X.ravel(), Y.ravel()]).T</span><br><span class="line">    <span class="comment">#decision_function这个函数可以返回给定的x,y点到决策边界（也就是点到SVM所得到划分线的距离）</span></span><br><span class="line">    P = model.decision_function(xy).reshape(X.shape)</span><br><span class="line">    ax.contour(X, Y, P,colors=<span class="string">&quot;k&quot;</span>,levels=[-<span class="number">1</span>,<span class="number">0</span>,<span class="number">1</span>],alpha=<span class="number">0.5</span>,linestyles=[<span class="string">&quot;--&quot;</span>,<span class="string">&quot;-&quot;</span>,<span class="string">&quot;--&quot;</span>])</span><br><span class="line">    ax.set_xlim(xlim)</span><br><span class="line">    ax.set_ylim(ylim)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>函数大概思路就是首先生成一个<strong>网格</strong>，然后<strong>计算网格中各个点到决策边界的距离</strong>，最后绘制<strong>等高线</strong>(算出的距离相等的一条线)。</p>
+</blockquote>
+<p>则可以写作</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">clf = SVC(kernel = <span class="string">&quot;linear&quot;</span>).fit(X,y)</span><br><span class="line">plt.scatter(X[:,<span class="number">0</span>],X[:,<span class="number">1</span>],c=y,s=<span class="number">50</span>,cmap=<span class="string">&quot;rainbow&quot;</span>)</span><br><span class="line">plot_svc_decision_function(clf)</span><br></pre></td></tr></table></figure>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://img-blog.csdnimg.cn/20210202165825224.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L25ld3N1bnNvbg==,size_16,color_FFFFFF,t_70#pic_center"
+                      alt="在这里插入图片描述"
+                ></p>
+<p>其中<strong>灰色实线</strong>就是<strong>决策边界</strong>，<strong>虚线之间的距离</strong>就是<strong>边际</strong>。而SVM就是要找到<strong>边际最大的一条决策边界</strong>，而上面那<strong>三个穿虚线而过的点</strong>就是<strong>支持向量</strong>（最下面那个红色不算），<strong>也就是离决策边界最近的3个点</strong>。</p>
+<h3 id="线性不可分的情况"><a href="#线性不可分的情况" class="headerlink" title="线性不可分的情况"></a>线性不可分的情况</h3><p>这就是整个SVM我觉得最关键也最有意思的地方。从上面的图我们能够知道SVM实际上是找到一个<strong>超平面</strong>将各点分开。如果能找到自然就是<strong>线性可分</strong>的，<strong>那如果找不到呢？</strong></p>
+<blockquote>
+<p><strong>超平面</strong>就是比<strong>当前空间维度低一个维度的分界</strong>，对于<strong>二维平面来说是一条线</strong>，对于<strong>三维空间是一个面</strong>。</p>
+</blockquote>
+<p>对于这么一个案例</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.datasets <span class="keyword">import</span> make_circles</span><br><span class="line">X,y = make_circles(<span class="number">100</span>, factor=<span class="number">0.1</span>, noise=<span class="number">.1</span>)</span><br><span class="line">X.shape</span><br><span class="line">y.shape</span><br><span class="line">plt.scatter(X[:,<span class="number">0</span>],X[:,<span class="number">1</span>],c=y,s=<span class="number">50</span>,cmap=<span class="string">&quot;rainbow&quot;</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://img-blog.csdnimg.cn/20210202165853324.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L25ld3N1bnNvbg==,size_16,color_FFFFFF,t_70#pic_center"
+                      alt="在这里插入图片描述"
+                ></p>
+<p>我们可以看出，<strong>不可能存在一条直线</strong>，能将红色和蓝色分开，所以它是<strong>线性不可分的</strong>，怎么办呢？答案是<strong>升维！！！</strong></p>
+<p>对于原来每一个点，我们使用一个<strong>映射函数</strong>，使得从原来的<strong>二维点</strong>变为原来的<strong>三维点</strong>。对于原来一个点<strong>有(x0,y0)</strong>,<br><strong>从(x0,y0)变为(x1,y1,z1)</strong>,其中<strong>z1有</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">x1 = x0; y1 = y0; z1 = e^&#123;-(x^2+y^2)&#125; </span><br></pre></td></tr></table></figure>
+<p>先别想这个函数是怎么来的，让我们先看看映射后的结果怎么样<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://img-blog.csdnimg.cn/20210202170007694.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L25ld3N1bnNvbg==,size_16,color_FFFFFF,t_70#pic_center"
+                      alt="在这里插入图片描述"
+                ></p>
+<p>这个结果非常的amazing啊，红色的点浮起来了，现在只需要用一个<strong>平面</strong>就能把红色和蓝色隔开,也就是说，<strong>升维之后线性可分了！</strong>(<del>当时就把我看湿了</del></p>
+<p>下面是上面这个案例的完整代码</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.svm <span class="keyword">import</span> SVC</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">from</span> sklearn.datasets <span class="keyword">import</span> make_circles</span><br><span class="line">X,y = make_circles(<span class="number">100</span>, factor=<span class="number">0.1</span>, noise=<span class="number">.1</span>)</span><br><span class="line">plt.scatter(X[:,<span class="number">0</span>],X[:,<span class="number">1</span>],c=y,s=<span class="number">50</span>,cmap=<span class="string">&quot;rainbow&quot;</span>)</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">plot_svc_decision_function</span>(<span class="params">model,ax=<span class="literal">None</span></span>):</span></span><br><span class="line">    <span class="keyword">if</span> ax <span class="keyword">is</span> <span class="literal">None</span>:</span><br><span class="line">        ax = plt.gca()</span><br><span class="line">    xlim = ax.get_xlim()</span><br><span class="line">    ylim = ax.get_ylim()</span><br><span class="line">    x = np.linspace(xlim[<span class="number">0</span>],xlim[<span class="number">1</span>],<span class="number">30</span>)</span><br><span class="line">    y = np.linspace(ylim[<span class="number">0</span>],ylim[<span class="number">1</span>],<span class="number">30</span>)</span><br><span class="line">    Y,X = np.meshgrid(y,x)</span><br><span class="line">    xy = np.vstack([X.ravel(), Y.ravel()]).T</span><br><span class="line">    P = model.decision_function(xy).reshape(X.shape)</span><br><span class="line">    ax.contour(X, Y, P,colors=<span class="string">&quot;k&quot;</span>,levels=[-<span class="number">1</span>,<span class="number">0</span>,<span class="number">1</span>],alpha=<span class="number">0.5</span>,linestyles=[<span class="string">&quot;--&quot;</span>,<span class="string">&quot;-&quot;</span>,<span class="string">&quot;--&quot;</span>])</span><br><span class="line">    ax.set_xlim(xlim)</span><br><span class="line">    ax.set_ylim(ylim)</span><br><span class="line">clf = SVC(kernel = <span class="string">&quot;linear&quot;</span>).fit(X,y)</span><br><span class="line">plt.scatter(X[:,<span class="number">0</span>],X[:,<span class="number">1</span>],c=y,s=<span class="number">50</span>,cmap=<span class="string">&quot;rainbow&quot;</span>)</span><br><span class="line">plot_svc_decision_function(clf)</span><br><span class="line">r = np.exp(-(X**<span class="number">2</span>).<span class="built_in">sum</span>(<span class="number">1</span>))</span><br><span class="line">rlim = np.linspace(<span class="built_in">min</span>(r),<span class="built_in">max</span>(r),<span class="number">30</span>)</span><br><span class="line"><span class="keyword">from</span> mpl_toolkits <span class="keyword">import</span> mplot3d</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">plot_3D</span>(<span class="params">elev=<span class="number">30</span>,azim=<span class="number">30</span>,X=X,y=y</span>):</span></span><br><span class="line">    ax = plt.subplot(projection=<span class="string">&quot;3d&quot;</span>)</span><br><span class="line">    ax.scatter3D(X[:,<span class="number">0</span>],X[:,<span class="number">1</span>],r,c=y,s=<span class="number">50</span>,cmap=<span class="string">&#x27;rainbow&#x27;</span>)</span><br><span class="line">    ax.view_init(elev=elev,azim=azim)</span><br><span class="line">    ax.set_xlabel(<span class="string">&quot;x&quot;</span>)</span><br><span class="line">    ax.set_ylabel(<span class="string">&quot;y&quot;</span>)</span><br><span class="line">    ax.set_zlabel(<span class="string">&quot;r&quot;</span>)</span><br><span class="line">    plt.show()</span><br><span class="line"><span class="comment">#下面这个如果你用的是jupyter就可以互动了</span></span><br><span class="line"><span class="comment">#from ipywidgets import interact,fixed</span></span><br><span class="line"><span class="comment">#interact(plot_3D,elev=[0,30],azip=(-180,180),X=fixed(X),y=fixed(y))</span></span><br><span class="line"><span class="comment">#plt.show()</span></span><br></pre></td></tr></table></figure>
+<h3 id="核函数"><a href="#核函数" class="headerlink" title="核函数"></a>核函数</h3><p>所以说上面这个映射函数到底是怎么来的呢，什么是核函数，又和<strong>核函数</strong>又什么关系呢？<br>首先SVM最终的决策函数是<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://img-blog.csdnimg.cn/20210202165911151.png#pic_center"
+                      alt="在这里插入图片描述"
+                ></p>
+<ul>
+<li>f(x_test)是最终的分类，定义为{-1,1}</li>
+<li>其中sign是符号函数，大于0取1，小于0取-1。</li>
+<li>y是标签，二分类有两个标签，取{-1,1}</li>
+<li>x_i是支持向量</li>
+<li>x_test是测试向量</li>
+<li>b是一个常数</li>
+</ul>
+<p>很显然我们要计算<strong>x_i与x_test</strong>之间的<strong>内积</strong>,当我们<strong>升维</strong>之后，我们要算的的<strong>内积是映射(升维)后的内积</strong>。<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://img-blog.csdnimg.cn/20210202165928310.png#pic_center"
+                      alt="在这里插入图片描述"
+                ></p>
+<p>那么我们定义核函数：<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://img-blog.csdnimg.cn/20210202165943334.png#pic_center"
+                      alt="在这里插入图片描述"
+                ></p>
+<p>现在我们就<strong>只需要直接把两个向量带入核函数，而不用先映射成高维再算内积</strong>。这其实省去了很多麻烦，因为计算映射其实挺复杂的。<br>注意，正是因为再<strong>SVM中我们只用到了高维函数的内积，所以只需要计算核函数即可</strong>，有了核函数，我们便能再<strong>低维计算高维的内积</strong>,(<del>这是一次低维生物对高维发起的伟大挑战</del>)显然我们有，只要<strong>映射函数不同，核函数就不同</strong>。<br>下面是sklearn中的几个核函数，个人建议用”rbf”，至于每一个核函数对应的映射函数，自己百度吧。<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://img-blog.csdnimg.cn/20210202170029147.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L25ld3N1bnNvbg==,size_16,color_FFFFFF,t_70#pic_center"
+                      alt="在这里插入图片描述"
+                ></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://img-blog.csdnimg.cn/20210202170111226.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L25ld3N1bnNvbg==,size_16,color_FFFFFF,t_70#pic_center"
+                      alt="在这里插入图片描述"
+                ></p>
+<p>并且有</p>
+<ul>
+<li><strong>线性核，尤其是多项式核函数在高次项时计算非常缓慢</strong></li>
+<li><strong>rbf和多项式核函数都不擅长处理量纲不统一的数据集</strong><br>所以需要针对其进行标准化<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.preprocessing <span class="keyword">import</span> StandardScaler</span><br><span class="line">X = StandardScaler().fit_transform(X)</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="重要参数C-软间隔和硬间隔"><a href="#重要参数C-软间隔和硬间隔" class="headerlink" title="重要参数C(软间隔和硬间隔)"></a>重要参数C(软间隔和硬间隔)</h3><p><strong>c:</strong></p>
+<blockquote>
+<p>浮点数，默认1，必须大于等于0，可不填<br>松弛系数的惩罚项系数。如果<strong>C值设定比较大</strong>，那<strong>SVC可能会选择边际较小</strong>的，能够更好地分类所有训练点的决策边界，不过模型的训练时间也会更长。如果<strong>C的设定值较小</strong>，那<strong>SVC会尽量最大化边界</strong>，决策功能会更简单，但代价是训练的准确度。换句话说，C在SVM中的影响就像正则化参数对逻辑回归的影响.</p>
+</blockquote>
+<h3 id="混淆矩阵"><a href="#混淆矩阵" class="headerlink" title="混淆矩阵"></a>混淆矩阵</h3><p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://img-blog.csdnimg.cn/20210202170125919.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L25ld3N1bnNvbg==,size_16,color_FFFFFF,t_70#pic_center"
+                      alt="在这里插入图片描述"
+                ></p>
+<p>1是少数类，0是多数类</p>
+<ul>
+<li><strong>准确率</strong>：Accuracy，所有预测正确的样本除以总样本,(11+00)/(11+10+01+00)</li>
+<li><strong>精确率</strong>：Precision，预测的少数类中，真正的少数类的占比。11/(11+01)</li>
+<li><strong>召回率</strong> ：Recall，又被称为敏感度(sensitivity)，真正率，查全率，表示所有真实为1的样本中，被我们预测正确的样本所占的比例,11/(11+10).</li>
+<li><strong>假负率</strong>：False Negative Rate,1-Recall。没召回的占少数类的占比。10/（11+10）</li>
+<li><strong>特异度</strong>：Specificity,表示所有真实为0的样本中，被正确预测为0的样本所占的比例，00/（01+00）</li>
+<li><strong>假正率</strong>：False Positive Rate，1 - specificity就是一个模型将多数类判断错误的能力，01/(01+00)</li>
+<li><strong>ROC曲线</strong>，横轴为假正率(FPR)，纵轴为召回率(Recall)，当曲线越往左上角偏说明效果越好，。</li>
+<li><strong>AUC面积</strong>，它代表了ROC曲线下方的面积，这个面积越大，代表ROC曲线越接近左上角，模型就越好。<h3 id="小案例"><a href="#小案例" class="headerlink" title="小案例"></a>小案例</h3></li>
+<li>首先生成数据集并带入模型训练<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.svm <span class="keyword">import</span> SVC</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">from</span> sklearn.datasets <span class="keyword">import</span> make_blobs</span><br><span class="line">class_1 = <span class="number">500</span> <span class="comment">#类别1有500个样本</span></span><br><span class="line">class_2 = <span class="number">50</span> <span class="comment">#类别2只有50个</span></span><br><span class="line">centers = [[<span class="number">0.0</span>, <span class="number">0.0</span>], [<span class="number">2.0</span>, <span class="number">2.0</span>]] <span class="comment">#设定两个类别的中心</span></span><br><span class="line">clusters_std = [<span class="number">1.5</span>, <span class="number">0.5</span>] <span class="comment">#设定两个类别的方差，通常来说，样本量比较大的类别会更加松散</span></span><br><span class="line">X, y = make_blobs(n_samples=[class_1, class_2],centers=centers,cluster_std=clusters_std,random_state=<span class="number">0</span>, shuffle=<span class="literal">False</span>)</span><br><span class="line">plt.scatter(X[:, <span class="number">0</span>], X[:, <span class="number">1</span>], c=y, cmap=<span class="string">&quot;rainbow&quot;</span>,s=<span class="number">10</span>)</span><br><span class="line">clf_proba = SVC(kernel=<span class="string">&quot;linear&quot;</span>,C=<span class="number">1.0</span>,probability=<span class="literal">True</span>).fit(X,y)</span><br></pre></td></tr></table></figure>
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://img-blog.csdnimg.cn/20210202170141184.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L25ld3N1bnNvbg==,size_16,color_FFFFFF,t_70#pic_center"
+                      alt="在这里插入图片描述"
+                ></li>
+</ul>
+<ul>
+<li>其次把个点所预测得到的概率放入DataFrame里<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">prob = clf_proba.predict_proba(X)</span><br><span class="line"><span class="comment">#将样本和概率放到一个DataFrame中</span></span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line">prob = pd.DataFrame(prob)</span><br><span class="line">prob.columns = [<span class="string">&quot;0&quot;</span>,<span class="string">&quot;1&quot;</span>]</span><br></pre></td></tr></table></figure></li>
+<li>找出最佳阈值并画出ROC曲线并得到相应的FPR和Recall，以及AUC</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.metrics <span class="keyword">import</span> roc_curve</span><br><span class="line">FPR, recall, thresholds = roc_curve(y,prob.loc[:,<span class="string">&quot;1&quot;</span>], pos_label=<span class="number">1</span>)</span><br><span class="line"><span class="comment">#此时的threshold就不是一个概率值，而是距离值中的阈值了，所以它可以大于1，也可以为负</span></span><br><span class="line"><span class="comment">#找到最佳阈值</span></span><br><span class="line">maxindex = (recall - FPR).tolist().index(<span class="built_in">max</span>(recall - FPR))</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;thresholds:&#x27;</span>)</span><br><span class="line"><span class="built_in">print</span>(thresholds[maxindex])</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;recall:&#x27;</span>)</span><br><span class="line"><span class="built_in">print</span>(recall[maxindex])</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;FPR:&#x27;</span>)</span><br><span class="line"><span class="built_in">print</span>(FPR[maxindex])</span><br><span class="line"><span class="keyword">from</span> sklearn.metrics <span class="keyword">import</span> roc_auc_score <span class="keyword">as</span> AUC</span><br><span class="line">area = AUC(y,clf_proba.decision_function(X))</span><br><span class="line"></span><br><span class="line">plt.scatter(FPR[maxindex],recall[maxindex],c=<span class="string">&quot;black&quot;</span>,s=<span class="number">30</span>)</span><br><span class="line"><span class="comment">#把上述代码放入这段代码中：</span></span><br><span class="line">plt.figure()</span><br><span class="line">plt.plot(FPR, recall, color=<span class="string">&#x27;red&#x27;</span>,label=<span class="string">&#x27;ROC curve (area = %0.2f)&#x27;</span> % area)</span><br><span class="line">plt.plot([<span class="number">0</span>, <span class="number">1</span>], [<span class="number">0</span>, <span class="number">1</span>], color=<span class="string">&#x27;black&#x27;</span>, linestyle=<span class="string">&#x27;--&#x27;</span>)</span><br><span class="line">plt.scatter(FPR[maxindex],recall[maxindex],c=<span class="string">&quot;black&quot;</span>,s=<span class="number">30</span>)</span><br><span class="line">plt.xlim([-<span class="number">0.05</span>, <span class="number">1.05</span>])</span><br><span class="line">plt.ylim([-<span class="number">0.05</span>, <span class="number">1.05</span>])</span><br><span class="line">plt.xlabel(<span class="string">&#x27;False Positive Rate&#x27;</span>)</span><br><span class="line">plt.ylabel(<span class="string">&#x27;Recall&#x27;</span>)</span><br><span class="line">plt.title(<span class="string">&#x27;Receiver operating characteristic example&#x27;</span>)</span><br><span class="line">plt.legend(loc=<span class="string">&quot;lower right&quot;</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://img-blog.csdnimg.cn/20210202170241370.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L25ld3N1bnNvbg==,size_16,color_FFFFFF,t_70#pic_center"
+                      alt="在这里插入图片描述"
+                ></p>
+<ul>
+<li>最后进行预测，得出结果<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(prob.shape[<span class="number">0</span>]):</span><br><span class="line">    <span class="keyword">if</span> prob.loc[i,<span class="string">&quot;1&quot;</span>] &gt; thresholds[maxindex]:</span><br><span class="line">        prob.loc[i,<span class="string">&quot;pred&quot;</span>] = <span class="number">1</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        prob.loc[i,<span class="string">&quot;pred&quot;</span>] = <span class="number">0</span></span><br><span class="line">prob[<span class="string">&quot;y_true&quot;</span>] = y</span><br><span class="line">prob = prob.sort_values(by=<span class="string">&quot;1&quot;</span>,ascending=<span class="literal">False</span>)</span><br><span class="line">prob</span><br></pre></td></tr></table></figure></li>
+</ul>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://img-blog.csdnimg.cn/2021020217041740.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L25ld3N1bnNvbg==,size_16,color_FFFFFF,t_70#pic_center"
+                      alt="在这里插入图片描述"
+                ></p>
+<ul>
+<li>得到混淆矩阵来评估<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.metrics <span class="keyword">import</span> confusion_matrix <span class="keyword">as</span> CM, precision_score <span class="keyword">as</span> P, recall_score <span class="keyword">as</span> R</span><br><span class="line">cm = CM(prob.loc[:,<span class="string">&quot;y_true&quot;</span>],prob.loc[:,<span class="string">&quot;pred&quot;</span>],labels=[<span class="number">1</span>,<span class="number">0</span>])</span><br><span class="line">cm</span><br></pre></td></tr></table></figure>
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://img-blog.csdnimg.cn/20210202170442247.png#pic_center"
+                      alt="在这里插入图片描述"
+                ></li>
+</ul>
+<p><strong>PS:这个案例用的是核函数是线性核，但又试了一遍还是‘rbf’比较好</strong>,<br><strong>并且其实不一定需要最佳阈值，要结合实际来看。</strong><br>例如，三星手机发生爆炸，三星想要召回率能达到100%，即宁可把没有问题的手机召回，也不能放过任何一个有问题的手机，阈值也要相应调整。</p>
+<h3 id="多分类"><a href="#多分类" class="headerlink" title="多分类"></a>多分类</h3><p>多分类其实也很简单，应该是sklearn的多分类很简单，数学原理十分可怕。区别就是输入的Y多了几个分类而已。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">clf = SVC(decision_function_shape=<span class="string">&#x27;ovo&#x27;</span>) clf.fit(X, Y)</span><br></pre></td></tr></table></figure>
+<p>上面用的是ovo(one vs one)，也就是每一个类两两组合来构建,也可以选择’ovr’速度更快，效果不怎么样。</p>
+<h3 id="补充"><a href="#补充" class="headerlink" title="补充"></a>补充</h3><h4 id="参数class-weight"><a href="#参数class-weight" class="headerlink" title="参数class_weight"></a>参数class_weight</h4><p>如果你想追求最高的召回率，宁可错杀不可放过，那么<code>class_weight = &quot;balanced&quot;</code></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">clf = SVC(kernel = kernel ,gamma=<span class="string">&quot;auto&quot;</span>,degree = <span class="number">1</span>,cache_size = <span class="number">5000</span>,class_weight = <span class="string">&quot;balanced&quot;</span>).fit(Xtrain, Ytrain)</span><br></pre></td></tr></table></figure>
+<p>如果还想再高，那么<code>class_weight = &#123;1:10&#125;</code></p>
+]]></content>
+      <categories>
+        <category>code</category>
+      </categories>
+      <tags>
+        <tag>python</tag>
+        <tag>sklearn</tag>
+        <tag>svm</tag>
       </tags>
   </entry>
 </search>
