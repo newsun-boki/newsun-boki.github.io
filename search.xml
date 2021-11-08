@@ -984,4 +984,52 @@
         <tag>ros</tag>
       </tags>
   </entry>
+  <entry>
+    <title></title>
+    <url>/2021/11/08/ros%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/</url>
+    <content><![CDATA[<h1 id="ros基本操作"><a href="#ros基本操作" class="headerlink" title="ros基本操作"></a>ros基本操作</h1><h2 id="topic"><a href="#topic" class="headerlink" title="topic"></a>topic</h2><p>我们都知道话题机制是ros中必不可少的一个机制，那怎样查看我们所发布的话题呢</p>
+<ul>
+<li>list命令可以看到我们当前总共有哪些topic<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">rostopic list</span><br></pre></td></tr></table></figure></li>
+<li>echo命令可以输出指定topic里的消息的内容<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">rostopic echo cmd_vel #cmd_vel是一个小海龟的速度topic</span><br></pre></td></tr></table></figure></li>
+<li>hz命令可以计算指定topic消息发布的平均速率<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">rostopic hz cmd_vel</span><br></pre></td></tr></table></figure></li>
+<li>info命令可以输出topic里的message的数据类型以及发布者接受者<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">rostopic info cmd_vel</span><br></pre></td></tr></table></figure></li>
+<li>rosmag show可以显示某个数据类型里具体的数据类型结构（注意这个和当前运行的程序没有关系）<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">rosmsg show geometry/Twist </span><br></pre></td></tr></table></figure>
+上面这个命令显示了geometry/Twist里包含的具体数据结构，如角速度(angular)xyz线速度(linear)xyz，geometry/Twist是cmd_vel这个topic里的消息的数据类型。</li>
+</ul>
+<h2 id="rqt"><a href="#rqt" class="headerlink" title="rqt"></a>rqt</h2><p>rqt是ros里可视化最基础的方式。</p>
+<ul>
+<li>rqt_graph可以显示出整个ros的分布式架构，包括节点，话题，服务等等<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">rqt_graph</span><br></pre></td></tr></table></figure></li>
+<li>rqt_plot可以实时绘制出具体的话题里的消息里的一个或多个数据的变化曲线<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">rqt_plot cmd_vel/linear/x cmd_vel/angular/z</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="rosbag"><a href="#rosbag" class="headerlink" title="rosbag"></a>rosbag</h2><p>rosbag可以记录消息，还可以重放消息。这对我们调试某个模块非常有帮助。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> ~/bagfiles</span><br><span class="line">rosbag record -a</span><br></pre></td></tr></table></figure>
+
+<p>-a 选项表示将当前发布的所有 topic 数据都录制保存到一个 rosbag 文件中，录制的数据包名字为日期加时间。<br>也可以只记录某些感兴趣的 topic</p>
+<ul>
+<li>想要录制指定topic上的消息，你可以运行<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">rosbag record cmd_vel</span><br></pre></td></tr></table></figure></li>
+</ul>
+<p>如果要指定生成数据包的名字，则用-O /-o 参数，</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">rosbag record -O filename.bag /topic_name1</span><br></pre></td></tr></table></figure>
+
+<p>如果在 launch 文件中使用 rosbag record 命令，如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;node pkg=&quot;rosbag&quot; type=&quot;record&quot; name=&quot;bag_record&quot; args=&quot;/topic1 /topic2&quot;/&gt; </span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>rosbag info指令可以显示数据包中的信息:        </p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">rosbag info filename.bag</span><br></pre></td></tr></table></figure></li>
+<li><p>rosbag play<br>接下来回放数据包中的 topic。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">rosbag play &lt;bagfile&gt;</span><br></pre></td></tr></table></figure>
+<p>如果想改变消息的发布速率，可以用下面的命令，-r 后面的数字对应播放速率。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">rosbag play -r 2 &lt;bagfile&gt;</span><br></pre></td></tr></table></figure>
+<p>如果希望 rosbag 循环播放，可以用命令</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">rosbag play -l  &lt;bagfile&gt;  # -l== --loop</span><br></pre></td></tr></table></figure>
+<p>如果只播放感兴趣的 topic ，则用命令</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">rosbag play &lt;bagfile&gt; --topic /topic1</span><br></pre></td></tr></table></figure>
+<p>在上述播放命令执行期间，空格键可以暂停播放。</p>
+</li>
+</ul>
+<h2 id="roslaunch"><a href="#roslaunch" class="headerlink" title="roslaunch"></a>roslaunch</h2><p>这里我就不写了<br>精品博客：<a class="link"   href="http://ttshun.com/2018/05/24/ROS%E5%AD%A6%E4%B9%A0%E4%B9%8Broslaunch/" >http://ttshun.com/2018/05/24/ROS学习之roslaunch/<i class="fas fa-external-link-alt"></i></a><br>来自励志献身slam的阿翔，里面有很多好的博文都可以去看一看，特别是slam相关的</p>
+<h2 id="备注"><a href="#备注" class="headerlink" title="备注"></a>备注</h2><p>未完待续，这里有一篇 比较详细的代码建议详细看一看：<a class="link"   href="http://ttshun.com/2018/03/22/ROS%E5%AD%A6%E4%B9%A0%E4%B9%8B%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5%E5%92%8C%E5%91%BD%E4%BB%A4/" >http://ttshun.com/2018/03/22/ROS学习之基本概念和命令/<i class="fas fa-external-link-alt"></i></a></p>
+]]></content>
+  </entry>
 </search>

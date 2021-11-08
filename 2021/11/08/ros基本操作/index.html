@@ -9,8 +9,6 @@
     
     <title>
         
-            Pybind和cmake联合使用 |
-        
         newsun-boki
     </title>
     
@@ -182,7 +180,7 @@
     <div class="article-content-container">
 
         <div class="article-title">
-            <span class="title-hover-animation">Pybind和cmake联合使用</span>
+            <span class="title-hover-animation"></span>
         </div>
 
         
@@ -200,46 +198,20 @@
                     <div class="meta-info">
                         <div class="article-meta-info">
     <span class="article-date article-meta-item">
-        <i class="fas fa-edit"></i>&nbsp;2021-11-01 21:09:35
+        <i class="fas fa-edit"></i>&nbsp;2021-11-08 21:18:01
     </span>
     
-        <span class="article-categories article-meta-item">
-            <i class="fas fa-folder"></i>&nbsp;
-            <ul>
-                
-                    <li>
-                        <a href="/categories/code/">code</a>&nbsp;
-                    </li>
-                
-            </ul>
-        </span>
-    
-    
-        <span class="article-tags article-meta-item">
-            <i class="fas fa-tags"></i>&nbsp;
-            <ul>
-                
-                    <li>
-                        <a href="/tags/python/">python</a>&nbsp;
-                    </li>
-                
-                    <li>
-                        | <a href="/tags/c/">c++</a>&nbsp;
-                    </li>
-                
-            </ul>
-        </span>
     
 
     
     
         <span class="article-wordcount article-meta-item">
-            <i class="fas fa-file-word"></i>&nbsp;<span>333 Words</span>
+            <i class="fas fa-file-word"></i>&nbsp;<span>694 Words</span>
         </span>
     
     
         <span class="article-min2read article-meta-item">
-            <i class="fas fa-clock"></i>&nbsp;<span>1 Mins</span>
+            <i class="fas fa-clock"></i>&nbsp;<span>2 Mins</span>
         </span>
     
     
@@ -255,28 +227,49 @@
         
 
         <div class="article-content markdown-body">
-            <h1 id="pybind11与cmake的联合使用"><a href="#pybind11与cmake的联合使用" class="headerlink" title="pybind11与cmake的联合使用"></a>pybind11与cmake的联合使用</h1><h1 id="github传送门"><a href="#github传送门" class="headerlink" title="github传送门"></a><a class="link"   target="_blank" rel="noopener" href="https://github.com/newsun-boki/pybind11-tutorial" >github传送门<i class="fas fa-external-link-alt"></i></a></h1><p>因为pybind11官方教程我并没有找到与cmake的联合使用，导致我不会写CMakeLists。然后其实也不是很难，发个帖子记录一下.<br>帮助你在python中使用cmake中的函数,理论上你只需要点进上面的链接就好。下面是README。</p>
-<h2 id="step1"><a href="#step1" class="headerlink" title="step1"></a>step1</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install pytest</span><br></pre></td></tr></table></figure>
+            <h1 id="ros基本操作"><a href="#ros基本操作" class="headerlink" title="ros基本操作"></a>ros基本操作</h1><h2 id="topic"><a href="#topic" class="headerlink" title="topic"></a>topic</h2><p>我们都知道话题机制是ros中必不可少的一个机制，那怎样查看我们所发布的话题呢</p>
+<ul>
+<li>list命令可以看到我们当前总共有哪些topic<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rostopic list</span><br></pre></td></tr></table></figure></li>
+<li>echo命令可以输出指定topic里的消息的内容<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rostopic echo cmd_vel #cmd_vel是一个小海龟的速度topic</span><br></pre></td></tr></table></figure></li>
+<li>hz命令可以计算指定topic消息发布的平均速率<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rostopic hz cmd_vel</span><br></pre></td></tr></table></figure></li>
+<li>info命令可以输出topic里的message的数据类型以及发布者接受者<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rostopic info cmd_vel</span><br></pre></td></tr></table></figure></li>
+<li>rosmag show可以显示某个数据类型里具体的数据类型结构（注意这个和当前运行的程序没有关系）<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rosmsg show geometry/Twist </span><br></pre></td></tr></table></figure>
+上面这个命令显示了geometry/Twist里包含的具体数据结构，如角速度(angular)xyz线速度(linear)xyz，geometry/Twist是cmd_vel这个topic里的消息的数据类型。</li>
+</ul>
+<h2 id="rqt"><a href="#rqt" class="headerlink" title="rqt"></a>rqt</h2><p>rqt是ros里可视化最基础的方式。</p>
+<ul>
+<li>rqt_graph可以显示出整个ros的分布式架构，包括节点，话题，服务等等<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rqt_graph</span><br></pre></td></tr></table></figure></li>
+<li>rqt_plot可以实时绘制出具体的话题里的消息里的一个或多个数据的变化曲线<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rqt_plot cmd_vel/linear/x cmd_vel/angular/z</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="rosbag"><a href="#rosbag" class="headerlink" title="rosbag"></a>rosbag</h2><p>rosbag可以记录消息，还可以重放消息。这对我们调试某个模块非常有帮助。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> ~/bagfiles</span><br><span class="line">rosbag record -a</span><br></pre></td></tr></table></figure>
 
-<h2 id="step2"><a href="#step2" class="headerlink" title="step2"></a>step2</h2><p>你必须要把pybind11和CMakeLists.txt放到一个文件下。pybind11是在github下载的官方仓库</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/pybind/pybind11.git</span><br></pre></td></tr></table></figure>
+<p>-a 选项表示将当前发布的所有 topic 数据都录制保存到一个 rosbag 文件中，录制的数据包名字为日期加时间。<br>也可以只记录某些感兴趣的 topic</p>
+<ul>
+<li>想要录制指定topic上的消息，你可以运行<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rosbag record cmd_vel</span><br></pre></td></tr></table></figure></li>
+</ul>
+<p>如果要指定生成数据包的名字，则用-O /-o 参数，</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rosbag record -O filename.bag /topic_name1</span><br></pre></td></tr></table></figure>
 
-<p>这里我已经下好了，你需要做的是在pybind11下</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">mkdir build</span><br><span class="line"><span class="built_in">cd</span> build</span><br><span class="line">cmake ..</span><br><span class="line">cmake --build . --config Release --target check</span><br></pre></td></tr></table></figure>
+<p>如果在 launch 文件中使用 rosbag record 命令，如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;node pkg=&quot;rosbag&quot; type=&quot;record&quot; name=&quot;bag_record&quot; args=&quot;/topic1 /topic2&quot;/&gt; </span><br></pre></td></tr></table></figure>
 
-<h2 id="step3"><a href="#step3" class="headerlink" title="step3"></a>step3</h2><p>使用这个简单的官方代码example.cpp</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;pybind11/pybind11.h&gt;</span></span></span><br><span class="line"><span class="keyword">namespace</span> py = pybind11;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> i, <span class="keyword">int</span> j)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> i + j;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">PYBIND11_MODULE</span>(example, m) &#123;</span><br><span class="line">    m.<span class="built_in">doc</span>() = <span class="string">&quot;pybind11 example plugin&quot;</span>; <span class="comment">// optional module docstring</span></span><br><span class="line"></span><br><span class="line">    m.<span class="built_in">def</span>(<span class="string">&quot;add&quot;</span>, &amp;add, <span class="string">&quot;A function which adds two numbers&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>CMakeLists也很简单</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">cmake_minimum_required(VERSION 2.8.12)</span><br><span class="line">project(example)   </span><br><span class="line"></span><br><span class="line">add_subdirectory(pybind11)</span><br><span class="line">pybind11_add_module(example example.cpp)</span><br></pre></td></tr></table></figure>
-<p>上面有些关于pybind11的东西，所以<strong>必须要把CMakeLists和pybind11放在同一路径</strong>下。</p>
-<h2 id="step4"><a href="#step4" class="headerlink" title="step4"></a>step4</h2><p>cmake编译这个东西。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">mkdir build</span><br><span class="line"><span class="built_in">cd</span> build</span><br><span class="line">cmake ..</span><br><span class="line">make</span><br></pre></td></tr></table></figure>
-
-<p>会生成一个很长的.so文件，这个文件就是能够在python中调用c++的关键。<br>当你使用python调用c++函数时，请确保.so文件与python文件在同一目录下。</p>
-<h2 id="Test"><a href="#Test" class="headerlink" title="Test"></a>Test</h2><p>可以直接在终端测试。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> example</span><br><span class="line">example.add(<span class="number">3</span>, <span class="number">4</span>)</span><br><span class="line">[out]: <span class="number">7</span></span><br></pre></td></tr></table></figure>
-
+<ul>
+<li><p>rosbag info指令可以显示数据包中的信息:        </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rosbag info filename.bag</span><br></pre></td></tr></table></figure></li>
+<li><p>rosbag play<br>接下来回放数据包中的 topic。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rosbag play &lt;bagfile&gt;</span><br></pre></td></tr></table></figure>
+<p>如果想改变消息的发布速率，可以用下面的命令，-r 后面的数字对应播放速率。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rosbag play -r 2 &lt;bagfile&gt;</span><br></pre></td></tr></table></figure>
+<p>如果希望 rosbag 循环播放，可以用命令</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rosbag play -l  &lt;bagfile&gt;  # -l== --loop</span><br></pre></td></tr></table></figure>
+<p>如果只播放感兴趣的 topic ，则用命令</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rosbag play &lt;bagfile&gt; --topic /topic1</span><br></pre></td></tr></table></figure>
+<p>在上述播放命令执行期间，空格键可以暂停播放。</p>
+</li>
+</ul>
+<h2 id="roslaunch"><a href="#roslaunch" class="headerlink" title="roslaunch"></a>roslaunch</h2><p>这里我就不写了<br>精品博客：<a class="link"   target="_blank" rel="noopener" href="http://ttshun.com/2018/05/24/ROS%E5%AD%A6%E4%B9%A0%E4%B9%8Broslaunch/" >http://ttshun.com/2018/05/24/ROS学习之roslaunch/<i class="fas fa-external-link-alt"></i></a><br>来自励志献身slam的阿翔，里面有很多好的博文都可以去看一看，特别是slam相关的</p>
+<h2 id="备注"><a href="#备注" class="headerlink" title="备注"></a>备注</h2><p>未完待续，这里有一篇 比较详细的代码建议详细看一看：<a class="link"   target="_blank" rel="noopener" href="http://ttshun.com/2018/03/22/ROS%E5%AD%A6%E4%B9%A0%E4%B9%8B%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5%E5%92%8C%E5%91%BD%E4%BB%A4/" >http://ttshun.com/2018/03/22/ROS学习之基本概念和命令/<i class="fas fa-external-link-alt"></i></a></p>
 
         </div>
 
@@ -284,11 +277,11 @@
             <div class="post-copyright-info">
                 <div class="article-copyright-info-container">
     <ul>
-        <li>Post title：Pybind和cmake联合使用</li>
+        <li>Post title：</li>
         <li>Post author：newsun-boki</li>
-        <li>Create time：2021-11-01 21:09:35</li>
+        <li>Create time：2021-11-08 21:18:01</li>
         <li>
-            Post link：https://github.com/newsun-boki2021/11/01/pybind-cmake/
+            Post link：https://github.com/newsun-boki2021/11/08/ros基本操作/
         </li>
         <li>
             Copyright Notice：All articles in this blog are licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> unless stating additionally.
@@ -302,21 +295,21 @@
         
             <div class="article-nav">
                 
-                    <div class="article-prev">
-                        <a class="prev"
-                           rel="prev"
-                           href="/2021/11/01/python-svm/"
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/2021/11/02/rosserial/"
                         >
-                            <span class="left arrow-icon flex-center">
-                              <i class="fas fa-chevron-left"></i>
-                            </span>
                             <span class="title flex-center">
-                                <span class="post-nav-title-item">python支持向量机SVM (sklearn)</span>
-                                <span class="post-nav-item">Prev posts</span>
+                                <span class="post-nav-title-item">rosserial进行串口通信</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
                             </span>
                         </a>
                     </div>
-                
                 
             </div>
         
@@ -430,7 +423,7 @@
         <aside class="page-aside">
             <div class="post-toc-wrap">
     <div class="post-toc">
-        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#pybind11%E4%B8%8Ecmake%E7%9A%84%E8%81%94%E5%90%88%E4%BD%BF%E7%94%A8"><span class="nav-number">1.</span> <span class="nav-text">pybind11与cmake的联合使用</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#github%E4%BC%A0%E9%80%81%E9%97%A8"><span class="nav-number">2.</span> <span class="nav-text">github传送门</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#step1"><span class="nav-number">2.1.</span> <span class="nav-text">step1</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#step2"><span class="nav-number">2.2.</span> <span class="nav-text">step2</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#step3"><span class="nav-number">2.3.</span> <span class="nav-text">step3</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#step4"><span class="nav-number">2.4.</span> <span class="nav-text">step4</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Test"><span class="nav-number">2.5.</span> <span class="nav-text">Test</span></a></li></ol></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#ros%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C"><span class="nav-number">1.</span> <span class="nav-text">ros基本操作</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#topic"><span class="nav-number">1.1.</span> <span class="nav-text">topic</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#rqt"><span class="nav-number">1.2.</span> <span class="nav-text">rqt</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#rosbag"><span class="nav-number">1.3.</span> <span class="nav-text">rosbag</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#roslaunch"><span class="nav-number">1.4.</span> <span class="nav-text">roslaunch</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A4%87%E6%B3%A8"><span class="nav-number">1.5.</span> <span class="nav-text">备注</span></a></li></ol></li></ol>
     </div>
 </div>
         </aside>
