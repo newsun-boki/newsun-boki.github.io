@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="Hexo Theme Keep">
+    <meta name="author" content="newsun-boki">
+    
+    <title>
+        
+            livox-mid70激光雷达使用实录 |
+        
+        newsun-boki
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/newsun-boki/img-folder@main/20211101/Screenshot-from-2021-11-01-23-15-56.10yd2slk8xz4.png">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/css/font-awesome.min.css">
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"example.com","root":"/","language":"en","path":"search.xml"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":true,"expand_all":false,"init_open":false},"style":{"primary_color":"#33FFCC","avatar":"https://github.com/newsun-boki/img-folder/blob/main/github.io/miku.png?raw=true","favicon":"https://cdn.jsdelivr.net/gh/newsun-boki/img-folder@main/20211101/Screenshot-from-2021-11-01-23-15-56.10yd2slk8xz4.png","article_img_align":"left","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":true,"scale":true},"first_screen":{"enable":true,"background_img":"/images/bg.svg","description":"cooooooool."},"scroll":{"progress_bar":{"enable":true},"percent":{"enable":true}}},"local_search":{"enable":true,"preload":true},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":true},"lazyload":{"enable":true},"version":"3.4.3"};
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+  </script>
+<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+</head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <span class="pjax-progress-icon">
+            <i class="fas fa-circle-notch fa-spin"></i>
+        </span>
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                newsun-boki
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                HOME
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                ARCHIVES
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/categories"
+                            >
+                                CATEGORIES
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/tags"
+                            >
+                                TAGS
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/links"
+                            >
+                                LINKS
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/about"
+                            >
+                                ABOUT
+                            </a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">HOME</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives">ARCHIVES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/categories">CATEGORIES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/tags">TAGS</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/links">LINKS</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/about">ABOUT</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <span class="title-hover-animation">livox-mid70激光雷达使用实录</span>
+        </div>
+
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="https://github.com/newsun-boki/img-folder/blob/main/github.io/miku.png?raw=true">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">newsun-boki</span>
+                        
+                            <span class="author-label">Lv3</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;2021-11-14 22:50:48
+    </span>
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/rm/">rm</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/lidar/">lidar</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fas fa-file-word"></i>&nbsp;<span>1.6k Words</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fas fa-clock"></i>&nbsp;<span>6 Mins</span>
+        </span>
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        <div class="article-content markdown-body">
+            <h1 id="livox-mid70激光雷达使用实录"><a href="#livox-mid70激光雷达使用实录" class="headerlink" title="livox-mid70激光雷达使用实录"></a>livox-mid70激光雷达使用实录</h1><p>livox-mid70是由大疆发布的面阵激光雷达，是大疆为自动驾驶推出的一款激光雷达，同时也可用于建立三维地图，文物修复，与大疆无人机相结合使用。你可以在x86和arm架构上都可以使用(arm需要交叉编译)。<br>bilibili上Livox官方发布了大量的视频demo可以去围观一下，同时Livox也有一个论坛可以去看一下。</p>
+<h2 id="官方文档"><a href="#官方文档" class="headerlink" title="官方文档"></a>官方文档</h2><p><a class="link"   target="_blank" rel="noopener" href="https://livox-wiki-cn.readthedocs.io/zh_CN/latest/index.html" >https://livox-wiki-cn.readthedocs.io/zh_CN/latest/index.html<i class="fas fa-external-link-alt"></i></a><br>这是中文官方文档，请根据以上文档完成硬件上的连接以及Ip配置，一切以官方文档为主。</p>
+<ul>
+<li>硬件连接</li>
+</ul>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://livox-wiki-cn.readthedocs.io/zh_CN/latest/_images/one_lidar_connect.png"
+                     
+                ></p>
+<ul>
+<li><p>更改IP：一般来说刚拿到手都是<strong>静态IP</strong>，这时候你只需要将网线与你自己笔记本相连，然后通过用户手册查看你自己雷达的IP，那需要设置你自己电脑的IP为手动，并将其分在同一网段不同的地址下：</p>
+<pre><code>  如我的Mid70的IP地址为192.168.1.105，
+  那么我电脑设置时
+  IP：192.168.1.104，
+  子网掩码：255.255.255.0,
+  网关：192.168.0.1
+</code></pre>
+</li>
+</ul>
+<p>如果对IP配置有问题,或想改为动态IP详情参见<a class="link"   target="_blank" rel="noopener" href="https://terra-1-g.djicdn.com/65c028cd298f4669a7f0e40e50ba1131/Download/update/Livox%20Mid%20Series%20User%20Manual%20(CN).pdf" >用户手册<i class="fas fa-external-link-alt"></i></a></p>
+<h2 id="Livox-Viewer"><a href="#Livox-Viewer" class="headerlink" title="Livox Viewer"></a>Livox Viewer</h2><p>Livox Viewer是一款图形化操作的显示软件，有助于快速让你知道你的硬件连接和Ip配置有没有问题。</p>
+<ul>
+<li><a class="link"   target="_blank" rel="noopener" href="https://terra-1-g.djicdn.com/65c028cd298f4669a7f0e40e50ba1131/Download/update/Livox%20Viewer%200.8.0.7z" >Livox-Viewer for Windows<i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://www.livoxtech.com/3296f540ecf5458a8829e01cf429798e/downloads/Livox%20Viewer/Livox_Viewr_For_Linux_Ubuntu16.04_x64_0.7.0.tar.gz" >Livox-Viewer for ubuntu16.04<i class="fas fa-external-link-alt"></i></a>,下载后解压运行<code>./livox viewer.sh</code>即可打开如下界面。<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://livox-wiki-cn.readthedocs.io/zh_CN/latest/_images/start_Viewer_and_link_Horizon.png"
+                     
+                ></li>
+<li>官方软件Livox Viewer仅支持Windows或ubuntu16.04/14.04,所以建议如果不是这两个版本有ros可以直接上。</li>
+</ul>
+<h2 id="Livox-SDK"><a href="#Livox-SDK" class="headerlink" title="Livox-SDK"></a>Livox-SDK</h2><p>刚刚Livox Viewer只是一个快速尝试，如果你要做开发就<strong>必须</strong>要安装Livox-SDK(包括后面要在ros上使用也必须先要安装这个)</p>
+<ul>
+<li><p>github上中文<a class="link"   target="_blank" rel="noopener" href="https://github.com/Livox-SDK/Livox-SDK/blob/master/README_CN.md" >README<i class="fas fa-external-link-alt"></i></a></p>
+</li>
+<li><p>先从github上clone下来</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/Livox-SDK/Livox-SDK.git</span><br></pre></td></tr></table></figure></li>
+<li><p>再编译</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> Livox-SDK</span><br><span class="line"><span class="built_in">cd</span> build &amp;&amp; cmake ..</span><br><span class="line">make</span><br><span class="line">sudo make install</span><br></pre></td></tr></table></figure></li>
+<li><p>简单运行demo，注意这里的sample是在build文件夹下面的</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> sample/lidar &amp;&amp; ./lidar_sample</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="livox-ros-driver"><a href="#livox-ros-driver" class="headerlink" title="livox-ros-driver"></a>livox-ros-driver</h2><p>不得不说ros是真的好用，所以建议在ros下使用，会使得一切都很清晰明了。装<code>livox-ros-driver</code>前必须要先装<code>Livox-SDK</code>。</p>
+<ul>
+<li><p>先从github上clone下来，这里一定要用下面这个命令把它clone到相应位置，否则会出问题。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/Livox-SDK/livox_ros_driver.git ws_livox/src</span><br></pre></td></tr></table></figure></li>
+<li><p>简单的<code>catkin_make</code>一下</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> ws_livox</span><br><span class="line">catkin_make</span><br></pre></td></tr></table></figure></li>
+<li><p>别忘了添加环境</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">source</span> ./devel/setup.sh</span><br></pre></td></tr></table></figure></li>
+<li><p>之后跑个rviz的demo，让你的激光雷达点云数据在rviz里显示出来</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">roslaunch livox_ros_driver livox_lidar_rviz.launch</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="录制你的点云数据"><a href="#录制你的点云数据" class="headerlink" title="录制你的点云数据"></a>录制你的点云数据</h2><p>点云数据不像二维图像一样，简简单单录制一个视频就好，作为点云数据记录是比较特殊的。<br>livox一共有两种录制格式</p>
+<h4 id="lvx格式"><a href="#lvx格式" class="headerlink" title="lvx格式"></a>lvx格式</h4><p>lvx格式是livox的一种自定义格式，如果你想在Windows上快速录制，可以<strong>使用Livox Viewer进行录制</strong>，也可以<strong>通过<code>Livox-SDK</code>中的文件录制</strong></p>
+<ul>
+<li>首先进入以下路径<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> ./Livox_SDK/build/sample/lidar_lvx_file</span><br></pre></td></tr></table></figure></li>
+<li>然后运行下面这个文件，这里不用<code>-c</code>指定也可以，这里指定了lidar并设定持续10s<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./lidar_lvx_sample -c <span class="string">&quot;此处为已连接的Lidar的15位广播码&quot;</span> -t 10</span><br></pre></td></tr></table></figure>
+通过上面的操作会得到一个<code>.lvx</code>格式的文件，这个文件可以在Livox Viewer中直接播放，也可以转成<strong>rosbag</strong>(一个可以把ros中当前所有topic中message记录下来的东西)。<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">roslaunch livox_ros_driver lvx_to_rosbag.launch lvx_file_path:=<span class="string">&quot;/home/livox/test.lvx&quot;</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+<h4 id="rosbag格式"><a href="#rosbag格式" class="headerlink" title="rosbag格式"></a>rosbag格式</h4><p>rosbag是ros中非常好用的一个东西，我在之前的ros文章中有提到过。当我们在运行livox-ros-driver中的rviz显示时，即</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">roslaunch livox_ros_driver livox_lidar_rviz.launch <span class="comment">#详情看上面livox-ros-driver</span></span><br></pre></td></tr></table></figure>
+<p>我们可以把此时的所有消息用rosbag记录下来</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rosbag record -a -o myrosbag.bag <span class="comment">#-a代表所有的消息,-c代表输出名称</span></span><br></pre></td></tr></table></figure>
+
+<p>此时就会生成一个.bag文件，具体名称看终端的输出。<br>你可以通过以下命令进行播放rosbag</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rosbag play *.bag -l <span class="comment">#-l代表loop循环播放</span></span><br></pre></td></tr></table></figure>
+<p>此时再打开在livox-ros-driver下的的rviz,就可以得到rosbag中的点云图了</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> ws_livox/src/livox_ros_driver/</span><br><span class="line">rviz -d config/display_lidar_points.rviz <span class="comment">#这种.rviz文件实际上是保存rviz相关显示的数据</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="livox-detection"><a href="#livox-detection" class="headerlink" title="livox_detection"></a>livox_detection</h2><p>livox_detection指的是激光点云检测，livox官方给的代码可以检测各种车和行人。官方说2080ti下需要50ms。</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.jsdelivr.net/gh/newsun-boki/img-folder@main/20211115/demo1.4a7m388oo240.gif"
+                     
+                ></p>
+<p>在Livox官方的github仓库中有两个激光点云检测仓库分别为<code>livox_detection</code>和<code>livox_dection_simu</code>。<br>这两个仓库看上去都差不多，但实际上非常坑的是：</p>
+<ul>
+<li><code>livox_detection</code>仓库中的预训练模型在可以识别人和车，但车的识别效果不是很好;</li>
+<li><code>livox_dection_simu</code>仓库中的预训练模型只能识别车，而几乎无法识别到人(虽然代码看上去都差不多)。</li>
+</ul>
+<p>至于原因我也不知道，只是这坑了我一会儿，后来在issue发现了这个问题。</p>
+<p>由于两个仓库操作都非常相似，这里选livox_detection_simu为例。</p>
+<h3 id="依赖"><a href="#依赖" class="headerlink" title="依赖"></a>依赖</h3><ul>
+<li>python3.6+</li>
+<li>tensorflow1.13+ (tested on 1.13.0)</li>
+<li>pybind11(后面的过程中安装)</li>
+<li>ros</li>
+</ul>
+<h3 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h3><ul>
+<li><p>首先clone仓库</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/Livox-SDK/livox_detection_simu</span><br></pre></td></tr></table></figure></li>
+<li><p>然后配置pybind(pybind就是这样，每次都需要clone在那个路径下才行)。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> livox_detection_simu/utils/lib_cpp</span><br><span class="line">git <span class="built_in">clone</span> https://github.com/pybind/pybind11.git</span><br></pre></td></tr></table></figure></li>
+<li><p>编译(在刚刚的<code>lib_cpp</code>路径下)。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mkdir build &amp;&amp; <span class="built_in">cd</span> build</span><br><span class="line">cmake -DCMAKE_BUILD_TYPE=Release ..</span><br><span class="line">make</span><br></pre></td></tr></table></figure></li>
+<li><p>把c++得到的依赖文件放到项目根目录下</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cp lib_cpp.so ../../../</span><br></pre></td></tr></table></figure></li>
+<li><p>下载<a class="link"   target="_blank" rel="noopener" href="https://terra-1-g.djicdn.com/65c028cd298f4669a7f0e40e50ba1131/Download/dataset/livox_detection_simu_model.zip" >预训练模型<i class="fas fa-external-link-alt"></i></a>,会得到model文件夹，把它放在项目根目录下，这样你就不用改模型地址了,</p>
+</li>
+<li><p>下载<a class="link"   target="_blank" rel="noopener" href="https://terra-1-g.djicdn.com/65c028cd298f4669a7f0e40e50ba1131/github/livox_detection_v1.1_data.zip" >rosbag<i class="fas fa-external-link-alt"></i></a>,这是官方提供的rosbag，你也可以自己录一个。</p>
+<h3 id="运行"><a href="#运行" class="headerlink" title="运行"></a>运行</h3></li>
+<li><p>打开一个终端运行roscore</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">roscore</span><br></pre></td></tr></table></figure></li>
+<li><p>打开一个终端运行rviz</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rviz -d ./config/show.rviz <span class="comment">#在livox_detection_simu仓库下</span></span><br></pre></td></tr></table></figure></li>
+<li><p>打开一个终端播放rosbag</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rosbag play *.bag -r 0.1 <span class="comment">#找到你存放rosbag的路径运行，发送消息间隔0.1s</span></span><br></pre></td></tr></table></figure></li>
+<li><p>打开一个终端运行目标检测程序</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python livox_detection_simu.py <span class="comment">#如果你的模型放在其他地方，你需要在config下将其模型路径改为你所放预训练模型的路径</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+<p>由于目标检测速度相当慢，实时性非常差，队列里可能还缓存了很多帧</p>
+
+        </div>
+
+        
+            <div class="post-copyright-info">
+                <div class="article-copyright-info-container">
+    <ul>
+        <li>Post title：livox-mid70激光雷达使用实录</li>
+        <li>Post author：newsun-boki</li>
+        <li>Create time：2021-11-14 22:50:48</li>
+        <li>
+            Post link：https://github.com/newsun-boki2021/11/14/livox-detection/
+        </li>
+        <li>
+            Copyright Notice：All articles in this blog are licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> unless stating additionally.
+        </li>
+    </ul>
+</div>
+
+            </div>
+        
+
+        
+            <div class="article-nav">
+                
+                    <div class="article-prev">
+                        <a class="prev"
+                           rel="prev"
+                           href="/2021/11/15/picx/"
+                        >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">图片上传网络</span>
+                                <span class="post-nav-item">Prev posts</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/2021/11/09/text-compare-md/"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">在线文本对比</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+              <span>2020</span>
+              -
+            
+            2021&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">newsun-boki</a>
+        </div>
+        
+        <div class="theme-info info-item">
+            Powered by <a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;|&nbsp;Theme&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.3</a>
+        </div>
+        
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item page-aside-toggle">
+                <i class="fas fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+            <li class="tools-item rss flex-center">
+                <a class="flex-center"
+                   href="/atom.xml"
+                   target="_blank"
+                >
+                    <i class="fas fa-rss"></i>
+                </a>
+            </li>
+        
+
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="arrow-up fas fa-arrow-up"></i>
+                <span class="percent"></span>
+            </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    
+        <aside class="page-aside">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#livox-mid70%E6%BF%80%E5%85%89%E9%9B%B7%E8%BE%BE%E4%BD%BF%E7%94%A8%E5%AE%9E%E5%BD%95"><span class="nav-number">1.</span> <span class="nav-text">livox-mid70激光雷达使用实录</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%98%E6%96%B9%E6%96%87%E6%A1%A3"><span class="nav-number">1.1.</span> <span class="nav-text">官方文档</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Livox-Viewer"><span class="nav-number">1.2.</span> <span class="nav-text">Livox Viewer</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Livox-SDK"><span class="nav-number">1.3.</span> <span class="nav-text">Livox-SDK</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#livox-ros-driver"><span class="nav-number">1.4.</span> <span class="nav-text">livox-ros-driver</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BD%95%E5%88%B6%E4%BD%A0%E7%9A%84%E7%82%B9%E4%BA%91%E6%95%B0%E6%8D%AE"><span class="nav-number">1.5.</span> <span class="nav-text">录制你的点云数据</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#lvx%E6%A0%BC%E5%BC%8F"><span class="nav-number">1.5.0.1.</span> <span class="nav-text">lvx格式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#rosbag%E6%A0%BC%E5%BC%8F"><span class="nav-number">1.5.0.2.</span> <span class="nav-text">rosbag格式</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#livox-detection"><span class="nav-number">1.6.</span> <span class="nav-text">livox_detection</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BE%9D%E8%B5%96"><span class="nav-number">1.6.1.</span> <span class="nav-text">依赖</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%87%86%E5%A4%87"><span class="nav-number">1.6.2.</span> <span class="nav-text">准备</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%90%E8%A1%8C"><span class="nav-number">1.6.3.</span> <span class="nav-text">运行</span></a></li></ol></li></ol></li></ol>
+    </div>
+</div>
+        </aside>
+    
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+<script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/utils.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/main.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/header-shrink.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/back2top.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/dark-light-toggle.js"></script>
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/local-search.js"></script>
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/code-copy.js"></script>
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/lazyload.js"></script>
+
+
+<div class="post-scripts pjax">
+    
+        <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/left-side-toggle.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/libs/anime.min.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/toc.js"></script>
+    
+</div>
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/libs/pjax.min.js"></script>
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        window.pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax'
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+            // scrollTo: true,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            KEEP.utils.pjaxProgressBarStart();
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            KEEP.utils.pjaxProgressBarEnd();
+            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+            KEEP.refresh();
+        });
+    });
+</script>
+
+
+
+</body>
+</html>
