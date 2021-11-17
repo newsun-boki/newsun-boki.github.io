@@ -164,9 +164,9 @@
     <category term="rm" scheme="http://example.com/categories/rm/"/>
     
     
-    <category term="machine leaning" scheme="http://example.com/tags/machine-leaning/"/>
-    
     <category term="rm" scheme="http://example.com/tags/rm/"/>
+    
+    <category term="machine leaning" scheme="http://example.com/tags/machine-leaning/"/>
     
   </entry>
   

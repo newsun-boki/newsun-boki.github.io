@@ -1,6 +1,192 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>livox-mid70激光雷达使用实录</title>
+    <url>/2021/11/14/livox-detection/</url>
+    <content><![CDATA[<h1 id="livox-mid70激光雷达使用实录"><a href="#livox-mid70激光雷达使用实录" class="headerlink" title="livox-mid70激光雷达使用实录"></a>livox-mid70激光雷达使用实录</h1><p>livox-mid70是由大疆发布的面阵激光雷达，是大疆为自动驾驶推出的一款激光雷达，同时也可用于建立三维地图，文物修复，与大疆无人机相结合使用。你可以在x86和arm架构上都可以使用(arm需要交叉编译)。<br>bilibili上Livox官方发布了大量的视频demo可以去围观一下，同时Livox也有一个论坛可以去看一下。</p>
+<h2 id="官方文档"><a href="#官方文档" class="headerlink" title="官方文档"></a>官方文档</h2><p><a class="link"   href="https://livox-wiki-cn.readthedocs.io/zh_CN/latest/index.html" >https://livox-wiki-cn.readthedocs.io/zh_CN/latest/index.html<i class="fas fa-external-link-alt"></i></a><br>这是中文官方文档，请根据以上文档完成硬件上的连接以及Ip配置，一切以官方文档为主。</p>
+<ul>
+<li>硬件连接</li>
+</ul>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://livox-wiki-cn.readthedocs.io/zh_CN/latest/_images/one_lidar_connect.png"
+                     
+                ></p>
+<ul>
+<li><p>更改IP：一般来说刚拿到手都是<strong>静态IP</strong>，这时候你只需要将网线与你自己笔记本相连，然后通过用户手册查看你自己雷达的IP，那需要设置你自己电脑的IP为手动，并将其分在同一网段不同的地址下：</p>
+<pre><code>  如我的Mid70的IP地址为192.168.1.105，
+  那么我电脑设置时
+  IP：192.168.1.104，
+  子网掩码：255.255.255.0,
+  网关：192.168.0.1
+</code></pre>
+</li>
+</ul>
+<p>如果对IP配置有问题,或想改为动态IP详情参见<a class="link"   href="https://terra-1-g.djicdn.com/65c028cd298f4669a7f0e40e50ba1131/Download/update/Livox%20Mid%20Series%20User%20Manual%20(CN).pdf" >用户手册<i class="fas fa-external-link-alt"></i></a></p>
+<h2 id="Livox-Viewer"><a href="#Livox-Viewer" class="headerlink" title="Livox Viewer"></a>Livox Viewer</h2><p>Livox Viewer是一款图形化操作的显示软件，有助于快速让你知道你的硬件连接和Ip配置有没有问题。</p>
+<ul>
+<li><a class="link"   href="https://terra-1-g.djicdn.com/65c028cd298f4669a7f0e40e50ba1131/Download/update/Livox%20Viewer%200.8.0.7z" >Livox-Viewer for Windows<i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link"   href="https://www.livoxtech.com/3296f540ecf5458a8829e01cf429798e/downloads/Livox%20Viewer/Livox_Viewr_For_Linux_Ubuntu16.04_x64_0.7.0.tar.gz" >Livox-Viewer for ubuntu16.04<i class="fas fa-external-link-alt"></i></a>,下载后解压运行<code>./livox viewer.sh</code>即可打开如下界面。<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://livox-wiki-cn.readthedocs.io/zh_CN/latest/_images/start_Viewer_and_link_Horizon.png"
+                     
+                ></li>
+<li>官方软件Livox Viewer仅支持Windows或ubuntu16.04/14.04,所以建议如果不是这两个版本有ros可以直接上。</li>
+</ul>
+<h2 id="Livox-SDK"><a href="#Livox-SDK" class="headerlink" title="Livox-SDK"></a>Livox-SDK</h2><p>刚刚Livox Viewer只是一个快速尝试，如果你要做开发就<strong>必须</strong>要安装Livox-SDK(包括后面要在ros上使用也必须先要安装这个)</p>
+<ul>
+<li><p>github上中文<a class="link"   href="https://github.com/Livox-SDK/Livox-SDK/blob/master/README_CN.md" >README<i class="fas fa-external-link-alt"></i></a></p>
+</li>
+<li><p>先从github上clone下来</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/Livox-SDK/Livox-SDK.git</span><br></pre></td></tr></table></figure></li>
+<li><p>再编译</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> Livox-SDK</span><br><span class="line"><span class="built_in">cd</span> build &amp;&amp; cmake ..</span><br><span class="line">make</span><br><span class="line">sudo make install</span><br></pre></td></tr></table></figure></li>
+<li><p>简单运行demo，注意这里的sample是在build文件夹下面的</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> sample/lidar &amp;&amp; ./lidar_sample</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="livox-ros-driver"><a href="#livox-ros-driver" class="headerlink" title="livox-ros-driver"></a>livox-ros-driver</h2><p>不得不说ros是真的好用，所以建议在ros下使用，会使得一切都很清晰明了。装<code>livox-ros-driver</code>前必须要先装<code>Livox-SDK</code>。</p>
+<ul>
+<li><p>先从github上clone下来，这里一定要用下面这个命令把它clone到相应位置，否则会出问题。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/Livox-SDK/livox_ros_driver.git ws_livox/src</span><br></pre></td></tr></table></figure></li>
+<li><p>简单的<code>catkin_make</code>一下</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> ws_livox</span><br><span class="line">catkin_make</span><br></pre></td></tr></table></figure></li>
+<li><p>别忘了添加环境</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">source</span> ./devel/setup.sh</span><br></pre></td></tr></table></figure></li>
+<li><p>之后跑个rviz的demo，让你的激光雷达点云数据在rviz里显示出来</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">roslaunch livox_ros_driver livox_lidar_rviz.launch</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="录制你的点云数据"><a href="#录制你的点云数据" class="headerlink" title="录制你的点云数据"></a>录制你的点云数据</h2><p>点云数据不像二维图像一样，简简单单录制一个视频就好，作为点云数据记录是比较特殊的。<br>livox一共有两种录制格式</p>
+<h4 id="lvx格式"><a href="#lvx格式" class="headerlink" title="lvx格式"></a>lvx格式</h4><p>lvx格式是livox的一种自定义格式，如果你想在Windows上快速录制，可以<strong>使用Livox Viewer进行录制</strong>，也可以<strong>通过<code>Livox-SDK</code>中的文件录制</strong></p>
+<ul>
+<li>首先进入以下路径<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> ./Livox_SDK/build/sample/lidar_lvx_file</span><br></pre></td></tr></table></figure></li>
+<li>然后运行下面这个文件，这里不用<code>-c</code>指定也可以，这里指定了lidar并设定持续10s<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">./lidar_lvx_sample -c <span class="string">&quot;此处为已连接的Lidar的15位广播码&quot;</span> -t 10</span><br></pre></td></tr></table></figure>
+通过上面的操作会得到一个<code>.lvx</code>格式的文件，这个文件可以在Livox Viewer中直接播放，也可以转成<strong>rosbag</strong>(一个可以把ros中当前所有topic中message记录下来的东西)。<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">roslaunch livox_ros_driver lvx_to_rosbag.launch lvx_file_path:=<span class="string">&quot;/home/livox/test.lvx&quot;</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+<h4 id="rosbag格式"><a href="#rosbag格式" class="headerlink" title="rosbag格式"></a>rosbag格式</h4><p>rosbag是ros中非常好用的一个东西，我在之前的ros文章中有提到过。当我们在运行livox-ros-driver中的rviz显示时，即</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">roslaunch livox_ros_driver livox_lidar_rviz.launch <span class="comment">#详情看上面livox-ros-driver</span></span><br></pre></td></tr></table></figure>
+<p>我们可以把此时的所有消息用rosbag记录下来</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">rosbag record -a -o myrosbag.bag <span class="comment">#-a代表所有的消息,-c代表输出名称</span></span><br></pre></td></tr></table></figure>
+
+<p>此时就会生成一个.bag文件，具体名称看终端的输出。<br>你可以通过以下命令进行播放rosbag</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">rosbag play *.bag -l <span class="comment">#-l代表loop循环播放</span></span><br></pre></td></tr></table></figure>
+<p>此时再打开在livox-ros-driver下的的rviz,就可以得到rosbag中的点云图了</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> ws_livox/src/livox_ros_driver/</span><br><span class="line">rviz -d config/display_lidar_points.rviz <span class="comment">#这种.rviz文件实际上是保存rviz相关显示的数据</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="livox-detection"><a href="#livox-detection" class="headerlink" title="livox_detection"></a>livox_detection</h2><p>livox_detection指的是激光点云检测，livox官方给的代码可以检测各种车和行人。官方说2080ti下需要50ms。</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.jsdelivr.net/gh/newsun-boki/img-folder@main/20211115/demo1.4a7m388oo240.gif"
+                     
+                ></p>
+<p>在Livox官方的github仓库中有两个激光点云检测仓库分别为<code>livox_detection</code>和<code>livox_dection_simu</code>。<br>这两个仓库看上去都差不多，但实际上非常坑的是：</p>
+<ul>
+<li><code>livox_detection</code>仓库中的预训练模型在可以识别人和车，但车的识别效果不是很好;</li>
+<li><code>livox_dection_simu</code>仓库中的预训练模型只能识别车，而几乎无法识别到人(虽然代码看上去都差不多)。</li>
+</ul>
+<p>至于原因我也不知道，只是这坑了我一会儿，后来在issue发现了这个问题。</p>
+<p>由于两个仓库操作都非常相似，这里选livox_detection_simu为例。</p>
+<h3 id="依赖"><a href="#依赖" class="headerlink" title="依赖"></a>依赖</h3><ul>
+<li>python3.6+</li>
+<li>tensorflow1.13+ (tested on 1.13.0)</li>
+<li>pybind11(后面的过程中安装)</li>
+<li>ros</li>
+</ul>
+<h3 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h3><ul>
+<li><p>首先clone仓库</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/Livox-SDK/livox_detection_simu</span><br></pre></td></tr></table></figure></li>
+<li><p>然后配置pybind(pybind就是这样，每次都需要clone在那个路径下才行)。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> livox_detection_simu/utils/lib_cpp</span><br><span class="line">git <span class="built_in">clone</span> https://github.com/pybind/pybind11.git</span><br></pre></td></tr></table></figure></li>
+<li><p>编译(在刚刚的<code>lib_cpp</code>路径下)。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">mkdir build &amp;&amp; <span class="built_in">cd</span> build</span><br><span class="line">cmake -DCMAKE_BUILD_TYPE=Release ..</span><br><span class="line">make</span><br></pre></td></tr></table></figure></li>
+<li><p>把c++得到的依赖文件放到项目根目录下</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">cp lib_cpp.so ../../../</span><br></pre></td></tr></table></figure></li>
+<li><p>下载<a class="link"   href="https://terra-1-g.djicdn.com/65c028cd298f4669a7f0e40e50ba1131/Download/dataset/livox_detection_simu_model.zip" >预训练模型<i class="fas fa-external-link-alt"></i></a>,会得到model文件夹，把它放在项目根目录下，这样你就不用改模型地址了,</p>
+</li>
+<li><p>下载<a class="link"   href="https://terra-1-g.djicdn.com/65c028cd298f4669a7f0e40e50ba1131/github/livox_detection_v1.1_data.zip" >rosbag<i class="fas fa-external-link-alt"></i></a>,这是官方提供的rosbag，你也可以自己录一个。</p>
+<h3 id="运行"><a href="#运行" class="headerlink" title="运行"></a>运行</h3></li>
+<li><p>打开一个终端运行roscore</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">roscore</span><br></pre></td></tr></table></figure></li>
+<li><p>打开一个终端运行rviz</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">rviz -d ./config/show.rviz <span class="comment">#在livox_detection_simu仓库下</span></span><br></pre></td></tr></table></figure></li>
+<li><p>打开一个终端播放rosbag</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">rosbag play *.bag -r 0.1 <span class="comment">#找到你存放rosbag的路径运行，发送消息间隔0.1s</span></span><br></pre></td></tr></table></figure></li>
+<li><p>打开一个终端运行目标检测程序</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">python livox_detection_simu.py <span class="comment">#如果你的模型放在其他地方，你需要在config下将其模型路径改为你所放预训练模型的路径</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+<p>由于目标检测速度相当慢，实时性非常差，队列里可能还缓存了很多帧</p>
+]]></content>
+      <categories>
+        <category>rm</category>
+      </categories>
+      <tags>
+        <tag>lidar</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>从神经网络到深度学习</title>
+    <url>/2021/11/02/mlbasic/</url>
+    <content><![CDATA[<h1 id="从神经网络到深度学习"><a href="#从神经网络到深度学习" class="headerlink" title="从神经网络到深度学习"></a>从神经网络到深度学习</h1><hr>
+<h2 id="引入"><a href="#引入" class="headerlink" title="引入"></a>引入</h2><p>在之前我们已经介绍过了一些优化问题，然而并不是所有优化问题从输入到目标函数之间都有明确的公式。不如说，在生活中大部分时候我们都很难建立一个很准确的数学模型，同时也无法得知需要优化什么参数，特别是对于图片分类来说。例如，给你一张图片，让你分辨是猫还是狗。对于输入来说，我们有一张图片rgb三通道的所有值，而需要输出0或1分别代表猫和狗。为了解决这个问题，我们引入神经网络等相关一系列概念。<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://img2020.cnblogs.com/blog/1839046/202012/1839046-20201213200410529-875096804.png"
+                      alt="猫狗"
+                ></p>
+<h2 id="机器学习-神经网络-深度学习"><a href="#机器学习-神经网络-深度学习" class="headerlink" title="机器学习 神经网络 深度学习"></a>机器学习 神经网络 深度学习</h2><p>首先，有必要对神经网络、深度学习、机器学习的概念做个简单描述。</p>
+<p>神经网络，该模型灵感来自动物的中枢神经系统，通常呈现为相互连接的“神经元”，它可以对输入值通过反馈机制使得它们适应对应的输出。</p>
+<p>深度学习是神经网络的进阶版，它的基本思路与神经网络类似，但往往比神经网络有着更复杂的结构以及优化算法，是神经网络的纵向延伸，常见的模型有CNN, RNN, LSTM等。</p>
+<p>机器学习是一门多领域交叉学科，涉及概率论、统计学、逼近论、凸分析、算法复杂度理论等多门学科。专门研究计算机怎样模拟或实现人类的学习行为，以获取新的知识或技能，重新组织已有的知识结构使之不断改善自身的性能。</p>
+<p>下面的图片很好地描述了这三者之间的关系</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://pic1.zhimg.com/80/v2-6d2584526f458fa512543d04ffb66c42_1440w.jpg?source=1940ef5c"
+                      alt="区别"
+                > </p>
+<h2 id="机器学习简介"><a href="#机器学习简介" class="headerlink" title="机器学习简介"></a>机器学习简介</h2><p><a class="link"   href="https://gitee.com/newsun-boki/XJTU_cource/blob/master/course3/1_ML_Basics.pdf" >ML<i class="fas fa-external-link-alt"></i></a></p>
+<h2 id="神经网络基础"><a href="#神经网络基础" class="headerlink" title="神经网络基础"></a>神经网络基础</h2><p><strong>好的入门博文</strong>：<a class="link"   href="https://www.cnblogs.com/subconscious/p/5058741.html" >神经网络入门<i class="fas fa-external-link-alt"></i></a></p>
+<p><strong>神经网络实践与理解</strong>：<a class="link"   href="http://playground.tensorflow.org/" >tensorflow游乐场<i class="fas fa-external-link-alt"></i></a></p>
+<p><strong>神经网络的详细理解</strong>：<a class="link"   href="https://b23.tv/c44LK8" >吴恩达神经网络<i class="fas fa-external-link-alt"></i></a></p>
+<p><strong>自己的板书</strong>:<a class="link"   href="https://gitee.com/newsun-boki/XJTU_cource/blob/master/course3/ml_nn.pdf" >ml_nn<i class="fas fa-external-link-alt"></i></a></p>
+<h2 id="pytorch的相关介绍"><a href="#pytorch的相关介绍" class="headerlink" title="pytorch的相关介绍"></a>pytorch的相关介绍</h2><p>pytorch是python的第三方库，是由facebook开源的神经网络框架，并有专门针对GPU加速模型训练的模块。与tensorflow不同，pytorch编程简洁，接口简单，且速度不逊色于其他框架，是当前神经网络最简洁，高效的实现方法之一。</p>
+<p><strong>好的博文</strong>：<a class="link"   href="https://zhuanlan.zhihu.com/p/265394674?utm_source=ZHShareTargetIDMore&utm_medium=social&utm_oi=907670979105415168" >知乎pytorch<i class="fas fa-external-link-alt"></i></a></p>
+]]></content>
+      <categories>
+        <category>rm</category>
+      </categories>
+      <tags>
+        <tag>rm</tag>
+        <tag>machine leaning</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>图片上传网络</title>
+    <url>/2021/11/15/picx/</url>
+    <content><![CDATA[<h1 id="picx图片上传网络"><a href="#picx图片上传网络" class="headerlink" title="picx图片上传网络"></a>picx图片上传网络</h1><p>在用markdown写博客上传网页时常常会涉及本地图片无法在网络显示的问题，这个时候一般的选择是先将图片上传到github/gitee或csdn然后再使用网络链接，但还是不够方便，并且github需要翻墙才能看的问题，有个国人大佬就开发了一个名叫<strong>picx</strong>的东西。<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.jsdelivr.net/gh/newsun-boki/img-folder@main/20211115/Screenshot-from-2021-11-15-03-07-58.5jhahkkrhcs0.png"
+                     
+                ><br>上面这界面就是使用picx上传的，本质上他还是借用了你自己的github仓库去放图片，然而它使用一个叫CDN加速的东西让你的图片可以很快的显示。</p>
+<h2 id="链接"><a href="#链接" class="headerlink" title="链接"></a>链接</h2><ul>
+<li>github仓库:<a class="link"   href="https://github.com/XPoet/picx" >https://github.com/XPoet/picx<i class="fas fa-external-link-alt"></i></a></li>
+<li>picx网页地址:<a class="link"   href="https://picx.xpoet.cn/#/upload" >https://picx.xpoet.cn/#/upload<i class="fas fa-external-link-alt"></i></a></li>
+</ul>
+<p>去github仓库看README教你如何在picx网页上配置，记得一定要使用生成的CDN加速的链接，否则就没有意义了。</p>
+]]></content>
+      <categories>
+        <category>other</category>
+      </categories>
+      <tags>
+        <tag>markdown</tag>
+        <tag>blog</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Pybind和cmake联合使用</title>
     <url>/2021/11/01/pybind-cmake/</url>
     <content><![CDATA[<h1 id="pybind11与cmake的联合使用"><a href="#pybind11与cmake的联合使用" class="headerlink" title="pybind11与cmake的联合使用"></a>pybind11与cmake的联合使用</h1><h1 id="github传送门"><a href="#github传送门" class="headerlink" title="github传送门"></a><a class="link"   href="https://github.com/newsun-boki/pybind11-tutorial" >github传送门<i class="fas fa-external-link-alt"></i></a></h1><p>因为pybind11官方教程我并没有找到与cmake的联合使用，导致我不会写CMakeLists。然后其实也不是很难，发个帖子记录一下.<br>帮助你在python中使用cmake中的函数,理论上你只需要点进上面的链接就好。下面是README。</p>
@@ -32,129 +218,6 @@
       <tags>
         <tag>python</tag>
         <tag>c++</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>sklearn主成分分析PCA</title>
-    <url>/2021/11/02/python-pca/</url>
-    <content><![CDATA[<h1 id="sklearn主成分分析PCA"><a href="#sklearn主成分分析PCA" class="headerlink" title="sklearn主成分分析PCA"></a>sklearn主成分分析PCA</h1><h2 id="数学原理"><a href="#数学原理" class="headerlink" title="数学原理"></a>数学原理</h2><p>给数学基础不是很好的看<br>PCA主要用于<strong>降维</strong>，比如一个人有<strong>身高，年龄，样貌，性别，智力，耐力，速度，成绩</strong>等等很多<strong>特征</strong>，<strong>每种特征便是一个维度</strong>。假如你觉得描述一个人的特征太多，你想要用<strong>一两个或几个特征</strong>就个以描述一个人，并且<strong>这几个特征包含之前提到所有特征所包含的信息</strong>，将这么原来的众多特征转化为几个特征的过程就是<strong>降维</strong>。而降维后得到的特征包含的<strong>信息量的多少也叫做贡献率</strong>，信息量越多越能够反应本质。</p>
-<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><p>这里举一个最常用的水仙花的例子</p>
-<h3 id="导入包"><a href="#导入包" class="headerlink" title="导入包"></a>导入包</h3><p>包括sklearn他的好基友们啦。</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">from</span> sklearn.datasets <span class="keyword">import</span> load_iris</span><br><span class="line"><span class="keyword">from</span> sklearn.decomposition <span class="keyword">import</span> PCA</span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br></pre></td></tr></table></figure>
-
-<h3 id="导入数据"><a href="#导入数据" class="headerlink" title="导入数据"></a>导入数据</h3><p>这是一个水仙花的案例</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">iris = load_iris()</span><br><span class="line">y = iris.target</span><br><span class="line">x = iris.data</span><br></pre></td></tr></table></figure>
-
-<p>有<code>x.shape = (150, 4)</code>,即每朵花共有四个特征,分别为</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">iris.feature_names = </span><br><span class="line">                    [<span class="string">&#x27;sepal length (cm)&#x27;</span>,</span><br><span class="line">                     <span class="string">&#x27;sepal width (cm)&#x27;</span>,</span><br><span class="line">                     <span class="string">&#x27;petal length (cm)&#x27;</span>,</span><br><span class="line">                     <span class="string">&#x27;petal width (cm)&#x27;</span>]</span><br></pre></td></tr></table></figure>
-<p>而<code>y</code>是一个分类变量，分别为<code>[0,1,2]</code>代表三种不同的花</p>
-<h3 id="核心代码"><a href="#核心代码" class="headerlink" title="核心代码"></a>核心代码</h3><p>还是sklearn中的老三样:</p>
-<ul>
-<li>实例化PCA()</li>
-<li>调用<code>fit()</code>函数</li>
-<li>调用<code>transform()</code>函数<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">pca = PCA(n_components = <span class="number">2</span>)</span><br><span class="line">pca = pca.fit(x)</span><br><span class="line">x_dr = pca.transform(x)</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>这里<code>n_components</code>表示降维后所得到的维度<br>或者也可以直接一步到位</p>
-</blockquote>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">x_dr = PCA(<span class="number">2</span>).fit_transform(x)</span><br></pre></td></tr></table></figure></li>
-</ul>
-<h3 id="查看降维后所带有的信息量大小"><a href="#查看降维后所带有的信息量大小" class="headerlink" title="查看降维后所带有的信息量大小"></a>查看降维后所带有的信息量大小</h3><ul>
-<li>两个维度信息量大小<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="built_in">print</span>(pca.explained_variance_)</span><br></pre></td></tr></table></figure>
-可以得到<code>[4.22824171， 0.24267075]</code></li>
-<li>两个维度贡献率</li>
-</ul>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">pca.explained_variance_ratio_</span><br></pre></td></tr></table></figure>
-<p>可以得到<code>[0.92461872, 0.05306648]</code></p>
-<h3 id="可视化"><a href="#可视化" class="headerlink" title="可视化"></a>可视化</h3><p>当我们把数据降维后，可以观察其在新的维度上的分布</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">plt.figure()</span><br><span class="line">plt.scatter(x_dr[y == <span class="number">0</span>,<span class="number">0</span>],x_dr[y == <span class="number">0</span>,<span class="number">1</span>],c = <span class="string">&quot;red&quot;</span>,label = iris.target_names[<span class="number">0</span>])</span><br><span class="line">plt.scatter(x_dr[y == <span class="number">1</span>,<span class="number">0</span>],x_dr[y == <span class="number">1</span>,<span class="number">1</span>],c = <span class="string">&quot;black&quot;</span>,label = iris.target_names[<span class="number">1</span>])</span><br><span class="line">plt.scatter(x_dr[y == <span class="number">2</span>,<span class="number">0</span>],x_dr[y == <span class="number">2</span>,<span class="number">1</span>],c = <span class="string">&quot;orange&quot;</span>,label = iris.target_names[<span class="number">2</span>])</span><br><span class="line">plt.legend()</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>其中<code>x_dr[y = 0,0]用了布尔索引</code></p>
-</blockquote>
-<p>得到如下结果<br><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://img-blog.csdnimg.cn/20210201123828720.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L25ld3N1bnNvbg==,size_16,color_FFFFFF,t_70#pic_center"
-                      alt="在这里插入图片描述"
-                ></p>
-<p>可以这是一个分簇的分布，也就是说降维之后其实已经比较好分类了</p>
-<h3 id="扩展"><a href="#扩展" class="headerlink" title="扩展"></a>扩展</h3><h4 id="累计方差贡献率曲线"><a href="#累计方差贡献率曲线" class="headerlink" title="累计方差贡献率曲线"></a>累计方差贡献率曲线</h4><p>当选取维度不同时累计贡献率的曲线。</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">pca_line = PCA().fit(x)</span><br><span class="line">plt.plot([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>],np.cumsum(pca_line.explained_variance_ratio_))</span><br><span class="line">plt.xticks([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>])</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://img-blog.csdnimg.cn/20210201123816813.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L25ld3N1bnNvbg==,size_16,color_FFFFFF,t_70#pic_center"
-                      alt="在这里插入图片描述"
-                ></p>
-<h4 id="最大似然估计选择超参数"><a href="#最大似然估计选择超参数" class="headerlink" title="最大似然估计选择超参数"></a>最大似然估计选择超参数</h4><p>这种方法可以自动选出最合适的维度</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">pca_mle = PCA(n_components = <span class="string">&quot;mle&quot;</span>)</span><br><span class="line">pca_mle = pca_mle.fit(x)</span><br><span class="line">x_mle = pca_mle.transform(x)</span><br><span class="line">pca_mle.explained_variance_ratio_.<span class="built_in">sum</span>()</span><br></pre></td></tr></table></figure>
-<p>比如上述例子为我们选了维度为3，累计贡献率高达0.994</p>
-<h4 id="按贡献率选择"><a href="#按贡献率选择" class="headerlink" title="按贡献率选择"></a>按贡献率选择</h4><p>意味着你想要他的累计贡献率达到0.97时的维度。</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">pca_f = PCA(n_components=<span class="number">0.97</span>,svd_solver=<span class="string">&quot;full&quot;</span>)</span><br><span class="line">pca_f = pca_f.fit(x)</span><br><span class="line">x_f = pca_f.transform(x)</span><br><span class="line"><span class="built_in">print</span>(pca_f.explained_variance_ratio_)</span><br></pre></td></tr></table></figure>
-<p>贡献率分别为<code>[0.92461872, 0.05306648]</code></p>
-]]></content>
-      <categories>
-        <category>code</category>
-      </categories>
-      <tags>
-        <tag>python</tag>
-        <tag>sklearn</tag>
-        <tag>pca</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>sklearn聚类算法Kmeans</title>
-    <url>/2021/11/02/python-kmeans/</url>
-    <content><![CDATA[<h1 id="sklearn聚类算法Kmeans"><a href="#sklearn聚类算法Kmeans" class="headerlink" title="sklearn聚类算法Kmeans"></a>sklearn聚类算法Kmeans</h1><h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>聚类算法是一种<strong>无监督学习算法</strong>，也就是说它不需要<strong>标签</strong>,只需要大量的特征就可以把数据集聚类，然后聚类在自己给他贴标签。 这里Kmeans的具体原理不作详述。</p>
-<h2 id="案例"><a href="#案例" class="headerlink" title="案例"></a>案例</h2><h3 id="数据生成"><a href="#数据生成" class="headerlink" title="数据生成"></a>数据生成</h3><p>通过sklearn自带的<code>make_blobs</code>函数可以生成聚类所需的数据集，注意，所生成的数据集是几个<strong>分簇</strong>。</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.datasets <span class="keyword">import</span> make_blobs</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line">X, y = make_blobs(n_samples=<span class="number">500</span>,n_features=<span class="number">2</span>,centers=<span class="number">4</span>,random_state=<span class="number">1</span>)</span><br><span class="line">fig, ax1 = plt.subplots(<span class="number">1</span>)</span><br><span class="line">ax1.scatter(X[:, <span class="number">0</span>], X[:, <span class="number">1</span>],marker=<span class="string">&#x27;o&#x27;</span>,s=<span class="number">8</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://img-blog.csdnimg.cn/20210201163842174.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L25ld3N1bnNvbg==,size_16,color_FFFFFF,t_70#pic_center"
-                      alt="在这里插入图片描述"
-                ></p>
-<p>上面是聚类前的图像，其中<code>X</code>是一个二维数组，每行有一个点的横坐标和纵坐标，<code>y</code>是已经给好的分类，是一个一维的数组，代表不同数据所在的簇。，下图是实际按不同簇分开的数据<br><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://img-blog.csdnimg.cn/20210201163856733.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L25ld3N1bnNvbg==,size_16,color_FFFFFF,t_70#pic_center"
-                      alt="在这里插入图片描述"
-                ></p>
-<h3 id="聚类"><a href="#聚类" class="headerlink" title="聚类"></a>聚类</h3><p>聚类依然是通过</p>
-<ul>
-<li>类的实例化</li>
-<li>fit()函数</li>
-<li>可以直接同<code>.labels_</code>或<code>.fit_predict</code>得到分类结果<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.cluster <span class="keyword">import</span> KMeans</span><br><span class="line">cluster = KMeans(n_clusters = <span class="number">3</span>, random_state = <span class="number">0</span>)</span><br><span class="line">cluster = cluster.fit(X)</span><br><span class="line">y_pred = cluster.labels_</span><br><span class="line"><span class="comment">#y_pred = cluster.fit_predict(X)</span></span><br></pre></td></tr></table></figure>
-所得到的y_pred是一个一维矩阵，包含了每一个点对应的类分类，分别为0,1,2</li>
-</ul>
-<h4 id="类的质心"><a href="#类的质心" class="headerlink" title="类的质心"></a>类的质心</h4><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">centroid = cluster.cluster_centers_</span><br></pre></td></tr></table></figure>
-<p><code>centroid == [[-7.09306648, -8.10994454], [-1.54234022,  4.43517599], [-8.0862351 , -3.5179868 ]]</code>代表所分三类的质心。可以说这个点的特征最能代表这一个分类</p>
-<h4 id="聚类的评估"><a href="#聚类的评估" class="headerlink" title="聚类的评估"></a>聚类的评估</h4><p>Inertia指每个样本点到其中心点的距离之和</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">inertia = cluster.inertia_</span><br></pre></td></tr></table></figure>
-<p>但似乎对于某些细长的类来说表现显然不太好，所以用<strong>轮廓系数</strong>来评估。</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.metrics <span class="keyword">import</span> silhouette_score</span><br><span class="line">silhouette_score(X,y_pred)</span><br></pre></td></tr></table></figure>
-
-
-<h4 id="可视化"><a href="#可视化" class="headerlink" title="可视化"></a>可视化</h4><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">color = [<span class="string">&quot;red&quot;</span>,<span class="string">&quot;pink&quot;</span>,<span class="string">&quot;orange&quot;</span>,<span class="string">&quot;gray&quot;</span>]</span><br><span class="line">fig, ax1 = plt.subplots(<span class="number">1</span>)</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">3</span>):</span><br><span class="line">    ax1.scatter(X[y_pred==i, <span class="number">0</span>], X[y_pred==i, <span class="number">1</span>]</span><br><span class="line">     ,marker=<span class="string">&#x27;o&#x27;</span></span><br><span class="line">     ,s=<span class="number">8</span></span><br><span class="line">     ,c=color[i]</span><br><span class="line">     )</span><br><span class="line">ax1.scatter(centroid[:,<span class="number">0</span>],centroid[:,<span class="number">1</span>]</span><br><span class="line">     ,marker=<span class="string">&quot;x&quot;</span></span><br><span class="line">     ,s=<span class="number">15</span></span><br><span class="line">     ,c=<span class="string">&quot;black&quot;</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
-<p>那几个黑叉叉就是质心<br><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://img-blog.csdnimg.cn/20210201163926542.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L25ld3N1bnNvbg==,size_16,color_FFFFFF,t_70#pic_center"
-                      alt="在这里插入图片描述"
-                ></p>
-<h4 id="分成4类会怎么样"><a href="#分成4类会怎么样" class="headerlink" title="分成4类会怎么样"></a>分成4类会怎么样</h4><p><strong>会更合理</strong><br><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://img-blog.csdnimg.cn/20210201163940755.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L25ld3N1bnNvbg==,size_16,color_FFFFFF,t_70#pic_center"
-                      alt="在这里插入图片描述"
-                ></p>
-]]></content>
-      <categories>
-        <category>code</category>
-      </categories>
-      <tags>
-        <tag>python</tag>
-        <tag>sklearn</tag>
-        <tag>kmeans</tag>
       </tags>
   </entry>
   <entry>
@@ -236,353 +299,6 @@
       </tags>
   </entry>
   <entry>
-    <title>sklearn随机森林</title>
-    <url>/2021/11/02/python-rdf/</url>
-    <content><![CDATA[<h1 id="sklearn随机森林"><a href="#sklearn随机森林" class="headerlink" title="sklearn随机森林"></a>sklearn随机森林</h1><p>本文基于菜菜的sklearn教学</p>
-<p>@[toc]</p>
-<h2 id="随机森林分类器"><a href="#随机森林分类器" class="headerlink" title="随机森林分类器"></a>随机森林分类器</h2><h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3><p>随机森林是一种集成算法，即运用大量不同的算法，选出最优的一个，主要是基于决策树。</p>
-<h3 id="引入包"><a href="#引入包" class="headerlink" title="引入包"></a>引入包</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.tree <span class="keyword">import</span> DecisionTreeClassifier</span><br><span class="line"><span class="keyword">from</span> sklearn.ensemble <span class="keyword">import</span> RandomForestClassifier</span><br><span class="line"><span class="keyword">from</span> sklearn.datasets <span class="keyword">import</span> load_wine</span><br></pre></td></tr></table></figure>
-
-<h3 id="导入数据"><a href="#导入数据" class="headerlink" title="导入数据"></a>导入数据</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">wine = load_wine()</span><br><span class="line"><span class="built_in">print</span>(wine.data.shape)</span><br><span class="line"><span class="built_in">print</span>(wine.target)</span><br></pre></td></tr></table></figure>
-
-<h3 id="划分测试集和训练集"><a href="#划分测试集和训练集" class="headerlink" title="划分测试集和训练集"></a>划分测试集和训练集</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.model_selection <span class="keyword">import</span> train_test_split</span><br><span class="line">Xtrain,Xtest,Ytrain,Ytest = train_test_split(wine.data,wine.target,test_size = <span class="number">0.3</span>)</span><br></pre></td></tr></table></figure>
-
-<h3 id="核心代码"><a href="#核心代码" class="headerlink" title="核心代码"></a>核心代码</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">rfc = RandomForestClassifier(random_state = <span class="number">0</span>)</span><br><span class="line">rfc = rfc.fit(Xtrain,Ytrain)</span><br><span class="line">score_r = rfc.score(Xtest,Ytest)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;Random Forest:&#123;&#125;&quot;</span>.<span class="built_in">format</span>(score_r))</span><br></pre></td></tr></table></figure>
-<p>和决策树几乎一模一样，核心代码似乎也就这么几行：</p>
-<ul>
-<li>建立分类器rfc</li>
-<li>带入数据进行训练</li>
-<li>利用测试集给出评分</li>
-</ul>
-<h3 id="特征重要性"><a href="#特征重要性" class="headerlink" title="特征重要性"></a>特征重要性</h3><p>可以输出模型中每一个特征的重要性程度</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="built_in">print</span>(rfc.feature_importances_)</span><br></pre></td></tr></table></figure>
-
-<p>下面是这么多次交叉验证之后所得到的准确率变化</p>
-<h3 id="预测"><a href="#预测" class="headerlink" title="预测"></a>预测</h3><p>Xtest可以换成所需要预测的数据，返回对应的标签</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">rfc.predict(Xtest)</span><br></pre></td></tr></table></figure>
-
-
-<h3 id="交叉验证"><a href="#交叉验证" class="headerlink" title="交叉验证"></a>交叉验证</h3><p>交叉验证就是不断的重新划分训练集和数据集进行验证，注意交叉验证的时候是不用<code>fit()</code>的</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.model_selection <span class="keyword">import</span> cross_val_score</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line">rfc = RandomForestClassifier(n_estimators = <span class="number">25</span>)</span><br><span class="line">rfc_s = cross_val_score(rfc,wine.data,wine.target,cv = <span class="number">10</span>)</span><br><span class="line"></span><br><span class="line">plt.plot(<span class="built_in">range</span>(<span class="number">1</span>,<span class="number">11</span>), rfc_s,label = <span class="string">&quot;RandomForest&quot;</span>)</span><br><span class="line">plt.legend()</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
-
-<p>下面给出十次交叉验证的得分<br><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://img-blog.csdnimg.cn/20210130190153741.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L25ld3N1bnNvbg==,size_16,color_FFFFFF,t_70#pic_center"
-                      alt="在这里插入图片描述"
-                ></p>
-<h3 id="参数讲解"><a href="#参数讲解" class="headerlink" title="参数讲解"></a>参数讲解</h3><p>随机森林中的参数大多数与决策树中的参数差不多，最重要的是：</p>
-<ul>
-<li>n_estimator 森林中树中的个数，显然个数越多结果越准确。<br>其他的建议<a class="link"   href="https://blog.csdn.net/u011301133/article/details/52562874" >看这位大佬的<i class="fas fa-external-link-alt"></i></a></li>
-</ul>
-<h2 id="随机森林回归"><a href="#随机森林回归" class="headerlink" title="随机森林回归"></a>随机森林回归</h2><p>分类和回归的区别其实就是一个变量是分类变量，一个变量是连续变量。对于sklearn来说几乎没什么区别</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.datasets <span class="keyword">import</span> load_boston</span><br><span class="line"><span class="keyword">from</span> sklearn.model_selection <span class="keyword">import</span> cross_val_score</span><br><span class="line"><span class="keyword">from</span> sklearn.ensemble <span class="keyword">import</span> RandomForestRegressor</span><br><span class="line"></span><br><span class="line">boston = load_boston()</span><br><span class="line">reg = RandomForestRegressor(n_estimators = <span class="number">100</span>,random_state = <span class="number">0</span>)</span><br><span class="line">cross_val_score(reg, boston.data, boston.target, cv = <span class="number">10</span> ,scoring = <span class="string">&quot;neg_mean_squared_error&quot;</span>)</span><br></pre></td></tr></table></figure>
-<p>其他都和分类树一样</p>
-<h2 id="案例分析"><a href="#案例分析" class="headerlink" title="案例分析"></a>案例分析</h2><p><strong>随机森林在乳腺癌数据上的调参</strong></p>
-<h3 id="基础代码"><a href="#基础代码" class="headerlink" title="基础代码"></a>基础代码</h3><p>下面调用了乳腺癌患者的例子，给出10次交叉验证的结果</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.datasets <span class="keyword">import</span> load_breast_cancer</span><br><span class="line"><span class="keyword">from</span> sklearn.impute <span class="keyword">import</span> SimpleImputer</span><br><span class="line"><span class="keyword">from</span> sklearn.ensemble <span class="keyword">import</span> RandomForestRegressor</span><br><span class="line"><span class="keyword">from</span> sklearn.model_selection <span class="keyword">import</span> GridSearchCV</span><br><span class="line"><span class="keyword">from</span> sklearn.model_selection <span class="keyword">import</span> cross_val_score</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line">data = load_breast_cancer()</span><br><span class="line"></span><br><span class="line">rfc = RandomForestClassifier(n_estimators=<span class="number">100</span>,random_state=<span class="number">90</span>)</span><br><span class="line">score_pre = cross_val_score(rfc,data.data,data.target,cv=<span class="number">10</span>).mean()</span><br><span class="line"><span class="built_in">print</span>(score_pre)</span><br></pre></td></tr></table></figure>
-<p>最后结果为<code>0.9648809523809524</code>，还是比较准确的</p>
-<h3 id="调参"><a href="#调参" class="headerlink" title="调参"></a>调参</h3><p>但是我还是不满意，于是我使用了200次循环，每次循环取十次交叉验证的平均值，并逐次增加树的数量</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.datasets <span class="keyword">import</span> load_breast_cancer</span><br><span class="line"><span class="keyword">from</span> sklearn.ensemble <span class="keyword">import</span> RandomForestClassifier</span><br><span class="line"><span class="keyword">from</span> sklearn.model_selection <span class="keyword">import</span> GridSearchCV</span><br><span class="line"><span class="keyword">from</span> sklearn.model_selection <span class="keyword">import</span> cross_val_score</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line">data = load_breast_cancer()</span><br><span class="line"></span><br><span class="line">scorel = []</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>,<span class="number">200</span>,<span class="number">10</span>):</span><br><span class="line">    rfc = RandomForestClassifier(n_estimators=i+<span class="number">1</span>,n_jobs=-<span class="number">1</span>,random_state=<span class="number">90</span>)</span><br><span class="line">    score = cross_val_score(rfc,data.data,data.target,cv=<span class="number">10</span>).mean()</span><br><span class="line">    scorel.append(score)</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">max</span>(scorel),(scorel.index(<span class="built_in">max</span>(scorel))*<span class="number">10</span>)+<span class="number">1</span>)</span><br><span class="line">plt.figure(figsize=[<span class="number">20</span>,<span class="number">5</span>])</span><br><span class="line">plt.plot(<span class="built_in">range</span>(<span class="number">1</span>,<span class="number">201</span>,<span class="number">10</span>),scorel)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
-<p>结果有<img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://img-blog.csdnimg.cn/20210130190141256.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L25ld3N1bnNvbg==,size_16,color_FFFFFF,t_70#pic_center"
-                      alt="在这里插入图片描述"
-                ></p>
-<h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>菜菜后面还写了一堆调参的，但对我一个只打一打美赛的菜鸡好像其实用不到这么多，感兴趣的自己去b站搜菜菜的sklearn吧</p>
-]]></content>
-      <categories>
-        <category>code</category>
-      </categories>
-      <tags>
-        <tag>python</tag>
-        <tag>sklearn</tag>
-        <tag>rdf</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>seaborn入门(2)继续展示seaborn的各种绘图效果</title>
-    <url>/2021/11/02/seaborn2/</url>
-    <content><![CDATA[<h1 id="seaborn入门-2"><a href="#seaborn入门-2" class="headerlink" title="seaborn入门(2)"></a>seaborn入门(2)</h1><h2 id="准备数据集"><a href="#准备数据集" class="headerlink" title="准备数据集"></a>准备数据集</h2><p>续接上文</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">import</span> seaborn <span class="keyword">as</span> sns</span><br><span class="line">tips_df = sns.load_dataset(name=<span class="string">&#x27;tips&#x27;</span>,cache=<span class="literal">True</span>,data_home=<span class="string">&quot;./seaborn-data&quot;</span>)</span><br></pre></td></tr></table></figure>
-
-<h2 id="设置风格"><a href="#设置风格" class="headerlink" title="设置风格"></a>设置风格</h2><p>共有4种风格可以选，分别是”white”, “dark”, “whitegrid”, “darkgrid”, “ticks”。</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">sns.set_style(<span class="string">&quot;dark&quot;</span>)</span><br></pre></td></tr></table></figure>
-<h2 id="简单设置图中元素"><a href="#简单设置图中元素" class="headerlink" title="简单设置图中元素"></a>简单设置图中元素</h2><ul>
-<li>设置画布大小</li>
-</ul>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">plt.figure(figsize=(<span class="number">8</span>,<span class="number">4</span>))</span><br></pre></td></tr></table></figure>
-<ul>
-<li>设置字体</li>
-</ul>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">sns.set_context(<span class="string">&#x27;paper&#x27;</span>,font_scale=<span class="number">1.4</span>) </span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>其中’paper’为风格，还有talk,poster等风格</p>
-</blockquote>
-<ul>
-<li>设置坐标轴<br>例如下面的代码是删除左边的坐标轴，同理还可以设置<code>bottom = True</code>。<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">sns.despine(left = <span class="literal">True</span>)</span><br></pre></td></tr></table></figure></li>
-</ul>
-<h2 id="柱状图"><a href="#柱状图" class="headerlink" title="柱状图"></a>柱状图</h2><p>男性女性给的小费差异，默认来看是通过男性给小费的平均值和女性给小费的平均值来进行比较，也可以通过中位数<code>estimator = np.media</code>，标准差<code>np.std</code>，协方差<code>np.cov来估计</code></p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">sns.barplot(x = <span class="string">&#x27;sex&#x27;</span>, y = <span class="string">&#x27;total_bill&#x27;</span>, data = tips_df, estimator=np.mean)</span><br></pre></td></tr></table></figure>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://img-blog.csdnimg.cn/20210129203730986.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L25ld3N1bnNvbg==,size_16,color_FFFFFF,t_70#pic_center"
-                      alt="在这里插入图片描述"
-                ></p>
-<h2 id="计数图"><a href="#计数图" class="headerlink" title="计数图"></a>计数图</h2><p>与之相比，计数图可以对某个数据集统计数量</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">sns.countplot(x = <span class="string">&#x27;sex&#x27;</span>, data = tips_df)</span><br></pre></td></tr></table></figure>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://img-blog.csdnimg.cn/20210129221529262.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L25ld3N1bnNvbg==,size_16,color_FFFFFF,t_70#pic_center"
-                      alt="在这里插入图片描述"
-                ></p>
-<h2 id="箱型图"><a href="#箱型图" class="headerlink" title="箱型图"></a>箱型图</h2><p>这种图不是很懂啊，希望有大佬来分析以下QwQ</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">sns.boxplot(x = <span class="string">&#x27;day&#x27;</span>,y = <span class="string">&#x27;total_bill&#x27;</span>, data = tips_df, hue = <span class="string">&#x27;sex&#x27;</span>)</span><br></pre></td></tr></table></figure>
-
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://img-blog.csdnimg.cn/20210129221720323.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L25ld3N1bnNvbg==,size_16,color_FFFFFF,t_70#pic_center"
-                      alt="在这里插入图片描述"
-                ></p>
-<h2 id="小提琴图"><a href="#小提琴图" class="headerlink" title="小提琴图"></a>小提琴图</h2><p>同上，感觉这图有点骚,大概就是代表数据的分布。</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">sns.violinplot(x = <span class="string">&#x27;day&#x27;</span>,y = <span class="string">&#x27;total_bill&#x27;</span>, data = tips_df, hue = <span class="string">&#x27;sex&#x27;</span>,split = <span class="literal">True</span>)</span><br></pre></td></tr></table></figure>
-
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://img-blog.csdnimg.cn/20210129221827101.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L25ld3N1bnNvbg==,size_16,color_FFFFFF,t_70#pic_center"
-                      alt="在这里插入图片描述"
-                ></p>
-<h2 id="剥离图"><a href="#剥离图" class="headerlink" title="剥离图"></a>剥离图</h2><p>这是一个代表不同数据点的散点图，其中一个变量是分类变量，代表着数据的平均分布</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">sns.stripplot(x = <span class="string">&#x27;day&#x27;</span>,y = <span class="string">&#x27;total_bill&#x27;</span>, data = tips_df,jitter = <span class="literal">True</span>,)</span><br></pre></td></tr></table></figure>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://img-blog.csdnimg.cn/20210129222746989.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L25ld3N1bnNvbg==,size_16,color_FFFFFF,t_70#pic_center"
-                      alt="在这里插入图片描述"
-                ></p>
-<h2 id="分簇散点图"><a href="#分簇散点图" class="headerlink" title="分簇散点图"></a>分簇散点图</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">sns.swarmplot(x  = <span class="string">&#x27;day&#x27;</span>,y = <span class="string">&#x27;total_bill&#x27;</span>, data = tips_df)</span><br></pre></td></tr></table></figure>
-
-<p>算是小提琴图的点状形式吧<br><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://img-blog.csdnimg.cn/20210129223303445.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L25ld3N1bnNvbg==,size_16,color_FFFFFF,t_70#pic_center"
-                      alt="在这里插入图片描述"
-                ></p>
-]]></content>
-      <categories>
-        <category>code</category>
-      </categories>
-      <tags>
-        <tag>python</tag>
-        <tag>seaborn</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>seaborn入门(1)展示seaborn的各种绘图效果</title>
-    <url>/2021/11/02/seaborn1/</url>
-    <content><![CDATA[<h1 id="seaborn入门-1-展示seaborn的各种绘图效果"><a href="#seaborn入门-1-展示seaborn的各种绘图效果" class="headerlink" title="seaborn入门(1)展示seaborn的各种绘图效果"></a>seaborn入门(1)展示seaborn的各种绘图效果</h1><h2 id="导入包"><a href="#导入包" class="headerlink" title="导入包"></a>导入包</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">import</span> seaborn <span class="keyword">as</span> sns</span><br></pre></td></tr></table></figure>
-
-<h2 id="载入数据集"><a href="#载入数据集" class="headerlink" title="载入数据集"></a>载入数据集</h2><p>以下代码可以查看seaborn自带的数据集</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="built_in">print</span>(sns.get_dataset_names())</span><br></pre></td></tr></table></figure>
-<p>这里使用<strong>车祸信息</strong>作为原始数据集,按理来说下面代码就可以实现导入</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">crash_df = sns.load_dataset(<span class="string">&quot;car_crashes&quot;</span>)</span><br></pre></td></tr></table></figure>
-<p>但实际上，由于不可描述的某种抗力，导致在下载数据集的时候有可能下载不出来(<del>如果你加载出来了当我没说</del>)，所以<strong>需要到github上提前下载数据集</strong>(<a class="link"   href="https://github.com/mwaskom/seaborn-data" >https://github.com/mwaskom/seaborn-data<i class="fas fa-external-link-alt"></i></a>)<u>(建议先导入码云之后再下载)</u>，下载之后将数据集放入与文件相同的目录下，然后使用以下代码：</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">crash_df = sns.load_dataset(name=<span class="string">&quot;car_crashes&quot;</span>,cache=<span class="literal">True</span>,data_home=<span class="string">&quot;./seaborn-data&quot;</span>)</span><br></pre></td></tr></table></figure>
-<p>现在可以查看表的内容了</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="built_in">print</span>(crash_df.head())</span><br></pre></td></tr></table></figure>
-
-<h2 id="画图"><a href="#画图" class="headerlink" title="画图"></a>画图</h2><p>首先，选择你的风格,分别是”white”, “dark”, “whitegrid”, “darkgrid”, “ticks”</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">sns.set_style(<span class="string">&#x27;white&#x27;</span>)</span><br></pre></td></tr></table></figure>
-
-
-<h3 id="简单展示几种绘图方式"><a href="#简单展示几种绘图方式" class="headerlink" title="简单展示几种绘图方式"></a>简单展示几种绘图方式</h3><h4 id="displot"><a href="#displot" class="headerlink" title="displot()"></a>displot()</h4><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">sns.displot(crash_df[<span class="string">&#x27;not_distracted&#x27;</span>],kde = <span class="literal">True</span>)</span><br></pre></td></tr></table></figure>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://img-blog.csdnimg.cn/20210129195444571.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L25ld3N1bnNvbg==,size_16,color_FFFFFF,t_70#pic_center"
-                      alt="在这里插入图片描述"
-                ></p>
-<h4 id="kdeplot"><a href="#kdeplot" class="headerlink" title="kdeplot()"></a>kdeplot()</h4><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">sns.kdeplot(crash_df[<span class="string">&#x27;speeding&#x27;</span>],crash_df[<span class="string">&#x27;alcohol&#x27;</span>], data = crash_df, shade = </span><br><span class="line"><span class="literal">True</span> ,cbar=<span class="literal">True</span>)</span><br></pre></td></tr></table></figure>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://img-blog.csdnimg.cn/20210129195527693.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L25ld3N1bnNvbg==,size_16,color_FFFFFF,t_70#pic_center"
-                      alt="在这里插入图片描述"
-                ></p>
-<h4 id="jointplot"><a href="#jointplot" class="headerlink" title="jointplot()"></a>jointplot()</h4><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">sns.jointplot(x = <span class="string">&#x27;speeding&#x27;</span>, y = <span class="string">&#x27;alcohol&#x27;</span>, data = crash_df,kind = <span class="string">&#x27;kde&#x27;</span>)</span><br></pre></td></tr></table></figure>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://img-blog.csdnimg.cn/20210129195543526.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L25ld3N1bnNvbg==,size_16,color_FFFFFF,t_70#pic_center"
-                      alt="在这里插入图片描述"
-                ></p>
-<h4 id="pairplot"><a href="#pairplot" class="headerlink" title="pairplot()"></a>pairplot()</h4><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">sns.pairplot(crash_df)</span><br></pre></td></tr></table></figure>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://img-blog.csdnimg.cn/20210129195640960.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L25ld3N1bnNvbg==,size_16,color_FFFFFF,t_70#pic_center"
-                      alt="在这里插入图片描述"
-                ></p>
-<p>或者可以使用<strong>hue</strong>分类<u>（这里重新导入了一个数据集）</u></p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">tips_df = sns.load_dataset(name=<span class="string">&#x27;tips&#x27;</span>,cache=<span class="literal">True</span>,data_home=<span class="string">&quot;./seaborndata&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(tips_df.head())</span><br><span class="line">sns.pairplot(tips_df, hue = <span class="string">&#x27;sex&#x27;</span>,)</span><br></pre></td></tr></table></figure>
-
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://img-blog.csdnimg.cn/20210129195651651.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L25ld3N1bnNvbg==,size_16,color_FFFFFF,t_70#pic_center"
-                      alt="在这里插入图片描述"
-                ></p>
-<h4 id="rugplot"><a href="#rugplot" class="headerlink" title="rugplot()"></a>rugplot()</h4><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment">#这里用的是上面刚刚载入的数据集</span></span><br><span class="line">sns.rugplot(tips_df[<span class="string">&#x27;tip&#x27;</span>])</span><br></pre></td></tr></table></figure>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://img-blog.csdnimg.cn/20210129195702475.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L25ld3N1bnNvbg==,size_16,color_FFFFFF,t_70#pic_center"
-                      alt="在这里插入图片描述"
-                ></p>
-]]></content>
-      <categories>
-        <category>code</category>
-      </categories>
-      <tags>
-        <tag>python</tag>
-        <tag>seaborn</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>seaborn入门(3)调色盘</title>
-    <url>/2021/11/02/seaborn3/</url>
-    <content><![CDATA[<h1 id="seaborn入门-3-调色盘"><a href="#seaborn入门-3-调色盘" class="headerlink" title="seaborn入门(3)调色盘"></a>seaborn入门(3)调色盘</h1><h2 id="基础准备"><a href="#基础准备" class="headerlink" title="基础准备"></a>基础准备</h2><p>续接上文</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">import</span> seaborn <span class="keyword">as</span> sns</span><br><span class="line">tips_df = sns.load_dataset(name=<span class="string">&#x27;tips&#x27;</span>,cache=<span class="literal">True</span>,data_home=<span class="string">&quot;./seaborn-data&quot;</span>)</span><br><span class="line">sns.set_style(<span class="string">&#x27;dark&#x27;</span>)</span><br><span class="line">sns.set_context(<span class="string">&#x27;talk&#x27;</span>)</span><br></pre></td></tr></table></figure>
-
-<h2 id="调色盘"><a href="#调色盘" class="headerlink" title="调色盘"></a>调色盘</h2><p>访问这个界面你能看到调色看给你的一些风格样式<br><code>https://matplotlib.org/3.3.1/tutorials/colors/colormaps.html</code><br><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://img-blog.csdnimg.cn/20210129224410260.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L25ld3N1bnNvbg==,size_16,color_FFFFFF,t_70#pic_center"
-                      alt="在这里插入图片描述"
-                ><br>例如我选一个夏天风情的</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">sns.stripplot(x = <span class="string">&#x27;day&#x27;</span>,y = <span class="string">&#x27;total_bill&#x27;</span>, data = tips_df,jitter = <span class="literal">True</span>,hue = <span class="string">&#x27;sex&#x27;</span>,palette = <span class="string">&#x27;summer&#x27;</span>)</span><br></pre></td></tr></table></figure>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://img-blog.csdnimg.cn/20210129225343154.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L25ld3N1bnNvbg==,size_16,color_FFFFFF,t_70#pic_center"
-                      alt="在这里插入图片描述"
-                ></p>
-]]></content>
-      <categories>
-        <category>code</category>
-      </categories>
-      <tags>
-        <tag>python</tag>
-        <tag>seaborn</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>seaborn入门(4)关联系数矩阵和热力图</title>
-    <url>/2021/11/02/seaborn4/</url>
-    <content><![CDATA[<h1 id="seaborn入门-4-关联系数矩阵和热力图"><a href="#seaborn入门-4-关联系数矩阵和热力图" class="headerlink" title="seaborn入门(4)关联系数矩阵和热力图"></a>seaborn入门(4)关联系数矩阵和热力图</h1><h2 id="关联系数矩阵"><a href="#关联系数矩阵" class="headerlink" title="关联系数矩阵"></a>关联系数矩阵</h2><p>这个懂的都懂，大概就是表示两个变量之间的关联性。</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">import</span> seaborn <span class="keyword">as</span> sns</span><br><span class="line">tips_df = sns.load_dataset(name=<span class="string">&#x27;tips&#x27;</span>,cache=<span class="literal">True</span>,data_home=<span class="string">&quot;./seaborn-data&quot;</span>)</span><br><span class="line">tips_mx = tips_df.corr()</span><br><span class="line"><span class="built_in">print</span>(tips_df.corr())</span><br></pre></td></tr></table></figure>
-<p>载入数据有问题看seaborn入门(1)<br>得到如下结果<br><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://img-blog.csdnimg.cn/20210129230000142.png#pic_center"
-                      alt="在这里插入图片描述"
-                ></p>
-<h2 id="热力图"><a href="#热力图" class="headerlink" title="热力图"></a>热力图</h2><p>我们可以将上面的矩阵可视化</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">sns.heatmap(tips_mx,annot = <span class="literal">True</span> , cmap = <span class="string">&#x27;Blues&#x27;</span>)</span><br></pre></td></tr></table></figure>
-<ul>
-<li>其中cmap的选择和<a class="link"   href="https://editor.csdn.net/md/?articleId=113408019" >调色盘<i class="fas fa-external-link-alt"></i></a>一样</li>
-</ul>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://img-blog.csdnimg.cn/20210129230758969.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L25ld3N1bnNvbg==,size_16,color_FFFFFF,t_70#pic_center"
-                      alt="在这里插入图片描述"
-                ></p>
-<h2 id="酷酷的热力图"><a href="#酷酷的热力图" class="headerlink" title="酷酷的热力图"></a>酷酷的热力图</h2><p>我们采用新的数据，并创建一个数据透视图。</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">flights = sns.load_dataset(name=<span class="string">&#x27;flights&#x27;</span>,cache=<span class="literal">True</span>,data_home=<span class="string">&quot;./seaborn-data&quot;</span>)</span><br><span class="line"><span class="comment">#数据透视图创建</span></span><br><span class="line">flights = flights.pivot_table(index = <span class="string">&#x27;month&#x27;</span>,columns = <span class="string">&#x27;year&#x27;</span>, values = <span class="string">&#x27;passengers&#x27;</span>)</span><br></pre></td></tr></table></figure>
-<p>原来的数据是这样的<img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://img-blog.csdnimg.cn/20210129232036805.png#pic_center"
-                      alt="在这里插入图片描述"
-                ><br>数据透视图是这样的，表示某年某月某日乘坐飞机的人数</p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://img-blog.csdnimg.cn/20210129231848465.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L25ld3N1bnNvbg==,size_16,color_FFFFFF,t_70#pic_center"
-                      alt="在这里插入图片描述"
-                ><br>画成热力图就是<br><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://img-blog.csdnimg.cn/20210129232302523.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L25ld3N1bnNvbg==,size_16,color_FFFFFF,t_70#pic_center"
-                      alt="在这里插入图片描述"
-                ><br><del>有种马赛克的美感</del> </p>
-]]></content>
-      <categories>
-        <category>code</category>
-      </categories>
-      <tags>
-        <tag>python</tag>
-        <tag>seaborn</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>seaborn入门(5)群图(cluster map)</title>
-    <url>/2021/11/02/seaborn5/</url>
-    <content><![CDATA[<h1 id="seaborn入门-5-群图-cluster-map"><a href="#seaborn入门-5-群图-cluster-map" class="headerlink" title="seaborn入门(5)群图(cluster map)"></a>seaborn入门(5)群图(cluster map)</h1><h2 id="群图-cluster-map"><a href="#群图-cluster-map" class="headerlink" title="群图(cluster map)"></a>群图(cluster map)</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">import</span> seaborn <span class="keyword">as</span> sns</span><br><span class="line">iris = sns.load_dataset(name=<span class="string">&#x27;iris&#x27;</span>,cache=<span class="literal">True</span>,data_home=<span class="string">&quot;./seaborn-data&quot;</span>)</span><br><span class="line">species = iris.pop(<span class="string">&#x27;species&#x27;</span>)</span><br><span class="line"><span class="built_in">print</span>(species)</span><br><span class="line">sns.clustermap(iris)</span><br></pre></td></tr></table></figure>
-
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://img-blog.csdnimg.cn/20210129233342616.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L25ld3N1bnNvbg==,size_16,color_FFFFFF,t_70#pic_center"
-                      alt="在这里插入图片描述"
-                ><br>这图可能有亿点点复杂，但其实很简单(<del>并不是</del>)<br>这就是所谓的<strong>分层聚类热图</strong>，首先计算了点与点之间的距离，最接近的会被加入，然后开始比较行与列之间的关系。（<del>说了个几把</del> ）</p>
-<p><strong>让我们稍微换一个简单一点点的例子</strong></p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">flights = flights.pivot_table(index = <span class="string">&#x27;month&#x27;</span>,columns = <span class="string">&#x27;year&#x27;</span>, values = <span class="string">&#x27;passengers&#x27;</span>)</span><br><span class="line">flights = flights.pivot_table(index = <span class="string">&#x27;month&#x27;</span>,columns = <span class="string">&#x27;year&#x27;</span>, values = <span class="string">&#x27;passengers&#x27;</span>)</span><br><span class="line">sns.clustermap(flights,cmap = <span class="string">&quot;Blues&quot;</span>, standard_scale=<span class="number">1</span>)</span><br></pre></td></tr></table></figure>
-<p>flights代表的是一个二维数组，代表某年某月的乘客人数，<a class="link"   href="https://blog.csdn.net/newsunson/article/details/113408300" >详情见<i class="fas fa-external-link-alt"></i></a></p>
-<p>所以我们得到下面的图<br><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://img-blog.csdnimg.cn/20210129234934427.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L25ld3N1bnNvbg==,size_16,color_FFFFFF,t_70#pic_center"
-                      alt="在这里插入图片描述"
-                ><br>你会发现年份和月份并不是按着顺序排列的，这其实就是一个相当于聚类的过程，你可以把他看成一个聚类后的热力图（<strong>我以为我懂了，仔细一想我好像还是有点懵，希望大佬们来补充一下</strong>）</p>
-]]></content>
-      <categories>
-        <category>code</category>
-      </categories>
-      <tags>
-        <tag>python</tag>
-        <tag>seaborn</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>seaborn入门(6)PairGrid</title>
-    <url>/2021/11/02/seaborn6/</url>
-    <content><![CDATA[<h1 id="seaborn入门-6-PairGrid"><a href="#seaborn入门-6-PairGrid" class="headerlink" title="seaborn入门(6)PairGrid"></a>seaborn入门(6)PairGrid</h1><h2 id="PairGrid"><a href="#PairGrid" class="headerlink" title="PairGrid"></a>PairGrid</h2><p>代码和图</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">import</span> seaborn <span class="keyword">as</span> sns</span><br><span class="line">iris = sns.load_dataset(name=<span class="string">&#x27;iris&#x27;</span>,cache=<span class="literal">True</span>,data_home=<span class="string">&quot;./seaborn-data&quot;</span>)</span><br><span class="line">iris_g = sns.PairGrid(iris,hue = <span class="string">&quot;species&quot;</span>)</span><br><span class="line">iris_g.<span class="built_in">map</span>(plt.scatter)</span><br></pre></td></tr></table></figure>
-
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://img-blog.csdnimg.cn/20210130001248178.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L25ld3N1bnNvbg==,size_16,color_FFFFFF,t_70#pic_center"
-                      alt="在这里插入图片描述"
-                ></p>
-<p>累了，溜了</p>
-]]></content>
-      <categories>
-        <category>code</category>
-      </categories>
-      <tags>
-        <tag>python</tag>
-        <tag>seaborn</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>sklearn决策树</title>
     <url>/2021/11/02/python-dt/</url>
     <content><![CDATA[<h1 id="sklearn决策树"><a href="#sklearn决策树" class="headerlink" title="sklearn决策树"></a>sklearn决策树</h1><h3 id="参数表示"><a href="#参数表示" class="headerlink" title="参数表示"></a>参数表示</h3><p>决策树中有<strong>参数</strong>如下：</p>
@@ -652,6 +368,195 @@
         <tag>python</tag>
         <tag>sklean</tag>
         <tag>决策树</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>sklearn聚类算法Kmeans</title>
+    <url>/2021/11/02/python-kmeans/</url>
+    <content><![CDATA[<h1 id="sklearn聚类算法Kmeans"><a href="#sklearn聚类算法Kmeans" class="headerlink" title="sklearn聚类算法Kmeans"></a>sklearn聚类算法Kmeans</h1><h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>聚类算法是一种<strong>无监督学习算法</strong>，也就是说它不需要<strong>标签</strong>,只需要大量的特征就可以把数据集聚类，然后聚类在自己给他贴标签。 这里Kmeans的具体原理不作详述。</p>
+<h2 id="案例"><a href="#案例" class="headerlink" title="案例"></a>案例</h2><h3 id="数据生成"><a href="#数据生成" class="headerlink" title="数据生成"></a>数据生成</h3><p>通过sklearn自带的<code>make_blobs</code>函数可以生成聚类所需的数据集，注意，所生成的数据集是几个<strong>分簇</strong>。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.datasets <span class="keyword">import</span> make_blobs</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line">X, y = make_blobs(n_samples=<span class="number">500</span>,n_features=<span class="number">2</span>,centers=<span class="number">4</span>,random_state=<span class="number">1</span>)</span><br><span class="line">fig, ax1 = plt.subplots(<span class="number">1</span>)</span><br><span class="line">ax1.scatter(X[:, <span class="number">0</span>], X[:, <span class="number">1</span>],marker=<span class="string">&#x27;o&#x27;</span>,s=<span class="number">8</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://img-blog.csdnimg.cn/20210201163842174.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L25ld3N1bnNvbg==,size_16,color_FFFFFF,t_70#pic_center"
+                      alt="在这里插入图片描述"
+                ></p>
+<p>上面是聚类前的图像，其中<code>X</code>是一个二维数组，每行有一个点的横坐标和纵坐标，<code>y</code>是已经给好的分类，是一个一维的数组，代表不同数据所在的簇。，下图是实际按不同簇分开的数据<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://img-blog.csdnimg.cn/20210201163856733.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L25ld3N1bnNvbg==,size_16,color_FFFFFF,t_70#pic_center"
+                      alt="在这里插入图片描述"
+                ></p>
+<h3 id="聚类"><a href="#聚类" class="headerlink" title="聚类"></a>聚类</h3><p>聚类依然是通过</p>
+<ul>
+<li>类的实例化</li>
+<li>fit()函数</li>
+<li>可以直接同<code>.labels_</code>或<code>.fit_predict</code>得到分类结果<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.cluster <span class="keyword">import</span> KMeans</span><br><span class="line">cluster = KMeans(n_clusters = <span class="number">3</span>, random_state = <span class="number">0</span>)</span><br><span class="line">cluster = cluster.fit(X)</span><br><span class="line">y_pred = cluster.labels_</span><br><span class="line"><span class="comment">#y_pred = cluster.fit_predict(X)</span></span><br></pre></td></tr></table></figure>
+所得到的y_pred是一个一维矩阵，包含了每一个点对应的类分类，分别为0,1,2</li>
+</ul>
+<h4 id="类的质心"><a href="#类的质心" class="headerlink" title="类的质心"></a>类的质心</h4><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">centroid = cluster.cluster_centers_</span><br></pre></td></tr></table></figure>
+<p><code>centroid == [[-7.09306648, -8.10994454], [-1.54234022,  4.43517599], [-8.0862351 , -3.5179868 ]]</code>代表所分三类的质心。可以说这个点的特征最能代表这一个分类</p>
+<h4 id="聚类的评估"><a href="#聚类的评估" class="headerlink" title="聚类的评估"></a>聚类的评估</h4><p>Inertia指每个样本点到其中心点的距离之和</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">inertia = cluster.inertia_</span><br></pre></td></tr></table></figure>
+<p>但似乎对于某些细长的类来说表现显然不太好，所以用<strong>轮廓系数</strong>来评估。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.metrics <span class="keyword">import</span> silhouette_score</span><br><span class="line">silhouette_score(X,y_pred)</span><br></pre></td></tr></table></figure>
+
+
+<h4 id="可视化"><a href="#可视化" class="headerlink" title="可视化"></a>可视化</h4><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">color = [<span class="string">&quot;red&quot;</span>,<span class="string">&quot;pink&quot;</span>,<span class="string">&quot;orange&quot;</span>,<span class="string">&quot;gray&quot;</span>]</span><br><span class="line">fig, ax1 = plt.subplots(<span class="number">1</span>)</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">3</span>):</span><br><span class="line">    ax1.scatter(X[y_pred==i, <span class="number">0</span>], X[y_pred==i, <span class="number">1</span>]</span><br><span class="line">     ,marker=<span class="string">&#x27;o&#x27;</span></span><br><span class="line">     ,s=<span class="number">8</span></span><br><span class="line">     ,c=color[i]</span><br><span class="line">     )</span><br><span class="line">ax1.scatter(centroid[:,<span class="number">0</span>],centroid[:,<span class="number">1</span>]</span><br><span class="line">     ,marker=<span class="string">&quot;x&quot;</span></span><br><span class="line">     ,s=<span class="number">15</span></span><br><span class="line">     ,c=<span class="string">&quot;black&quot;</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p>那几个黑叉叉就是质心<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://img-blog.csdnimg.cn/20210201163926542.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L25ld3N1bnNvbg==,size_16,color_FFFFFF,t_70#pic_center"
+                      alt="在这里插入图片描述"
+                ></p>
+<h4 id="分成4类会怎么样"><a href="#分成4类会怎么样" class="headerlink" title="分成4类会怎么样"></a>分成4类会怎么样</h4><p><strong>会更合理</strong><br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://img-blog.csdnimg.cn/20210201163940755.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L25ld3N1bnNvbg==,size_16,color_FFFFFF,t_70#pic_center"
+                      alt="在这里插入图片描述"
+                ></p>
+]]></content>
+      <categories>
+        <category>code</category>
+      </categories>
+      <tags>
+        <tag>python</tag>
+        <tag>sklearn</tag>
+        <tag>kmeans</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>sklearn主成分分析PCA</title>
+    <url>/2021/11/02/python-pca/</url>
+    <content><![CDATA[<h1 id="sklearn主成分分析PCA"><a href="#sklearn主成分分析PCA" class="headerlink" title="sklearn主成分分析PCA"></a>sklearn主成分分析PCA</h1><h2 id="数学原理"><a href="#数学原理" class="headerlink" title="数学原理"></a>数学原理</h2><p>给数学基础不是很好的看<br>PCA主要用于<strong>降维</strong>，比如一个人有<strong>身高，年龄，样貌，性别，智力，耐力，速度，成绩</strong>等等很多<strong>特征</strong>，<strong>每种特征便是一个维度</strong>。假如你觉得描述一个人的特征太多，你想要用<strong>一两个或几个特征</strong>就个以描述一个人，并且<strong>这几个特征包含之前提到所有特征所包含的信息</strong>，将这么原来的众多特征转化为几个特征的过程就是<strong>降维</strong>。而降维后得到的特征包含的<strong>信息量的多少也叫做贡献率</strong>，信息量越多越能够反应本质。</p>
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><p>这里举一个最常用的水仙花的例子</p>
+<h3 id="导入包"><a href="#导入包" class="headerlink" title="导入包"></a>导入包</h3><p>包括sklearn他的好基友们啦。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">from</span> sklearn.datasets <span class="keyword">import</span> load_iris</span><br><span class="line"><span class="keyword">from</span> sklearn.decomposition <span class="keyword">import</span> PCA</span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br></pre></td></tr></table></figure>
+
+<h3 id="导入数据"><a href="#导入数据" class="headerlink" title="导入数据"></a>导入数据</h3><p>这是一个水仙花的案例</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">iris = load_iris()</span><br><span class="line">y = iris.target</span><br><span class="line">x = iris.data</span><br></pre></td></tr></table></figure>
+
+<p>有<code>x.shape = (150, 4)</code>,即每朵花共有四个特征,分别为</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">iris.feature_names = </span><br><span class="line">                    [<span class="string">&#x27;sepal length (cm)&#x27;</span>,</span><br><span class="line">                     <span class="string">&#x27;sepal width (cm)&#x27;</span>,</span><br><span class="line">                     <span class="string">&#x27;petal length (cm)&#x27;</span>,</span><br><span class="line">                     <span class="string">&#x27;petal width (cm)&#x27;</span>]</span><br></pre></td></tr></table></figure>
+<p>而<code>y</code>是一个分类变量，分别为<code>[0,1,2]</code>代表三种不同的花</p>
+<h3 id="核心代码"><a href="#核心代码" class="headerlink" title="核心代码"></a>核心代码</h3><p>还是sklearn中的老三样:</p>
+<ul>
+<li>实例化PCA()</li>
+<li>调用<code>fit()</code>函数</li>
+<li>调用<code>transform()</code>函数<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">pca = PCA(n_components = <span class="number">2</span>)</span><br><span class="line">pca = pca.fit(x)</span><br><span class="line">x_dr = pca.transform(x)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>这里<code>n_components</code>表示降维后所得到的维度<br>或者也可以直接一步到位</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">x_dr = PCA(<span class="number">2</span>).fit_transform(x)</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="查看降维后所带有的信息量大小"><a href="#查看降维后所带有的信息量大小" class="headerlink" title="查看降维后所带有的信息量大小"></a>查看降维后所带有的信息量大小</h3><ul>
+<li>两个维度信息量大小<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="built_in">print</span>(pca.explained_variance_)</span><br></pre></td></tr></table></figure>
+可以得到<code>[4.22824171， 0.24267075]</code></li>
+<li>两个维度贡献率</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">pca.explained_variance_ratio_</span><br></pre></td></tr></table></figure>
+<p>可以得到<code>[0.92461872, 0.05306648]</code></p>
+<h3 id="可视化"><a href="#可视化" class="headerlink" title="可视化"></a>可视化</h3><p>当我们把数据降维后，可以观察其在新的维度上的分布</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">plt.figure()</span><br><span class="line">plt.scatter(x_dr[y == <span class="number">0</span>,<span class="number">0</span>],x_dr[y == <span class="number">0</span>,<span class="number">1</span>],c = <span class="string">&quot;red&quot;</span>,label = iris.target_names[<span class="number">0</span>])</span><br><span class="line">plt.scatter(x_dr[y == <span class="number">1</span>,<span class="number">0</span>],x_dr[y == <span class="number">1</span>,<span class="number">1</span>],c = <span class="string">&quot;black&quot;</span>,label = iris.target_names[<span class="number">1</span>])</span><br><span class="line">plt.scatter(x_dr[y == <span class="number">2</span>,<span class="number">0</span>],x_dr[y == <span class="number">2</span>,<span class="number">1</span>],c = <span class="string">&quot;orange&quot;</span>,label = iris.target_names[<span class="number">2</span>])</span><br><span class="line">plt.legend()</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>其中<code>x_dr[y = 0,0]用了布尔索引</code></p>
+</blockquote>
+<p>得到如下结果<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://img-blog.csdnimg.cn/20210201123828720.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L25ld3N1bnNvbg==,size_16,color_FFFFFF,t_70#pic_center"
+                      alt="在这里插入图片描述"
+                ></p>
+<p>可以这是一个分簇的分布，也就是说降维之后其实已经比较好分类了</p>
+<h3 id="扩展"><a href="#扩展" class="headerlink" title="扩展"></a>扩展</h3><h4 id="累计方差贡献率曲线"><a href="#累计方差贡献率曲线" class="headerlink" title="累计方差贡献率曲线"></a>累计方差贡献率曲线</h4><p>当选取维度不同时累计贡献率的曲线。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">pca_line = PCA().fit(x)</span><br><span class="line">plt.plot([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>],np.cumsum(pca_line.explained_variance_ratio_))</span><br><span class="line">plt.xticks([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>])</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://img-blog.csdnimg.cn/20210201123816813.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L25ld3N1bnNvbg==,size_16,color_FFFFFF,t_70#pic_center"
+                      alt="在这里插入图片描述"
+                ></p>
+<h4 id="最大似然估计选择超参数"><a href="#最大似然估计选择超参数" class="headerlink" title="最大似然估计选择超参数"></a>最大似然估计选择超参数</h4><p>这种方法可以自动选出最合适的维度</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">pca_mle = PCA(n_components = <span class="string">&quot;mle&quot;</span>)</span><br><span class="line">pca_mle = pca_mle.fit(x)</span><br><span class="line">x_mle = pca_mle.transform(x)</span><br><span class="line">pca_mle.explained_variance_ratio_.<span class="built_in">sum</span>()</span><br></pre></td></tr></table></figure>
+<p>比如上述例子为我们选了维度为3，累计贡献率高达0.994</p>
+<h4 id="按贡献率选择"><a href="#按贡献率选择" class="headerlink" title="按贡献率选择"></a>按贡献率选择</h4><p>意味着你想要他的累计贡献率达到0.97时的维度。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">pca_f = PCA(n_components=<span class="number">0.97</span>,svd_solver=<span class="string">&quot;full&quot;</span>)</span><br><span class="line">pca_f = pca_f.fit(x)</span><br><span class="line">x_f = pca_f.transform(x)</span><br><span class="line"><span class="built_in">print</span>(pca_f.explained_variance_ratio_)</span><br></pre></td></tr></table></figure>
+<p>贡献率分别为<code>[0.92461872, 0.05306648]</code></p>
+]]></content>
+      <categories>
+        <category>code</category>
+      </categories>
+      <tags>
+        <tag>python</tag>
+        <tag>sklearn</tag>
+        <tag>pca</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>sklearn随机森林</title>
+    <url>/2021/11/02/python-rdf/</url>
+    <content><![CDATA[<h1 id="sklearn随机森林"><a href="#sklearn随机森林" class="headerlink" title="sklearn随机森林"></a>sklearn随机森林</h1><p>本文基于菜菜的sklearn教学</p>
+<p>@[toc]</p>
+<h2 id="随机森林分类器"><a href="#随机森林分类器" class="headerlink" title="随机森林分类器"></a>随机森林分类器</h2><h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3><p>随机森林是一种集成算法，即运用大量不同的算法，选出最优的一个，主要是基于决策树。</p>
+<h3 id="引入包"><a href="#引入包" class="headerlink" title="引入包"></a>引入包</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.tree <span class="keyword">import</span> DecisionTreeClassifier</span><br><span class="line"><span class="keyword">from</span> sklearn.ensemble <span class="keyword">import</span> RandomForestClassifier</span><br><span class="line"><span class="keyword">from</span> sklearn.datasets <span class="keyword">import</span> load_wine</span><br></pre></td></tr></table></figure>
+
+<h3 id="导入数据"><a href="#导入数据" class="headerlink" title="导入数据"></a>导入数据</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">wine = load_wine()</span><br><span class="line"><span class="built_in">print</span>(wine.data.shape)</span><br><span class="line"><span class="built_in">print</span>(wine.target)</span><br></pre></td></tr></table></figure>
+
+<h3 id="划分测试集和训练集"><a href="#划分测试集和训练集" class="headerlink" title="划分测试集和训练集"></a>划分测试集和训练集</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.model_selection <span class="keyword">import</span> train_test_split</span><br><span class="line">Xtrain,Xtest,Ytrain,Ytest = train_test_split(wine.data,wine.target,test_size = <span class="number">0.3</span>)</span><br></pre></td></tr></table></figure>
+
+<h3 id="核心代码"><a href="#核心代码" class="headerlink" title="核心代码"></a>核心代码</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">rfc = RandomForestClassifier(random_state = <span class="number">0</span>)</span><br><span class="line">rfc = rfc.fit(Xtrain,Ytrain)</span><br><span class="line">score_r = rfc.score(Xtest,Ytest)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;Random Forest:&#123;&#125;&quot;</span>.<span class="built_in">format</span>(score_r))</span><br></pre></td></tr></table></figure>
+<p>和决策树几乎一模一样，核心代码似乎也就这么几行：</p>
+<ul>
+<li>建立分类器rfc</li>
+<li>带入数据进行训练</li>
+<li>利用测试集给出评分</li>
+</ul>
+<h3 id="特征重要性"><a href="#特征重要性" class="headerlink" title="特征重要性"></a>特征重要性</h3><p>可以输出模型中每一个特征的重要性程度</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="built_in">print</span>(rfc.feature_importances_)</span><br></pre></td></tr></table></figure>
+
+<p>下面是这么多次交叉验证之后所得到的准确率变化</p>
+<h3 id="预测"><a href="#预测" class="headerlink" title="预测"></a>预测</h3><p>Xtest可以换成所需要预测的数据，返回对应的标签</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">rfc.predict(Xtest)</span><br></pre></td></tr></table></figure>
+
+
+<h3 id="交叉验证"><a href="#交叉验证" class="headerlink" title="交叉验证"></a>交叉验证</h3><p>交叉验证就是不断的重新划分训练集和数据集进行验证，注意交叉验证的时候是不用<code>fit()</code>的</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.model_selection <span class="keyword">import</span> cross_val_score</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line">rfc = RandomForestClassifier(n_estimators = <span class="number">25</span>)</span><br><span class="line">rfc_s = cross_val_score(rfc,wine.data,wine.target,cv = <span class="number">10</span>)</span><br><span class="line"></span><br><span class="line">plt.plot(<span class="built_in">range</span>(<span class="number">1</span>,<span class="number">11</span>), rfc_s,label = <span class="string">&quot;RandomForest&quot;</span>)</span><br><span class="line">plt.legend()</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+
+<p>下面给出十次交叉验证的得分<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://img-blog.csdnimg.cn/20210130190153741.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L25ld3N1bnNvbg==,size_16,color_FFFFFF,t_70#pic_center"
+                      alt="在这里插入图片描述"
+                ></p>
+<h3 id="参数讲解"><a href="#参数讲解" class="headerlink" title="参数讲解"></a>参数讲解</h3><p>随机森林中的参数大多数与决策树中的参数差不多，最重要的是：</p>
+<ul>
+<li>n_estimator 森林中树中的个数，显然个数越多结果越准确。<br>其他的建议<a class="link"   href="https://blog.csdn.net/u011301133/article/details/52562874" >看这位大佬的<i class="fas fa-external-link-alt"></i></a></li>
+</ul>
+<h2 id="随机森林回归"><a href="#随机森林回归" class="headerlink" title="随机森林回归"></a>随机森林回归</h2><p>分类和回归的区别其实就是一个变量是分类变量，一个变量是连续变量。对于sklearn来说几乎没什么区别</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.datasets <span class="keyword">import</span> load_boston</span><br><span class="line"><span class="keyword">from</span> sklearn.model_selection <span class="keyword">import</span> cross_val_score</span><br><span class="line"><span class="keyword">from</span> sklearn.ensemble <span class="keyword">import</span> RandomForestRegressor</span><br><span class="line"></span><br><span class="line">boston = load_boston()</span><br><span class="line">reg = RandomForestRegressor(n_estimators = <span class="number">100</span>,random_state = <span class="number">0</span>)</span><br><span class="line">cross_val_score(reg, boston.data, boston.target, cv = <span class="number">10</span> ,scoring = <span class="string">&quot;neg_mean_squared_error&quot;</span>)</span><br></pre></td></tr></table></figure>
+<p>其他都和分类树一样</p>
+<h2 id="案例分析"><a href="#案例分析" class="headerlink" title="案例分析"></a>案例分析</h2><p><strong>随机森林在乳腺癌数据上的调参</strong></p>
+<h3 id="基础代码"><a href="#基础代码" class="headerlink" title="基础代码"></a>基础代码</h3><p>下面调用了乳腺癌患者的例子，给出10次交叉验证的结果</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.datasets <span class="keyword">import</span> load_breast_cancer</span><br><span class="line"><span class="keyword">from</span> sklearn.impute <span class="keyword">import</span> SimpleImputer</span><br><span class="line"><span class="keyword">from</span> sklearn.ensemble <span class="keyword">import</span> RandomForestRegressor</span><br><span class="line"><span class="keyword">from</span> sklearn.model_selection <span class="keyword">import</span> GridSearchCV</span><br><span class="line"><span class="keyword">from</span> sklearn.model_selection <span class="keyword">import</span> cross_val_score</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line">data = load_breast_cancer()</span><br><span class="line"></span><br><span class="line">rfc = RandomForestClassifier(n_estimators=<span class="number">100</span>,random_state=<span class="number">90</span>)</span><br><span class="line">score_pre = cross_val_score(rfc,data.data,data.target,cv=<span class="number">10</span>).mean()</span><br><span class="line"><span class="built_in">print</span>(score_pre)</span><br></pre></td></tr></table></figure>
+<p>最后结果为<code>0.9648809523809524</code>，还是比较准确的</p>
+<h3 id="调参"><a href="#调参" class="headerlink" title="调参"></a>调参</h3><p>但是我还是不满意，于是我使用了200次循环，每次循环取十次交叉验证的平均值，并逐次增加树的数量</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.datasets <span class="keyword">import</span> load_breast_cancer</span><br><span class="line"><span class="keyword">from</span> sklearn.ensemble <span class="keyword">import</span> RandomForestClassifier</span><br><span class="line"><span class="keyword">from</span> sklearn.model_selection <span class="keyword">import</span> GridSearchCV</span><br><span class="line"><span class="keyword">from</span> sklearn.model_selection <span class="keyword">import</span> cross_val_score</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line">data = load_breast_cancer()</span><br><span class="line"></span><br><span class="line">scorel = []</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>,<span class="number">200</span>,<span class="number">10</span>):</span><br><span class="line">    rfc = RandomForestClassifier(n_estimators=i+<span class="number">1</span>,n_jobs=-<span class="number">1</span>,random_state=<span class="number">90</span>)</span><br><span class="line">    score = cross_val_score(rfc,data.data,data.target,cv=<span class="number">10</span>).mean()</span><br><span class="line">    scorel.append(score)</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">max</span>(scorel),(scorel.index(<span class="built_in">max</span>(scorel))*<span class="number">10</span>)+<span class="number">1</span>)</span><br><span class="line">plt.figure(figsize=[<span class="number">20</span>,<span class="number">5</span>])</span><br><span class="line">plt.plot(<span class="built_in">range</span>(<span class="number">1</span>,<span class="number">201</span>,<span class="number">10</span>),scorel)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p>结果有<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://img-blog.csdnimg.cn/20210130190141256.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L25ld3N1bnNvbg==,size_16,color_FFFFFF,t_70#pic_center"
+                      alt="在这里插入图片描述"
+                ></p>
+<h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>菜菜后面还写了一堆调参的，但对我一个只打一打美赛的菜鸡好像其实用不到这么多，感兴趣的自己去b站搜菜菜的sklearn吧</p>
+]]></content>
+      <categories>
+        <category>code</category>
+      </categories>
+      <tags>
+        <tag>python</tag>
+        <tag>sklearn</tag>
+        <tag>rdf</tag>
       </tags>
   </entry>
   <entry>
@@ -831,43 +736,6 @@
       </tags>
   </entry>
   <entry>
-    <title>从神经网络到深度学习</title>
-    <url>/2021/11/02/mlbasic/</url>
-    <content><![CDATA[<h1 id="从神经网络到深度学习"><a href="#从神经网络到深度学习" class="headerlink" title="从神经网络到深度学习"></a>从神经网络到深度学习</h1><hr>
-<h2 id="引入"><a href="#引入" class="headerlink" title="引入"></a>引入</h2><p>在之前我们已经介绍过了一些优化问题，然而并不是所有优化问题从输入到目标函数之间都有明确的公式。不如说，在生活中大部分时候我们都很难建立一个很准确的数学模型，同时也无法得知需要优化什么参数，特别是对于图片分类来说。例如，给你一张图片，让你分辨是猫还是狗。对于输入来说，我们有一张图片rgb三通道的所有值，而需要输出0或1分别代表猫和狗。为了解决这个问题，我们引入神经网络等相关一系列概念。<br><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://img2020.cnblogs.com/blog/1839046/202012/1839046-20201213200410529-875096804.png"
-                      alt="猫狗"
-                ></p>
-<h2 id="机器学习-神经网络-深度学习"><a href="#机器学习-神经网络-深度学习" class="headerlink" title="机器学习 神经网络 深度学习"></a>机器学习 神经网络 深度学习</h2><p>首先，有必要对神经网络、深度学习、机器学习的概念做个简单描述。</p>
-<p>神经网络，该模型灵感来自动物的中枢神经系统，通常呈现为相互连接的“神经元”，它可以对输入值通过反馈机制使得它们适应对应的输出。</p>
-<p>深度学习是神经网络的进阶版，它的基本思路与神经网络类似，但往往比神经网络有着更复杂的结构以及优化算法，是神经网络的纵向延伸，常见的模型有CNN, RNN, LSTM等。</p>
-<p>机器学习是一门多领域交叉学科，涉及概率论、统计学、逼近论、凸分析、算法复杂度理论等多门学科。专门研究计算机怎样模拟或实现人类的学习行为，以获取新的知识或技能，重新组织已有的知识结构使之不断改善自身的性能。</p>
-<p>下面的图片很好地描述了这三者之间的关系</p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://pic1.zhimg.com/80/v2-6d2584526f458fa512543d04ffb66c42_1440w.jpg?source=1940ef5c"
-                      alt="区别"
-                > </p>
-<h2 id="机器学习简介"><a href="#机器学习简介" class="headerlink" title="机器学习简介"></a>机器学习简介</h2><p><a class="link"   href="https://gitee.com/newsun-boki/XJTU_cource/blob/master/course3/1_ML_Basics.pdf" >ML<i class="fas fa-external-link-alt"></i></a></p>
-<h2 id="神经网络基础"><a href="#神经网络基础" class="headerlink" title="神经网络基础"></a>神经网络基础</h2><p><strong>好的入门博文</strong>：<a class="link"   href="https://www.cnblogs.com/subconscious/p/5058741.html" >神经网络入门<i class="fas fa-external-link-alt"></i></a></p>
-<p><strong>神经网络实践与理解</strong>：<a class="link"   href="http://playground.tensorflow.org/" >tensorflow游乐场<i class="fas fa-external-link-alt"></i></a></p>
-<p><strong>神经网络的详细理解</strong>：<a class="link"   href="https://b23.tv/c44LK8" >吴恩达神经网络<i class="fas fa-external-link-alt"></i></a></p>
-<p><strong>自己的板书</strong>:<a class="link"   href="https://gitee.com/newsun-boki/XJTU_cource/blob/master/course3/ml_nn.pdf" >ml_nn<i class="fas fa-external-link-alt"></i></a></p>
-<h2 id="pytorch的相关介绍"><a href="#pytorch的相关介绍" class="headerlink" title="pytorch的相关介绍"></a>pytorch的相关介绍</h2><p>pytorch是python的第三方库，是由facebook开源的神经网络框架，并有专门针对GPU加速模型训练的模块。与tensorflow不同，pytorch编程简洁，接口简单，且速度不逊色于其他框架，是当前神经网络最简洁，高效的实现方法之一。</p>
-<p><strong>好的博文</strong>：<a class="link"   href="https://zhuanlan.zhihu.com/p/265394674?utm_source=ZHShareTargetIDMore&utm_medium=social&utm_oi=907670979105415168" >知乎pytorch<i class="fas fa-external-link-alt"></i></a></p>
-]]></content>
-      <categories>
-        <category>rm</category>
-      </categories>
-      <tags>
-        <tag>machine leaning</tag>
-        <tag>rm</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>rosserial进行串口通信</title>
     <url>/2021/11/02/rosserial/</url>
     <content><![CDATA[<h1 id="rosserial进行串口通信"><a href="#rosserial进行串口通信" class="headerlink" title="rosserial进行串口通信"></a>rosserial进行串口通信</h1><h2 id="串口通信"><a href="#串口通信" class="headerlink" title="串口通信"></a>串口通信</h2><h3 id="基础介绍"><a href="#基础介绍" class="headerlink" title="基础介绍"></a>基础介绍</h3><ul>
@@ -1040,6 +908,287 @@
       </tags>
   </entry>
   <entry>
+    <title>seaborn入门(1)展示seaborn的各种绘图效果</title>
+    <url>/2021/11/02/seaborn1/</url>
+    <content><![CDATA[<h1 id="seaborn入门-1-展示seaborn的各种绘图效果"><a href="#seaborn入门-1-展示seaborn的各种绘图效果" class="headerlink" title="seaborn入门(1)展示seaborn的各种绘图效果"></a>seaborn入门(1)展示seaborn的各种绘图效果</h1><h2 id="导入包"><a href="#导入包" class="headerlink" title="导入包"></a>导入包</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">import</span> seaborn <span class="keyword">as</span> sns</span><br></pre></td></tr></table></figure>
+
+<h2 id="载入数据集"><a href="#载入数据集" class="headerlink" title="载入数据集"></a>载入数据集</h2><p>以下代码可以查看seaborn自带的数据集</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="built_in">print</span>(sns.get_dataset_names())</span><br></pre></td></tr></table></figure>
+<p>这里使用<strong>车祸信息</strong>作为原始数据集,按理来说下面代码就可以实现导入</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">crash_df = sns.load_dataset(<span class="string">&quot;car_crashes&quot;</span>)</span><br></pre></td></tr></table></figure>
+<p>但实际上，由于不可描述的某种抗力，导致在下载数据集的时候有可能下载不出来(<del>如果你加载出来了当我没说</del>)，所以<strong>需要到github上提前下载数据集</strong>(<a class="link"   href="https://github.com/mwaskom/seaborn-data" >https://github.com/mwaskom/seaborn-data<i class="fas fa-external-link-alt"></i></a>)<u>(建议先导入码云之后再下载)</u>，下载之后将数据集放入与文件相同的目录下，然后使用以下代码：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">crash_df = sns.load_dataset(name=<span class="string">&quot;car_crashes&quot;</span>,cache=<span class="literal">True</span>,data_home=<span class="string">&quot;./seaborn-data&quot;</span>)</span><br></pre></td></tr></table></figure>
+<p>现在可以查看表的内容了</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="built_in">print</span>(crash_df.head())</span><br></pre></td></tr></table></figure>
+
+<h2 id="画图"><a href="#画图" class="headerlink" title="画图"></a>画图</h2><p>首先，选择你的风格,分别是”white”, “dark”, “whitegrid”, “darkgrid”, “ticks”</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">sns.set_style(<span class="string">&#x27;white&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+
+<h3 id="简单展示几种绘图方式"><a href="#简单展示几种绘图方式" class="headerlink" title="简单展示几种绘图方式"></a>简单展示几种绘图方式</h3><h4 id="displot"><a href="#displot" class="headerlink" title="displot()"></a>displot()</h4><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">sns.displot(crash_df[<span class="string">&#x27;not_distracted&#x27;</span>],kde = <span class="literal">True</span>)</span><br></pre></td></tr></table></figure>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://img-blog.csdnimg.cn/20210129195444571.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L25ld3N1bnNvbg==,size_16,color_FFFFFF,t_70#pic_center"
+                      alt="在这里插入图片描述"
+                ></p>
+<h4 id="kdeplot"><a href="#kdeplot" class="headerlink" title="kdeplot()"></a>kdeplot()</h4><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">sns.kdeplot(crash_df[<span class="string">&#x27;speeding&#x27;</span>],crash_df[<span class="string">&#x27;alcohol&#x27;</span>], data = crash_df, shade = </span><br><span class="line"><span class="literal">True</span> ,cbar=<span class="literal">True</span>)</span><br></pre></td></tr></table></figure>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://img-blog.csdnimg.cn/20210129195527693.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L25ld3N1bnNvbg==,size_16,color_FFFFFF,t_70#pic_center"
+                      alt="在这里插入图片描述"
+                ></p>
+<h4 id="jointplot"><a href="#jointplot" class="headerlink" title="jointplot()"></a>jointplot()</h4><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">sns.jointplot(x = <span class="string">&#x27;speeding&#x27;</span>, y = <span class="string">&#x27;alcohol&#x27;</span>, data = crash_df,kind = <span class="string">&#x27;kde&#x27;</span>)</span><br></pre></td></tr></table></figure>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://img-blog.csdnimg.cn/20210129195543526.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L25ld3N1bnNvbg==,size_16,color_FFFFFF,t_70#pic_center"
+                      alt="在这里插入图片描述"
+                ></p>
+<h4 id="pairplot"><a href="#pairplot" class="headerlink" title="pairplot()"></a>pairplot()</h4><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">sns.pairplot(crash_df)</span><br></pre></td></tr></table></figure>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://img-blog.csdnimg.cn/20210129195640960.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L25ld3N1bnNvbg==,size_16,color_FFFFFF,t_70#pic_center"
+                      alt="在这里插入图片描述"
+                ></p>
+<p>或者可以使用<strong>hue</strong>分类<u>（这里重新导入了一个数据集）</u></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">tips_df = sns.load_dataset(name=<span class="string">&#x27;tips&#x27;</span>,cache=<span class="literal">True</span>,data_home=<span class="string">&quot;./seaborndata&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(tips_df.head())</span><br><span class="line">sns.pairplot(tips_df, hue = <span class="string">&#x27;sex&#x27;</span>,)</span><br></pre></td></tr></table></figure>
+
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://img-blog.csdnimg.cn/20210129195651651.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L25ld3N1bnNvbg==,size_16,color_FFFFFF,t_70#pic_center"
+                      alt="在这里插入图片描述"
+                ></p>
+<h4 id="rugplot"><a href="#rugplot" class="headerlink" title="rugplot()"></a>rugplot()</h4><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment">#这里用的是上面刚刚载入的数据集</span></span><br><span class="line">sns.rugplot(tips_df[<span class="string">&#x27;tip&#x27;</span>])</span><br></pre></td></tr></table></figure>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://img-blog.csdnimg.cn/20210129195702475.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L25ld3N1bnNvbg==,size_16,color_FFFFFF,t_70#pic_center"
+                      alt="在这里插入图片描述"
+                ></p>
+]]></content>
+      <categories>
+        <category>code</category>
+      </categories>
+      <tags>
+        <tag>python</tag>
+        <tag>seaborn</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>seaborn入门(2)继续展示seaborn的各种绘图效果</title>
+    <url>/2021/11/02/seaborn2/</url>
+    <content><![CDATA[<h1 id="seaborn入门-2"><a href="#seaborn入门-2" class="headerlink" title="seaborn入门(2)"></a>seaborn入门(2)</h1><h2 id="准备数据集"><a href="#准备数据集" class="headerlink" title="准备数据集"></a>准备数据集</h2><p>续接上文</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">import</span> seaborn <span class="keyword">as</span> sns</span><br><span class="line">tips_df = sns.load_dataset(name=<span class="string">&#x27;tips&#x27;</span>,cache=<span class="literal">True</span>,data_home=<span class="string">&quot;./seaborn-data&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<h2 id="设置风格"><a href="#设置风格" class="headerlink" title="设置风格"></a>设置风格</h2><p>共有4种风格可以选，分别是”white”, “dark”, “whitegrid”, “darkgrid”, “ticks”。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">sns.set_style(<span class="string">&quot;dark&quot;</span>)</span><br></pre></td></tr></table></figure>
+<h2 id="简单设置图中元素"><a href="#简单设置图中元素" class="headerlink" title="简单设置图中元素"></a>简单设置图中元素</h2><ul>
+<li>设置画布大小</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">plt.figure(figsize=(<span class="number">8</span>,<span class="number">4</span>))</span><br></pre></td></tr></table></figure>
+<ul>
+<li>设置字体</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">sns.set_context(<span class="string">&#x27;paper&#x27;</span>,font_scale=<span class="number">1.4</span>) </span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>其中’paper’为风格，还有talk,poster等风格</p>
+</blockquote>
+<ul>
+<li>设置坐标轴<br>例如下面的代码是删除左边的坐标轴，同理还可以设置<code>bottom = True</code>。<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">sns.despine(left = <span class="literal">True</span>)</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="柱状图"><a href="#柱状图" class="headerlink" title="柱状图"></a>柱状图</h2><p>男性女性给的小费差异，默认来看是通过男性给小费的平均值和女性给小费的平均值来进行比较，也可以通过中位数<code>estimator = np.media</code>，标准差<code>np.std</code>，协方差<code>np.cov来估计</code></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">sns.barplot(x = <span class="string">&#x27;sex&#x27;</span>, y = <span class="string">&#x27;total_bill&#x27;</span>, data = tips_df, estimator=np.mean)</span><br></pre></td></tr></table></figure>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://img-blog.csdnimg.cn/20210129203730986.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L25ld3N1bnNvbg==,size_16,color_FFFFFF,t_70#pic_center"
+                      alt="在这里插入图片描述"
+                ></p>
+<h2 id="计数图"><a href="#计数图" class="headerlink" title="计数图"></a>计数图</h2><p>与之相比，计数图可以对某个数据集统计数量</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">sns.countplot(x = <span class="string">&#x27;sex&#x27;</span>, data = tips_df)</span><br></pre></td></tr></table></figure>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://img-blog.csdnimg.cn/20210129221529262.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L25ld3N1bnNvbg==,size_16,color_FFFFFF,t_70#pic_center"
+                      alt="在这里插入图片描述"
+                ></p>
+<h2 id="箱型图"><a href="#箱型图" class="headerlink" title="箱型图"></a>箱型图</h2><p>这种图不是很懂啊，希望有大佬来分析以下QwQ</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">sns.boxplot(x = <span class="string">&#x27;day&#x27;</span>,y = <span class="string">&#x27;total_bill&#x27;</span>, data = tips_df, hue = <span class="string">&#x27;sex&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://img-blog.csdnimg.cn/20210129221720323.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L25ld3N1bnNvbg==,size_16,color_FFFFFF,t_70#pic_center"
+                      alt="在这里插入图片描述"
+                ></p>
+<h2 id="小提琴图"><a href="#小提琴图" class="headerlink" title="小提琴图"></a>小提琴图</h2><p>同上，感觉这图有点骚,大概就是代表数据的分布。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">sns.violinplot(x = <span class="string">&#x27;day&#x27;</span>,y = <span class="string">&#x27;total_bill&#x27;</span>, data = tips_df, hue = <span class="string">&#x27;sex&#x27;</span>,split = <span class="literal">True</span>)</span><br></pre></td></tr></table></figure>
+
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://img-blog.csdnimg.cn/20210129221827101.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L25ld3N1bnNvbg==,size_16,color_FFFFFF,t_70#pic_center"
+                      alt="在这里插入图片描述"
+                ></p>
+<h2 id="剥离图"><a href="#剥离图" class="headerlink" title="剥离图"></a>剥离图</h2><p>这是一个代表不同数据点的散点图，其中一个变量是分类变量，代表着数据的平均分布</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">sns.stripplot(x = <span class="string">&#x27;day&#x27;</span>,y = <span class="string">&#x27;total_bill&#x27;</span>, data = tips_df,jitter = <span class="literal">True</span>,)</span><br></pre></td></tr></table></figure>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://img-blog.csdnimg.cn/20210129222746989.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L25ld3N1bnNvbg==,size_16,color_FFFFFF,t_70#pic_center"
+                      alt="在这里插入图片描述"
+                ></p>
+<h2 id="分簇散点图"><a href="#分簇散点图" class="headerlink" title="分簇散点图"></a>分簇散点图</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">sns.swarmplot(x  = <span class="string">&#x27;day&#x27;</span>,y = <span class="string">&#x27;total_bill&#x27;</span>, data = tips_df)</span><br></pre></td></tr></table></figure>
+
+<p>算是小提琴图的点状形式吧<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://img-blog.csdnimg.cn/20210129223303445.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L25ld3N1bnNvbg==,size_16,color_FFFFFF,t_70#pic_center"
+                      alt="在这里插入图片描述"
+                ></p>
+]]></content>
+      <categories>
+        <category>code</category>
+      </categories>
+      <tags>
+        <tag>python</tag>
+        <tag>seaborn</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>seaborn入门(3)调色盘</title>
+    <url>/2021/11/02/seaborn3/</url>
+    <content><![CDATA[<h1 id="seaborn入门-3-调色盘"><a href="#seaborn入门-3-调色盘" class="headerlink" title="seaborn入门(3)调色盘"></a>seaborn入门(3)调色盘</h1><h2 id="基础准备"><a href="#基础准备" class="headerlink" title="基础准备"></a>基础准备</h2><p>续接上文</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">import</span> seaborn <span class="keyword">as</span> sns</span><br><span class="line">tips_df = sns.load_dataset(name=<span class="string">&#x27;tips&#x27;</span>,cache=<span class="literal">True</span>,data_home=<span class="string">&quot;./seaborn-data&quot;</span>)</span><br><span class="line">sns.set_style(<span class="string">&#x27;dark&#x27;</span>)</span><br><span class="line">sns.set_context(<span class="string">&#x27;talk&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<h2 id="调色盘"><a href="#调色盘" class="headerlink" title="调色盘"></a>调色盘</h2><p>访问这个界面你能看到调色看给你的一些风格样式<br><code>https://matplotlib.org/3.3.1/tutorials/colors/colormaps.html</code><br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://img-blog.csdnimg.cn/20210129224410260.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L25ld3N1bnNvbg==,size_16,color_FFFFFF,t_70#pic_center"
+                      alt="在这里插入图片描述"
+                ><br>例如我选一个夏天风情的</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">sns.stripplot(x = <span class="string">&#x27;day&#x27;</span>,y = <span class="string">&#x27;total_bill&#x27;</span>, data = tips_df,jitter = <span class="literal">True</span>,hue = <span class="string">&#x27;sex&#x27;</span>,palette = <span class="string">&#x27;summer&#x27;</span>)</span><br></pre></td></tr></table></figure>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://img-blog.csdnimg.cn/20210129225343154.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L25ld3N1bnNvbg==,size_16,color_FFFFFF,t_70#pic_center"
+                      alt="在这里插入图片描述"
+                ></p>
+]]></content>
+      <categories>
+        <category>code</category>
+      </categories>
+      <tags>
+        <tag>python</tag>
+        <tag>seaborn</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>seaborn入门(4)关联系数矩阵和热力图</title>
+    <url>/2021/11/02/seaborn4/</url>
+    <content><![CDATA[<h1 id="seaborn入门-4-关联系数矩阵和热力图"><a href="#seaborn入门-4-关联系数矩阵和热力图" class="headerlink" title="seaborn入门(4)关联系数矩阵和热力图"></a>seaborn入门(4)关联系数矩阵和热力图</h1><h2 id="关联系数矩阵"><a href="#关联系数矩阵" class="headerlink" title="关联系数矩阵"></a>关联系数矩阵</h2><p>这个懂的都懂，大概就是表示两个变量之间的关联性。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">import</span> seaborn <span class="keyword">as</span> sns</span><br><span class="line">tips_df = sns.load_dataset(name=<span class="string">&#x27;tips&#x27;</span>,cache=<span class="literal">True</span>,data_home=<span class="string">&quot;./seaborn-data&quot;</span>)</span><br><span class="line">tips_mx = tips_df.corr()</span><br><span class="line"><span class="built_in">print</span>(tips_df.corr())</span><br></pre></td></tr></table></figure>
+<p>载入数据有问题看seaborn入门(1)<br>得到如下结果<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://img-blog.csdnimg.cn/20210129230000142.png#pic_center"
+                      alt="在这里插入图片描述"
+                ></p>
+<h2 id="热力图"><a href="#热力图" class="headerlink" title="热力图"></a>热力图</h2><p>我们可以将上面的矩阵可视化</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">sns.heatmap(tips_mx,annot = <span class="literal">True</span> , cmap = <span class="string">&#x27;Blues&#x27;</span>)</span><br></pre></td></tr></table></figure>
+<ul>
+<li>其中cmap的选择和<a class="link"   href="https://editor.csdn.net/md/?articleId=113408019" >调色盘<i class="fas fa-external-link-alt"></i></a>一样</li>
+</ul>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://img-blog.csdnimg.cn/20210129230758969.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L25ld3N1bnNvbg==,size_16,color_FFFFFF,t_70#pic_center"
+                      alt="在这里插入图片描述"
+                ></p>
+<h2 id="酷酷的热力图"><a href="#酷酷的热力图" class="headerlink" title="酷酷的热力图"></a>酷酷的热力图</h2><p>我们采用新的数据，并创建一个数据透视图。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">flights = sns.load_dataset(name=<span class="string">&#x27;flights&#x27;</span>,cache=<span class="literal">True</span>,data_home=<span class="string">&quot;./seaborn-data&quot;</span>)</span><br><span class="line"><span class="comment">#数据透视图创建</span></span><br><span class="line">flights = flights.pivot_table(index = <span class="string">&#x27;month&#x27;</span>,columns = <span class="string">&#x27;year&#x27;</span>, values = <span class="string">&#x27;passengers&#x27;</span>)</span><br></pre></td></tr></table></figure>
+<p>原来的数据是这样的<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://img-blog.csdnimg.cn/20210129232036805.png#pic_center"
+                      alt="在这里插入图片描述"
+                ><br>数据透视图是这样的，表示某年某月某日乘坐飞机的人数</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://img-blog.csdnimg.cn/20210129231848465.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L25ld3N1bnNvbg==,size_16,color_FFFFFF,t_70#pic_center"
+                      alt="在这里插入图片描述"
+                ><br>画成热力图就是<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://img-blog.csdnimg.cn/20210129232302523.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L25ld3N1bnNvbg==,size_16,color_FFFFFF,t_70#pic_center"
+                      alt="在这里插入图片描述"
+                ><br><del>有种马赛克的美感</del> </p>
+]]></content>
+      <categories>
+        <category>code</category>
+      </categories>
+      <tags>
+        <tag>python</tag>
+        <tag>seaborn</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>seaborn入门(5)群图(cluster map)</title>
+    <url>/2021/11/02/seaborn5/</url>
+    <content><![CDATA[<h1 id="seaborn入门-5-群图-cluster-map"><a href="#seaborn入门-5-群图-cluster-map" class="headerlink" title="seaborn入门(5)群图(cluster map)"></a>seaborn入门(5)群图(cluster map)</h1><h2 id="群图-cluster-map"><a href="#群图-cluster-map" class="headerlink" title="群图(cluster map)"></a>群图(cluster map)</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">import</span> seaborn <span class="keyword">as</span> sns</span><br><span class="line">iris = sns.load_dataset(name=<span class="string">&#x27;iris&#x27;</span>,cache=<span class="literal">True</span>,data_home=<span class="string">&quot;./seaborn-data&quot;</span>)</span><br><span class="line">species = iris.pop(<span class="string">&#x27;species&#x27;</span>)</span><br><span class="line"><span class="built_in">print</span>(species)</span><br><span class="line">sns.clustermap(iris)</span><br></pre></td></tr></table></figure>
+
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://img-blog.csdnimg.cn/20210129233342616.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L25ld3N1bnNvbg==,size_16,color_FFFFFF,t_70#pic_center"
+                      alt="在这里插入图片描述"
+                ><br>这图可能有亿点点复杂，但其实很简单(<del>并不是</del>)<br>这就是所谓的<strong>分层聚类热图</strong>，首先计算了点与点之间的距离，最接近的会被加入，然后开始比较行与列之间的关系。（<del>说了个几把</del> ）</p>
+<p><strong>让我们稍微换一个简单一点点的例子</strong></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">flights = flights.pivot_table(index = <span class="string">&#x27;month&#x27;</span>,columns = <span class="string">&#x27;year&#x27;</span>, values = <span class="string">&#x27;passengers&#x27;</span>)</span><br><span class="line">flights = flights.pivot_table(index = <span class="string">&#x27;month&#x27;</span>,columns = <span class="string">&#x27;year&#x27;</span>, values = <span class="string">&#x27;passengers&#x27;</span>)</span><br><span class="line">sns.clustermap(flights,cmap = <span class="string">&quot;Blues&quot;</span>, standard_scale=<span class="number">1</span>)</span><br></pre></td></tr></table></figure>
+<p>flights代表的是一个二维数组，代表某年某月的乘客人数，<a class="link"   href="https://blog.csdn.net/newsunson/article/details/113408300" >详情见<i class="fas fa-external-link-alt"></i></a></p>
+<p>所以我们得到下面的图<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://img-blog.csdnimg.cn/20210129234934427.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L25ld3N1bnNvbg==,size_16,color_FFFFFF,t_70#pic_center"
+                      alt="在这里插入图片描述"
+                ><br>你会发现年份和月份并不是按着顺序排列的，这其实就是一个相当于聚类的过程，你可以把他看成一个聚类后的热力图（<strong>我以为我懂了，仔细一想我好像还是有点懵，希望大佬们来补充一下</strong>）</p>
+]]></content>
+      <categories>
+        <category>code</category>
+      </categories>
+      <tags>
+        <tag>python</tag>
+        <tag>seaborn</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>seaborn入门(6)PairGrid</title>
+    <url>/2021/11/02/seaborn6/</url>
+    <content><![CDATA[<h1 id="seaborn入门-6-PairGrid"><a href="#seaborn入门-6-PairGrid" class="headerlink" title="seaborn入门(6)PairGrid"></a>seaborn入门(6)PairGrid</h1><h2 id="PairGrid"><a href="#PairGrid" class="headerlink" title="PairGrid"></a>PairGrid</h2><p>代码和图</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">import</span> seaborn <span class="keyword">as</span> sns</span><br><span class="line">iris = sns.load_dataset(name=<span class="string">&#x27;iris&#x27;</span>,cache=<span class="literal">True</span>,data_home=<span class="string">&quot;./seaborn-data&quot;</span>)</span><br><span class="line">iris_g = sns.PairGrid(iris,hue = <span class="string">&quot;species&quot;</span>)</span><br><span class="line">iris_g.<span class="built_in">map</span>(plt.scatter)</span><br></pre></td></tr></table></figure>
+
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://img-blog.csdnimg.cn/20210130001248178.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L25ld3N1bnNvbg==,size_16,color_FFFFFF,t_70#pic_center"
+                      alt="在这里插入图片描述"
+                ></p>
+<p>累了，溜了</p>
+]]></content>
+      <categories>
+        <category>code</category>
+      </categories>
+      <tags>
+        <tag>python</tag>
+        <tag>seaborn</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>在线文本对比</title>
     <url>/2021/11/09/text-compare-md/</url>
     <content><![CDATA[<h1 id="在线文本对比"><a href="#在线文本对比" class="headerlink" title="在线文本对比"></a>在线文本对比</h1><p>推荐一个在线快速对比文本区别的网站：</p>
@@ -1052,155 +1201,6 @@
       </categories>
       <tags>
         <tag>website</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>livox-mid70激光雷达使用实录</title>
-    <url>/2021/11/14/livox-detection/</url>
-    <content><![CDATA[<h1 id="livox-mid70激光雷达使用实录"><a href="#livox-mid70激光雷达使用实录" class="headerlink" title="livox-mid70激光雷达使用实录"></a>livox-mid70激光雷达使用实录</h1><p>livox-mid70是由大疆发布的面阵激光雷达，是大疆为自动驾驶推出的一款激光雷达，同时也可用于建立三维地图，文物修复，与大疆无人机相结合使用。你可以在x86和arm架构上都可以使用(arm需要交叉编译)。<br>bilibili上Livox官方发布了大量的视频demo可以去围观一下，同时Livox也有一个论坛可以去看一下。</p>
-<h2 id="官方文档"><a href="#官方文档" class="headerlink" title="官方文档"></a>官方文档</h2><p><a class="link"   href="https://livox-wiki-cn.readthedocs.io/zh_CN/latest/index.html" >https://livox-wiki-cn.readthedocs.io/zh_CN/latest/index.html<i class="fas fa-external-link-alt"></i></a><br>这是中文官方文档，请根据以上文档完成硬件上的连接以及Ip配置，一切以官方文档为主。</p>
-<ul>
-<li>硬件连接</li>
-</ul>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://livox-wiki-cn.readthedocs.io/zh_CN/latest/_images/one_lidar_connect.png"
-                     
-                ></p>
-<ul>
-<li><p>更改IP：一般来说刚拿到手都是<strong>静态IP</strong>，这时候你只需要将网线与你自己笔记本相连，然后通过用户手册查看你自己雷达的IP，那需要设置你自己电脑的IP为手动，并将其分在同一网段不同的地址下：</p>
-<pre><code>  如我的Mid70的IP地址为192.168.1.105，
-  那么我电脑设置时
-  IP：192.168.1.104，
-  子网掩码：255.255.255.0,
-  网关：192.168.0.1
-</code></pre>
-</li>
-</ul>
-<p>如果对IP配置有问题,或想改为动态IP详情参见<a class="link"   href="https://terra-1-g.djicdn.com/65c028cd298f4669a7f0e40e50ba1131/Download/update/Livox%20Mid%20Series%20User%20Manual%20(CN).pdf" >用户手册<i class="fas fa-external-link-alt"></i></a></p>
-<h2 id="Livox-Viewer"><a href="#Livox-Viewer" class="headerlink" title="Livox Viewer"></a>Livox Viewer</h2><p>Livox Viewer是一款图形化操作的显示软件，有助于快速让你知道你的硬件连接和Ip配置有没有问题。</p>
-<ul>
-<li><a class="link"   href="https://terra-1-g.djicdn.com/65c028cd298f4669a7f0e40e50ba1131/Download/update/Livox%20Viewer%200.8.0.7z" >Livox-Viewer for Windows<i class="fas fa-external-link-alt"></i></a></li>
-<li><a class="link"   href="https://www.livoxtech.com/3296f540ecf5458a8829e01cf429798e/downloads/Livox%20Viewer/Livox_Viewr_For_Linux_Ubuntu16.04_x64_0.7.0.tar.gz" >Livox-Viewer for ubuntu16.04<i class="fas fa-external-link-alt"></i></a>,下载后解压运行<code>./livox viewer.sh</code>即可打开如下界面。<br><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://livox-wiki-cn.readthedocs.io/zh_CN/latest/_images/start_Viewer_and_link_Horizon.png"
-                     
-                ></li>
-<li>官方软件Livox Viewer仅支持Windows或ubuntu16.04/14.04,所以建议如果不是这两个版本有ros可以直接上。</li>
-</ul>
-<h2 id="Livox-SDK"><a href="#Livox-SDK" class="headerlink" title="Livox-SDK"></a>Livox-SDK</h2><p>刚刚Livox Viewer只是一个快速尝试，如果你要做开发就<strong>必须</strong>要安装Livox-SDK(包括后面要在ros上使用也必须先要安装这个)</p>
-<ul>
-<li><p>github上中文<a class="link"   href="https://github.com/Livox-SDK/Livox-SDK/blob/master/README_CN.md" >README<i class="fas fa-external-link-alt"></i></a></p>
-</li>
-<li><p>先从github上clone下来</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/Livox-SDK/Livox-SDK.git</span><br></pre></td></tr></table></figure></li>
-<li><p>再编译</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> Livox-SDK</span><br><span class="line"><span class="built_in">cd</span> build &amp;&amp; cmake ..</span><br><span class="line">make</span><br><span class="line">sudo make install</span><br></pre></td></tr></table></figure></li>
-<li><p>简单运行demo，注意这里的sample是在build文件夹下面的</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> sample/lidar &amp;&amp; ./lidar_sample</span><br></pre></td></tr></table></figure></li>
-</ul>
-<h2 id="livox-ros-driver"><a href="#livox-ros-driver" class="headerlink" title="livox-ros-driver"></a>livox-ros-driver</h2><p>不得不说ros是真的好用，所以建议在ros下使用，会使得一切都很清晰明了。装<code>livox-ros-driver</code>前必须要先装<code>Livox-SDK</code>。</p>
-<ul>
-<li><p>先从github上clone下来，这里一定要用下面这个命令把它clone到相应位置，否则会出问题。</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/Livox-SDK/livox_ros_driver.git ws_livox/src</span><br></pre></td></tr></table></figure></li>
-<li><p>简单的<code>catkin_make</code>一下</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> ws_livox</span><br><span class="line">catkin_make</span><br></pre></td></tr></table></figure></li>
-<li><p>别忘了添加环境</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">source</span> ./devel/setup.sh</span><br></pre></td></tr></table></figure></li>
-<li><p>之后跑个rviz的demo，让你的激光雷达点云数据在rviz里显示出来</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">roslaunch livox_ros_driver livox_lidar_rviz.launch</span><br></pre></td></tr></table></figure></li>
-</ul>
-<h2 id="录制你的点云数据"><a href="#录制你的点云数据" class="headerlink" title="录制你的点云数据"></a>录制你的点云数据</h2><p>点云数据不像二维图像一样，简简单单录制一个视频就好，作为点云数据记录是比较特殊的。<br>livox一共有两种录制格式</p>
-<h4 id="lvx格式"><a href="#lvx格式" class="headerlink" title="lvx格式"></a>lvx格式</h4><p>lvx格式是livox的一种自定义格式，如果你想在Windows上快速录制，可以<strong>使用Livox Viewer进行录制</strong>，也可以<strong>通过<code>Livox-SDK</code>中的文件录制</strong></p>
-<ul>
-<li>首先进入以下路径<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> ./Livox_SDK/build/sample/lidar_lvx_file</span><br></pre></td></tr></table></figure></li>
-<li>然后运行下面这个文件，这里不用<code>-c</code>指定也可以，这里指定了lidar并设定持续10s<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">./lidar_lvx_sample -c <span class="string">&quot;此处为已连接的Lidar的15位广播码&quot;</span> -t 10</span><br></pre></td></tr></table></figure>
-通过上面的操作会得到一个<code>.lvx</code>格式的文件，这个文件可以在Livox Viewer中直接播放，也可以转成<strong>rosbag</strong>(一个可以把ros中当前所有topic中message记录下来的东西)。<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">roslaunch livox_ros_driver lvx_to_rosbag.launch lvx_file_path:=<span class="string">&quot;/home/livox/test.lvx&quot;</span></span><br></pre></td></tr></table></figure></li>
-</ul>
-<h4 id="rosbag格式"><a href="#rosbag格式" class="headerlink" title="rosbag格式"></a>rosbag格式</h4><p>rosbag是ros中非常好用的一个东西，我在之前的ros文章中有提到过。当我们在运行livox-ros-driver中的rviz显示时，即</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">roslaunch livox_ros_driver livox_lidar_rviz.launch <span class="comment">#详情看上面livox-ros-driver</span></span><br></pre></td></tr></table></figure>
-<p>我们可以把此时的所有消息用rosbag记录下来</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">rosbag record -a -o myrosbag.bag <span class="comment">#-a代表所有的消息,-c代表输出名称</span></span><br></pre></td></tr></table></figure>
-
-<p>此时就会生成一个.bag文件，具体名称看终端的输出。<br>你可以通过以下命令进行播放rosbag</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">rosbag play *.bag -l <span class="comment">#-l代表loop循环播放</span></span><br></pre></td></tr></table></figure>
-<p>此时再打开在livox-ros-driver下的的rviz,就可以得到rosbag中的点云图了</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> ws_livox/src/livox_ros_driver/</span><br><span class="line">rviz -d config/display_lidar_points.rviz <span class="comment">#这种.rviz文件实际上是保存rviz相关显示的数据</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="livox-detection"><a href="#livox-detection" class="headerlink" title="livox_detection"></a>livox_detection</h2><p>livox_detection指的是激光点云检测，livox官方给的代码可以检测各种车和行人。官方说2080ti下需要50ms。</p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://cdn.jsdelivr.net/gh/newsun-boki/img-folder@main/20211115/demo1.4a7m388oo240.gif"
-                     
-                ></p>
-<p>在Livox官方的github仓库中有两个激光点云检测仓库分别为<code>livox_detection</code>和<code>livox_dection_simu</code>。<br>这两个仓库看上去都差不多，但实际上非常坑的是：</p>
-<ul>
-<li><code>livox_detection</code>仓库中的预训练模型在可以识别人和车，但车的识别效果不是很好;</li>
-<li><code>livox_dection_simu</code>仓库中的预训练模型只能识别车，而几乎无法识别到人(虽然代码看上去都差不多)。</li>
-</ul>
-<p>至于原因我也不知道，只是这坑了我一会儿，后来在issue发现了这个问题。</p>
-<p>由于两个仓库操作都非常相似，这里选livox_detection_simu为例。</p>
-<h3 id="依赖"><a href="#依赖" class="headerlink" title="依赖"></a>依赖</h3><ul>
-<li>python3.6+</li>
-<li>tensorflow1.13+ (tested on 1.13.0)</li>
-<li>pybind11(后面的过程中安装)</li>
-<li>ros</li>
-</ul>
-<h3 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h3><ul>
-<li><p>首先clone仓库</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/Livox-SDK/livox_detection_simu</span><br></pre></td></tr></table></figure></li>
-<li><p>然后配置pybind(pybind就是这样，每次都需要clone在那个路径下才行)。</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> livox_detection_simu/utils/lib_cpp</span><br><span class="line">git <span class="built_in">clone</span> https://github.com/pybind/pybind11.git</span><br></pre></td></tr></table></figure></li>
-<li><p>编译(在刚刚的<code>lib_cpp</code>路径下)。</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">mkdir build &amp;&amp; <span class="built_in">cd</span> build</span><br><span class="line">cmake -DCMAKE_BUILD_TYPE=Release ..</span><br><span class="line">make</span><br></pre></td></tr></table></figure></li>
-<li><p>把c++得到的依赖文件放到项目根目录下</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">cp lib_cpp.so ../../../</span><br></pre></td></tr></table></figure></li>
-<li><p>下载<a class="link"   href="https://terra-1-g.djicdn.com/65c028cd298f4669a7f0e40e50ba1131/Download/dataset/livox_detection_simu_model.zip" >预训练模型<i class="fas fa-external-link-alt"></i></a>,会得到model文件夹，把它放在项目根目录下，这样你就不用改模型地址了,</p>
-</li>
-<li><p>下载<a class="link"   href="https://terra-1-g.djicdn.com/65c028cd298f4669a7f0e40e50ba1131/github/livox_detection_v1.1_data.zip" >rosbag<i class="fas fa-external-link-alt"></i></a>,这是官方提供的rosbag，你也可以自己录一个。</p>
-<h3 id="运行"><a href="#运行" class="headerlink" title="运行"></a>运行</h3></li>
-<li><p>打开一个终端运行roscore</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">roscore</span><br></pre></td></tr></table></figure></li>
-<li><p>打开一个终端运行rviz</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">rviz -d ./config/show.rviz <span class="comment">#在livox_detection_simu仓库下</span></span><br></pre></td></tr></table></figure></li>
-<li><p>打开一个终端播放rosbag</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">rosbag play *.bag -r 0.1 <span class="comment">#找到你存放rosbag的路径运行，发送消息间隔0.1s</span></span><br></pre></td></tr></table></figure></li>
-<li><p>打开一个终端运行目标检测程序</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">python livox_detection_simu.py <span class="comment">#如果你的模型放在其他地方，你需要在config下将其模型路径改为你所放预训练模型的路径</span></span><br></pre></td></tr></table></figure></li>
-</ul>
-<p>由于目标检测速度相当慢，实时性非常差，队列里可能还缓存了很多帧</p>
-]]></content>
-      <categories>
-        <category>rm</category>
-      </categories>
-      <tags>
-        <tag>lidar</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>图片上传网络</title>
-    <url>/2021/11/15/picx/</url>
-    <content><![CDATA[<h1 id="picx图片上传网络"><a href="#picx图片上传网络" class="headerlink" title="picx图片上传网络"></a>picx图片上传网络</h1><p>在用markdown写博客上传网页时常常会涉及本地图片无法在网络显示的问题，这个时候一般的选择是先将图片上传到github/gitee或csdn然后再使用网络链接，但还是不够方便，并且github需要翻墙才能看的问题，有个国人大佬就开发了一个名叫<strong>picx</strong>的东西。<br><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://cdn.jsdelivr.net/gh/newsun-boki/img-folder@main/20211115/Screenshot-from-2021-11-15-03-07-58.5jhahkkrhcs0.png"
-                     
-                ><br>上面这界面就是使用picx上传的，本质上他还是借用了你自己的github仓库去放图片，然而它使用一个叫CDN加速的东西让你的图片可以很快的显示。</p>
-<h2 id="链接"><a href="#链接" class="headerlink" title="链接"></a>链接</h2><ul>
-<li>github仓库:<a class="link"   href="https://github.com/XPoet/picx" >https://github.com/XPoet/picx<i class="fas fa-external-link-alt"></i></a></li>
-<li>picx网页地址:<a class="link"   href="https://picx.xpoet.cn/#/upload" >https://picx.xpoet.cn/#/upload<i class="fas fa-external-link-alt"></i></a></li>
-</ul>
-<p>去github仓库看README教你如何在picx网页上配置，记得一定要使用生成的CDN加速的链接，否则就没有意义了。</p>
-]]></content>
-      <categories>
-        <category>other</category>
-      </categories>
-      <tags>
-        <tag>markdown</tag>
-        <tag>blog</tag>
       </tags>
   </entry>
 </search>
