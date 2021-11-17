@@ -1220,7 +1220,7 @@
 <p>事实上，你也可以在其他的操作系统上做到这一点，例如通过SOCKER,管道，TCP协议等，但都没有ros方便快捷清晰。<br><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="https://cdn.jsdelivr.net/gh/newsun-boki/img-folder@main/20211118/ros2.2xo9rpt8ap60.gif"
+                     data-src="https://cdn.jsdelivr.net/gh/newsun-boki/img-folder@main/20211118/Screenshot-from-2021-11-18-02-11-39.638zlyali1c0.png"
                      
                 ></p>
 <h3 id="功能的划分以及极强的可扩展性"><a href="#功能的划分以及极强的可扩展性" class="headerlink" title="功能的划分以及极强的可扩展性"></a>功能的划分以及极强的可扩展性</h3><p>在不用ros的时候，想想机器人是怎么控制的。冗长的代码，看不懂的结构，更是因为模块众多导致的代码量大，往往不知所措。然而有了ros，一切都不一样了。你可以把每个功能的模块分开，这里的分开不是简单的封装到一个个函数里。而是完全的分开，即多个不同的功能包，多个不同的代码，唯一的连接就是一些消息间的互传。这使得每一个模块结构清晰简单，代码可读性增强，且可扩展性极强。</p>
