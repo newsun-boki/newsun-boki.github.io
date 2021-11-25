@@ -9,7 +9,7 @@
     
     <title>
         
-            KoroFileHeader-Vscode自动注释插件推荐 |
+            视觉进阶培训1-运动预测 |
         
         newsun-boki
     </title>
@@ -182,7 +182,7 @@
     <div class="article-content-container">
 
         <div class="article-title">
-            <span class="title-hover-animation">KoroFileHeader-Vscode自动注释插件推荐</span>
+            <span class="title-hover-animation">视觉进阶培训1-运动预测</span>
         </div>
 
         
@@ -200,7 +200,7 @@
                     <div class="meta-info">
                         <div class="article-meta-info">
     <span class="article-date article-meta-item">
-        <i class="fas fa-edit"></i>&nbsp;2021-11-22 22:55:16
+        <i class="fas fa-edit"></i>&nbsp;2021-11-25 14:38:58
     </span>
     
         <span class="article-categories article-meta-item">
@@ -208,7 +208,7 @@
             <ul>
                 
                     <li>
-                        <a href="/categories/other/">other</a>&nbsp;
+                        <a href="/categories/rm/">rm</a>&nbsp;
                     </li>
                 
             </ul>
@@ -220,11 +220,19 @@
             <ul>
                 
                     <li>
-                        <a href="/tags/code/">code</a>&nbsp;
+                        <a href="/tags/c/">c++</a>&nbsp;
                     </li>
                 
                     <li>
-                        | <a href="/tags/vscode/">vscode</a>&nbsp;
+                        | <a href="/tags/ros/">ros</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/predict/">predict</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/rviz/">rviz</a>&nbsp;
                     </li>
                 
             </ul>
@@ -234,12 +242,12 @@
     
     
         <span class="article-wordcount article-meta-item">
-            <i class="fas fa-file-word"></i>&nbsp;<span>372 Words</span>
+            <i class="fas fa-file-word"></i>&nbsp;<span>1.1k Words</span>
         </span>
     
     
         <span class="article-min2read article-meta-item">
-            <i class="fas fa-clock"></i>&nbsp;<span>1 Mins</span>
+            <i class="fas fa-clock"></i>&nbsp;<span>3 Mins</span>
         </span>
     
     
@@ -255,65 +263,104 @@
         
 
         <div class="article-content markdown-body">
-            <h1 id="KoroFileHeader-Vscode自动注释插件推荐"><a href="#KoroFileHeader-Vscode自动注释插件推荐" class="headerlink" title="KoroFileHeader-Vscode自动注释插件推荐"></a>KoroFileHeader-Vscode自动注释插件推荐</h1><p>写代码时注释是十分必要的，一个没有注释的代码几乎没人能看懂==屎山。</p>
-<p>但是不得不说写注释是真的麻烦，而且我想写出一个好看一点的注释，让看得人也能赏心悦目，我就在想vscode有没有这么一款插件可以自动添加注释，结果您猜怎么着？还真有。</p>
-<h2 id="KoroFileHeader-一款注释插件"><a href="#KoroFileHeader-一款注释插件" class="headerlink" title="KoroFileHeader-一款注释插件"></a>KoroFileHeader-一款注释插件</h2><ul>
-<li>可用于代码段头的添加如：</li>
+            <h1 id="视觉进阶培训1-运动预测"><a href="#视觉进阶培训1-运动预测" class="headerlink" title="视觉进阶培训1-运动预测"></a>视觉进阶培训1-运动预测</h1><p>三维弹球，准确的来说有点像气体分子的运动，可以看成空间中有一个小球（无重力），以随机的速度在空间中游动，碰到边缘会反弹，而你要做的就是预测小球一定时间之后的位置。</p>
+<h2 id="依赖"><a href="#依赖" class="headerlink" title="依赖"></a>依赖</h2><ul>
+<li><p>numpy 1.20</p>
+</li>
+<li><p>ros melodic</p>
+</li>
+<li><p>Eigen </p>
+<h2 id="快速开始"><a href="#快速开始" class="headerlink" title="快速开始"></a>快速开始</h2></li>
 </ul>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * @Author: liboyu </span></span><br><span class="line"><span class="comment"> * @Date: 2021-11-Mo 10:48:22 </span></span><br><span class="line"><span class="comment"> * @Last Modified by:   liboyu </span></span><br><span class="line"><span class="comment"> * @Last Modified time: 2021-11-Mo 10:48:22 </span></span><br><span class="line"><span class="comment"> */</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/newsun-boki/3dBall.git</span><br><span class="line"><span class="built_in">cd</span> 3dBall</span><br><span class="line">catkin_make <span class="comment"># rm -rf ./build ./devel if exits</span></span><br><span class="line"><span class="built_in">source</span> devel/setup.bash <span class="comment">#记得每打开一个终端都要source一下</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">roscore</span><br><span class="line"></span><br><span class="line">rosrun random_ball simu.py <span class="comment">#用于生成小球</span></span><br><span class="line"></span><br><span class="line">rosrun random_ball basic_shapes <span class="comment">#用于生成绿色框</span></span><br><span class="line"></span><br><span class="line">rviz -d src/random_ball/rm.rviz <span class="comment">#在rviz中显示</span></span><br></pre></td></tr></table></figure>
 
-<ul>
-<li>也可以为函数添加注释,而且能够自动识别形参，你只需要把注释写在对应形参和返回值后就好啦</li>
-</ul>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">    * @description: 初始化函数</span></span><br><span class="line"><span class="comment">    * @param &#123;string&#125; xml_path                     openvino模型的地址</span></span><br><span class="line"><span class="comment">    * @param &#123;double&#125; cof_threshold                置信度阈值</span></span><br><span class="line"><span class="comment">    * @param &#123;double&#125; nms_area_threshold           nms的iou重合面积阈值</span></span><br><span class="line"><span class="comment">    * @param &#123;int&#125; _class_number                   总共的类数</span></span><br><span class="line"><span class="comment">    */</span>    </span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">init</span><span class="params">(string xml_path,<span class="keyword">double</span> cof_threshold,<span class="keyword">double</span> nms_area_threshold,<span class="keyword">int</span> _class_number)</span></span>;</span><br></pre></td></tr></table></figure>
 
-<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>在vscode应用商店搜索KoroFileHeader安装。</p>
-<h2 id="快捷键"><a href="#快捷键" class="headerlink" title="快捷键"></a>快捷键</h2><ul>
-<li>头部标注添加：快捷键：window：ctrl+alt+i,mac：ctrl+cmd+i, linux: ctrl+meta+i,Ubuntu: ctrl+super+i</li>
-<li>函数注释添加：快捷键：window：ctrl+alt+t,mac：ctrl+cmd+t,linux: ctrl+meta+t, Ubuntu: ctrl+super+t</li>
-</ul>
-<h2 id="额外"><a href="#额外" class="headerlink" title="额外"></a>额外</h2><p><strong>这竟然还能一键添加各种奇奇怪怪的东西，这才是这个插件的精髓</strong>(如果你看网页源码的话会发现我也添加了一个小东西)<br><img  
+<p><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="https://github.com/OBKoro1/koro1FileHeader/raw/master/images/codeDesign.gif?raw=true"
+                     data-src="https://cdn.jsdelivr.net/gh/newsun-boki/img-folder@main/20211125/ball.6tt9rynnjeo0.gif"
                      
                 ></p>
-<!--
- * _______________#########_______________________ 
- * ______________############_____________________ 
- * ______________#############____________________ 
- * _____________##__###########___________________ 
- * ____________###__######_#####__________________ 
- * ____________###_#######___####_________________ 
- * ___________###__##########_####________________ 
- * __________####__###########_####_______________ 
- * ________#####___###########__#####_____________ 
- * _______######___###_########___#####___________ 
- * _______#####___###___########___######_________ 
- * ______######___###__###########___######_______ 
- * _____######___####_##############__######______ 
- * ____#######__#####################_#######_____ 
- * ____#######__##############################____ 
- * ___#######__######_#################_#######___ 
- * ___#######__######_######_#########___######___ 
- * ___#######____##__######___######_____######___ 
- * ___#######________######____#####_____#####____ 
- * ____######________#####_____#####_____####_____ 
- * _____#####________####______#####_____###______ 
- * ______#####______;###________###______#________ 
- * ________##_______####________####______________ 
- -->
+<h2 id="任务说明"><a href="#任务说明" class="headerlink" title="任务说明"></a>任务说明</h2><h3 id="必要知识"><a href="#必要知识" class="headerlink" title="必要知识"></a>必要知识</h3><ul>
+<li>c++/python基础知识</li>
+<li>了解ros的topic机制</li>
+<li>了解rviz的使用</li>
+<li>卡尔曼滤波(KF)或扩展卡尔曼滤波(EKF)或抗差卡尔曼滤波(UKF)<h3 id="任务简介"><a href="#任务简介" class="headerlink" title="任务简介"></a>任务简介</h3></li>
+</ul>
+<p>已知小球小球当前时刻的三维坐标，预测小球一定时间之后所处的位置(反弹部分不作要求)。节点图如下。<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.jsdelivr.net/gh/newsun-boki/img-folder@main/20211125/Screenshot-from-2021-11-25-13-22-34.1hdjhcrer068.png"
+                      alt="节点图"
+                ></p>
+<ul>
+<li>节点<code>/basic_shapes</code>用于发布<code>/visualization_marker</code>话题，即绿色边界框。</li>
+<li>节点<code>/random_ball</code>用于发布<code>/position</code>话题，即小球的位置。<h3 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h3></li>
+</ul>
+<h4 id="获取小球当前位置。"><a href="#获取小球当前位置。" class="headerlink" title="获取小球当前位置。"></a>获取小球当前位置。</h4><ul>
+<li>当运行<code>rosrun random_ball simu.py</code>后，通过<code>rostopic list</code>可以查询到有小球当前位置话题<code>/position</code>。<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.jsdelivr.net/gh/newsun-boki/img-folder@main/20211125/Screenshot-from-2021-11-25-13-27-19.10uiu20b9brk.png"
+                     
+                ></li>
+<li>发送内容为<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.jsdelivr.net/gh/newsun-boki/img-folder@main/20211125/Screenshot-from-2021-11-25-13-29-11.1lyv1ga20kio.png"
+                     
+                ></li>
+<li>发送的消息格式为<code>geometry_msgs/PointStamped</code>，关于数据格式的了解见roswiki。<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.jsdelivr.net/gh/newsun-boki/img-folder@main/20211125/Screenshot-from-2021-11-25-13-34-34.75bszbno3iw0.png"
+                     
+                ></li>
+<li>发送频率大概是450hz<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.jsdelivr.net/gh/newsun-boki/img-folder@main/20211125/Screenshot-from-2021-11-25-13-28-44.6s1gt3r2c3w0.png"
+                     
+                ></li>
+</ul>
+<p>这里需要重新写一个<strong>预测节点</strong>，并在节点内创建一个<code>Subscriber</code>用于订阅<code>/position</code>话题。</p>
+<h4 id="预测"><a href="#预测" class="headerlink" title="预测"></a>预测</h4><p>使用各种卡尔曼滤波(如EKF)的手段进行<strong>预测</strong>。通过小球之前的位置预测小球一段时间之后的位置，具体预测多久可自行决定。这里需要你学习一些卡尔曼的相关知识，使用Eigen库辅助来完成一些数学运算，尽量不要使用opencv自带的卡尔曼滤波。推荐B站DR_CAN的卡尔曼滤波相关<a class="link"   target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1ez4y1X7eR" >讲解视频<i class="fas fa-external-link-alt"></i></a>.但注意简单的卡尔曼是线性的，所以需要用一些如扩展卡尔曼等。</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.jsdelivr.net/gh/newsun-boki/img-folder@main/20211125/Screenshot-from-2021-11-25-14-19-03.49vp6ibwwqm0.png"
+                     
+                ><br>虽然卡尔曼是一个滤波算法，但由于其方法特性同样可以用来做预测。还有一个卡尔曼用于<a class="link"   target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1dQ4y1m7ZC" >预测小球的讲解视频<i class="fas fa-external-link-alt"></i></a>(这个视频给了我这次任务灵感，虽然我并没有看)</p>
+<h4 id="RVIZ显示"><a href="#RVIZ显示" class="headerlink" title="RVIZ显示"></a>RVIZ显示</h4><p>这里你需要大概了解rviz的使用方法。rviz可以接受话题里的消息并将其显示出来，你需要做的就是将你预测的结果发布为<code>PointStamped</code>格式并使用rviz显示，如果不了解结果可以参考<code>simu.py</code>里的实现。将<strong>你的预测结果用换一个颜色的小球显示出来</strong>就好。</p>
+<h2 id="备注"><a href="#备注" class="headerlink" title="备注"></a>备注</h2><ul>
+<li><code>rosrun random_ball simu.py</code>这个命令<code>ctrl+c</code>似乎停不下来，你可以使用<code>ctrl+z</code>将其挂到后台暂停它,然后通过<code>jobs</code>查看后台任务,并使用<code>kill %num</code>杀死它，<code>num</code>为其在<code>jobs</code>查看时任务对应的序号。</li>
+<li>由于物体是随机运动，所以预测一段之后的时间不能过长，当然也不能过短。至于是多少，你看着觉得多少合适就多少。</li>
+<li>评价预测好坏主要有两个指标<ul>
+<li> <strong>收敛速度</strong>。包括当小球从静止到运动需要多久才能开始准确预测，以及当小球撞击边缘速度发生突变时尽量收敛到正确方向的时间(可以采取一些如当检测速度突变就reset卡尔曼的手段)</li>
+<li> <strong>预测结果的稳定性</strong>。在实际控制当中，为了使电机不震颤，视觉的预测结果需要尽量的平滑稳定，即预测点不要乱抖。</li>
+</ul>
+</li>
+<li>如果你觉的这个弹球模型好玩，并且看懂了弹球代码，你可以编写<code>simu.py</code>程序自己往里面多加几个球并加上物理体积的碰撞。或者我一总觉得这个碰到边缘没有音效怪怪的，你可以自己往里面加点音效。</li>
+<li>为了方便查看，这个README我也会发到博客上。<ul>
+<li>gitee：<a class="link"   target="_blank" rel="noopener" href="https://gitee.com/newsun-boki/Ball3d" >https://gitee.com/newsun-boki/Ball3d<i class="fas fa-external-link-alt"></i></a></li>
+<li>github:<a class="link"   target="_blank" rel="noopener" href="https://github.com/newsun-boki/3dBall" >https://github.com/newsun-boki/3dBall<i class="fas fa-external-link-alt"></i></a></li>
+<li>博客： </li>
+</ul>
+</li>
+</ul>
+
         </div>
 
         
             <div class="post-copyright-info">
                 <div class="article-copyright-info-container">
     <ul>
-        <li>Post title：KoroFileHeader-Vscode自动注释插件推荐</li>
+        <li>Post title：视觉进阶培训1-运动预测</li>
         <li>Post author：newsun-boki</li>
-        <li>Create time：2021-11-22 22:55:16</li>
+        <li>Create time：2021-11-25 14:38:58</li>
         <li>
-            Post link：https://github.com/newsun-boki2021/11/22/KoroFileHeader/
+            Post link：https://github.com/newsun-boki2021/11/25/rm-train-1/
         </li>
         <li>
             Copyright Notice：All articles in this blog are licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> unless stating additionally.
@@ -327,29 +374,14 @@
         
             <div class="article-nav">
                 
-                    <div class="article-prev">
-                        <a class="prev"
-                           rel="prev"
-                           href="/2021/11/25/rm-train-1/"
-                        >
-                            <span class="left arrow-icon flex-center">
-                              <i class="fas fa-chevron-left"></i>
-                            </span>
-                            <span class="title flex-center">
-                                <span class="post-nav-title-item">视觉进阶培训1-运动预测</span>
-                                <span class="post-nav-item">Prev posts</span>
-                            </span>
-                        </a>
-                    </div>
-                
                 
                     <div class="article-next">
                         <a class="next"
                            rel="next"
-                           href="/2021/11/18/ubuntu-record-sc/"
+                           href="/2021/11/22/KoroFileHeader/"
                         >
                             <span class="title flex-center">
-                                <span class="post-nav-title-item">Ubuntu18.04录屏并生成gif图片</span>
+                                <span class="post-nav-title-item">KoroFileHeader-Vscode自动注释插件推荐</span>
                                 <span class="post-nav-item">Next posts</span>
                             </span>
                             <span class="right arrow-icon flex-center">
@@ -470,7 +502,7 @@
         <aside class="page-aside">
             <div class="post-toc-wrap">
     <div class="post-toc">
-        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#KoroFileHeader-Vscode%E8%87%AA%E5%8A%A8%E6%B3%A8%E9%87%8A%E6%8F%92%E4%BB%B6%E6%8E%A8%E8%8D%90"><span class="nav-number">1.</span> <span class="nav-text">KoroFileHeader-Vscode自动注释插件推荐</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#KoroFileHeader-%E4%B8%80%E6%AC%BE%E6%B3%A8%E9%87%8A%E6%8F%92%E4%BB%B6"><span class="nav-number">1.1.</span> <span class="nav-text">KoroFileHeader-一款注释插件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85"><span class="nav-number">1.2.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BF%AB%E6%8D%B7%E9%94%AE"><span class="nav-number">1.3.</span> <span class="nav-text">快捷键</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A2%9D%E5%A4%96"><span class="nav-number">1.4.</span> <span class="nav-text">额外</span></a></li></ol></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%A7%86%E8%A7%89%E8%BF%9B%E9%98%B6%E5%9F%B9%E8%AE%AD1-%E8%BF%90%E5%8A%A8%E9%A2%84%E6%B5%8B"><span class="nav-number">1.</span> <span class="nav-text">视觉进阶培训1-运动预测</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BE%9D%E8%B5%96"><span class="nav-number">1.1.</span> <span class="nav-text">依赖</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BF%AB%E9%80%9F%E5%BC%80%E5%A7%8B"><span class="nav-number">1.2.</span> <span class="nav-text">快速开始</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%BB%E5%8A%A1%E8%AF%B4%E6%98%8E"><span class="nav-number">1.3.</span> <span class="nav-text">任务说明</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BF%85%E8%A6%81%E7%9F%A5%E8%AF%86"><span class="nav-number">1.3.1.</span> <span class="nav-text">必要知识</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%BB%E5%8A%A1%E7%AE%80%E4%BB%8B"><span class="nav-number">1.3.2.</span> <span class="nav-text">任务简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%AD%A5%E9%AA%A4"><span class="nav-number">1.3.3.</span> <span class="nav-text">步骤</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%8E%B7%E5%8F%96%E5%B0%8F%E7%90%83%E5%BD%93%E5%89%8D%E4%BD%8D%E7%BD%AE%E3%80%82"><span class="nav-number">1.3.3.1.</span> <span class="nav-text">获取小球当前位置。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%A2%84%E6%B5%8B"><span class="nav-number">1.3.3.2.</span> <span class="nav-text">预测</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#RVIZ%E6%98%BE%E7%A4%BA"><span class="nav-number">1.3.3.3.</span> <span class="nav-text">RVIZ显示</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A4%87%E6%B3%A8"><span class="nav-number">1.4.</span> <span class="nav-text">备注</span></a></li></ol></li></ol>
     </div>
 </div>
         </aside>
