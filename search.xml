@@ -1412,4 +1412,21 @@
         <tag>rviz</tag>
       </tags>
   </entry>
+  <entry>
+    <title>yolov5中pt转openvino</title>
+    <url>/2021/11/28/yolov5-openvino/</url>
+    <content><![CDATA[<h1 id="yolov5中pt转openvino"><a href="#yolov5中pt转openvino" class="headerlink" title="yolov5中pt转openvino"></a>yolov5中pt转openvino</h1><p>由于我发现我每次转一次我都要重新google一遍，感觉我贫瘠的大脑无法记下这几条简单的命令，所以记录一下。</p>
+<h2 id="pt-转-onnx"><a href="#pt-转-onnx" class="headerlink" title="pt 转 onnx"></a>pt 转 onnx</h2><p>在yolov5的路径下使用<code>models/export.py</code>转换，默认会放到和<code>yolov5s.pt</code>同一路径下。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">python models/export.py --weights polygon_best.pt --img 640 --batch 1</span><br></pre></td></tr></table></figure>
+
+<h2 id="onnx-转-openvino"><a href="#onnx-转-openvino" class="headerlink" title="onnx 转 openvino"></a>onnx 转 openvino</h2><p>先切换到指定目录下在运行python程序</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> /opt/intel/openvino_2021/deployment_tools/model_optimizer</span><br><span class="line"></span><br><span class="line">python mo.py --input_model ~/rm/polygon-weights/640-n/polygon_best.onnx --input_shape [1,3,640,640] --data_type FP32 --output_dir ~/rm/polygon-weights/640-n</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>rm</category>
+      </categories>
+      <tags>
+        <tag>yolov5</tag>
+        <tag>openvino</tag>
+      </tags>
+  </entry>
 </search>
