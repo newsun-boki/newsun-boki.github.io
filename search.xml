@@ -1430,19 +1430,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Aimbot整体流程框架</title>
-    <url>/2021/12/05/Aimbot/</url>
-    <content><![CDATA[<h1 id="Aimbot"><a href="#Aimbot" class="headerlink" title="Aimbot"></a>Aimbot</h1><p>Aimbot是robomaster笃行战队2022年的视觉组整体框架代码。总共包含自瞄和打符两个部分。现在由于还在构建之出，为了理清思路，防止结构混乱，也为了新人能够更好的理解此代码特此写下次介绍来辅助整体代码的构建。此框架随代码进展动态更新。</p>
-<h2 id="背景介绍"><a href="#背景介绍" class="headerlink" title="背景介绍"></a>背景介绍</h2><p>Robomaster是由大疆主办的一场全国大学生机器人大赛，其特点为高度对抗性</p>
-]]></content>
-      <categories>
-        <category>rm</category>
-      </categories>
-      <tags>
-        <tag>code</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Blender使用实录</title>
     <url>/2022/01/05/Blender-use/</url>
     <content><![CDATA[<h1 id="Blender使用实录"><a href="#Blender使用实录" class="headerlink" title="Blender使用实录"></a>Blender使用实录</h1><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>Blender是一款轻量级的三维建模软件。比起我以前用过的C4D来说，Blender真的很小(只有不到200M)，所以强烈推荐作为入门三维建模软件。 </p>
