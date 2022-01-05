@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="Hexo Theme Keep">
+    <meta name="author" content="newsun-boki">
+    
+    <title>
+        
+            Blender使用实录 |
+        
+        newsun-boki
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/newsun-boki/img-folder@main/20211101/Screenshot-from-2021-11-01-23-15-56.10yd2slk8xz4.png">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/css/font-awesome.min.css">
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"example.com","root":"/","language":"en","path":"search.xml"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":true,"expand_all":false,"init_open":false},"style":{"primary_color":"#33FFCC","avatar":"https://github.com/newsun-boki/img-folder/blob/main/github.io/miku.png?raw=true","favicon":"https://cdn.jsdelivr.net/gh/newsun-boki/img-folder@main/20211101/Screenshot-from-2021-11-01-23-15-56.10yd2slk8xz4.png","article_img_align":"left","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":true,"scale":true},"first_screen":{"enable":true,"background_img":"/images/bg.svg","description":"cooooooool."},"scroll":{"progress_bar":{"enable":true},"percent":{"enable":true}}},"local_search":{"enable":true,"preload":true},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":true},"lazyload":{"enable":true},"version":"3.4.3"};
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+  </script>
+<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+</head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <span class="pjax-progress-icon">
+            <i class="fas fa-circle-notch fa-spin"></i>
+        </span>
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                newsun-boki
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                HOME
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                ARCHIVES
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/categories"
+                            >
+                                CATEGORIES
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/tags"
+                            >
+                                TAGS
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/links"
+                            >
+                                LINKS
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/about"
+                            >
+                                ABOUT
+                            </a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">HOME</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives">ARCHIVES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/categories">CATEGORIES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/tags">TAGS</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/links">LINKS</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/about">ABOUT</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <span class="title-hover-animation">Blender使用实录</span>
+        </div>
+
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="https://github.com/newsun-boki/img-folder/blob/main/github.io/miku.png?raw=true">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">newsun-boki</span>
+                        
+                            <span class="author-label">Lv3</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;2022-01-05 20:10:02
+    </span>
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/Blender/">Blender</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/Blender/">-Blender</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fas fa-file-word"></i>&nbsp;<span>677 Words</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fas fa-clock"></i>&nbsp;<span>2 Mins</span>
+        </span>
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        <div class="article-content markdown-body">
+            <h1 id="Blender使用实录"><a href="#Blender使用实录" class="headerlink" title="Blender使用实录"></a>Blender使用实录</h1><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>Blender是一款轻量级的三维建模软件。比起我以前用过的C4D来说，Blender真的很小(只有不到200M)，所以强烈推荐作为入门三维建模软件。 </p>
+<h2 id="下载"><a href="#下载" class="headerlink" title="下载"></a>下载</h2><p>直接steam搜索blender下载即可，不仅免费还自动更新。</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.jsdelivr.net/gh/newsun-boki/img-folder@main/image.4csuxbke29k0.png"
+                     
+                ></p>
+<h2 id="界面初始"><a href="#界面初始" class="headerlink" title="界面初始"></a>界面初始</h2><h3 id="查看三维模型常用快捷键"><a href="#查看三维模型常用快捷键" class="headerlink" title="查看三维模型常用快捷键"></a>查看三维模型常用快捷键</h3><ul>
+<li>鼠标中键——–旋转</li>
+<li>鼠标中键+shift——–平移</li>
+<li>鼠标中键+alt——–每隔45度自动吸附的旋转</li>
+<li>数字键12346789——–切换不同视图</li>
+<li>数字键5——–切换透视或平视视图(当你需要查看三视图时这个很重要)</li>
+<li>ctrl+p ——–用来添加父级</li>
+<li>ctrl+j———搞成一个整体</li>
+</ul>
+<ul>
+<li><p>旋转(R)平移(G)缩放(S)</p>
+</li>
+<li><p>旋转(R)平移(G)缩放(S)模式下按shift+x/y/z锁住某一轴</p>
+</li>
+<li><p>(alt+R/G/S)旋转/平移/缩放清零。</p>
+</li>
+<li><p>ctrl + space全屏状态</p>
+</li>
+<li><p>单独显示选中物体——– “/“</p>
+</li>
+<li><p>shift+d——-复制物体</p>
+</li>
+<li><p>alt+d——–同样是复制物体，且在编译模式下复制出的物体操作与原来同步 </p>
+</li>
+<li><p>ctrl+g——–选择点后按下将点加入顶点组</p>
+</li>
+</ul>
+<h4 id="编辑模式下"><a href="#编辑模式下" class="headerlink" title="编辑模式下"></a>编辑模式下</h4><ul>
+<li>选物体按tab进入物体的编辑模式</li>
+<li>在编辑模式下选中面按e伸缩面</li>
+<li>ctrl + 1/2/3切换选择点/线/面</li>
+<li>i——–插入</li>
+<li>ctrl+r——-环切</li>
+<li>p——–奖物体分开</li>
+</ul>
+<h4 id="摄像机模式下"><a href="#摄像机模式下" class="headerlink" title="摄像机模式下"></a>摄像机模式下</h4><ul>
+<li><p>按0进入摄像机模式</p>
+</li>
+<li><p>按home把取景框调到最大</p>
+</li>
+<li><p>可以开视角锁定</p>
+</li>
+</ul>
+<h4 id="3D游标"><a href="#3D游标" class="headerlink" title="3D游标"></a>3D游标</h4><p>  3D游标是个非常方便的设计。</p>
+<ul>
+<li><p>shift+右键———放置3d游标，会将3D游标放到当前鼠标位置的物体表面</p>
+</li>
+<li><p>当你想在某个地方创建一个图形时会默认创建在3D游标处</p>
+</li>
+<li><p>视角锁定3D游标会很方便</p>
+</li>
+</ul>
+<h2 id="地形设计"><a href="#地形设计" class="headerlink" title="地形设计"></a>地形设计</h2><ul>
+<li>建立很宽的地面</li>
+<li>将其细分为很多小块</li>
+<li>用衰减编辑去调整</li>
+</ul>
+<h2 id="插件"><a href="#插件" class="headerlink" title="插件"></a>插件</h2><h3 id="bool-tool"><a href="#bool-tool" class="headerlink" title="bool tool"></a>bool tool</h3><p>bool运算插件：先选中切割物体再选中被切割物体，按ctrl+小键盘上的减号-</p>
+<h4 id="MACHINtool3"><a href="#MACHINtool3" class="headerlink" title="MACHINtool3"></a>MACHINtool3</h4><p>​    一个比较方便的快捷键插件，有以下快捷键</p>
+<ul>
+<li>TAB—–可选择编辑模式以及点线面</li>
+<li>.——–可以选择以什么地方进行缩放旋转等操作</li>
+<li>F——-从unity3D拿过来的快捷键，聚焦到物体，非常方便</li>
+<li>ZQ——–原来是PGUP，PGDN，用来显示一些东西</li>
+<li>shift+alt+xyz——–先选择一个物体a，再选择物体b，创建a关于b的对称。或者直接创建物体关于自身的对称</li>
+<li>shift+s———将3d游标放到一个地方</li>
+<li>4——–通过点生成面</li>
+<li>alt+a——–对齐</li>
+<li>shift+alt+左键——–选择闭环 </li>
+</ul>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>大概就是记住一些关键的操作</p>
+
+        </div>
+
+        
+            <div class="post-copyright-info">
+                <div class="article-copyright-info-container">
+    <ul>
+        <li>Post title：Blender使用实录</li>
+        <li>Post author：newsun-boki</li>
+        <li>Create time：2022-01-05 20:10:02</li>
+        <li>
+            Post link：https://github.com/newsun-boki2022/01/05/Blender-use/
+        </li>
+        <li>
+            Copyright Notice：All articles in this blog are licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> unless stating additionally.
+        </li>
+    </ul>
+</div>
+
+            </div>
+        
+
+        
+            <div class="article-nav">
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/2021/12/05/Aimbot/"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">Aimbot整体流程框架</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+              <span>2020</span>
+              -
+            
+            2022&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">newsun-boki</a>
+        </div>
+        
+        <div class="theme-info info-item">
+            Powered by <a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;|&nbsp;Theme&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.3</a>
+        </div>
+        
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item page-aside-toggle">
+                <i class="fas fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+            <li class="tools-item rss flex-center">
+                <a class="flex-center"
+                   href="/atom.xml"
+                   target="_blank"
+                >
+                    <i class="fas fa-rss"></i>
+                </a>
+            </li>
+        
+
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="arrow-up fas fa-arrow-up"></i>
+                <span class="percent"></span>
+            </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    
+        <aside class="page-aside">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Blender%E4%BD%BF%E7%94%A8%E5%AE%9E%E5%BD%95"><span class="nav-number">1.</span> <span class="nav-text">Blender使用实录</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AE%80%E4%BB%8B"><span class="nav-number">1.1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%8B%E8%BD%BD"><span class="nav-number">1.2.</span> <span class="nav-text">下载</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%95%8C%E9%9D%A2%E5%88%9D%E5%A7%8B"><span class="nav-number">1.3.</span> <span class="nav-text">界面初始</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9F%A5%E7%9C%8B%E4%B8%89%E7%BB%B4%E6%A8%A1%E5%9E%8B%E5%B8%B8%E7%94%A8%E5%BF%AB%E6%8D%B7%E9%94%AE"><span class="nav-number">1.3.1.</span> <span class="nav-text">查看三维模型常用快捷键</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BC%96%E8%BE%91%E6%A8%A1%E5%BC%8F%E4%B8%8B"><span class="nav-number">1.3.1.1.</span> <span class="nav-text">编辑模式下</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%91%84%E5%83%8F%E6%9C%BA%E6%A8%A1%E5%BC%8F%E4%B8%8B"><span class="nav-number">1.3.1.2.</span> <span class="nav-text">摄像机模式下</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3D%E6%B8%B8%E6%A0%87"><span class="nav-number">1.3.1.3.</span> <span class="nav-text">3D游标</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9C%B0%E5%BD%A2%E8%AE%BE%E8%AE%A1"><span class="nav-number">1.4.</span> <span class="nav-text">地形设计</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8F%92%E4%BB%B6"><span class="nav-number">1.5.</span> <span class="nav-text">插件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#bool-tool"><span class="nav-number">1.5.1.</span> <span class="nav-text">bool tool</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#MACHINtool3"><span class="nav-number">1.5.1.1.</span> <span class="nav-text">MACHINtool3</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">1.6.</span> <span class="nav-text">总结</span></a></li></ol></li></ol>
+    </div>
+</div>
+        </aside>
+    
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+<script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/utils.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/main.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/header-shrink.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/back2top.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/dark-light-toggle.js"></script>
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/local-search.js"></script>
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/code-copy.js"></script>
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/lazyload.js"></script>
+
+
+<div class="post-scripts pjax">
+    
+        <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/left-side-toggle.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/libs/anime.min.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/toc.js"></script>
+    
+</div>
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/libs/pjax.min.js"></script>
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        window.pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax'
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+            // scrollTo: true,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            KEEP.utils.pjaxProgressBarStart();
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            KEEP.utils.pjaxProgressBarEnd();
+            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+            KEEP.refresh();
+        });
+    });
+</script>
+
+
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":false},"log":false});</script></body>
+</html>

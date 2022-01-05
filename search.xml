@@ -1429,4 +1429,107 @@
         <tag>openvino</tag>
       </tags>
   </entry>
+  <entry>
+    <title>Aimbot整体流程框架</title>
+    <url>/2021/12/05/Aimbot/</url>
+    <content><![CDATA[<h1 id="Aimbot"><a href="#Aimbot" class="headerlink" title="Aimbot"></a>Aimbot</h1><p>Aimbot是robomaster笃行战队2022年的视觉组整体框架代码。总共包含自瞄和打符两个部分。现在由于还在构建之出，为了理清思路，防止结构混乱，也为了新人能够更好的理解此代码特此写下次介绍来辅助整体代码的构建。此框架随代码进展动态更新。</p>
+<h2 id="背景介绍"><a href="#背景介绍" class="headerlink" title="背景介绍"></a>背景介绍</h2><p>Robomaster是由大疆主办的一场全国大学生机器人大赛，其特点为高度对抗性</p>
+]]></content>
+      <categories>
+        <category>rm</category>
+      </categories>
+      <tags>
+        <tag>code</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Blender使用实录</title>
+    <url>/2022/01/05/Blender-use/</url>
+    <content><![CDATA[<h1 id="Blender使用实录"><a href="#Blender使用实录" class="headerlink" title="Blender使用实录"></a>Blender使用实录</h1><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>Blender是一款轻量级的三维建模软件。比起我以前用过的C4D来说，Blender真的很小(只有不到200M)，所以强烈推荐作为入门三维建模软件。 </p>
+<h2 id="下载"><a href="#下载" class="headerlink" title="下载"></a>下载</h2><p>直接steam搜索blender下载即可，不仅免费还自动更新。</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.jsdelivr.net/gh/newsun-boki/img-folder@main/image.4csuxbke29k0.png"
+                     
+                ></p>
+<h2 id="界面初始"><a href="#界面初始" class="headerlink" title="界面初始"></a>界面初始</h2><h3 id="查看三维模型常用快捷键"><a href="#查看三维模型常用快捷键" class="headerlink" title="查看三维模型常用快捷键"></a>查看三维模型常用快捷键</h3><ul>
+<li>鼠标中键——–旋转</li>
+<li>鼠标中键+shift——–平移</li>
+<li>鼠标中键+alt——–每隔45度自动吸附的旋转</li>
+<li>数字键12346789——–切换不同视图</li>
+<li>数字键5——–切换透视或平视视图(当你需要查看三视图时这个很重要)</li>
+<li>ctrl+p ——–用来添加父级</li>
+<li>ctrl+j———搞成一个整体</li>
+</ul>
+<ul>
+<li><p>旋转(R)平移(G)缩放(S)</p>
+</li>
+<li><p>旋转(R)平移(G)缩放(S)模式下按shift+x/y/z锁住某一轴</p>
+</li>
+<li><p>(alt+R/G/S)旋转/平移/缩放清零。</p>
+</li>
+<li><p>ctrl + space全屏状态</p>
+</li>
+<li><p>单独显示选中物体——– “/“</p>
+</li>
+<li><p>shift+d——-复制物体</p>
+</li>
+<li><p>alt+d——–同样是复制物体，且在编译模式下复制出的物体操作与原来同步 </p>
+</li>
+<li><p>ctrl+g——–选择点后按下将点加入顶点组</p>
+</li>
+</ul>
+<h4 id="编辑模式下"><a href="#编辑模式下" class="headerlink" title="编辑模式下"></a>编辑模式下</h4><ul>
+<li>选物体按tab进入物体的编辑模式</li>
+<li>在编辑模式下选中面按e伸缩面</li>
+<li>ctrl + 1/2/3切换选择点/线/面</li>
+<li>i——–插入</li>
+<li>ctrl+r——-环切</li>
+<li>p——–奖物体分开</li>
+</ul>
+<h4 id="摄像机模式下"><a href="#摄像机模式下" class="headerlink" title="摄像机模式下"></a>摄像机模式下</h4><ul>
+<li><p>按0进入摄像机模式</p>
+</li>
+<li><p>按home把取景框调到最大</p>
+</li>
+<li><p>可以开视角锁定</p>
+</li>
+</ul>
+<h4 id="3D游标"><a href="#3D游标" class="headerlink" title="3D游标"></a>3D游标</h4><p>  3D游标是个非常方便的设计。</p>
+<ul>
+<li><p>shift+右键———放置3d游标，会将3D游标放到当前鼠标位置的物体表面</p>
+</li>
+<li><p>当你想在某个地方创建一个图形时会默认创建在3D游标处</p>
+</li>
+<li><p>视角锁定3D游标会很方便</p>
+</li>
+</ul>
+<h2 id="地形设计"><a href="#地形设计" class="headerlink" title="地形设计"></a>地形设计</h2><ul>
+<li>建立很宽的地面</li>
+<li>将其细分为很多小块</li>
+<li>用衰减编辑去调整</li>
+</ul>
+<h2 id="插件"><a href="#插件" class="headerlink" title="插件"></a>插件</h2><h3 id="bool-tool"><a href="#bool-tool" class="headerlink" title="bool tool"></a>bool tool</h3><p>bool运算插件：先选中切割物体再选中被切割物体，按ctrl+小键盘上的减号-</p>
+<h4 id="MACHINtool3"><a href="#MACHINtool3" class="headerlink" title="MACHINtool3"></a>MACHINtool3</h4><p>​    一个比较方便的快捷键插件，有以下快捷键</p>
+<ul>
+<li>TAB—–可选择编辑模式以及点线面</li>
+<li>.——–可以选择以什么地方进行缩放旋转等操作</li>
+<li>F——-从unity3D拿过来的快捷键，聚焦到物体，非常方便</li>
+<li>ZQ——–原来是PGUP，PGDN，用来显示一些东西</li>
+<li>shift+alt+xyz——–先选择一个物体a，再选择物体b，创建a关于b的对称。或者直接创建物体关于自身的对称</li>
+<li>shift+s———将3d游标放到一个地方</li>
+<li>4——–通过点生成面</li>
+<li>alt+a——–对齐</li>
+<li>shift+alt+左键——–选择闭环 </li>
+</ul>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>大概就是记住一些关键的操作</p>
+]]></content>
+      <categories>
+        <category>Blender</category>
+      </categories>
+      <tags>
+        <tag>-Blender</tag>
+      </tags>
+  </entry>
 </search>
