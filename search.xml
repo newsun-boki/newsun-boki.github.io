@@ -1519,4 +1519,85 @@
         <tag>-Blender</tag>
       </tags>
   </entry>
+  <entry>
+    <title>Blender编程指南</title>
+    <url>/2022/01/05/Blender-code/</url>
+    <content><![CDATA[<h1 id="Blender编程指南"><a href="#Blender编程指南" class="headerlink" title="Blender编程指南"></a>Blender编程指南</h1><h2 id="什么是Blender"><a href="#什么是Blender" class="headerlink" title="什么是Blender"></a>什么是Blender</h2><p>blender是一个轻量级的三维建模软件，可以通过steam下载。随着Blender官方的不断更新，其功能不断完善，blender已经受到越来越多人欢迎。</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.jsdelivr.net/gh/newsun-boki/img-folder@main/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE-2022-01-03-023105.6qw7kturlms0.webp"
+                      alt="屏幕截图-2022-01-03-023105"
+                ></p>
+<h2 id="前置知识"><a href="#前置知识" class="headerlink" title="前置知识"></a>前置知识</h2><ul>
+<li><p>Blender图形化操作</p>
+</li>
+<li><p>Python基础语法</p>
+</li>
+</ul>
+<p>本教程需要你掌握了Blender的大致操作和python的基础语法。然后看了这个教程能够大概将两项结合在一起。</p>
+<h2 id="Blender编程"><a href="#Blender编程" class="headerlink" title="Blender编程"></a>Blender编程</h2><p>Blender作为一款三维建模软件，所使用的人大多数是学艺术的，但像我这种程序员，使用软件的第一想法就是是否能编程。Blender非常人性化的支持python编程功能，并且很多Blender第三方插件也是基于Blender编程模块所开发的。</p>
+<p>所谓Blender的编程，事实上就是编写一个自动化脚本，来将我们几乎所有能够图形化的操作变成编程语言。这虽然听起来会很麻烦，但对于一些重复性的工作比如随机生成楼房草地等非常有帮助。</p>
+<h2 id="编程前的环境设置"><a href="#编程前的环境设置" class="headerlink" title="编程前的环境设置"></a>编程前的环境设置</h2><p>Blender的编程模块就内嵌在软件当中，当然你也可以使用Vscode进行编程。不过这里使用Blender内置的文本编辑器。在编程开始之前，首先要确保开启Python工具提示。</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.jsdelivr.net/gh/newsun-boki/img-folder@main/1.15js6kipotj4.webp"
+                      alt="1"
+                ></p>
+<p>开启后，当你吧鼠标悬停到任意一个按钮上时，就会出现相应的变量。</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.jsdelivr.net/gh/newsun-boki/img-folder@main/2.1ed8b41xmjcw.webp"
+                      alt="2"
+                ></p>
+<h2 id="界面介绍"><a href="#界面介绍" class="headerlink" title="界面介绍"></a>界面介绍</h2><p>首先在上面窗口栏的最右边你能够找到Scripting脚本窗口，点击进入脚本编写界面.</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.jsdelivr.net/gh/newsun-boki/img-folder@main/3.57rrm00su200.webp"
+                      alt="3"
+                ></p>
+<p>除了你平时见到的窗口，还额外多出三个窗口分别是：</p>
+<ul>
+<li>文本编辑器：位于最中央。是你编写脚本的地方</li>
+<li>Python控制台：位于左中。一个可以交互式编写python脚本的终端。熟悉python的应该都知道，通过这个控制台可以很方便的学习脚本编写。同时这个控制台有按<code>TAB</code>键自动补全的功能。</li>
+<li>信息：位于左下。每当你在图形化界面中做出一步操作时，相应的函数调用就会出现在这里。你可以这个信息为依据编写脚本，但是这里的信息很多时候都只是单独的一步操作，在编写脚本时不一定要按这个来。</li>
+</ul>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.jsdelivr.net/gh/newsun-boki/img-folder@main/4.s298v8slj4w.webp"
+                      alt="4"
+                ></p>
+<h2 id="编程过程"><a href="#编程过程" class="headerlink" title="编程过程"></a>编程过程</h2><p>假设你会使用Blender和Python，你想要知道的就是Blender中的每一种操作在blender中是如何对应的，你有3种方法：</p>
+<p>1.首先图形化界面做一步，然后在信息里查看调用了哪个函数。但这样做的坏处就是很多时候我们写脚本的内容和信息里所查看到的习惯是不一样。以下面创建一个立方体并旋转x轴旋转30度为例。</p>
+<p>这是是以脚本的样子写出来。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> bpy 		<span class="comment">#导入blender的必备库</span></span><br><span class="line">bpy.ops.mesh.primitive_cube_add()		<span class="comment">#创建立方体	</span></span><br><span class="line">so = bpy.context.active_object			<span class="comment">#将立方体对象赋予so</span></span><br><span class="line">so.rotation_euler[<span class="number">0</span>] += <span class="number">30</span> * <span class="number">3.1415</span> / <span class="number">180</span>		<span class="comment">#欧拉角旋转30度</span></span><br></pre></td></tr></table></figure>
+
+<p>但是在图形化界面中里面，旋转一个立方体有两种方法：</p>
+<ul>
+<li><p>直接更改其旋转角度</p>
+</li>
+<li><p>按<code>r</code>手动拖动旋转</p>
+<p>以下为图形化操作在信息界面显示</p>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">   <span class="comment">#创建立方体</span></span><br><span class="line">bpy.ops.mesh.primitive_cube_add(enter_editmode=<span class="literal">False</span>, align=<span class="string">&#x27;WORLD&#x27;</span>, location=(<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>), rotation=(<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>), scale=(<span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>))</span><br><span class="line"><span class="comment">#直接更改其旋转角度</span></span><br><span class="line">   bpy.context.<span class="built_in">object</span>.rotation_euler[<span class="number">0</span>] = <span class="number">0.523599</span> </span><br><span class="line">   <span class="comment">#按`r`手动拖动旋转</span></span><br><span class="line">   bpy.ops.transform.rotate(value=-<span class="number">0.523838</span>, orient_axis=<span class="string">&#x27;Z&#x27;</span>, orient_type=<span class="string">&#x27;VIEW&#x27;</span>, orient_matrix=((<span class="number">4.93038e-32</span>, <span class="number">1</span>, <span class="number">2.22045e-16</span>), (<span class="number">2.22045e-16</span>, <span class="number">4.93038e-32</span>, <span class="number">1</span>), (<span class="number">1</span>, <span class="number">2.22045e-16</span>, <span class="number">4.93038e-32</span>)), orient_matrix_type=<span class="string">&#x27;VIEW&#x27;</span>, mirror=<span class="literal">False</span>, use_proportional_edit=<span class="literal">False</span>, proportional_edit_falloff=<span class="string">&#x27;SMOOTH&#x27;</span>, proportional_size=<span class="number">1</span>, use_proportional_connected=<span class="literal">False</span>, use_proportional_projected=<span class="literal">False</span>)</span><br></pre></td></tr></table></figure>
+
+<p>​    从这里我们可以看出，同一个步骤有很多不同的方法，在编写脚本时我们尽量少用ops中的函数，推荐直接更改其属性。同时信息界面所得每个函数都包含很多默认的形参，在脚本编写时可以暂时不需要。</p>
+<p>2.在控制台终端不断自动补全进行尝试。这也是一种较为有效的方法。鉴于编辑器没有自动补全功能。在控制台不断的自动补全并交互式的实验是非常有效。</p>
+<p>3.之前说的python工具提示已经显示除了每个变量的名称，你可以以此作为对照修改值。</p>
+<p>平时python用的大多数语法都是能用的，这就是一个加了个第三方库的python，正常使用就好。</p>
+<h2 id="后续"><a href="#后续" class="headerlink" title="后续"></a>后续</h2><p>你已经学会了1+1=2了，现在是时候开始解微积分了。</p>
+<p>了解怎么将图形化界面对应到python，接下来就是发挥你的智慧，大胆的进行尝试了。只要你足够了解python和blender，这些都不是难事。如果你是一个纯艺术生，建议不一定需要学习写脚本，或者就先学一下python吧。</p>
+]]></content>
+      <categories>
+        <category>Blender</category>
+      </categories>
+      <tags>
+        <tag>-Blender</tag>
+      </tags>
+  </entry>
 </search>
