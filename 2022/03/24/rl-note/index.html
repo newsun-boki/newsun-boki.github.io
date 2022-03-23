@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="Hexo Theme Keep">
+    <meta name="author" content="newsun-boki">
+    
+    <title>
+        
+            强化学习笔记 |
+        
+        newsun-boki
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/newsun-boki/img-folder@main/20211101/Screenshot-from-2021-11-01-23-15-56.10yd2slk8xz4.png">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/css/font-awesome.min.css">
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"example.com","root":"/","language":"en","path":"search.xml"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":true,"expand_all":false,"init_open":false},"style":{"primary_color":"#33FFCC","avatar":"https://github.com/newsun-boki/img-folder/blob/main/github.io/miku.png?raw=true","favicon":"https://cdn.jsdelivr.net/gh/newsun-boki/img-folder@main/20211101/Screenshot-from-2021-11-01-23-15-56.10yd2slk8xz4.png","article_img_align":"left","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":true,"scale":true},"first_screen":{"enable":true,"background_img":"/images/bg.svg","description":"cooooooool."},"scroll":{"progress_bar":{"enable":true},"percent":{"enable":true}}},"local_search":{"enable":true,"preload":true},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":true},"lazyload":{"enable":true},"version":"3.4.3"};
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+  </script>
+<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+</head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <span class="pjax-progress-icon">
+            <i class="fas fa-circle-notch fa-spin"></i>
+        </span>
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                newsun-boki
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                HOME
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                ARCHIVES
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/categories"
+                            >
+                                CATEGORIES
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/tags"
+                            >
+                                TAGS
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/links"
+                            >
+                                LINKS
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/about"
+                            >
+                                ABOUT
+                            </a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">HOME</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives">ARCHIVES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/categories">CATEGORIES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/tags">TAGS</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/links">LINKS</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/about">ABOUT</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <span class="title-hover-animation">强化学习笔记</span>
+        </div>
+
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="https://github.com/newsun-boki/img-folder/blob/main/github.io/miku.png?raw=true">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">newsun-boki</span>
+                        
+                            <span class="author-label">Lv3</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;2022-03-24 02:56:32
+    </span>
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/RL/">RL</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/RL/">RL</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fas fa-file-word"></i>&nbsp;<span>3.4k Words</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fas fa-clock"></i>&nbsp;<span>11 Mins</span>
+        </span>
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        <div class="article-content markdown-body">
+            <h1 id="强化学习阅读笔记"><a href="#强化学习阅读笔记" class="headerlink" title="强化学习阅读笔记"></a>强化学习阅读笔记</h1><p>以前总是对强化学习一窍不通，但看到各种演示视频总觉得非常有趣，于是花3块钱在淘宝上搞了本电子书开始了我的强化学习之旅。为了防止我学完之后什么也不记得，特此写下阅读笔记</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://tse3-mm.cn.bing.net/th/id/OIP-C.974DU2BuhvAlmkyU3XYR7gAAAA?pid=ImgDet&rs=1"
+                     
+                ></p>
+<h2 id="I-导论"><a href="#I-导论" class="headerlink" title="I. 导论"></a>I. 导论</h2><h3 id="1-1-强化学习"><a href="#1-1-强化学习" class="headerlink" title="1.1 强化学习"></a>1.1 强化学习</h3><p>强化学习的定义：<strong>学习做什么能使数值化的收益信号最大</strong>。学习者并不会被告知采取什么动作，而是通过自己的尝试去发现什么动作会产生最大的收益。</p>
+<p>强化学习不是有监督学习，也不是无监督学习，而是独立的。其与无监督学习的区别是：</p>
+<ul>
+<li>无监督学习是寻找未标注数据的隐含结构的过程。</li>
+<li>强化学习的目标是最大化收益信号。</li>
+</ul>
+<p>强化学习的两个关键特征：</p>
+<ul>
+<li>强化学习需要在试探与开发之间权衡。虽然强化学习智能体一定更喜欢过去有效产生收益的动作，但需要尝试从未选择过的动作，即<strong>走出“舒适圈”</strong>。</li>
+<li>强化学习需要明确考虑目标导向的智能体与不确定环境的交互这一整体问题，而不是一些孤立的子问题。注意强化学习是<strong>完整的交互的</strong>。</li>
+</ul>
+<p>强化学习与心理学和神经科学之间关系紧密，是和人类或动物最接近的一种学习方式，受到生物学习系统的影响。</p>
+<h3 id="1-2-示例"><a href="#1-2-示例" class="headerlink" title="1.2 示例"></a>1.2 示例</h3><ul>
+<li>alphaGo围棋大师</li>
+<li>一只羚羊幼崽出生后尝试着站起来</li>
+<li>准备早餐。你可知道准备一个早餐是多么复杂的一个流程。走进橱柜，打开橱柜等等等等，对于现在的机器人来说几乎是不可能的事情。</li>
+</ul>
+<h3 id="1-3-强化学习要素"><a href="#1-3-强化学习要素" class="headerlink" title="1.3 强化学习要素"></a>1.3 强化学习要素</h3><ul>
+<li>策略：学习智能体在特定时间的行为方式。环境状态到动作的映射。</li>
+<li>收益信号：强化学习中问题的目标，决定了什么是好什么是坏。类似痛苦或者愉悦，是一种短期的收益。</li>
+<li>价值函数：从长远的角度看什么是好的。一个状态的价值是一个智能体从这个状态开始，对将来累计的总收益的期望</li>
+</ul>
+<p>收益信号和价值函数就像短期的愉悦与长远的快乐。价值是我们最为关心的，我们选择动作是基于最高价值。但确定价值比确定收益难的多。就像你现在知道学习是痛苦的(收益低),但你不知道这样学下去未来会怎么样(价值难以确定)。收益基本是由环境直接给予的，而价值必须综合评估，根据智能体在整个过程中的收益序列重新评估。<strong>价值评估方法才是整个强化学习的关键。</strong></p>
+<ul>
+<li>最后是对环境建立的模型。这个模型是用于预测的，是我们最终得出来的结果。</li>
+</ul>
+<h3 id="1-4-局限性和适用范围"><a href="#1-4-局限性和适用范围" class="headerlink" title="1.4 局限性和适用范围"></a>1.4 局限性和适用范围</h3><p>状态是强化学习的核心，这种状态是策略和价值函数的输入，又是模型的输入与输出。</p>
+<p>解决强化学习问题的方法一定不只强化学习。比如可以通过遗传算法，模拟退火等<strong>进化算法</strong>来解决。这些方法不计算价值函数，而是选择收益最多的策略及其变种来产生下一代。对于策略空间较小的问题，这些算法是有效的。</p>
+<p>强化学习是在于环境互动中不断学习的一类算法。</p>
+<h3 id="1-5-强化学习的早期历史"><a href="#1-5-强化学习的早期历史" class="headerlink" title="1.5 强化学习的早期历史"></a>1.5 强化学习的早期历史</h3><p>强化学习的历史发展中有两条主线，在现代强化学习之前他们是相互独立的：</p>
+<ul>
+<li>源于动物学习心理学的试错法</li>
+<li>最优控制问题以及使用价值函数和动态规划的解决方案</li>
+</ul>
+<p>还有时序差分的研究</p>
+<h2 id="第一部分-表格型求解方法"><a href="#第一部分-表格型求解方法" class="headerlink" title="第一部分 表格型求解方法"></a>第一部分 表格型求解方法</h2><p>简单强化学习问题，状态和动作空间<strong>小</strong>到可以用数组或表格形式来表示价值函数。一般来说可以找到<strong>精确解</strong>。</p>
+<h2 id="II-多臂赌博机"><a href="#II-多臂赌博机" class="headerlink" title="II. 多臂赌博机"></a>II. 多臂赌博机</h2><ul>
+<li>评估性反馈：依赖于当前采取的动作，即采取不同的动作会得到不同的反馈（强化学习）</li>
+<li>指导性反馈：不依赖于当前的动作，即采取不同的动作也会得到相同的反馈（其他机器学习）</li>
+</ul>
+<h3 id="2-1-一个k臂赌博机问题"><a href="#2-1-一个k臂赌博机问题" class="headerlink" title="2.1 一个k臂赌博机问题"></a>2.1 一个k臂赌博机问题</h3><p>重复的在k个选项或者动作中做出选择，每次做出选择都会获得一定数值的收益，收益是由选择的动作决定的平稳的概率分布。<strong>目标是</strong>：<strong>某一短时间内最大化总收益的期望</strong>。比如1000次选择内。</p>
+<p>k个动作每一个在选择后都有一个<strong>期望</strong>或者平均收益称为这个动作的<strong>价值</strong>。在时刻$t$选择的动作为$A_t$，对应的收益为$R_t$。动作a对应的价值为$q_*(a)$,即动作a收益的期望：<br>$$<br>q_*(a) = E[R_t|A_t = a]<br>$$<br>一定要理解：<strong>价值是收益的期望</strong>。事实上我们并不能准确的知道价值，所以智能有一个对$t$时刻价值的估计叫做$Q_t(a)$，我们的目的就是让它逼近$q_*(a)$。</p>
+<p>如果一直对某个价值进行估计，那么在任一时刻至少有一个动作的估计值会是最高的，将这些对应的最高估计价值对应的动作称为<strong>贪心</strong>的动作。如果你选择了这些贪心的动作，则称作<strong>开发</strong>，如果选择了其他看起来没那么好的动作，那就是<strong>试探</strong>。开发是贪心的选择短期收益最大的，而试探是在放弃短期收益，尝试有没有更好的选项。由于每一次选择，开发和试探不可能同时进行，这就是<strong>开发和试探的冲突</strong>。</p>
+<p>开发和试探的平衡是强化学习中的一个重要问题。</p>
+<h3 id="2-2-动作-价值方法"><a href="#2-2-动作-价值方法" class="headerlink" title="2.2 动作-价值方法"></a>2.2 动作-价值方法</h3><p>接下来讲的就是怎么<strong>估计动作对应的价值</strong>，计算$Q_t(a)$。最简单的自然是求动作对应的价值的期望。也就是我们可能先执行各种各样的动作，然后用执行动作a得到的收益总和除以执行动作a的次数就可以得到平均每次执行动作a的收益，即<strong>通过平均值来估计期望</strong>。</p>
+<p>然后接下来用估计出的价值$Q_t(a)$来选择动作，使用之前我们所说的贪心，即选<strong>择估计值最大的那一个</strong>。可以记为<br>$$<br>A_t = \mathop{\arg\max}<em>{a}Q_t(a)<br>$$<br>这种方法根本不花时间去选择那些看起来劣质的动作，但是有的时候估计值也不一定对。因为估计的时间是有限的。此时可以用另一种近乎贪心的算法，比如有时候会以一个很小的概率$\epsilon$去等可能的选择其他不贪心的动作，称为$\epsilon$-贪心方法。这种方法的优点就是，假设时间无限长，那每一个动作都会被采样无限次，所得到的估计$Q_t(a)$就会收敛到$q</em>*(a)$。这不就可以很好的估计出哪个动作才是收益最高的了吗。</p>
+<h3 id="2-3-10臂测试平台"><a href="#2-3-10臂测试平台" class="headerlink" title="2.3 10臂测试平台"></a>2.3 10臂测试平台</h3><p>我们来看一个实际案例，10臂，意为着有10种动作，每种动作对应着不同收益的概率分布如下图。</p>
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.jsdelivr.net/gh/newsun-boki/img-folder@main/Screenshot-from-2022-03-24-01-51-48.75zfpp528940.webp"
+                      alt="Screenshot-from-2022-03-24-01-51-48" style="zoom:67%;" 
+                >
+
+<p>当然实际上我们应该是不知道上述分布的，而是我们试探来尽量估计。比如首先来个1000次来估计其每个动作的价值$Q_t(a)$，这构成了一轮试验。然后再搞2000次试验，得到我们对算法的评估。下图是贪心方法和$\epsilon$-贪心方法的对比。</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.jsdelivr.net/gh/newsun-boki/img-folder@main/Screenshot-from-2022-03-24-01-57-42.1w4upj91qvts.webp"
+                      alt="Screenshot-from-2022-03-24-01-57-42"
+                ></p>
+<p>可以看出纯粹贪心的算法长远上来看效果是没有$\epsilon$-贪心方法好的，这是因为贪心方法陷入一个自己认为收益的动作后无法自拔，而$\epsilon$-贪心方法一直在尝试其他好的方法。事实上可以随着时间推移逐渐减小$\epsilon$效果会更好。</p>
+<h3 id="2-4-增量式实现"><a href="#2-4-增量式实现" class="headerlink" title="2.4 增量式实现"></a>2.4 增量式实现</h3><p>事实上对于某一个动作，我们令$R_i$为这一动作被选择$i$次之后获得的收益，$Q_n$表示被选择$n-1$次之后价值的估计，有：<br>$$<br>Q_n= \frac{R_1+R_2+…+R_{n-1}}{n-1}<br>$$<br>但我们总不可能每进行一次动作都去算一下这个式子吧，那样只会随着次数的增多越来越麻烦，显然我们是能够仅仅根据$Q_n$和第$n$次收益$R_n$算出$Q_{n+1}$来的：<br>$$<br>Q_{n+1} = Q_n + \frac{1}{n}[R_n - Q_n]<br>$$<br>推导这里就不列出来了，因为非常简单，有没有发现这种形式很眼熟：<br>$$<br>新估计值 = 旧估计值 + 步长 \times [目标 - 旧估计值]<br>$$<br>这里的步长就是$\frac{1}{n}$,有点类似与梯度下降中学习率的样子，我们可以将它记为$\alpha$或者说$\alpha_t(a)$,即某一个动作某一时间的步长。用这种增量式的形式我们可以知道一个多臂赌博机$\epsilon$-贪心的解法。</p>
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.jsdelivr.net/gh/newsun-boki/img-folder@main/Screenshot-from-2022-03-24-02-17-11.5p5i7i5ujhs0.webp"
+                      alt="Screenshot-from-2022-03-24-02-17-11" style="zoom:80%;" 
+                >
+
+<h3 id="2-5-跟踪一个非平稳的问题"><a href="#2-5-跟踪一个非平稳的问题" class="headerlink" title="2.5 跟踪一个非平稳的问题"></a>2.5 跟踪一个非平稳的问题</h3><p>前面我们跟踪的都是一个平稳的问题，即动作对应的真实价值是不随着时间变化的。但强化学习面对的问题往往都是非平稳的问题，即动作的真实价值是随着时间变化的，也就是说以前估计值过一段时间就不能用了，我们必须时刻保持估计值最新。按之前的写法：<br>$$<br>Q_{n+1} = Q_n + \frac{1}{n}[R_n - Q_n]<br>$$<br>我们显然可以发现越往后，后面的实际收益对估计值影响越小(因为$\frac{1}{n}$趋近于0)，所以我们大胆的将步长令为一个<strong>常数</strong>：<br>$$<br>Q_{n+1} = Q_n + \alpha[R_n - Q_n]<br>$$<br>这个里面$\alpha$就是一个属于(0,1]的常数。当然也会带来一些小小的问题，比如如果这是一个平稳问题，当步长取$\frac{1}{n}$时根据大数定理能够保证其收敛到一个真值，当然对于非平稳问题就不存在了。还有就是当步长变为常数时对于价值的估计就变成了一个有偏估计。</p>
+<h3 id="2-6-乐观初始值"><a href="#2-6-乐观初始值" class="headerlink" title="2.6 乐观初始值"></a>2.6 乐观初始值</h3><p>乐观初始值体现在对初始值的改变。以前都是将初始估计值设置为0，现在我给它全部+5。与原来初始估计值设置为0相比，给它+5意味着鼓励动作-价值方法去试探，因为他会发现无论选哪一个都达不到5。当然随着时间不断增加，所谓智能体就会发现实际上哪一个动作的价值都不是5，但由于它前面已经试探了够多，保证他有充足的时间去估计动作对应的价值$Q(a)$,所以估计的也就比开始贪心就立马选择最好的动作准确。</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.jsdelivr.net/gh/newsun-boki/img-folder@main/Screenshot-from-2022-03-24-02-35-25.3fkmbfsidhe0.webp"
+                      alt="Screenshot-from-2022-03-24-02-35-25"
+                ></p>
+<p>当然，这种方法<strong>对于非平稳情况几乎没用</strong>，因为改变初始值只能够影响一开始的状况，但显然之后价值不断变化初始值也不能产生任何影响。</p>
+<h3 id="2-7-基于置信度上界的动作选择"><a href="#2-7-基于置信度上界的动作选择" class="headerlink" title="2.7 基于置信度上界的动作选择"></a>2.7 基于置信度上界的动作选择</h3><p>之前的$\epsilon$-贪心方法虽然有效，但毕竟也是在盲目的选择其他目标。事实上还有一种还有更好的方法，<strong>基于置信度上界(upper confidence bound, UCB)的方法</strong>。</p>
+<p>这种方法的主要思想是，对于一种动作，我选择的次数越多，我就越不想选他，选一些没选过的。具体方程就是<br>$$<br>A_t = \mathop{\arg\max}_{a}[Q_t(a)+c\sqrt{\frac{lnt}{N_t(a)}}]<br>$$<br>其中$N_t{(a)}$表示$t$时刻前动作$a$被选择的次数，$c$是一个大于0的数，控制试探的程度。这种方法中平方根项决定了对$a$动作值估计的不确定性的度量，每次选$a$，不确定性会减小。假如长时间不选$a$,不确定性就会增加。</p>
+<p>这种方法在10臂测试平台上效果确实是比$\epsilon$-贪心方法好，但难以推广到强化学习中的其他部分。</p>
+<h3 id="2-10-本章小结"><a href="#2-10-本章小结" class="headerlink" title="2.10 本章小结"></a>2.10 本章小结</h3><p>为什么直接跳到2.10呢，因为前面的梯度赌博机和上下文关联算法懒得看了。这里总结一下，主要就是</p>
+<ul>
+<li>$\epsilon$-贪心方法。一小段时间内进行动作的随机选择。</li>
+<li>UCB方法。采用确定的动作选择，但趋向于选择较少使用的动作.</li>
+<li>梯度赌博机算法。不估计动作价值，而是利用偏好函数，使用softmax分布来以一种分级的概率的方法选择更好的动作。</li>
+</ul>
+<p>至于哪个方法最好，只能说在10臂测试平台上是UCB最好吧，但不同的问题也不一样。这些方法看起来简单，但事实上都是强化学习中最基本的思想。</p>
+
+        </div>
+
+        
+            <div class="post-copyright-info">
+                <div class="article-copyright-info-container">
+    <ul>
+        <li>Post title：强化学习笔记</li>
+        <li>Post author：newsun-boki</li>
+        <li>Create time：2022-03-24 02:56:32</li>
+        <li>
+            Post link：https://github.com/newsun-boki2022/03/24/rl-note/
+        </li>
+        <li>
+            Copyright Notice：All articles in this blog are licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> unless stating additionally.
+        </li>
+    </ul>
+</div>
+
+            </div>
+        
+
+        
+            <div class="article-nav">
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/2022/01/05/tuo/"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">tuo</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+              <span>2020</span>
+              -
+            
+            2022&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">newsun-boki</a>
+        </div>
+        
+        <div class="theme-info info-item">
+            Powered by <a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;|&nbsp;Theme&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.3</a>
+        </div>
+        
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item page-aside-toggle">
+                <i class="fas fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+            <li class="tools-item rss flex-center">
+                <a class="flex-center"
+                   href="/atom.xml"
+                   target="_blank"
+                >
+                    <i class="fas fa-rss"></i>
+                </a>
+            </li>
+        
+
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="arrow-up fas fa-arrow-up"></i>
+                <span class="percent"></span>
+            </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    
+        <aside class="page-aside">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0"><span class="nav-number">1.</span> <span class="nav-text">强化学习阅读笔记</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#I-%E5%AF%BC%E8%AE%BA"><span class="nav-number">1.1.</span> <span class="nav-text">I. 导论</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0"><span class="nav-number">1.1.1.</span> <span class="nav-text">1.1 强化学习</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-%E7%A4%BA%E4%BE%8B"><span class="nav-number">1.1.2.</span> <span class="nav-text">1.2 示例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3-%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E8%A6%81%E7%B4%A0"><span class="nav-number">1.1.3.</span> <span class="nav-text">1.3 强化学习要素</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-4-%E5%B1%80%E9%99%90%E6%80%A7%E5%92%8C%E9%80%82%E7%94%A8%E8%8C%83%E5%9B%B4"><span class="nav-number">1.1.4.</span> <span class="nav-text">1.4 局限性和适用范围</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-5-%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%9A%84%E6%97%A9%E6%9C%9F%E5%8E%86%E5%8F%B2"><span class="nav-number">1.1.5.</span> <span class="nav-text">1.5 强化学习的早期历史</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E4%B8%80%E9%83%A8%E5%88%86-%E8%A1%A8%E6%A0%BC%E5%9E%8B%E6%B1%82%E8%A7%A3%E6%96%B9%E6%B3%95"><span class="nav-number">1.2.</span> <span class="nav-text">第一部分 表格型求解方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#II-%E5%A4%9A%E8%87%82%E8%B5%8C%E5%8D%9A%E6%9C%BA"><span class="nav-number">1.3.</span> <span class="nav-text">II. 多臂赌博机</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-%E4%B8%80%E4%B8%AAk%E8%87%82%E8%B5%8C%E5%8D%9A%E6%9C%BA%E9%97%AE%E9%A2%98"><span class="nav-number">1.3.1.</span> <span class="nav-text">2.1 一个k臂赌博机问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-%E5%8A%A8%E4%BD%9C-%E4%BB%B7%E5%80%BC%E6%96%B9%E6%B3%95"><span class="nav-number">1.3.2.</span> <span class="nav-text">2.2 动作-价值方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-10%E8%87%82%E6%B5%8B%E8%AF%95%E5%B9%B3%E5%8F%B0"><span class="nav-number">1.3.3.</span> <span class="nav-text">2.3 10臂测试平台</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-4-%E5%A2%9E%E9%87%8F%E5%BC%8F%E5%AE%9E%E7%8E%B0"><span class="nav-number">1.3.4.</span> <span class="nav-text">2.4 增量式实现</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-5-%E8%B7%9F%E8%B8%AA%E4%B8%80%E4%B8%AA%E9%9D%9E%E5%B9%B3%E7%A8%B3%E7%9A%84%E9%97%AE%E9%A2%98"><span class="nav-number">1.3.5.</span> <span class="nav-text">2.5 跟踪一个非平稳的问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-6-%E4%B9%90%E8%A7%82%E5%88%9D%E5%A7%8B%E5%80%BC"><span class="nav-number">1.3.6.</span> <span class="nav-text">2.6 乐观初始值</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-7-%E5%9F%BA%E4%BA%8E%E7%BD%AE%E4%BF%A1%E5%BA%A6%E4%B8%8A%E7%95%8C%E7%9A%84%E5%8A%A8%E4%BD%9C%E9%80%89%E6%8B%A9"><span class="nav-number">1.3.7.</span> <span class="nav-text">2.7 基于置信度上界的动作选择</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-10-%E6%9C%AC%E7%AB%A0%E5%B0%8F%E7%BB%93"><span class="nav-number">1.3.8.</span> <span class="nav-text">2.10 本章小结</span></a></li></ol></li></ol></li></ol>
+    </div>
+</div>
+        </aside>
+    
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+<script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/utils.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/main.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/header-shrink.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/back2top.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/dark-light-toggle.js"></script>
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/local-search.js"></script>
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/code-copy.js"></script>
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/lazyload.js"></script>
+
+
+<div class="post-scripts pjax">
+    
+        <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/left-side-toggle.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/libs/anime.min.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/toc.js"></script>
+    
+</div>
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/libs/pjax.min.js"></script>
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        window.pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax'
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+            // scrollTo: true,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            KEEP.utils.pjaxProgressBarStart();
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            KEEP.utils.pjaxProgressBarEnd();
+            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+            KEEP.refresh();
+        });
+    });
+</script>
+
+
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":false},"log":false});</script></body>
+</html>
