@@ -1,0 +1,745 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="Hexo Theme Keep">
+    <meta name="author" content="newsun-boki">
+    
+    <title>
+        
+            模式识别 |
+        
+        newsun-boki
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/newsun-boki/img-folder@main/20211101/Screenshot-from-2021-11-01-23-15-56.10yd2slk8xz4.png">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/css/font-awesome.min.css">
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"example.com","root":"/","language":"en","path":"search.xml"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":true,"expand_all":false,"init_open":false},"style":{"primary_color":"#33FFCC","avatar":"https://github.com/newsun-boki/img-folder/blob/main/github.io/miku.png?raw=true","favicon":"https://cdn.jsdelivr.net/gh/newsun-boki/img-folder@main/20211101/Screenshot-from-2021-11-01-23-15-56.10yd2slk8xz4.png","article_img_align":"left","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":true,"scale":true},"first_screen":{"enable":true,"background_img":"/images/bg.svg","description":"cooooooool."},"scroll":{"progress_bar":{"enable":true},"percent":{"enable":true}}},"local_search":{"enable":true,"preload":true},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":true},"lazyload":{"enable":true},"version":"3.4.3"};
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+  </script>
+<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+</head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <span class="pjax-progress-icon">
+            <i class="fas fa-circle-notch fa-spin"></i>
+        </span>
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                newsun-boki
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                HOME
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                ARCHIVES
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/categories"
+                            >
+                                CATEGORIES
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/tags"
+                            >
+                                TAGS
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/links"
+                            >
+                                LINKS
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/about"
+                            >
+                                ABOUT
+                            </a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">HOME</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives">ARCHIVES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/categories">CATEGORIES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/tags">TAGS</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/links">LINKS</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/about">ABOUT</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <span class="title-hover-animation">模式识别</span>
+        </div>
+
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="https://github.com/newsun-boki/img-folder/blob/main/github.io/miku.png?raw=true">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">newsun-boki</span>
+                        
+                            <span class="author-label">Lv3</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;2022-04-11 11:26:45
+    </span>
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">读书笔记</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/%E6%A8%A1%E5%BC%8F%E8%AF%86%E5%88%AB/">模式识别</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fas fa-file-word"></i>&nbsp;<span>9.7k Words</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fas fa-clock"></i>&nbsp;<span>40 Mins</span>
+        </span>
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        <div class="article-content markdown-body">
+            <h1 id="模式识别阅读笔记"><a href="#模式识别阅读笔记" class="headerlink" title="模式识别阅读笔记"></a>模式识别阅读笔记</h1><p>为了不浪费时间，这个笔记我就不写公式了。只提供给一些概念性的知识供回忆。</p>
+<h2 id="I-概论"><a href="#I-概论" class="headerlink" title="I 概论"></a>I 概论</h2><p>模式识别。什么是模式，模式(pattern),是一种较为抽象的东西。举个例子，比喻猫狗，你为什么能判断猫是猫，狗是狗，一般人们很难说清，这是种难以形容的东西。又比如你怎么判断一个东西是照片还是一副画，是什么类型的画，这些都难以表达，也很难用什么数学函数表达式直接表示出来。这些东西就叫做模式，对于人来说，识别不同的模式是一种简单的事请，但对于计算机来说并不简单，但计算机擅长计算这种人并不擅长的东西。所以我们的目的不是让计算机去模仿人脑，而是通过数学的方式让计算机去理解人的识别。</p>
+<p>模式识别有分为<strong>有监督学习</strong>和<strong>无监督学习</strong>：</p>
+<ul>
+<li>有监督学习比较著名的就是分类问题，也是当今模式识别领域运用最多的。监督指的是有样本也有标签。例如图像猫狗识别，能够给你很多张图片并告诉你猫还是狗，当模型训练出来后就可以做分类问题了。</li>
+<li>无监督学习更多的都是聚类问题，但聚类完之后得对结果进行解释。</li>
+</ul>
+<p>在模式识别的分类问题中中通常有以下几个步骤：</p>
+<ul>
+<li><p>预处理</p>
+</li>
+<li><p>特征提取</p>
+</li>
+<li><p>输入分类器进行训练</p>
+</li>
+<li><p>将训练好的模型用于预测</p>
+</li>
+</ul>
+<h2 id="II-统计决策方法"><a href="#II-统计决策方法" class="headerlink" title="II 统计决策方法"></a>II 统计决策方法</h2><p>这里我们以贝叶斯的方法来进行，<strong>贝叶斯决策理论称作统计决策理论</strong>。</p>
+<h3 id="2-1-贝叶斯公式"><a href="#2-1-贝叶斯公式" class="headerlink" title="2.1 贝叶斯公式"></a>2.1 贝叶斯公式</h3><p>学过概率论的应该都对贝叶斯公式有深刻的印象，这是一种从果到因推断出从因到果的过程<br>$$<br>P\left(A_{i} \mid B\right)=\frac{P\left(B \mid A_{i}\right) P\left(A_{i}\right)}{\sum_{j} P\left(B \mid A_{j}\right) P\left(A_{j}\right)}<br>$$<br>在模式识别中，贝叶斯公式主要是下面的形式<br>$$<br>P\left(\omega_{i} \mid \boldsymbol{x}\right)=\frac{P\left(\boldsymbol{x} \mid \omega_{i}\right) P\left(\omega_{i}\right)}{\sum_{j} P\left(\boldsymbol{x} \mid \omega_{j}\right) P\left(\omega_{j}\right)}<br>$$<br>其中$\boldsymbol{x}$代表输入，是一个多维特征向量,$\omega_{i}$代表第几个分类。$P\left(\omega_{j}\right)$叫做<strong>先验概率</strong>，$P\left(\omega_{i} \mid \boldsymbol{x}\right)$叫做<strong>后验概率</strong>。上面这个显然是一种条件概率，等式左边其实就是可以看出当输入是$\boldsymbol{x}$时，样本属于$\omega_i$概率。通过这个概率，我们可以引出以下几种决策的方式。</p>
+<h3 id="2-2-最小错误率贝叶斯决策"><a href="#2-2-最小错误率贝叶斯决策" class="headerlink" title="2.2 最小错误率贝叶斯决策"></a>2.2 最小错误率贝叶斯决策</h3><p>任何一个样本都可能会出错，对于某个样本的<strong>错误率</strong>为$p(e|x)$，显然对于一个二分类问题，样本$x$出错的概率为$P(w_2|x)$（若决策$x \in \omega_1$）或者$P(w_1|x)$（若决策$x \in \omega_2$）。对于多分类问题错误率定义为<br>$$<br>P(e)=\int P(e|x)p(x)dx<br>$$<br>所谓最小错误率决策，就是使上述的错误率最小化，也就是使后验概率最大的决策。也就是我们最常见的，选择使$P\left(\omega_{i} \mid \boldsymbol{x}\right)$最大的$\omega_{i}$为最佳决策。</p>
+<p>但这个规则在二分类问题的情况下还可以整理一下<br>$$<br>\text { 若 } l(x)=\frac{p\left(\boldsymbol{x} \mid \omega_{1}\right)}{p\left(\boldsymbol{x} \mid \omega_{2}\right)} \gtrless \lambda=\frac{P\left(\omega_{2}\right)}{P\left(\omega_{1}\right)}, \quad \text { 则 } \boldsymbol{x} \in\left{\begin{array}{l}<br>\omega_{1} \<br>\omega_{2}<br>\end{array}\right.<br>$$<br>上面这个公式仔细想一下就行，$p\left(\boldsymbol{x} \mid \omega_{i}\right)$反映了某一类中观察到特征值$x$的相对可能性，所以被称为似然度,主要$\lambda$叫做**似然比(likelihood ratio)**。</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.jsdelivr.net/gh/newsun-boki/img-folder@main/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE-2022-03-31-003442.6paeu8j5oa80.webp"
+                      alt="屏幕截图-2022-03-31-003442"
+                ></p>
+<p>图2.2中的虚线就被叫做<strong>决策面</strong>或者分类面。</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.jsdelivr.net/gh/newsun-boki/img-folder@main/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE-2022-03-31-003737.5kqz8gjkqvk0.webp"
+                      alt="屏幕截图-2022-03-31-003737"
+                ></p>
+<h3 id="2-3最小风险贝叶斯决策"><a href="#2-3最小风险贝叶斯决策" class="headerlink" title="2.3最小风险贝叶斯决策"></a>2.3最小风险贝叶斯决策</h3><p>同上面不一样的是，我们同样使用贝叶斯公式算出了后验概率$P(\omega_i|x)$，但此时我们不是单纯的选择最大那个了。在某一些，情况下，我们想要宁可错杀不可放过。比如检测疾病，或者故障维修的时候。所以我们需要评估假如选错了会带来的风险，并将其量化。</p>
+<p>对于输入$x$，假如由$k$种决策，包含把它分到$c$类中的一个，或者说判断其不属于任何一类。定义一个决策空间：<br>$$<br>\mathscr{A}=\left{\alpha_{1}, \alpha_{2}, \cdots, \alpha_{k}\right}<br>$$<br>同时定义<strong>风险函数</strong>,设对于实际状态为 $\omega_{j}$的向量 $x $ 采取决策 $\alpha_{i} $所带来的损失为<br>$$<br>\lambda\left(\alpha_{i}, \omega_{j}\right), \quad i=1, \cdots, k, \quad j=1, \cdots, c<br>$$<br>对于某个样本 $\boldsymbol{x}$, 它属于各个状态的后验概率是 $P\left(\omega_{j} \mid \boldsymbol{x}\right), j=1, \cdots, c$, 对它采取决策 $\alpha_{i}$, $i=1, \cdots, k$ 的期望损失是<br>$$<br>R\left(\alpha_{i} \mid \boldsymbol{x}\right)=E\left[\lambda\left(\alpha_{i}, \omega_{j}\right) \mid \boldsymbol{x}\right]=\sum_{j=1}^{c} \lambda\left(\alpha_{i}, \omega_{j}\right) P\left(\omega_{j} \mid \boldsymbol{x}\right), \quad i=1, \cdots, k<br>$$<br>我们的目的就是要使期望损失最小,使用以下决策<br>$$<br>\text { 若 } \lambda_{11} P\left(\omega_{1} \mid \boldsymbol{x}\right)+\lambda_{12} P\left(\omega_{2} \mid \boldsymbol{x}\right) \lessgtr \lambda_{21} P\left(\omega_{1} \mid \boldsymbol{x}\right)+\lambda_{22} P\left(\omega_{2} \mid \boldsymbol{x}\right) \text {, 则 } \boldsymbol{x} \in\left{\begin{array}{l}<br>\omega_{1} \<br>\omega_{2}<br>\end{array}\right.<br>$$<br>其中, $\lambda_{12}=\lambda\left(\alpha_{1}, \omega_{2}\right)$ 是把属于第 2 类的样本分为第 1 类时的损失, $\lambda_{21}=\lambda\left(\alpha_{2}, \omega_{1}\right)$ 是把属于第 1 类的样本分为第 2 类时的损失, $\lambda_{11}=\lambda\left(\alpha_{1}, \omega_{1}\right) 、 \lambda_{22}=\lambda\left(\alpha_{2}, \omega_{2}\right)$ 是决策正确 (把第 1 类决策为 第 1 类和把第 2 类决策为第 2 类) 时的损失。通常, $\lambda_{11}=\lambda_{12}=0$; 不失一般性, 我们可以假设 $\lambda_{11}&lt;\lambda_{21} ,$$\lambda_{22}&lt;\lambda_{12}$ 。</p>
+<p>实际上很好理解，对于多分类来说，使用不同决策的风险函数与对应的后验概率相乘，计算当做某一种决策所承担的风险，然后选择风险最小的一种就行。</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.jsdelivr.net/gh/newsun-boki/img-folder@main/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE-2022-03-31-010228.375ucp30m3i0.webp"
+                      alt="屏幕截图-2022-03-31-010228"
+                ></p>
+<p>解：已知条件为<br>$$<br>\begin{array}{ll}<br>P\left(\omega_{1}\right)=0.9, \quad &amp; P\left(\omega_{2}\right)=0.1 \<br>P\left(\boldsymbol{x} \mid \omega_{1}\right)=0.2, \quad P\left(\boldsymbol{x} \mid \omega_{2}\right)=0.4 \<br>\lambda_{11}=0, \quad \lambda_{12}=6 \<br>\lambda_{21}=0, \quad \lambda_{22}=0<br>\end{array}<br>$$<br>根据例 $2.1$ 的计算结果可知后验概率为<br>$$<br>P\left(\omega_{1} \mid \boldsymbol{x}\right)=0.818, \quad P\left(\omega_{2} \mid \boldsymbol{x}\right)=0.182<br>$$<br>再按式 (2-26) 计算出条件风险<br>$$<br>\begin{aligned}<br>&amp;R\left(\alpha_{1} \mid \boldsymbol{x}\right)=\sum_{j=1}^{2} \lambda_{1 j} P\left(\omega_{j} \mid \boldsymbol{x}\right)=\lambda_{12} P\left(\omega_{2} \mid \boldsymbol{x}\right)=1.092 \<br>&amp;R\left(\alpha_{2} \mid \boldsymbol{x}\right)=\lambda_{21} P\left(\omega_{1} \mid \boldsymbol{x}\right)=0.818 \<br>&amp;R\left(\alpha_{1} \mid \boldsymbol{x}\right)&gt;R\left(\alpha_{2} \mid \boldsymbol{x}\right)<br>\end{aligned}<br>$$<br>即决策为 $\omega_{2}$ 的条件风险小于决策为 $\omega_{1}$ 的条件风险, 因此我们采取决策行动 $\alpha_{2}$, 即判断待识 别的细胞 $x$ 为 $\omega_{2}$ 类一异常细胞。</p>
+<h3 id="2-4-两类错误率、Neyman-Pearson决策与ROC"><a href="#2-4-两类错误率、Neyman-Pearson决策与ROC" class="headerlink" title="2.4 两类错误率、Neyman-Pearson决策与ROC"></a>2.4 两类错误率、Neyman-Pearson决策与ROC</h3><p>下面讨论一些概念性的问题。在医学领域，人们经常会用阳性阴性代表两类，或者说正样本和负样本。正常的决策可能会有以下几种情况：</p>
+<table>
+<thead>
+<tr>
+<th>决策</th>
+<th>状态</th>
+<th>状态</th>
+</tr>
+</thead>
+<tbody><tr>
+<td></td>
+<td>阳性</td>
+<td>阴性</td>
+</tr>
+<tr>
+<td>阳性</td>
+<td>真阳性(TP)</td>
+<td>假阳性(FP)</td>
+</tr>
+<tr>
+<td>阴性</td>
+<td>假阴性(FN)</td>
+<td>真阴性(TN)</td>
+</tr>
+</tbody></table>
+<p>上面需要牢记，同时定义<strong>灵敏度</strong>$Sn$为实际是阳性的样本中被检测为阳性的，<strong>特异度</strong>$Sp$为实际上是阴性的样本中被检测为阴性的。注意灵敏度越高特异度就越低。<br>$$<br>\begin{aligned}<br>&amp;\mathrm{Sn}=\frac{\mathrm{TP}}{\mathrm{TP}+\mathrm{FN}} \<br>&amp;\mathrm{Sp}=\frac{\mathrm{TN}}{\mathrm{TN}+\mathrm{FP}}<br>\end{aligned}<br>$$<br>同时把所有实际上是阴性样本中被为阳性检测(假阳性)称为<strong>第一类错误</strong>(误报或虚报)，把所有阳性样本中被检测为阴性(假阴性)称为<strong>第二类错误</strong>(漏报)。显然对于病人来说，漏报是比误报还严重的，有些时候我们希望将第二类错误降低到一定程度时使第一类错误更低，但我觉得应该不会考所以我暂时不讲。</p>
+<p>现在来看<strong>ROC曲线</strong>,几乎所有机器学习得评价中都会看见这个曲线。</p>
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.jsdelivr.net/gh/newsun-boki/img-folder@main/屏幕截图-2022-03-31-013336.1k09hoqdu8lc.webp"
+                      alt="屏幕截图-2022-03-31-013336" style="zoom:50%;" 
+                >
+
+<p>这个显然当ROC曲线要在对角线之上才是正常的，否则真阳性率比假阳性率还低就没有意义的。这个曲线是通过改变决策阈值来实现的。比如有(0,0)点这种全识别成阴性这种特殊情况。显然有，当这个ROC曲线越往上凸是越好的，或者说其曲线下的相对面积(AUC)越大越好。AUC就成了展现决策方法性能的判别。</p>
+<h3 id="2-5-正态分布的统计决策"><a href="#2-5-正态分布的统计决策" class="headerlink" title="2.5 正态分布的统计决策"></a>2.5 正态分布的统计决策</h3><p>下面这个部分我认为虽然很复杂但是很有意思。首先需要明确一个概念，在这一小节我们假设对于某一种分类$\omega_i$假设其$x$是<strong>服从正态分布</strong>的。正态分布我们都知道有均值和方差，比如对于人脸识别来说，一张标准的大众脸就是均值，而其他人的不同长相就是方差。</p>
+<p><strong>单变量</strong>的正态分布很简单<br>$$<br>p(x)=\frac{1}{\sqrt{2 \pi} \sigma} \exp \left{-\frac{1}{2}\left(\frac{x-\mu}{\sigma}\right)^{2}\right}<br>$$<br>有期望和标准差<br>$$<br>\begin{aligned}<br>&amp;\mu=E{x}=\int_{-\infty}^{\infty} x p(x) \mathrm{d} x \<br>&amp;\sigma^{2}=\int_{-\infty}^{\infty}(x-\mu)^{2} p(x) \mathrm{d} x<br>\end{aligned}<br>$$<br>那么多变量会稍稍复杂亿点点<br>$$<br>p(\boldsymbol{x})=\frac{1}{(2 \pi)^{d / 2}|\boldsymbol{\Sigma}|^{\frac{1}{2}}} \exp \left{-\frac{1}{2}(\boldsymbol{x}-\boldsymbol{\mu})^{\mathrm{T}} \boldsymbol{\Sigma}^{-1}(\boldsymbol{x}-\boldsymbol{\mu})\right}<br>$$<br>式中: $\boldsymbol{x}=\left[x_{1}, x_{2}, \cdots, x_{d}\right]^{\mathrm{T}}$ 是 $d$ 维列向量; $\boldsymbol{\mu}=\left[\mu_{1}, \mu_{2}, \cdots, \mu_{d}\right]^{\mathrm{T}}$ 是 $d$ 维均值向量; $\Sigma$ 是 $d \times d$ 维协方程矩阵, $\Sigma^{-1}$ 是 $\boldsymbol{\Sigma}$ 的逆矩阵, $|\boldsymbol{\Sigma}|$ 是 $\boldsymbol{\Sigma}$ 的行列式。不难证明,协方差矩阵总是对称非负定阵, 且可表示为<br>$$<br>\boldsymbol{\Sigma}=\left[\begin{array}{cccc}<br>\sigma_{11}^{2} &amp; \sigma_{12}^{2} &amp; \cdots &amp; \sigma_{1 d}^{2} \<br>\sigma_{12}^{2} &amp; \sigma_{22}^{2} &amp; \cdots &amp; \sigma_{2 d}^{2} \<br>\vdots &amp; \vdots &amp; \ddots &amp; \vdots \<br>\sigma_{1 d}^{2} &amp; \sigma_{2 d}^{2} &amp; \cdots &amp; \sigma_{d d}^{2}<br>\end{array}\right]<br>$$<br>接下来引出一个新的概念：等密度点轨迹的超椭球面。</p>
+<p>正态分布抽取的样本大部分落在一个区域中，区域中心由$\mu$决定，大小由$\boldsymbol{\Sigma}$决定。可以想象，其等密度的轨迹应该是一个超椭球面(可以把它想象成三维空间)，且由下面这个方程确定<br>$$<br>(\boldsymbol{x}-\boldsymbol{\mu})^{\mathrm{T}} \boldsymbol{\Sigma}^{-1}(\boldsymbol{x}-\boldsymbol{\mu})=\text { 常数 }<br>$$<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.jsdelivr.net/gh/newsun-boki/img-folder@main/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE-2022-03-31-015700.7c5kkeccjy40.webp"
+                      alt="屏幕截图-2022-03-31-015700"
+                ></p>
+<p>并且将其到中心$\mu$的距离定义为$\gamma$，这个距离被称作Mahalanobis距离(马氏距离)。<br>$$<br>(\boldsymbol{x}-\boldsymbol{\mu})^{\mathrm{T}} \boldsymbol{\Sigma}^{-1}(\boldsymbol{x}-\boldsymbol{\mu})= \gamma ^2<br>$$<br>另外再复习一下，相互独立一定不相关，不相关不一定相互独立。</p>
+<p>那么在这种正态分布的假设下，之前<strong>最小错误率贝叶斯决策</strong>和决策面的有关公式，可以写出一个判别函数为<br>$$<br>g_{i}(\boldsymbol{x})=\frac{1}{2}\left(\boldsymbol{x}-\boldsymbol{\mu}<em>{i}\right)^{\mathrm{T}} \boldsymbol{\Sigma}</em>{i}^{-1}\left(\boldsymbol{x}-\boldsymbol{\mu}<em>{i}\right)-\frac{d}{2} \ln 2 \pi-\frac{1}{2} \ln \left|\boldsymbol{\Sigma}</em>{i}\right|+\ln P\left(\omega_{i}\right)<br>$$<br>决策面方程为<br>$$<br>g_{i}(\boldsymbol{x})=g_{j}(\boldsymbol{x})<br>$$<br>化简为<br>$$<br>\begin{aligned}<br>&amp;-\frac{1}{2}\left[\left(\boldsymbol{x}-\boldsymbol{\mu}<em>{i}\right)^{\mathrm{T}} \boldsymbol{\Sigma}</em>{i}^{-1}\left(\boldsymbol{x}-\boldsymbol{\mu}<em>{i}\right)-\left(\boldsymbol{x}-\boldsymbol{\mu}</em>{j}\right)^{\mathrm{T}} \boldsymbol{\Sigma}<em>{j}^{-1}\left(\boldsymbol{x}-\boldsymbol{\mu}</em>{j}\right)\right] \<br>&amp;-\frac{1}{2} \ln \frac{\left|\boldsymbol{\Sigma}<em>{i}\right|}{\left|\boldsymbol{\Sigma}</em>{j}\right|}+\ln \frac{P\left(\omega_{i}\right)}{P\left(\omega_{j}\right)}=0<br>\end{aligned}<br>$$<br>这个公式看起来很复杂，当考虑到实际问题的一些情况的时候，是可以化简的。</p>
+<h4 id="1-第一种情况-boldsymbol-Sigma-i-sigma-2-I-i-1-2-cdots-c"><a href="#1-第一种情况-boldsymbol-Sigma-i-sigma-2-I-i-1-2-cdots-c" class="headerlink" title="1. 第一种情况$\boldsymbol{\Sigma}_{i}=\sigma^{2} I, i=1,2, \cdots, c$"></a>1. 第一种情况$\boldsymbol{\Sigma}_{i}=\sigma^{2} I, i=1,2, \cdots, c$</h4><p>在这种情况下，每类协方差矩阵都相等，且各个特征间都是相互独立的。而且方差还相等。虽然这种情况很理想，但对于某些相关性不强的情况我认为也可以近似一下。这种情况最为简单，相当于该类样本集中一个个<strong>超球体</strong>之内。<br>$$<br>\mathbf{\Sigma}<em>{i}=\left[\begin{array}{ccc}<br>\sigma^{2} &amp; \cdots &amp; 0 \<br>\vdots &amp; \ddots &amp; \vdots \<br>0 &amp; \cdots &amp; \sigma^{2}<br>\end{array}\right]<br>$$<br>把上面的公式化简一下，忽略一些和类别无关的变量，最终就有结果<br>$$<br>g</em>{i}(\boldsymbol{x})=\frac{1}{2 \sigma^{2}}\left(\boldsymbol{x}-\boldsymbol{\mu}<em>{i}\right)^{\mathrm{T}}\left(\boldsymbol{x}-\boldsymbol{\mu}</em>{i}\right)+\ln P\left(\omega_{i}\right)<br>$$<br>$$<br>\left(\boldsymbol{x}-\boldsymbol{\mu}<em>{i}\right)^{\mathrm{T}}\left(\boldsymbol{x}-\boldsymbol{\mu}</em>{i}\right)=\left|\boldsymbol{x}-\boldsymbol{\mu}<em>{i}\right|^{2}=\sum</em>{i=1}^{d}\left(x_{j}-\mu_{i j}\right)^{2}, \quad i=1, \cdots, c<br>$$<br>上面看起来我们已经转化为一个欧氏距离的平方了，特别是当<strong>先验概率$P(w_j)$都相等时</strong>，可以忽略末尾项，此时结果就仅仅和输入与分类器几类的均值向量的欧氏距离有关，$x$就属于$\min \left|\boldsymbol{x}-\boldsymbol{\mu}_{i}\right|^{2} $的类。</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.jsdelivr.net/gh/newsun-boki/img-folder@main/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE-2022-03-31-235506.1vlukxt00wv4.webp"
+                      alt="屏幕截图-2022-03-31-235506"
+                ></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.jsdelivr.net/gh/newsun-boki/img-folder@main/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE-2022-03-31-235959.1o2uqqhbs77.webp"
+                      alt="屏幕截图-2022-03-31-235959"
+                ></p>
+<p>上面决策面是个超平面，显然通过两个中心的连线中点且与连线正交。上面的一些决策面实际上可以用方程表示出来：<br>$$<br>\boldsymbol{w}^{T}\left(\boldsymbol{x}-\boldsymbol{x}<em>{0}\right)=0<br>$$<br>$$<br>\begin{aligned}<br>&amp;\boldsymbol{w}=\boldsymbol{\mu}</em>{i}-\boldsymbol{\mu}<em>{j} \<br>&amp;\boldsymbol{x}</em>{0}=\frac{1}{2}\left(\boldsymbol{\mu}<em>{i}+\boldsymbol{\mu}</em>{j}\right)-\frac{\sigma^{2}}{\left|\boldsymbol{\mu}<em>{i}-\boldsymbol{\mu}</em>{j}\right|^{2}} \ln \frac{P\left(\omega_{i}\right)}{P\left(\omega_{j}\right)}\left(\boldsymbol{\mu}<em>{i}-\boldsymbol{\mu}</em>{j}\right)<br>\end{aligned}<br>$$</p>
+<p><strong>当先验概率不相等，决策面与先验概率相等时决策面平行，只是向先验概率小的方向偏移。</strong></p>
+<h4 id="2-第二种情况：-boldsymbol-Sigma-i-boldsymbol-Sigma"><a href="#2-第二种情况：-boldsymbol-Sigma-i-boldsymbol-Sigma" class="headerlink" title="2. 第二种情况：$\boldsymbol{\Sigma}_{i} = \boldsymbol{\Sigma}$"></a>2. 第二种情况：$\boldsymbol{\Sigma}_{i} = \boldsymbol{\Sigma}$</h4><p>各类的协方差都相等，稍微复杂了一些，从几何上看，该样本集中于一个个超椭球体之内，且每一个椭球体都相等<br>$$<br>g_{i}(\boldsymbol{x})=-\frac{1}{2}\left(\boldsymbol{x}-\boldsymbol{\mu}<em>{i}\right)^{\mathrm{T}} \boldsymbol{\Sigma}^{-1}\left(\boldsymbol{x}-\boldsymbol{\mu}</em>{i}\right)+\ln P\left(\omega_{i}\right)<br>$$<br>在先验概率相等的情况下，忽略末尾项，则最终结果只和$x$到每类的均值点$\mu_i$的马氏距离的平方$\gamma ^2$相关。这实际上是一个线性判别函数，决策面是一个超平面，这里超平面的方程就不详细给出了，具体看书。</p>
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="C:\Users\lby\AppData\Roaming\Typora\typora-user-images\image-20220401003237679.png"
+                      alt="image-20220401003237679" style="zoom:67%;" 
+                >
+
+<h4 id="3-第三种情况：各类协方差不相等"><a href="#3-第三种情况：各类协方差不相等" class="headerlink" title="3.第三种情况：各类协方差不相等"></a>3.第三种情况：各类协方差不相等</h4><p>太复杂了，看看就好，我觉得不会考</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.jsdelivr.net/gh/newsun-boki/img-folder@main/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE-2022-04-01-003421.33b3v4hc2bm0.webp"
+                      alt="屏幕截图-2022-04-01-003421"
+                ></p>
+<h3 id="2-6-错误率计算"><a href="#2-6-错误率计算" class="headerlink" title="2.6 错误率计算"></a>2.6 错误率计算</h3><p>事实上大部分时候错误率都是很不好算的，但现在我们既然规定了正态分布，那似乎就可以开始计算错误率了。回顾一下最小错误率贝叶斯决策规则的负对数似然比。<br>$$<br>h(\boldsymbol{x})=-\ln l(\boldsymbol{x})=-\ln p\left(\boldsymbol{x} \mid \omega_{1}\right)+\ln p\left(\boldsymbol{x} \mid \omega_{2}\right) \lessgtr \ln \left[\frac{P\left(\omega_{1}\right)}{P\left(\omega_{2}\right)}\right] \rightarrow x \in\left{\begin{array}{l}<br>\omega_{1} \<br>\omega_{2}<br>\end{array}\right.<br>$$<br>$h(\boldsymbol{x})$ 是 $\boldsymbol{x}$ 的函数, $\boldsymbol{x}$ 是随机向量, 因此 $h(\boldsymbol{x})$ 是随机变量。我们记它的分布密度函数为 $p\left(h \mid \omega_{1}\right)$ 。 由于它是一维密度函数, 易于积分, 所以用它计算错误率有时较为方便。有<br>$$<br>\begin{aligned}<br>&amp;P_{1}(e)=\int_{\mathscr{S}<em>{2}} p\left(x \mid \omega</em>{1}\right) \mathrm{d} \boldsymbol{x}=\int_{t}^{\infty} p\left(h \mid \omega_{1}\right) \mathrm{d} h \<br>&amp;P_{2}(e)=\int_{\mathscr{s}<em>{1}} p\left(x \mid \omega</em>{2}\right) \mathrm{d} x=\int_{-\infty}^{t} p\left(h \mid \omega_{2}\right) \mathrm{d} h<br>\<br>&amp;t=\ln \left[P\left(\omega_{1}\right) \mid P\left(\omega_{2}\right)\right]<br>\end{aligned}<br>$$<br>这个还是很方便的<br>$$<br>\begin{aligned}<br>P_{1}(e) &amp;=\int_{t}^{\infty} p\left(h \mid \omega_{1}\right) \mathrm{d} h \<br>&amp;=\int_{t}^{\infty} \frac{1}{(2 \pi)^{\frac{1}{2}} \sigma} \exp \left{-\frac{1}{2}\left(\frac{h+\eta}{\sigma}\right)^{2}\right} \mathrm{d} h \<br>&amp;=\int_{t}^{\infty}(2 \pi)^{-\frac{1}{2}} \exp \left{-\frac{1}{2}\left(\frac{h+\eta}{\sigma}\right)^{2}\right} \mathrm{d}\left(\frac{h+\eta}{\sigma}\right) \<br>&amp;=\int_{\frac{t+n}{a}}^{\infty}(2 \pi)^{-\frac{1}{2}} \exp \left(-\frac{1}{2} \xi^{2}\right) \mathrm{d} \xi \<br>P_{2}(e) &amp;=\int_{-\infty}^{t} p\left(h \mid \omega_{2}\right) \mathrm{d} h \<br>&amp;=\int_{-\infty}^{t}(2 \pi)^{-\frac{1}{2}} \exp \left{-\frac{1}{2}\left(\frac{h-\eta}{\sigma}\right)^{2}\right} \mathrm{d}\left(\frac{h-\eta}{\sigma}\right) \<br>&amp;=\int_{\infty}^{\frac{t}{\sigma}}(2 \pi)^{-\frac{1}{2}} \exp \left(-\frac{1}{2} \xi^{2}\right) \mathrm{d} \xi<br>\end{aligned}<br>$$<br>其中<br>$$<br>\eta=\frac{1}{2}\left[\left(\boldsymbol{\mu}<em>{1}-\boldsymbol{\mu}</em>{2}\right)^{\mathrm{T}} \boldsymbol{\Sigma}^{-1}\left(\boldsymbol{\mu}<em>{1}-\boldsymbol{\mu}</em>{2}\right)\right]<br>$$</p>
+<p>$$<br>t=\ln \left[\frac{P\left(\omega_{1}\right)}{P\left(\omega_{2}\right)}\right], \quad \sigma=\sqrt{2 \eta}<br>$$<br>$h(\boldsymbol{x})$ 的概率密度函数如图 2-12 所示。阴影部分相当于最小错误率贝叶斯决策的错误率 </p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.jsdelivr.net/gh/newsun-boki/img-folder@main/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE-2022-04-01-010821.wcufn5xm77k.webp"
+                      alt="屏幕截图-2022-04-01-010821"
+                ></p>
+<h3 id="2-7-离散概率模型下的统计决策举例"><a href="#2-7-离散概率模型下的统计决策举例" class="headerlink" title="2.7 离散概率模型下的统计决策举例"></a>2.7 离散概率模型下的统计决策举例</h3><p>前面是实际上讲的都是连续情况下的，都是一些概率密度函数，其实离散情况在我看来更加简单，并且同样有一个很简单方法，马尔可夫模型。下面看一个案例</p>
+<pre><code>我们知道, 生物的基因组是由 A 、 T 、 G 、 C四种核苷酸组成的序列。人的一套基因组单 链是由约 30 亿个 A 、 T 、 G 、 C 组成的一个超长的序列, 可以把它看成是一本由四个字母写成 的天书。这样一个超长的字符串或其中一个子串,并不是由四个字母随机组成的, 而是遵循 着很多特殊的规律。比如, 由于一些生物化学机制的作用, 基因组同一条链上出现相连的 C 和 G 的概率要比随机情况小很多。把相连的 C 和 G 叫做一个 CpG 双核苒酸。人们已经观 察到, CpG 在基因组上出现的平均频率比根据 C 、 G 各自出现的频率估计的组合出现频率小 很多,但是, 这些有限的 CpG在基因组上分布的位置不是均匀的, 而是倾向于集中在相对较 短的一些片段上,这种 CpG相对富集的区域被称作 CpG岛,就像大海上的小岛一样。CpG岛在基因组上有重要的功能, 研究CpG岛的识别是非常有意义的。
+</code></pre>
+<p>首先介绍一下马尔可夫模型，这是一种以状态转移为核心的模型，你也可以向有限状态机一样画一个状态转移图。对于<strong>一阶马尔可夫模型</strong>，核心思想就是，<strong>下一个的状态仅和上一个状态有关</strong>，比如在ATGC中，我们以DNA轴为主线，通常实际上是以时间顺序的，但是在这里我们把DNA序列看作时间序列，就有$x_{i}={A, T, G, C}$<br>$$<br>P\left(x_{i} \mid x_{i-1}, x_{i-2}, \cdots, x_{1}\right)=P\left(x_{i} \mid x_{i-1}\right)<br>$$<br>并定义转移概率有<br>$$<br>a_{st}=P\left(x_{i}=t \mid x_{i-1}=s\right)<br>$$<br>即从一个状态转移到另一个状态的概率，对一个长度为 $L$ 的序列, 我们观察到这个序列的概率是<br>$$<br>P(x) \stackrel{\text { def }}{=} P\left(x_{i}, x_{2}, \cdots, x_{L}\right)=P\left(x_{1}\right) \prod_{i=2}^{L} a_{x_{i-1} x_{i}}<br>$$<br>在DNA案例中，我们有转移概率矩阵</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.jsdelivr.net/gh/newsun-boki/img-folder@main/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE-2022-04-01-012804.6vcszrwod680.webp"
+                      alt="屏幕截图-2022-04-01-012804"
+                ></p>
+<p>那么现在的问题就是，给你一个DNA链判断其是否是CpG岛。因为CpG岛和非CpG岛的转移概率矩阵是不同的，有一个非常直观的思想就是，用分别用CpG岛和非CpG岛的转移矩阵计算$P\left(x_{1}\right) \prod_{i=2}^{L} a_{x_{i-1} x_{i}}$。这就代表走DNA能够走出这一条路线的状态的可能性。看是CpG岛的转移矩阵算出的可能性大和非CpG岛的转移矩阵算出的可能性大，哪一个大就是哪个。</p>
+<p>用书里的话来说，这与前面贝叶斯决策的似然比很相似。在前面讲述连续变量的贝叶斯决策时, 用类条件概率密度来描述各类样本的特征分布。对于一个特定样本 $x$,根据类条件概率密度计算似然 比 $l(x)=\frac{p\left(x \mid \omega_{1}\right)}{p\left(x \mid \omega_{2}\right)}$ 并与一定的阈值做比较来进行判别。当采用最小错误率准则且两类先验 概率相等时, 阈值是 1 , 即如果似然比大于 1 则判别为第一类, 小于 1 则判别为第二类。</p>
+<p>在 $\mathrm{CpG}$ 岛的识别中, 把 $\mathrm{CpG}$ 岛一类记作“+”, $\mathrm{CpG}$ 岛情况下的马尔可夫转移概率记作 $a_{x_{i-1} x_{i}}^{+}$;把非 CpG 岛一类记作“-”, 非 CpG 岛情况下的马尔可夫转移概率记 $a_{x_{i-1} x_{i}}^{-}$。为 了考虑到长序列处理方便, 可以采用下面的对数似然比 (log likelihood ratio) 来进行判别<br>$$<br>S(x)=\log \frac{P(x \mid+)}{P(x \mid-)}=\log \frac{\prod_{i=1}^{L} a_{x_{i-1} x_{i}}^{+}}{\prod_{i=1}^{L} a_{x_{i-1} x_{i}}^{-}}=\sum_{i=1}^{L} \log \frac{a_{x_{i-1} x_{i}}^{+}}{a_{x_{i-1} x_{i}}}<br>$$<br>这个又叫做对数几率比。</p>
+<p>但实际上，上面那个转移概率矩阵是需要我们自己估计的，或者可以称为训练。只需要找到一些CpG岛和非CpG岛的片段，统计AGCT后面出现AGCT的次数就可以估计了。</p>
+<p>除了马尔可夫还有<strong>隐马尔可夫模型</strong></p>
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.jsdelivr.net/gh/newsun-boki/img-folder@main/屏幕截图-2022-04-01-014054.xr5s0rahm28.webp"
+                      alt="屏幕截图-2022-04-01-014054" style="zoom:67%;" 
+                >
+
+<p>这里书上提到了Viterbi算法和Gibbs采样法可以求解。 </p>
+<h2 id="III-概率密度函数的估计"><a href="#III-概率密度函数的估计" class="headerlink" title="III 概率密度函数的估计"></a>III 概率密度函数的估计</h2><h3 id="3-1-引言"><a href="#3-1-引言" class="headerlink" title="3.1 引言"></a>3.1 引言</h3><p>对于上一章提到过的<strong>贝叶斯决策是决策部分</strong>，是在训练得到了模型的基础上决定，那么这一章主要是贝叶斯决策模型的训练，其中有一条最关键的就是类条件概率密度函数$P(\boldsymbol x|w_i)$的估计。剩下的还有先验概率$P(w_i)$是比较好估计的，通常只需要根据大量的样本就可以计算出各类样本的占比从而估计先验概率。所以重点介绍类条件概率密度函数。</p>
+<p>在监督学习中，训练样本都是已知的，各类样本仅包含本类信息。所以现在使用同一类样本估计本类的类条件概率密度，有两种情况：</p>
+<ul>
+<li><p>参数估计：参数估计是已知概率密度函数，但不知道其中的参数，比如正态分布已经知道了其概率密度函数形式，但不知道其均值和方差。</p>
+</li>
+<li><p>非参数估计：就是链概率密度函数都不知道,需要用样本把概率密度函数数值化估计出来。</p>
+</li>
+</ul>
+<p>参数估计中有几个基本概念：</p>
+<ul>
+<li>统计量：样本中包含着总体信息，通过样本抽取信息，针对不同要求构造出样本的某种函数，这种函数就是统计量。</li>
+<li>参数空间：就是指在参数估计中，假设概率密度函数的形式已知，而其中的参数是未知的，把未知的参数记为$\boldsymbol \theta$,其全部可能值构成的空间就是参数空间，记为$\Theta$.</li>
+<li>点估计、估计量、估计值。点估计是构造统计量$d(\boldsymbol x_1, … , \boldsymbol x_n)$作为参数$\theta$的估计$\hat{\theta}$，在统计学中称 $\hat{\theta}$ 为 $\theta$ 的估计量。如果 $\boldsymbol{x}<em>{1}^{(i)}, \cdots, \boldsymbol{x}</em>{N}^{(i)}$ 是属于类别 $\omega_{i}$ 的几个样 本观察值, 代人统计量 $d$ 就得到对于第 $i$ 类的 $\hat{\theta}$ 的具体数值, 这个数值在统计学中称为 $\theta$ 的 估计值。</li>
+<li>区间估计：除了点估计之外的另一类估计方法，用区间$(d_1,d_2)$作为参数$\theta$的可能取值范围的估计，称为置信区间。</li>
+</ul>
+<p>这里我们涉及到参数估计的主要是点估计，有两种估计方法：最大似然估计和贝叶斯估计。</p>
+<h3 id="3-2-最大似然估计"><a href="#3-2-最大似然估计" class="headerlink" title="3.2 最大似然估计"></a>3.2 最大似然估计</h3><p>首先由以下基本假设：</p>
+<ul>
+<li>参数$\theta$是一个确定的<strong>未知向量</strong>，但它<strong>不是随机量</strong>。</li>
+<li>每类样本的样本集$\mathscr{X}_{i}, i=1,2, \cdots, c$,满足<strong>独立同分布</strong></li>
+<li>参数的类条件概率函数形式是已知的$p(\boldsymbol{x}|\omega_i )$，只是其中参数未知而已。比如正态分布中的$N(\mu,\sigma^2)$</li>
+<li>不同参数互相独立</li>
+</ul>
+<p>最大似然估计的基本思想很简单，现在我们已知一个样本集<br>$$<br>\mathscr{X}=\left{\boldsymbol{x}<em>{1}, \boldsymbol{x}</em>{2}, \cdots, \boldsymbol{x}<em>{N}\right}<br>$$<br>那么计算在参数为某个值$\theta$的时候，获得这个样本集的概率就有<br>$$<br>l(\theta)=p(\mathscr{X} \mid \theta)=p\left(\boldsymbol{x}</em>{1}, \boldsymbol{x}<em>{2}, \cdots, \boldsymbol{x}</em>{N} \mid \theta\right)=\prod_{i=1}^{N} p\left(\boldsymbol{x}<em>{i} \mid \theta\right)<br>$$<br> 那么这时候显然就可以知道，**使得上述联合概率最大的参数$\theta$**就是我们想要的结果,上面这个函数就是我们的似然函数。所以最大似然估计就是在参数空间$\Theta$里寻找参数$\theta$，使得似然函数$l(\theta)$最大$\hat{\theta}=d\left(x</em>{1}, x_{2}, \cdots, x_{N}\right)$叫做$\theta$的最大似然估计量。当然为了便于求解，我们一般将其对数化。也就是定义下列对数函数函数<br>$$<br>H(\theta)=\ln l(\theta)=\ln \prod_{i=1}^{N} p\left(\boldsymbol{x}<em>{i} \mid \theta\right)=\sum</em>{i=1}^{N} \ln p\left(\boldsymbol{x}<em>{i} \mid \theta\right)<br>$$<br>那为了求解出上面这个函数的<strong>最大值</strong>，显然我们只需要<strong>求导</strong>就行，或者说当其为一个高维向量的时候，是求梯度算子，即对每一维分别求偏导，令其等于0。<br>$$<br>\boldsymbol{\nabla}</em>{\theta} H(\boldsymbol{\theta})=\sum_{i=1}^{N} \boldsymbol{\nabla}<em>{\theta} \ln p\left(\boldsymbol{x}</em>{i} \mid \boldsymbol{\theta}\right)=0<br>$$<br>这样可以得到多个方程，方程组的解就是其极值点。在某些情况下可能会有多个极值。<strong>且并不是所有概率密度形式都可以用上述公式求解</strong>，比如说均匀分布<br>$$<br>p(x \mid \theta)= \begin{cases}\frac{1}{\theta_{2}-\theta_{1}} &amp; \theta_{1}&lt;x&lt;\theta_{2} \ 0 &amp; \text { 其他 }\end{cases}<br>$$<br>通过计算我们是可以知道是求不出来的，因为似然函数在最大值的地方是没有零斜率的，那么可以有$\theta_1$是样本x中最小的一个，$\theta_2$是样本中最大的一个。</p>
+<p>对于<strong>正态分布下的最大似然估计</strong>，事实上也不是很难，因为正态分布的概率密度函数是已知的，这里求解过程的推导过程略，但是总而言之最终的结果就有<br>$$<br>\begin{aligned}<br>\hat{\mu} &amp;=\hat{\theta}<em>{1}=\frac{1}{N} \sum</em>{k=1}^{N} x_{k} \<br>\hat{\delta}^{2} &amp;=\hat{\theta}<em>{2}=\frac{1}{N} \sum</em>{k=1}^{N}\left(x_{k}-\hat{\mu}\right)^{2}<br>\end{aligned}<br>$$<br>当然上面的结果是一维的情况，当涉及到多维的时候也差不多。</p>
+<p>总结一下就是：</p>
+<ul>
+<li><p>已知概率密度函数$p(x|\theta)$的形式</p>
+</li>
+<li><p>求解对数似然函数$H(\theta)=\sum_{i=1}^{N} \ln p\left(\boldsymbol{x}_{i} \mid \theta\right)$</p>
+</li>
+<li><p>对对数函数求导找其导数等于0的点对应的参数$\theta$</p>
+</li>
+</ul>
+<h3 id="3-3-贝叶斯估计和贝叶斯学习"><a href="#3-3-贝叶斯估计和贝叶斯学习" class="headerlink" title="3.3 贝叶斯估计和贝叶斯学习"></a>3.3 贝叶斯估计和贝叶斯学习</h3><p>贝叶斯估计和最大似然估计最大的区别就是，<strong>最大似然估计</strong>把参数看作是<strong>固定但是未知的量</strong>，而在贝叶斯估计中参数本身也是<strong>随机变量</strong>。<strong>贝叶斯学习</strong>是直接把贝叶斯估计的原理用于数据对概率密度函数进行<strong>迭代估计</strong>.</p>
+<p>这里原理就不进行分析了，主要还是按着最小错误率或者最小风险的思路来看，不过注意这里的风险函数我们定义为常见的平方损失函数：<br>$$<br>\lambda(\hat{\theta}, \theta)=(\theta-\hat{\theta})^{2}<br>$$<br>所以贝叶斯估计的<strong>步骤</strong>就是：</p>
+<ul>
+<li><p>根据对问题的认识或猜测确定先验分布密度$p(\theta)$</p>
+</li>
+<li><p>由于样本独立同分布，已知样本密度函数的形式$p(x|\theta)$,样本集的联合分布为： 吧<br>$$<br>p(\mathscr{X} \mid \theta)=\prod_{i=1}^{N} p\left(x_{i} \mid \theta\right)<br>$$</p>
+</li>
+<li><p>利用贝叶斯公式求$\theta$的后验概率分布：<br>$$<br>p(\theta \mid \mathscr{X})=\frac{p(\mathscr{X} \mid \theta) p(\theta)}{\int_{\theta} p(\mathscr{X} \mid \theta) p(\theta) \mathrm{d} \theta}<br>$$</p>
+</li>
+<li><p>所以贝叶斯估计量就是其期望(这个是高中就学过的知识)<br>$$<br>\theta^{*}=\int_{\theta} \theta p(\theta \mid \mathscr{X}) \mathrm{d} \theta<br>$$</p>
+</li>
+</ul>
+<p>在贝叶斯估计中$p(x|\theta)$已知，但只有先验概率密度在为某些特殊形式的情况下才会使上面的式子能够比较方便的计算。特别地，如果先验概率模型$p(\theta)$能够使的后验分布$p(\theta| \mathscr{X})$具有与$p(\mathscr{X} | \theta)$有相同的形式，把这样的先验概率与概率模型$p(x|\theta)$<strong>共轭</strong>。比如正态分布，当$p(\theta)$为正态分布时，实际上就是与$p(x|\theta)$共轭的。</p>
+<p>但注意，我们本来的目的不是估计概率密度函数参数，而是估计样本的概率密度函数，那么在已知后验概率的情况下就没必要对参数进行估计了，可以<strong>直接得到样本概率密度函数</strong><br>$$<br>p(\boldsymbol{x} \mid \mathscr{X})=\int_{\Theta} p(x \mid \theta) p(\theta \mid \mathscr{X}) \mathrm{d} \theta<br>$$<br>也就是说上面的式子就是说所有参数可能的样本密度概率的加权平均，而这个权就是观测样本下参数的后验概率。在上面的贝叶斯公式中，实际上后验概率可以有<br>$$<br>p(\theta \mid \mathscr{X}) \sim p(\mathscr{X} \mid \theta) p(\theta)<br>$$<br>分母实际上只是做一个归一化，保证概率密度函数下的积分为1。如果认为$p(\theta)$是均匀分布的话，那么实际上$p(\theta \mid \mathscr{X})$ 完全取决于$ p(\mathscr{X} \mid \theta) $,此时得到的值应该是和最大似然估计相等的。如果先验知识非常强，那就相当于直接已知概率密度函数的参数了，此时通过贝叶斯公式就可以直接查出分类的后验概率了。</p>
+<p>对于<strong>贝叶斯学习</strong>，之前说贝叶斯学习是贝叶斯估计的迭代，这里的迭代主要是指求<strong>联合概率密度</strong>时，当样本集增加的时候会只需要乘以新的概率密度就行。即<br>$$<br>p\left(\mathscr{X}^{N} \mid \theta\right)=p\left(\boldsymbol{x}<em>{N} \mid \theta\right) p\left(\mathscr{X}^{N-1} \mid \theta\right)<br>$$<br>这里样本集记作了$\mathscr{X}^{N}=\left{\boldsymbol{x}</em>{1}, \boldsymbol{x}<em>{2}, \cdots, \boldsymbol{x}</em>{N}\right}$,而把这个代入贝叶斯公式就有下面的递推<br>$$<br>p\left(\theta \mid \mathscr{X}^{N}\right)=\frac{p\left(x_{N} \mid \theta\right) p\left(\theta \mid \mathscr{X}^{N-1}\right)}{\int_{p}\left(x_{N} \mid \theta\right) p\left(\theta \mid \mathscr{X}^{N-1}\right) \mathrm{d} \theta}<br>$$<br>那么通过样本数的不断增加就可以得到不同参数数目下参数估计的后验概率密度，并且有着随着样本不断增加，后验概率逐渐趋向参数的真实值，在图像上不断呈现一个尖峰。这一个过程就叫做<strong>贝叶斯学习</strong>。</p>
+<p>下面举一个正态分布时的贝叶斯估计的案例，显然我们待估计的参数就是均值$\mu$和方差$\sigma^2$,分布密度有<br>$$<br>p(x \mid \mu)=\frac{1}{\sqrt{2 \pi} \sigma} \exp \left(-\frac{1}{2 \sigma^{2}}(x-\mu)^{2}\right)<br>$$<br>并且假定均值$\mu$的先验分布$p(\mu)$时正态分布的，并且仅对均值进行估计，那么按上面的步骤一通操作，注意这里我们忽略了贝叶斯公式分母部分的积分，最终可以算出<br>$$<br>p(\mu \mid \mathscr{X})=\frac{1}{\sqrt{2 \pi} \sigma_{N}} \exp \left(-\frac{1}{2}\left(\frac{\mu-\mu_{N}}{\sigma_{N}}\right)^{2}\right)<br>$$<br>上面的分布显然也是一个正态分布，所以就是共轭的，最后得出来的样本概率密度就有<br>$$<br>p(x \mid \mathscr{X})=\frac{1}{\sqrt{2 \pi} \sqrt{\sigma^{2}+\sigma_{N}^{2}}} \exp \left{-\frac{1}{2}\left(\frac{\boldsymbol{x}-\mu_{N}}{\sqrt{\sigma^{2}+\sigma_{N}^{2}}}\right)^{2}\right} \sim N\left(\mu_{N}, \sigma^{2}+\sigma_{N}^{2}\right)<br>$$</p>
+<h3 id="3-4-概率密度估计的非参数方法"><a href="#3-4-概率密度估计的非参数方法" class="headerlink" title="3.4 概率密度估计的非参数方法"></a>3.4 概率密度估计的非参数方法</h3><p>前面的最大似然估计和贝叶斯估计我们都是已知了样本概率密度函数的具体形式，只需要估计其参数。但是大多数时候我们是不能知道样本的分布情况的(当然我们也不能简单的将其想为正态分布)。这个时候我们就需要<strong>非参数估计</strong>.这种方法无法得到完美的封闭函数的形式，只是从样本分布本身进行估计。</p>
+<h4 id="3-4-1-直方图方法"><a href="#3-4-1-直方图方法" class="headerlink" title="3.4.1 直方图方法"></a>3.4.1 直方图方法</h4><p>直方图是一个使用非常广泛的东西，也是我们中学时期就接触过的。也就是</p>
+<ul>
+<li><p>把样本$\boldsymbol{x}$的分量在取值范围内<strong>分成$k$个等间隔小段</strong>，注意如果是$d$维向量，这种分割就是在一个多维空间里的，所以我们把这个也称为<strong>小舱</strong>，小舱体积记为$V$。</p>
+</li>
+<li><p>统计落入每个小舱的样本数目$q_i$，</p>
+</li>
+<li><p>把每个小舱的<strong>概率密度</strong>看作常数，并用$q_i/(NV)$作为估计值，其中$N$为样本总数，且样本落入这个小舱的概率就是$q_i / N$。</p>
+</li>
+</ul>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.jsdelivr.net/gh/newsun-boki/img-folder@main/20131203104147-769004261.6hlfl58yfpc0.webp"
+                      alt="20131203104147-769004261"
+                ></p>
+<p>我们的问题就是根据样本集$\mathscr{X}=\left{\boldsymbol{x}<em>{1}, \cdots, \boldsymbol{x}</em>{N}\right}$估计密度函数$p(\boldsymbol{x})$，注意这里仅考虑一个类别，对不同的类别需要分类估计。随机向量落入某个小窗的概率是<br>$$<br>P_{R}=\int_{R} p(x) \mathrm{d} x<br>$$<br>根据二项分布，在样本集中恰好有k个落入小区域$R$的概率就是<br>$$<br>P_{k}=C_{N}^{k} P_{R}^{k}\left(1-P_{R}\right)^{N-k}<br>$$<br>当然这个传统的直方图方法有一个很大的问题就是，如何定义小窗的大小。过大会导致估计出的概率密度函数非常的粗糙，过窄会导致小窗不连续。小窗的选择应该是<strong>使概率密度函数收敛于真实的概率密度函数的条件</strong>.即在样本数目无穷多的时候</p>
+<ul>
+<li><p>$\lim <em>{n \rightarrow \infty} V</em>{n}=0$,小舱体积尽量小</p>
+</li>
+<li><p>$\lim <em>{n \rightarrow \infty} k</em>{n}=\infty$，落入小舱的样本数目逐渐增多</p>
+</li>
+<li><p>$\lim <em>{n \rightarrow \infty} \frac{k</em>{n}}{n}=0$，落入小舱的样本数目是总体样本中很小的一部分</p>
+</li>
+</ul>
+<h4 id="3-4-2-k-n-近邻估计方法、"><a href="#3-4-2-k-n-近邻估计方法、" class="headerlink" title="3.4.2 $k_n$近邻估计方法、"></a>3.4.2 $k_n$近邻估计方法、</h4><p>这是一种采用<strong>可变大小的小舱密度</strong>估计方法，能够随着样本密度的分布调整小舱的大小，在密集的地方小舱大，在稀疏的地方小舱较小，无论什么时候，每个小舱内拥有的样本数量都刚好是$k_N$,每个小舱内落入的样本数都是相同的，那此时概率密度的估计就可以只与小舱体积$V$有关<br>$$<br>\hat{p}(\boldsymbol{x})=\frac{k_{N} / N}{V}<br>$$<br>这样能够是得在不同密度的地区都能兼顾<strong>连续性</strong>。与直方图将样本按取值范围划分区域来看，这里是在取值范围内的每一点为小舱中心用上面的式子进行估计。所以说这个方法就是</p>
+<ul>
+<li>在样本取值范围内不断取点，然后确定小舱体积$V$使其包含$k_n$个样本，通过上面的式子就可以计算$\hat{p}(\boldsymbol{x})$。取的点越多，估计越准确。</li>
+</ul>
+<h4 id="3-4-3-Parzen窗法"><a href="#3-4-3-Parzen窗法" class="headerlink" title="3.4.3 Parzen窗法"></a>3.4.3 Parzen窗法</h4><p>这个可以联想数字信号处理中的窗函数法。前面我们取小舱估计其平均密度的方法可以说是使用了<strong>矩形窗</strong>，可以定义$d$维的方窗函数<br>$$<br>\varphi\left(\left[u_{1}, u_{2}, \cdots, u_{d}\right]^{\mathrm{T}}\right)= \begin{cases}1 &amp; \text { 若 }\left|u_{j}\right| \leqslant \frac{1}{2}, j=1,2, \cdots, d \ 0 &amp; \text { 其他 }\end{cases}<br>$$<br>函数代表在以原点为中心的单位超正方体中取值为1，其他地方取值为0，现在设小舱边长$h$,有$V = h^d$，那么判断一个样本$\boldsymbol{x_i}$是否在以$\boldsymbol{x}$为中心$h$为棱长的超立方体内就可以通过计算$\varphi(\frac{\boldsymbol{x}-\boldsymbol{x_i}}{h})$来实现，那么落入小舱内的样本数就可以写成<br>$$<br>k_{N}=\sum_{i=1}^{N} \varphi\left(\frac{x-x_{i}}{h}\right)<br>$$<br>那么对于一点的概率密度估计就有<br>$$<br>\hat{p}(\boldsymbol{x})=\frac{1}{N V} \sum_{i=1}^{N} \varphi\left(\frac{\boldsymbol{x}-\boldsymbol{x}<em>{i}}{h}\right)<br>$$<br>或者说<br>$$<br>\hat{p}(\boldsymbol{x})=\frac{1}{N} \sum</em>{i=1}^{N} \frac{1}{V} \varphi\left(\frac{\boldsymbol{x}-\boldsymbol{x}<em>{i}}{h}\right)<br>$$<br>把累加里面的式子定义为核函数<br>$$<br>K\left(x, x</em>{i}\right)=\frac{1}{V} \varphi\left(\frac{x-x_{i}}{h}\right)<br>$$<br>他代表了一个观测样本$\boldsymbol{x_i}$对于$\boldsymbol{x}$处的概率密度估计的贡献，显然离得越远贡献应该是越小的，但对于矩形窗远离一定的距离贡献就为0了。<strong>概率密度估计应该是在每一点上把所有观测样本的贡献进行平均</strong>。<br>$$<br>\hat{p}(\boldsymbol{x})=\frac{1}{N} \sum_{i=1}^{N} K\left(x, x_{i}\right)<br>$$<br>所以上面所说的用窗函数的方法就是Parzen窗方法或者说核密度估计方法。事实上肯定不只有方窗，还有</p>
+<ul>
+<li><p>高斯窗<br>$$<br>k\left(\boldsymbol{x}, \boldsymbol{x}<em>{i}\right)=\frac{1}{\sqrt{(2 \pi)^{d} \rho^{2 d}|\boldsymbol{Q}|}} \exp \left{-\frac{1}{2} \frac{\left(\boldsymbol{x}-\boldsymbol{x}</em>{i}\right)^{\mathrm{T}} \boldsymbol{Q}^{-1}\left(\boldsymbol{x}-\boldsymbol{x}<em>{i}\right)}{\rho^{2}}\right}<br>$$<br>以样本 $x</em>{i} $ 为均值、协方差矩阵为 }$\Sigma=\rho^{2} Q $的正态分布函数。 </p>
+</li>
+<li><p>超球窗<br>$$<br>k\left(\boldsymbol{x}, \boldsymbol{x}<em>{i}\right)= \begin{cases}V^{-1} &amp; \text { 若 }\left|\boldsymbol{x}-\boldsymbol{x}</em>{i}\right| \leqslant \rho \ 0 &amp; \text { 其他 }\end{cases}<br>$$</p>
+</li>
+</ul>
+
+        </div>
+
+        
+            <div class="post-copyright-info">
+                <div class="article-copyright-info-container">
+    <ul>
+        <li>Post title：模式识别</li>
+        <li>Post author：newsun-boki</li>
+        <li>Create time：2022-04-11 11:26:45</li>
+        <li>
+            Post link：https://github.com/newsun-boki2022/04/11/pattern-reco/
+        </li>
+        <li>
+            Copyright Notice：All articles in this blog are licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> unless stating additionally.
+        </li>
+    </ul>
+</div>
+
+            </div>
+        
+
+        
+            <div class="article-nav">
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/2022/03/24/rl-note/"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item"></span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+              <span>2020</span>
+              -
+            
+            2022&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">newsun-boki</a>
+        </div>
+        
+        <div class="theme-info info-item">
+            Powered by <a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;|&nbsp;Theme&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.3</a>
+        </div>
+        
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item page-aside-toggle">
+                <i class="fas fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+            <li class="tools-item rss flex-center">
+                <a class="flex-center"
+                   href="/atom.xml"
+                   target="_blank"
+                >
+                    <i class="fas fa-rss"></i>
+                </a>
+            </li>
+        
+
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="arrow-up fas fa-arrow-up"></i>
+                <span class="percent"></span>
+            </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    
+        <aside class="page-aside">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%A8%A1%E5%BC%8F%E8%AF%86%E5%88%AB%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0"><span class="nav-number">1.</span> <span class="nav-text">模式识别阅读笔记</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#I-%E6%A6%82%E8%AE%BA"><span class="nav-number">1.1.</span> <span class="nav-text">I 概论</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#II-%E7%BB%9F%E8%AE%A1%E5%86%B3%E7%AD%96%E6%96%B9%E6%B3%95"><span class="nav-number">1.2.</span> <span class="nav-text">II 统计决策方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-%E8%B4%9D%E5%8F%B6%E6%96%AF%E5%85%AC%E5%BC%8F"><span class="nav-number">1.2.1.</span> <span class="nav-text">2.1 贝叶斯公式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-%E6%9C%80%E5%B0%8F%E9%94%99%E8%AF%AF%E7%8E%87%E8%B4%9D%E5%8F%B6%E6%96%AF%E5%86%B3%E7%AD%96"><span class="nav-number">1.2.2.</span> <span class="nav-text">2.2 最小错误率贝叶斯决策</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3%E6%9C%80%E5%B0%8F%E9%A3%8E%E9%99%A9%E8%B4%9D%E5%8F%B6%E6%96%AF%E5%86%B3%E7%AD%96"><span class="nav-number">1.2.3.</span> <span class="nav-text">2.3最小风险贝叶斯决策</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-4-%E4%B8%A4%E7%B1%BB%E9%94%99%E8%AF%AF%E7%8E%87%E3%80%81Neyman-Pearson%E5%86%B3%E7%AD%96%E4%B8%8EROC"><span class="nav-number">1.2.4.</span> <span class="nav-text">2.4 两类错误率、Neyman-Pearson决策与ROC</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-5-%E6%AD%A3%E6%80%81%E5%88%86%E5%B8%83%E7%9A%84%E7%BB%9F%E8%AE%A1%E5%86%B3%E7%AD%96"><span class="nav-number">1.2.5.</span> <span class="nav-text">2.5 正态分布的统计决策</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E7%AC%AC%E4%B8%80%E7%A7%8D%E6%83%85%E5%86%B5-boldsymbol-Sigma-i-sigma-2-I-i-1-2-cdots-c"><span class="nav-number">1.2.5.1.</span> <span class="nav-text">1. 第一种情况$\boldsymbol{\Sigma}_{i}&#x3D;\sigma^{2} I, i&#x3D;1,2, \cdots, c$</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E7%AC%AC%E4%BA%8C%E7%A7%8D%E6%83%85%E5%86%B5%EF%BC%9A-boldsymbol-Sigma-i-boldsymbol-Sigma"><span class="nav-number">1.2.5.2.</span> <span class="nav-text">2. 第二种情况：$\boldsymbol{\Sigma}_{i} &#x3D; \boldsymbol{\Sigma}$</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E7%AC%AC%E4%B8%89%E7%A7%8D%E6%83%85%E5%86%B5%EF%BC%9A%E5%90%84%E7%B1%BB%E5%8D%8F%E6%96%B9%E5%B7%AE%E4%B8%8D%E7%9B%B8%E7%AD%89"><span class="nav-number">1.2.5.3.</span> <span class="nav-text">3.第三种情况：各类协方差不相等</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-6-%E9%94%99%E8%AF%AF%E7%8E%87%E8%AE%A1%E7%AE%97"><span class="nav-number">1.2.6.</span> <span class="nav-text">2.6 错误率计算</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-7-%E7%A6%BB%E6%95%A3%E6%A6%82%E7%8E%87%E6%A8%A1%E5%9E%8B%E4%B8%8B%E7%9A%84%E7%BB%9F%E8%AE%A1%E5%86%B3%E7%AD%96%E4%B8%BE%E4%BE%8B"><span class="nav-number">1.2.7.</span> <span class="nav-text">2.7 离散概率模型下的统计决策举例</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#III-%E6%A6%82%E7%8E%87%E5%AF%86%E5%BA%A6%E5%87%BD%E6%95%B0%E7%9A%84%E4%BC%B0%E8%AE%A1"><span class="nav-number">1.3.</span> <span class="nav-text">III 概率密度函数的估计</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-%E5%BC%95%E8%A8%80"><span class="nav-number">1.3.1.</span> <span class="nav-text">3.1 引言</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-%E6%9C%80%E5%A4%A7%E4%BC%BC%E7%84%B6%E4%BC%B0%E8%AE%A1"><span class="nav-number">1.3.2.</span> <span class="nav-text">3.2 最大似然估计</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-3-%E8%B4%9D%E5%8F%B6%E6%96%AF%E4%BC%B0%E8%AE%A1%E5%92%8C%E8%B4%9D%E5%8F%B6%E6%96%AF%E5%AD%A6%E4%B9%A0"><span class="nav-number">1.3.3.</span> <span class="nav-text">3.3 贝叶斯估计和贝叶斯学习</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-4-%E6%A6%82%E7%8E%87%E5%AF%86%E5%BA%A6%E4%BC%B0%E8%AE%A1%E7%9A%84%E9%9D%9E%E5%8F%82%E6%95%B0%E6%96%B9%E6%B3%95"><span class="nav-number">1.3.4.</span> <span class="nav-text">3.4 概率密度估计的非参数方法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#3-4-1-%E7%9B%B4%E6%96%B9%E5%9B%BE%E6%96%B9%E6%B3%95"><span class="nav-number">1.3.4.1.</span> <span class="nav-text">3.4.1 直方图方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-4-2-k-n-%E8%BF%91%E9%82%BB%E4%BC%B0%E8%AE%A1%E6%96%B9%E6%B3%95%E3%80%81"><span class="nav-number">1.3.4.2.</span> <span class="nav-text">3.4.2 $k_n$近邻估计方法、</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-4-3-Parzen%E7%AA%97%E6%B3%95"><span class="nav-number">1.3.4.3.</span> <span class="nav-text">3.4.3 Parzen窗法</span></a></li></ol></li></ol></li></ol></li></ol>
+    </div>
+</div>
+        </aside>
+    
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+<script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/utils.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/main.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/header-shrink.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/back2top.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/dark-light-toggle.js"></script>
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/local-search.js"></script>
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/code-copy.js"></script>
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/lazyload.js"></script>
+
+
+<div class="post-scripts pjax">
+    
+        <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/left-side-toggle.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/libs/anime.min.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/toc.js"></script>
+    
+</div>
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/libs/pjax.min.js"></script>
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        window.pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax'
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+            // scrollTo: true,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            KEEP.utils.pjaxProgressBarStart();
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            KEEP.utils.pjaxProgressBarEnd();
+            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+            KEEP.refresh();
+        });
+    });
+</script>
+
+
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":false},"log":false});</script></body>
+</html>
